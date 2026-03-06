@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - SOREA - Restauration collective et accompagnement éducatif à Madagascar</title>
+    
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Comfortaa -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === PALETTE SOREA === */
+        :root {
+            --sorea-vert: #04ba71;
+            --sorea-jaune: #fdc827;
+            --sorea-orange: #fb6841;
+            --sorea-bleu: #0b8bcb;
+            --sorea-vert-dark: #03995c;
+            --sorea-bleu-dark: #0876a6;
+            
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --dark: #1c1c1c;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            
+            --border-radius: 16px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comfortaa', cursive;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .container {
+            max-width: 1200px;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--sorea-vert) !important;
+        }
+        
+        .navbar-brand span {
+            color: var(--sorea-orange);
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--sorea-bleu) !important;
+            margin: 0 0.5rem;
+        }
+        
+        .nav-link:hover {
+            color: var(--sorea-orange) !important;
+        }
+        
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(4, 186, 113, 0.1), rgba(11, 139, 203, 0.1));
+            padding: 5rem 0 3rem;
+            text-align: center;
+        }
+        
+        .contact-hero h1 {
+            font-size: 3rem;
+            color: var(--sorea-bleu);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Contact Cards */
+        .contact-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            height: 100%;
+            transition: var(--transition);
+            border-top: 4px solid var(--sorea-vert);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .contact-card h3 {
+            color: var(--sorea-bleu);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-card h3 i {
+            margin-right: 12px;
+            color: var(--sorea-orange);
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(4, 186, 113, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contact-info-icon i {
+            color: var(--sorea-vert);
+            font-size: 1.2rem;
+        }
+        
+        .contact-info-text h5 {
+            font-size: 1rem;
+            color: var(--sorea-bleu);
+            margin-bottom: 5px;
+        }
+        
+        .contact-info-text p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        /* Contact Form */
+        .contact-form-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            border-top: 4px solid var(--sorea-orange);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--sorea-bleu);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-family: 'Comfortaa', cursive;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--sorea-vert);
+            box-shadow: 0 0 0 0.25rem rgba(4, 186, 113, 0.25);
+        }
+        
+        .form-select:focus {
+            border-color: var(--sorea-vert);
+            box-shadow: 0 0 0 0.25rem rgba(4, 186, 113, 0.25);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--sorea-vert);
+            border-color: var(--sorea-vert);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--sorea-vert-dark);
+            border-color: var(--sorea-vert-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(4, 186, 113, 0.3);
+        }
+        
+        .btn-outline-primary {
+            color: var(--sorea-vert);
+            border-color: var(--sorea-vert);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: rgba(4, 186, 113, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Services List */
+        .services-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .services-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+        }
+        
+        .services-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .services-list li i {
+            color: var(--sorea-vert);
+            margin-right: 10px;
+        }
+        
+        /* Map */
+        .map-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            height: 100%;
+            min-height: 300px;
+        }
+        
+        /* Social Media */
+        .social-media {
+            display: flex;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--sorea-bleu);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: var(--sorea-orange);
+        }
+        
+        /* Contact Hours */
+        .contact-hours {
+            background: rgba(4, 186, 113, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-hours h5 {
+            color: var(--sorea-vert);
+            margin-bottom: 1rem;
+        }
+        
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--sorea-bleu);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+        
+        .footer h5 {
+            color: var(--sorea-jaune);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .footer a:hover {
+            color: var(--sorea-jaune);
+            padding-left: 5px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-hero {
+                padding: 3rem 0 2rem;
+            }
+            
+            .contact-card, .contact-form-card {
+                padding: 2rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-info-item {
+                flex-direction: column;
+            }
+            
+            .contact-info-icon {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-leaf me-2"></i>SOR<span>EA</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="equipe.html">Notre équipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contactez SOREA</h1>
+            <p>Vous êtes parent, directeur d'établissement ou représentant d'une entreprise ? Contactez-nous pour construire ensemble la solution adaptée à vos besoins en restauration collective et accompagnement éducatif.</p>
+            <a href="#contact-form" class="btn btn-primary me-2"><i class="fas fa-paper-plane me-2"></i>Envoyer un message</a>
+            <a href="tel:+261XXXXXXXXX" class="btn btn-outline-primary"><i class="fas fa-phone me-2"></i>Nous appeler</a>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Contact Information Card -->
+                <div class="col-lg-4">
+                    <div class="contact-card">
+                        <h3><i class="fas fa-info-circle"></i> Informations de contact</h3>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h5>Adresse</h5>
+                                <p>Antananarivo, Madagascar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h5>Téléphone</h5>
+                                <p>+261 XX XXX XX</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h5>Email</h5>
+                                <p>contact@sorea.mg</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h5>Horaires d'ouverture</h5>
+                                <p>Lun - Ven: 7h00 - 18h00<br>Samedi: 8h00 - 12h00</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Hours -->
+                        <div class="contact-hours">
+                            <h5>Service client</h5>
+                            <div class="hours-item">
+                                <span>Lundi - Vendredi</span>
+                                <span>8h00 - 17h00</span>
+                            </div>
+                            <div class="hours-item">
+                                <span>Samedi</span>
+                                <span>9h00 - 12h00</span>
+                            </div>
+                            <div class="hours-item">
+                                <span>Dimanche</span>
+                                <span>Fermé</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Media -->
+                        <div class="social-media">
+                            <a href="#" class="social-icon" title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="col-lg-8">
+                    <div class="contact-form-card" id="contact-form">
+                        <h3><i class="fas fa-comment-dots"></i> Envoyez-nous un message</h3>
+                        <p class="text-muted mb-4">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+                        
+                        <form id="contactForm" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">Prénom *</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez saisir votre prénom.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">Nom *</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez saisir votre nom.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez saisir une adresse email valide.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Téléphone</label>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="service" class="form-label">Service concerné *</label>
+                                    <select class="form-select" id="service" required>
+                                        <option value="" selected disabled>Sélectionnez un service</option>
+                                        <option value="cantines">Cantine scolaire</option>
+                                        <option value="entreprise">Cantine d'entreprise</option>
+                                        <option value="traiteur">Service traiteur</option>
+                                        <option value="periscolaire">Accompagnement périscolaire</option>
+                                        <option value="loisirs">Centres de loisirs</option>
+                                        <option value="restaurant">SOREA Garden Restaurant</option>
+                                        <option value="autre">Autre demande</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Veuillez sélectionner un service.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message *</label>
+                                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                                    <div class="invalid-feedback">
+                                        Veuillez saisir votre message.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="consent" required>
+                                        <label class="form-check-label" for="consent">
+                                            J'accepte que mes données personnelles soient utilisées pour traiter ma demande. *
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            Vous devez accepter avant d'envoyer.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary px-4">
+                                        <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Services List -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="contact-card">
+                                <h3><i class="fas fa-concierge-bell"></i> Nos services</h3>
+                                <ul class="services-list">
+                                    <li><i class="fas fa-check-circle"></i> <strong>SOREA AES :</strong> Accompagnement scolaire et extrascolaire personnalisé</li>
+                                    <li><i class="fas fa-check-circle"></i> <strong>SOREA Ma Cantine :</strong> Cantine scolaire avec repas équilibrés</li>
+                                    <li><i class="fas fa-check-circle"></i> <strong>SOREA Sakafo Matsiro :</strong> Cantine d'entreprise moderne livrée au bureau</li>
+                                    <li><i class="fas fa-check-circle"></i> <strong>SOREA Garden :</strong> Restaurant moderne aux saveurs malagasy</li>
+                                    <li><i class="fas fa-check-circle"></i> <strong>Centres de loisirs :</strong> Activités ludiques et éducatives</li>
+                                    <li><i class="fas fa-check-circle"></i> <strong>Service traiteur :</strong> Pour vos événements et réceptions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="contact-card">
+                        <h3><i class="fas fa-map-marked-alt"></i> Notre localisation</h3>
+                        <div class="map-container">
+                            <!-- Google Maps Embed -->
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.202900906416!2d47.51714931545618!3d-18.907972987178124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07e00bfe81d3f%3A0x6e3c1f6d6b7c4b1e!2sAntananarivo%2C%20Madagascar!5e0!3m2!1sfr!2sfr!4v1647531234567!5m2!1sfr!2sfr" 
+                                width="100%" 
+                                height="400" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy"
+                                title="Localisation de SOREA à Antananarivo, Madagascar">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Contact -->
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="contact-card text-center h-100">
+                        <div class="contact-info-icon mx-auto mb-3" style="width: 70px; height: 70px;">
+                            <i class="fas fa-phone-alt" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h4>Appelez-nous</h4>
+                        <p class="text-muted">Pour une réponse rapide, appelez-nous directement.</p>
+                        <a href="tel:+261XXXXXXXXX" class="btn btn-outline-primary mt-2">+261 XX XXX XX</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="contact-card text-center h-100">
+                        <div class="contact-info-icon mx-auto mb-3" style="width: 70px; height: 70px;">
+                            <i class="fas fa-envelope" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h4>Envoyez un email</h4>
+                        <p class="text-muted">Pour des demandes détaillées, écrivez-nous.</p>
+                        <a href="mailto:contact@sorea.mg" class="btn btn-outline-primary mt-2">contact@sorea.mg</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="contact-card text-center h-100">
+                        <div class="contact-info-icon mx-auto mb-3" style="width: 70px; height: 70px;">
+                            <i class="fas fa-calendar-alt" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h4>Prenez rendez-vous</h4>
+                        <p class="text-muted">Pour une rencontre en personne, planifiez un rendez-vous.</p>
+                        <a href="#contact-form" class="btn btn-primary mt-2">Demander un rendez-vous</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>SOREA</h5>
+                    <p>Restauration collective et accompagnement éducatif à Madagascar. Engagé pour l'alimentation saine et l'éveil des enfants.</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5>Liens rapides</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos de SOREA</a></li>
+                        <li><a href="services.html">Nos services</a></li>
+                        <li><a href="equipe.html">Notre équipe</a></li>
+                        <li><a href="certifications.html">Équipements & Certifications</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5>Contact</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Antananarivo, Madagascar</li>
+                        <li><i class="fas fa-phone me-2"></i> +261 XX XXX XX</li>
+                        <li><i class="fas fa-envelope me-2"></i> contact@sorea.mg</li>
+                        <li><i class="fas fa-clock me-2"></i> Lun - Ven: 7h00 - 18h00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 SOREA Groupe. Tous droits réservés. | Restauration collective et accompagnement éducatif à Madagascar</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Form validation
+        (function() {
+            'use strict'
+            
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+            
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        } else {
+                            event.preventDefault()
+                            // Simulate form submission
+                            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.')
+                            form.reset()
+                            form.classList.remove('was-validated')
+                        }
+                        
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+        
+        // Add event listener to the contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            if (this.checkValidity()) {
+                e.preventDefault()
+                
+                // Show success message
+                alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.')
+                
+                // Reset form
+                this.reset()
+                this.classList.remove('was-validated')
+                
+                // Scroll to top of form
+                document.getElementById('contact-form').scrollIntoView({
+                    behavior: 'smooth'
+                })
+            }
+        })
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault()
+                    const targetId = this.getAttribute('href')
+                    if (targetId === '#') return
+                    
+                    const targetElement = document.querySelector(targetId)
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        })
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>

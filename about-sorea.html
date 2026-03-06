@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - SOREA | Restauration Collective Madagascar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --primary-light: #D1FAE5;
+            --secondary: #3B82F6;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --darker: #111827;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.12);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--darker);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 8px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, #F0FDF4 0%, #F0F9FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            top: -300px;
+            right: -200px;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(16, 185, 129, 0.08));
+            bottom: -200px;
+            left: -100px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--primary);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .hero-badge i {
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            color: var(--darker);
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(16, 185, 129, 0.2);
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--darker);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 30px auto 0;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-img-main {
+            width: 100%;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-img-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            z-index: 0;
+        }
+
+        .about-img-1 {
+            top: -30px;
+            left: -30px;
+            background: linear-gradient(135deg, var(--primary-light), white);
+        }
+
+        .about-img-2 {
+            bottom: -30px;
+            right: -30px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), white);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            color: var(--darker);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .expertise-card {
+            background: linear-gradient(135deg, white, var(--light-gray));
+            padding: 32px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .expertise-card h4 {
+            font-size: 1.4rem;
+            color: var(--darker);
+            margin-bottom: 16px;
+        }
+
+        /* Missions Section */
+        .missions {
+            background-color: var(--light-gray);
+        }
+
+        .missions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .mission-card {
+            background-color: white;
+            padding: 40px 32px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .mission-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--darker);
+        }
+
+        /* Values Section */
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+        }
+
+        .value-card {
+            background-color: white;
+            padding: 32px 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .value-card::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .value-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .value-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--darker);
+        }
+
+        /* Strengths Section */
+        .strengths {
+            background-color: var(--light-gray);
+        }
+
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .strength-card {
+            background-color: white;
+            padding: 40px 32px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strength-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .strength-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(16, 185, 129, 0.1);
+            line-height: 1;
+        }
+
+        .strength-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .strength-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--darker);
+        }
+
+        /* Commitments & Objectives */
+        .commitments-list, .objectives-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .commitment-item, .objective-item {
+            background-color: white;
+            padding: 32px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
+
+        .commitment-item:hover, .objective-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .commitment-icon, .objective-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-light), white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .commitment-content h4, .objective-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--darker);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            border-radius: var(--border-radius-lg);
+            margin: 100px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            top: -150px;
+            right: -150px;
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: white;
+            color: var(--primary);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .footer-logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-logo-text span {
+            color: var(--primary);
+        }
+
+        .footer-description {
+            color: #9CA3AF;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .certification {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .certification i {
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            width: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary);
+        }
+
+        .contact-details h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .contact-details p {
+            color: #9CA3AF;
+            font-size: 0.95rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .values-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-grid, .missions-grid, .strengths-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .commitments-list, .objectives-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding-top: 140px;
+                padding-bottom: 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .values-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta {
+                margin: 80px 16px;
+                padding: 80px 24px;
+            }
+            
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="logo-text">SOR<span>EA</span></div>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="#" class="active">À Propos</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="engagements.html">Engagements</a></li>
+                    <li><a href="equipe.html">Équipe</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <a href="contact.html" class="nav-cta">Demander un devis</a>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-award"></i>
+                    <span>Certifié HACCP • 15+ ans d'expérience</span>
+                </div>
+                
+                <h1>Notre histoire, nos valeurs <span>et notre mission</span></h1>
+                
+                <p>Depuis plus de 15 ans, SOREA réinvente la restauration collective à Madagascar. Notre engagement : offrir des repas sains, équilibrés et savoureux tout en créant un environnement éducatif stimulant pour les enfants.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">15+</div>
+                        <div class="stat-label">Années d'expérience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">Produits locaux</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">1000+</div>
+                        <div class="stat-label">Repas servis par jour</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">Établissements partenaires</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qui est SOREA ? -->
+    <section id="qui-sommes-nous">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Notre histoire</div>
+                <h2 class="section-title">Qui est SOREA ?</h2>
+                <p class="section-description">Fondée par Mara Louisa Mansaré, SOREA porte une vision claire de la restauration collective qui combine expertise locale et standards internationaux.</p>
+            </div>
+            
+            <div class="about-grid animate-on-scroll">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1583339522870-0d4f6d1a2c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Équipe SOREA" class="about-img-main">
+                    <div class="about-img-decoration about-img-1"></div>
+                    <div class="about-img-decoration about-img-2"></div>
+                </div>
+                
+                <div class="about-content">
+                    <h3>Une expertise forgée par l'expérience</h3>
+                    <p>Avec plus de quinze ans d'expérience dans le domaine, SOREA s'appuie sur une double source d'apprentissage : le terrain malgache et les références françaises du secteur.</p>
+                    
+                    <div class="expertise-card">
+                        <h4>UNE EXPERTISE TERRAIN ET INTERNATIONALE</h4>
+                        <p>Autour d'elle, une équipe qualifiée et engagée formée dans des établissements reconnus tels que Vatel ou l'INTH, partage une même exigence : proposer une cuisine saine, équilibrée, responsable et adaptée aux enfants.</p>
+                        <p>SOREA œuvre de manière écoresponsable. Chaque plat est conçu avec soin, dans le respect des règles strictes d'hygiène et de qualité, pour offrir chaque jour des repas sains, sûrs et savoureux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos missions -->
+    <section class="missions" id="missions">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Notre engagement</div>
+                <h2 class="section-title">Nos missions</h2>
+                <p class="section-description">SOREA nourrit enfants et travailleurs grâce à une restauration collective de qualité et des services d'accompagnement éducatif sécurisés.</p>
+            </div>
+            
+            <div class="missions-grid">
+                <div class="mission-card animate-on-scroll">
+                    <div class="mission-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Restauration collective</h3>
+                    <p>Des repas équilibrés, adaptés à l'âge des enfants, élaborés dans le respect des normes sanitaires les plus strictes.</p>
+                </div>
+                
+                <div class="mission-card animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="mission-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Accueil de loisirs</h3>
+                    <p>Un environnement éducatif et bienveillant avant ou après l'école, combinant aide aux devoirs, jeux, créativité et sociabilisation.</p>
+                </div>
+                
+                <div class="mission-card animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="mission-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>Centres de loisirs</h3>
+                    <p>Des vacances ludiques et éducatives, permettant aux enfants de s'éveiller, de développer leur autonomie et de socialiser pleinement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos valeurs -->
+    <section id="valeurs">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Notre ADN</div>
+                <h2 class="section-title">Nos valeurs</h2>
+                <p class="section-description">Chez SOREA, chaque plat est cuisiné en se reposant sur des valeurs fortes qui guident nos actions au quotidien.</p>
+            </div>
+            
+            <div class="values-container">
+                <div class="value-card animate-on-scroll">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Bienveillance</h4>
+                    <p>Créer un environnement sûr, chaleureux et respectueux où chaque enfant se sent valorisé.</p>
+                </div>
+                
+                <div class="value-card animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Qualité</h4>
+                    <p>Proposer des repas équilibrés, savoureux et sûrs garantissant nutrition et sécurité.</p>
+                </div>
+                
+                <div class="value-card animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Engagement</h4>
+                    <p>Agir avec conscience pour un futur durable auprès des familles, écoles et entreprises.</p>
+                </div>
+                
+                <div class="value-card animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Responsabilité</h4>
+                    <p>Pratiques transparentes, durables et respectueuses de l'environnement local.</p>
+                </div>
+                
+                <div class="value-card animate-on-scroll" style="transition-delay: 0.4s;">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Innovation éducative</h4>
+                    <p>Transformer chaque repas en moment d'apprentissage et d'éveil au monde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos atouts -->
+    <section class="strengths" id="atouts">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Nos forces</div>
+                <h2 class="section-title">Nos atouts</h2>
+                <p class="section-description">SOREA travaille avec expertise, organisation et esprit d'équipe, assurant des repas et services fiables adaptés à tous.</p>
+            </div>
+            
+            <div class="strengths-grid">
+                <div class="strength-card animate-on-scroll">
+                    <div class="strength-number">01</div>
+                    <div class="strength-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Expertise en restauration collective</h3>
+                    <p>Nos menus sont conçus par des professionnels de la nutrition, avec des produits locaux, équilibrés pour enfants et adultes, tout en respectant hygiène, qualité et saveurs.</p>
+                </div>
+                
+                <div class="strength-card animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="strength-number">02</div>
+                    <div class="strength-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Organisation logistique maîtrisée</h3>
+                    <p>Livraisons quotidiennes, animations dans plusieurs établissements et coordination de centres : notre expérience assure une réponse efficace aux contraintes du terrain malgache.</p>
+                </div>
+                
+                <div class="strength-card animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="strength-number">03</div>
+                    <div class="strength-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Équipe réactive et à l'écoute</h3>
+                    <p>Nos animateurs, coordinateurs et cuisiniers, formés et investis, travaillent avec directeurs et parents pour un environnement stimulant et sécurisé.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos engagements -->
+    <section id="engagements">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Notre promesse</div>
+                <h2 class="section-title">Nos engagements</h2>
+                <p class="section-description">Pour garantir la qualité de ses services, SOREA veille à maintenir les plus hauts standards dans tous les aspects de son activité.</p>
+            </div>
+            
+            <div class="commitments-list">
+                <div class="commitment-item animate-on-scroll">
+                    <div class="commitment-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="commitment-content">
+                        <h4>Normes d'hygiène strictes</h4>
+                        <p>Application rigoureuse des normes d'hygiène et de sécurité alimentaire, avec un personnel formé aux normes HACCP.</p>
+                    </div>
+                </div>
+                
+                <div class="commitment-item animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="commitment-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="commitment-content">
+                        <h4>Produits locaux frais</h4>
+                        <p>Préparation quotidienne d'une cuisine fraîche, à base de produits locaux sélectionnés avec soin.</p>
+                    </div>
+                </div>
+                
+                <div class="commitment-item animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="commitment-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="commitment-content">
+                        <h4>Logistique optimisée</h4>
+                        <p>Logistique maîtrisée pour préserver fraîcheur et qualité jusqu'à la livraison.</p>
+                    </div>
+                </div>
+                
+                <div class="commitment-item animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="commitment-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="commitment-content">
+                        <h4>Lutte contre le gaspillage</h4>
+                        <p>Réduction systématique du gaspillage alimentaire et proposition de menus végétariens hebdomadaires.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos objectifs -->
+    <section id="objectifs">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Notre vision</div>
+                <h2 class="section-title">Nos objectifs</h2>
+                <p class="section-description">SOREA œuvre chaque jour pour atteindre des objectifs ambitieux qui bénéficient à nos clients et à la communauté.</p>
+            </div>
+            
+            <div class="objectives-list">
+                <div class="objective-item animate-on-scroll">
+                    <div class="objective-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <div class="objective-content">
+                        <h4>Nutrition optimale</h4>
+                        <p>Offrir des repas équilibrés et adaptés à chaque tranche d'âge.</p>
+                    </div>
+                </div>
+                
+                <div class="objective-item animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="objective-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="objective-content">
+                        <h4>Développement de l'enfant</h4>
+                        <p>Proposer un cadre bienveillant, stimulant l'autonomie et la curiosité des enfants.</p>
+                    </div>
+                </div>
+                
+                <div class="objective-item animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="objective-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="objective-content">
+                        <h4>Activités adaptées</h4>
+                        <p>Organiser des activités éducatives et divertissantes, en phase avec les besoins et rythmes des enfants.</p>
+                    </div>
+                </div>
+                
+                <div class="objective-item animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="objective-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="objective-content">
+                        <h4>Simplicité pour les parents</h4>
+                        <p>Simplifier le quotidien des parents avec des solutions fiables et sécurisées.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Prêt à transformer l'expérience alimentaire de votre établissement ?</h2>
+            <p>Rejoignez les 50+ établissements qui nous font confiance pour une restauration collective de qualité, saine et responsable.</p>
+            <a href="contact.html" class="cta-button">
+                <span>Demander un devis personnalisé</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="footer-logo-text">SOR<span>EA</span></div>
+                    </div>
+                    <p class="footer-description">Votre partenaire en restauration collective et accompagnement périscolaire à Madagascar depuis plus de 15 ans.</p>
+                    <div class="certification">
+                        <i class="fas fa-award"></i>
+                        <span>Certifié HACCP</span>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Nos Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Restauration collective</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Accueil de loisirs</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Centres aérés</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> SOREA Garden</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>L'Entreprise</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Notre histoire</a></li>
+                        <li><a href="equipe.html"><i class="fas fa-chevron-right"></i> Notre équipe</a></li>
+                        <li><a href="engagements.html"><i class="fas fa-chevron-right"></i> Nos engagements</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Adresse</h4>
+                                <p>Antananarivo, Madagascar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <i class="bi bi-hand-wash"></i>
+                                <p>contact@sorea.mg</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Téléphone</h4>
+                                <p>+261 XX XX XXX XX</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 SOREA. Tous droits réservés • Cantine scolaire et d'entreprise, service traiteur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const header = document.getElementById('header');
+        const navLinks = document.querySelector('.nav-links');
+        const navCta = document.querySelector('.nav-cta');
+        
+        mobileToggle.addEventListener('click', () => {
+            const isOpen = navLinks.style.display === 'flex';
+            
+            if (isOpen) {
+                navLinks.style.display = 'none';
+                navCta.style.display = 'none';
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            } else {
+                navLinks.style.display = 'flex';
+                navCta.style.display = 'inline-block';
+                mobileToggle.innerHTML = '<i class="fas fa-times"></i>';
+                
+                // Adjust for mobile
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'white';
+                navLinks.style.padding = '30px';
+                navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                navLinks.style.gap = '20px';
+                
+                navCta.style.position = 'absolute';
+                navCta.style.top = 'calc(100% + 220px)';
+                navCta.style.left = '24px';
+                navCta.style.width = 'calc(100% - 48px)';
+                navCta.style.textAlign = 'center';
+            }
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animate-on-scroll elements
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                        navCta.style.display = 'none';
+                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

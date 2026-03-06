@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Configuration -->
+    <title>Sound Therapy & Holistic Services | ADC</title>
+    <meta name="description" content="Explore ADC’s sound therapy services, professional training and complementary holistic practices including singing bowls, sound baths and energy balancing.">
+    <meta name="keywords" content="Sound Therapy services">
+    <!-- Police et icônes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary: #4A2C6D;
+            --primary-light: #6b4c8c;
+            --secondary: #D4AF37;
+            --secondary-light: #e5c568;
+            --accent: #E6E6FA;
+            --bg: #F8F5F2;
+            --white: #FFFFFF;
+            --text-dark: #2D2D2D;
+            --text-light: #6D6D6D;
+            --shadow: 0 10px 30px rgba(74, 44, 109, 0.08);
+            --shadow-hover: 0 20px 40px rgba(74, 44, 109, 0.15);
+            --border-radius: 16px;
+            --border-radius-sm: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TYPOGRAPHIE ===== */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* ===== BOUTONS ===== */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid transparent;
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-services {
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-services .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin: 30px 0;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            position: relative;
+            height: 400px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="%23E6E6FA" opacity="0.5"/><circle cx="100" cy="100" r="60" fill="%23D4AF37" opacity="0.2"/><circle cx="100" cy="100" r="40" fill="%234A2C6D" opacity="0.2"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        /* ===== CARTES SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .service-list {
+            list-style: none;
+            margin: 20px 0;
+            flex-grow: 1;
+        }
+
+        .service-list li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .service-list li:before {
+            content: '♫';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .service-card .btn {
+            align-self: flex-start;
+            margin-top: 15px;
+        }
+
+        /* ===== SECTION COMPLÉMENTAIRE ===== */
+        .complementary-section {
+            background: var(--white);
+            padding: 80px 0;
+            margin: 40px 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .complementary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .complementary-list {
+            list-style: none;
+        }
+
+        .complementary-list li {
+            padding: 15px 0 15px 40px;
+            position: relative;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(74, 44, 109, 0.1);
+        }
+
+        .complementary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .complementary-list li:before {
+            content: '✧';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .cta-quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--primary);
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ===== ÉVÉNEMENTS ===== */
+        .events-section {
+            padding: 80px 0;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .event-category {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .event-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .event-category ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .event-category li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .event-category li:before {
+            content: '•';
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .special-cta {
+            background: linear-gradient(135deg, rgba(74,44,109,0.05), rgba(212,175,55,0.05));
+            border-radius: var(--border-radius);
+            padding: 60px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .special-cta p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        /* ===== DÉCORATIONS ===== */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .float {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.2;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .float-1 { width: 150px; height: 150px; top: 5%; left: -30px; }
+        .float-2 { width: 100px; height: 100px; bottom: 10%; right: 10%; background: var(--secondary); opacity: 0.1; animation-delay: 2s; }
+        .float-3 { width: 70px; height: 70px; top: 40%; right: 5%; background: var(--primary); opacity: 0.1; animation-delay: 4s; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            .hero-services .container { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin-left: auto; margin-right: auto; }
+            .complementary-grid { grid-template-columns: 1fr; text-align: center; }
+            .complementary-list li { text-align: left; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .events-grid { grid-template-columns: 1fr; }
+            .special-cta { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Éléments flottants décoratifs -->
+    <div class="floating-elements">
+        <div class="float float-1"></div>
+        <div class="float float-2"></div>
+        <div class="float float-3"></div>
+    </div>
+
+    <!-- SECTION HERO - SERVICES -->
+    <section class="hero-services">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sound Therapy & Holistic Practices</h1>
+                <p>At ADC, we offer a selection of sound therapy sessions, professional training, and complementary holistic therapies, guided with respect for traditional sound healing methods.</p>
+                <a href="#" class="btn">Explore our services <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+            </div>
+            <div class="hero-image">
+                <!-- Illustration abstraite via CSS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION SOUND THERAPY -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Sound Therapy</h2>
+        </div>
+        <div class="services-grid">
+            <!-- Carte principale avec la liste -->
+            <div class="service-card" style="grid-column: span 2;">
+                <div class="service-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <h3>Our Sound Therapy Sessions</h3>
+                <ul class="service-list">
+                    <li>Tibetan Singing Bowls Therapy Training</li>
+                    <li>Tibetan Singing Bowls Therapy</li>
+                    <li>Sound Massage</li>
+                    <li>Sound Bath</li>
+                    <li>Balancing of Chakras</li>
+                    <li>3rd Eye Activation</li>
+                    <li>Anxiety & Stress Disorder Therapy</li>
+                </ul>
+                <a href="#" class="btn btn-outline">Ask about our sessions</a>
+            </div>
+            <!-- Optionnel : une carte avec une citation ou un complément -->
+            <div class="service-card" style="background: linear-gradient(145deg, var(--white), var(--accent));">
+                <div class="service-icon" style="background: var(--secondary); color: var(--primary);">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h3>Personalized Care</h3>
+                <p style="margin-bottom: 20px;">Each session is tailored to your unique needs, combining ancient tools with present‑moment awareness.</p>
+                <p style="font-style: italic; color: var(--primary);">"Sound is the medicine of the future."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION COMPLEMENTARY THERAPIES -->
+    <section class="complementary-section">
+        <div class="container">
+            <div class="complementary-grid">
+                <div>
+                    <h2 style="margin-bottom: 20px;">Complementary Therapies</h2>
+                    <p style="margin-bottom: 30px; color: var(--text-light);">These practices can be experienced individually or alongside Sound Therapy sessions.</p>
+                    <ul class="complementary-list">
+                        <li>Tarot Card reading</li>
+                        <li>Tibetan Tuning Fork Therapy</li>
+                        <li>Crystal Ball Singing Therapy</li>
+                    </ul>
+                </div>
+                <div style="text-align: center;">
+                    <div class="cta-quote">You don’t need to understand Sound Therapy, feel its effects</div>
+                    <a href="#" class="btn" style="margin-top: 20px;">Begin your sound journey</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION EVENTS & WORKSHOPS -->
+    <section class="events-section">
+        <div class="container">
+            <!-- SEO Meta pour la partie events (intégrée) -->
+            <div class="section-header">
+                <h2>Sound Healing Events & Workshops</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: var(--text-light);">ADC’s sound healing events are designed as shared moments of presence, connection, and vibrational harmony. We offer an immersive and accessible way to experience sound therapy in a collective setting.</p>
+                <a href="#" class="btn" style="margin-top: 20px;">Get details</a>
+            </div>
+
+            <!-- Grille des catégories d'événements -->
+            <div class="events-grid">
+                <!-- Sound Healing Events -->
+                <div class="event-category">
+                    <h3>Sound Healing Events</h3>
+                    <ul>
+                        <li>Group Sound Bath Sessions</li>
+                        <li>Collective Sound Healing Sessions</li>
+                        <li>Tibetan Singing Bowls Group Sessions</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">See upcoming events</a>
+                </div>
+
+                <!-- Workshops -->
+                <div class="event-category">
+                    <h3>Workshops</h3>
+                    <p style="margin-bottom: 15px;">Suitable for beginners and those wishing to deepen their practice.</p>
+                    <ul>
+                        <li>Introductory Sound Therapy Workshops</li>
+                        <li>Tibetan Singing Bowls Workshops</li>
+                        <li>Sound & Vibration Awareness Workshops</li>
+                    </ul>
+                </div>
+
+                <!-- Special & Themed Events -->
+                <div class="event-category">
+                    <h3>Special & Themed Events</h3>
+                    <p style="margin-bottom: 15px;">Sound has the power to bring people together, creating moments of stillness, connection, and shared resonance.</p>
+                    <ul>
+                        <li>Stress Release Sound Sessions</li>
+                        <li>Relaxation & Grounding Sound Events</li>
+                        <li>Intuition & Awareness Sound Sessions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CTA final -->
+            <div class="special-cta">
+                <p>Experience sound beyond words</p>
+                <a href="#" class="btn">Reserve your place</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Petit footer ou espace -->
+    <footer style="text-align: center; padding: 40px 0; color: var(--text-light); border-top: 1px solid rgba(74,44,109,0.1);">
+        <p>© ADC – Sound Therapy and Vibrational Healing</p>
+    </footer>
+
+    <!-- Animation au scroll (simple) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card, .event-category');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

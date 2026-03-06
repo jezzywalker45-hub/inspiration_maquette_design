@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOREA - À propos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #3D619B;
+            --orange: #F24822;
+            --green: #04BA71;
+            --yellow: #FDC827;
+            --dark: #333333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--blue);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--yellow);
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--yellow);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(61, 97, 155, 0.9), rgba(61, 97, 155, 0.8)), url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .founder {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+        
+        .founder i {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--yellow);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--blue);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--orange);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Section Colors */
+        .vision-section {
+            background-color: var(--light);
+        }
+        
+        .missions-section .section-title h2:after {
+            background-color: var(--green);
+        }
+        
+        .values-section {
+            background-color: rgba(253, 200, 39, 0.1);
+        }
+        
+        .values-section .section-title h2:after {
+            background-color: var(--yellow);
+        }
+        
+        .strengths-section .section-title h2:after {
+            background-color: var(--blue);
+        }
+        
+        .commitments-section {
+            background-color: rgba(4, 186, 113, 0.05);
+        }
+        
+        .commitments-section .section-title h2:after {
+            background-color: var(--green);
+        }
+        
+        .goals-section .section-title h2:after {
+            background-color: var(--orange);
+        }
+        
+        /* Content Styles */
+        .content-block {
+            margin-bottom: 3rem;
+        }
+        
+        .content-block h3 {
+            color: var(--blue);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .content-block h3 i {
+            margin-right: 10px;
+            color: var(--orange);
+        }
+        
+        .content-block p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .highlight-box {
+            background-color: white;
+            border-left: 5px solid var(--yellow);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .highlight-box h4 {
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* List Styles */
+        ul.custom-list, ol.custom-list {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        ul.custom-list li, ol.custom-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 0.5rem;
+        }
+        
+        ul.custom-list li:before {
+            content: '•';
+            color: var(--orange);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        ol.custom-list {
+            counter-reset: item;
+        }
+        
+        ol.custom-list li {
+            counter-increment: item;
+        }
+        
+        ol.custom-list li:before {
+            content: counter(item) ".";
+            color: var(--green);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5em;
+            margin-left: -1.5em;
+        }
+        
+        /* Color-coded items */
+        .color-item {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .color-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .color-item.benevolence {
+            border-top: 4px solid var(--blue);
+        }
+        
+        .color-item.quality {
+            border-top: 4px solid var(--orange);
+        }
+        
+        .color-item.commitment {
+            border-top: 4px solid var(--green);
+        }
+        
+        .color-item.responsibility {
+            border-top: 4px solid var(--yellow);
+        }
+        
+        .color-item.innovation {
+            border-top: 4px solid var(--blue);
+        }
+        
+        .color-item h4 {
+            display: flex;
+            align-items: center;
+        }
+        
+        .color-item h4 i {
+            margin-right: 10px;
+        }
+        
+        /* Two-column layout for strengths */
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .strength-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid var(--blue);
+        }
+        
+        .strength-card:nth-child(2) {
+            border-top-color: var(--orange);
+        }
+        
+        .strength-card:nth-child(3) {
+            border-top-color: var(--green);
+        }
+        
+        .strength-card h4 {
+            display: flex;
+            align-items: center;
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+        
+        .strength-card h4 span {
+            background-color: var(--blue);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-weight: 700;
+        }
+        
+        .strength-card:nth-child(2) h4 span {
+            background-color: var(--orange);
+        }
+        
+        .strength-card:nth-child(3) h4 span {
+            background-color: var(--green);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--blue);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-contact {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-contact h4 {
+            color: var(--yellow);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--yellow);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--blue);
+                display: none;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .founder {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .founder i {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-utensils"></i>
+                    SOREA
+                </a>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#vision">Vision</a></li>
+                        <li><a href="#missions">Missions</a></li>
+                        <li><a href="#valeurs">Valeurs</a></li>
+                        <li><a href="#atouts">Atouts</a></li>
+                        <li><a href="#engagements">Engagements</a></li>
+                        <li><a href="#objectifs">Objectifs</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>À propos de SOREA</h1>
+            <p>Une vision innovante de la restauration collective, alliant expertise terrain et références internationales pour offrir des repas sains, équilibrés et responsables.</p>
+            
+            <div class="founder">
+                <i class="fas fa-user-tie"></i>
+                <div>
+                    <h3>Mara Louisa Mansaré</h3>
+                    <p>Fondatrice et Directrice de SOREA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section" id="vision">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Vision</h2>
+            </div>
+            
+            <div class="content-block">
+                <p>Fondée par <strong>Mara Louisa Mansaré</strong>, SOREA porte une vision claire de la restauration collective. Avec plus de quinze ans d'expérience dans ce domaine, elle s'appuie sur une double source d'apprentissage : le terrain malgache et les références françaises du secteur.</p>
+                
+                <div class="highlight-box">
+                    <h4><i class="fas fa-globe-africa"></i> Une expertise terrain et internationale</h4>
+                    <p>Autour d'elle, une équipe qualifiée et engagée formée dans des établissements reconnus tel que Vatel ou l'INTH, partage une même exigence : proposer une cuisine saine, équilibrée, responsable et adaptée aux enfants.</p>
+                    <p>SOREA œuvre de manière écoresponsable. Chaque plat est conçu avec soin, dans le respect des règles strictes d'hygiène et de qualité, pour offrir chaque jour des repas sains, sûrs et savoureux.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missions Section -->
+    <section class="missions-section" id="missions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Missions</h2>
+            </div>
+            
+            <div class="content-block">
+                <h3><i class="fas fa-bullseye"></i> SOREA nourrit enfants et travailleurs</h3>
+                <p>Grâce à une restauration collective de qualité et des services d'accompagnement éducatif sécurisés.</p>
+                
+                <ul class="custom-list">
+                    <li><strong>La restauration collective :</strong> des repas équilibrés, adaptés à l'âge des enfants, élaborés dans le respect des normes sanitaires les plus strictes.</li>
+                    <li><strong>L'accueil de loisirs :</strong> un environnement éducatif et bienveillant avant ou après l'école, combinant aide aux devoirs, jeux, créativité et sociabilisation.</li>
+                    <li><strong>Les centres de loisirs aérés et colonies :</strong> des vacances ludiques et éducatives, permettant aux enfants de s'éveiller, de développer leur autonomie et de socialiser pleinement.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section" id="valeurs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Valeurs</h2>
+            </div>
+            
+            <div class="content-block">
+                <p>Chez SOREA, chaque plat est cuisiné en se reposant sur des valeurs fortes :</p>
+                
+                <div class="color-item benevolence">
+                    <h4><i class="fas fa-heart"></i> Bienveillance</h4>
+                    <p>Créer un environnement sûr, chaleureux et respectueux, où chaque enfant se sent valorisé et écouté.</p>
+                </div>
+                
+                <div class="color-item quality">
+                    <h4><i class="fas fa-star"></i> Qualité</h4>
+                    <p>Proposer des repas équilibrés, savoureux et sûrs, garantissant nutrition, goût et sécurité pour tous.</p>
+                </div>
+                
+                <div class="color-item commitment">
+                    <h4><i class="fas fa-handshake"></i> Engagement</h4>
+                    <p>Agir avec conscience et responsabilité pour un futur durable, auprès des familles, écoles et entreprises.</p>
+                </div>
+                
+                <div class="color-item responsibility">
+                    <h4><i class="fas fa-leaf"></i> Responsabilité</h4>
+                    <p>Adopter des pratiques transparentes, durables et respectueuses de l'environnement, enracinées dans le contexte local.</p>
+                </div>
+                
+                <div class="color-item innovation">
+                    <h4><i class="fas fa-lightbulb"></i> Innovation éducative</h4>
+                    <p>Transformer chaque repas en moment d'apprentissage, d'autonomie et d'éveil au monde pour chaque enfant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strengths Section -->
+    <section class="strengths-section" id="atouts">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Atouts</h2>
+            </div>
+            
+            <div class="content-block">
+                <p>SOREA travaille avec expertise, organisation et esprit d'équipe, assurant des repas et services fiables adaptés à tous.</p>
+                
+                <div class="strengths-grid">
+                    <div class="strength-card">
+                        <h4><span>1</span> Expertise en restauration collective</h4>
+                        <p>Nos menus sont conçus par des professionnels de la nutrition, avec des produits locaux, équilibrés pour enfants et adultes, tout en respectant hygiène, qualité et saveurs.</p>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <h4><span>2</span> Organisation logistique maîtrisée</h4>
+                        <p>Livraisons quotidiennes, animations dans plusieurs établissements et coordination de centres : notre expérience assure une réponse efficace aux contraintes du terrain malgache.</p>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <h4><span>3</span> Équipe réactive et à l'écoute</h4>
+                        <p>Nos animateurs, coordinateurs et cuisiniers, formés et investis, travaillent avec directeurs et parents pour un environnement stimulant et sécurisé.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commitments Section -->
+    <section class="commitments-section" id="engagements">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Engagements</h2>
+            </div>
+            
+            <div class="content-block">
+                <p>Pour garantir la qualité de ses services, SOREA veille à :</p>
+                
+                <ul class="custom-list">
+                    <li>Appliquer rigoureusement les normes d'hygiène et de sécurité alimentaire, avec un personnel formé aux normes HACCP.</li>
+                    <li>Préparer chaque jour une cuisine fraîche, à base de produits locaux sélectionnés avec soin.</li>
+                    <li>Assurer une logistique maîtrisée pour préserver fraîcheur et qualité jusqu'à la livraison.</li>
+                    <li>Réduire systématiquement le gaspillage alimentaire et proposer des menus végétariens hebdomadaires.</li>
+                    <li>Créer un environnement sécurisé et épanouissant, avec des professionnels qualifiés pour l'encadrement scolaire et périscolaire.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="goals-section" id="objectifs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Objectifs</h2>
+            </div>
+            
+            <div class="content-block">
+                <p>SOREA œuvre pour :</p>
+                
+                <ol class="custom-list">
+                    <li>Offrir des repas équilibrés et adaptés à chaque tranche d'âge.</li>
+                    <li>Proposer un cadre bienveillant, stimulant l'autonomie et la curiosité des enfants.</li>
+                    <li>Organiser des activités éducatives et divertissantes, en phase avec les besoins et rythmes des enfants.</li>
+                    <li>Simplifier le quotidien des parents avec des solutions fiables et sécurisées.</li>
+                    <li>Valoriser l'approvisionnement local et les circuits courts pour une démarche durable.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3><i class="fas fa-utensils"></i> SOREA</h3>
+                    <p>Restauration collective de qualité avec une vision innovante et responsable.</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contactez-nous</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Madagascar</p>
+                    <p><i class="fas fa-phone"></i> +261 XX XX XXX XX</p>
+                    <p><i class="fas fa-envelope"></i> contact@sorea.mg</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 SOREA. Tous droits réservés. | Fondée par Mara Louisa Mansaré</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(61, 97, 155, 0.95)';
+            } else {
+                header.style.backgroundColor = 'var(--blue)';
+            }
+        });
+    </script>
+</body>
+</html>

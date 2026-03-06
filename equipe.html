@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOREA - Notre Équipe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #3D619B;
+            --orange: #F24822;
+            --green: #04BA71;
+            --yellow: #FDC827;
+            --dark: #1a1a2e;
+            --light: #f8f9ff;
+            --gray: #8a8da0;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--orange);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--orange);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 12rem 0 6rem;
+            background: linear-gradient(135deg, rgba(61, 97, 155, 0.05) 0%, rgba(253, 200, 39, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%233D619B" fill-opacity="0.03" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero h1:after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 120px;
+            height: 12px;
+            background-color: rgba(253, 200, 39, 0.4);
+            z-index: -1;
+        }
+        
+        .hero-tagline {
+            font-size: 1.8rem;
+            color: var(--orange);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin-bottom: 3rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background-color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            margin-top: 2rem;
+            max-width: 900px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            display: block;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 6rem 0;
+            background-color: var(--light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-subtitle {
+            color: var(--orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Team Grid */
+        .team-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background-color: white;
+            border: 2px solid rgba(61, 97, 155, 0.1);
+            border-radius: 50px;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--blue);
+            color: white;
+            border-color: var(--blue);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            padding: 2rem 2rem 1.5rem;
+            position: relative;
+        }
+        
+        .function-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background-color: var(--green);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .card-header h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-header p {
+            color: var(--blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .card-body {
+            padding: 0 2rem 2rem;
+        }
+        
+        .card-body p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .experience {
+            display: flex;
+            align-items: center;
+            color: var(--orange);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .experience i {
+            margin-right: 8px;
+        }
+        
+        .card-footer {
+            padding: 1.5rem 2rem;
+            background-color: rgba(61, 97, 155, 0.03);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background-color: rgba(4, 186, 113, 0.1);
+            color: var(--green);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .linkedin-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(61, 97, 155, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .linkedin-btn:hover {
+            background-color: var(--blue);
+            color: white;
+        }
+        
+        /* Leadership Highlight */
+        .leadership-highlight {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .leadership-card {
+            display: flex;
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .leadership-image {
+            flex: 0 0 40%;
+            background: linear-gradient(135deg, var(--blue), #2a4a7a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 8rem;
+        }
+        
+        .leadership-content {
+            flex: 1;
+            padding: 3rem;
+        }
+        
+        .leadership-content h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .leadership-role {
+            color: var(--orange);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Mission Section */
+        .mission-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(61, 97, 155, 0.9), rgba(4, 186, 113, 0.9));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path fill="white" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: cover;
+        }
+        
+        .mission-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mission-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .mission-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .mission-values {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .value-item i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+        }
+        
+        .value-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 300px;
+        }
+        
+        .footer-contact {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-contact h4 {
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--green);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .leadership-card {
+                flex-direction: column;
+            }
+            
+            .leadership-image {
+                flex: 0 0 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 10rem 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .leadership-content {
+                padding: 2rem;
+            }
+            
+            .mission-content h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="#" class="logo">SOR<span>EA</span></a>
+                <div class="nav-links">
+                    <a href="#equipe">Notre Équipe</a>
+                    <a href="#mission">Notre Mission</a>
+                    <a href="#valeurs">Nos Valeurs</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>UNE ÉQUIPE PLURIDISCIPLINAIRE UNIE AUTOUR D'UNE MÊME MISSION</h1>
+                <div class="hero-tagline">Servir, accompagner et innover au service des enfants.</div>
+                <p class="hero-description">
+                    Chez SOREA, chaque membre de l'équipe apporte une expertise complémentaire au service d'un projet commun : proposer une restauration collective de qualité et un accompagnement éducatif structuré à Madagascar. Notre force repose sur la diversité des parcours, la rigueur professionnelle et une volonté partagée de faire évoluer durablement les standards du secteur.
+                </p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">9</span>
+                        <span class="stat-label">Experts</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Années d'expérience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Engagés</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Domaines d'expertise</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Highlight -->
+    <section class="leadership-highlight">
+        <div class="container">
+            <div class="leadership-card fade-in">
+                <div class="leadership-image">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="leadership-content">
+                    <h3>Mara Louisa Mansaré</h3>
+                    <div class="leadership-role">Fondatrice & Directrice Générale</div>
+                    <p>Avec plus de 15 ans d'expérience en restauration collective scolaire, Mara Louisa Mansaré a fondé SOREA avec une vision claire : révolutionner le secteur de la restauration collective à Madagascar en alliant expertise terrain et références internationales. Son leadership inspire toute l'équipe à repousser les standards de qualité.</p>
+                    <div class="experience">
+                        <i class="far fa-clock"></i>
+                        <span>15+ années d'expérience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="equipe">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Notre Équipe</div>
+                <h2 class="section-title">Experts & Passionnés</h2>
+                <p class="section-description">Une équipe pluridisciplinaire unie par une même passion : servir, accompagner et innover pour le bien-être des enfants.</p>
+            </div>
+            
+            <div class="team-filter fade-in">
+                <button class="filter-btn active" data-filter="all">Toute l'équipe</button>
+                <button class="filter-btn" data-filter="direction">Direction</button>
+                <button class="filter-btn" data-filter="operations">Opérations</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="expertise">Expertise</button>
+            </div>
+            
+            <div class="team-grid">
+                <!-- Gérante -->
+                <div class="team-card fade-in" data-category="direction">
+                    <div class="card-header">
+                        <span class="function-badge">Direction</span>
+                        <h3>Gizy Michaela Afrani</h3>
+                        <p>Gérante</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Master 2 finance & gouvernance, avec 8 années d'expérience en gestion d'entreprise. Spécialisée dans l'optimisation des processus et la stratégie financière.</p>
+                        <div class="experience">
+                            <i class="far fa-clock"></i>
+                            <span>8 années d'expérience</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="expertise-tags">
+                            <span class="tag">Finance</span>
+                            <span class="tag">Gouvernance</span>
+                            <span class="tag">Stratégie</span>
+                        </div>
+                        <a href="#" class="linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Co-gérant -->
+                <div class="team-card fade-in" data-category="direction">
+                    <div class="card-header">
+                        <span class="function-badge">Direction</span>
+                        <h3>Steeve Mansaré</h3>
+                        <p>Co-gérant</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Master 2 science politique, avec 5 années d'expérience en gestion. Apporte une vision stratégique et une expertise en management d'équipes pluridisciplinaires.</p>
+                        <div class="experience">
+                            <i class="far fa-clock"></i>
+                            <span>5 années d'expérience</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="expertise-tags">
+                            <span class="tag">Management</span>
+                            <span class="tag">Stratégie</span>
+                            <span class="tag">Politique</span>
+                        </div>
+                        <a href="#" class="linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Responsable Marketing -->
+                <div class="team-card fade-in" data-category="commercial">
+                    <div class="card-header">
+                        <span class="function-badge">Marketing</span>
+                        <h3>Mahefason Bertrand</h3>
+                        <p>Responsable Marketing</p>
+                    </div>
+                    <div class="card-body">
+                        <p>9 ans d'expérience en stratégie de communication et marketing. Expert en développement de marque et communication institutionnelle dans le secteur de la restauration.</p>
+                        <div class="experience">
+                            <i class="far fa-clock"></i>
+                            <span>9 années d'expérience</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="expertise-tags">
+                            <span class="tag">Communication</span>
+                            <span class="tag">Marketing</span>
+                            <span class="tag">Stratégie</span>
+                        </div>
+                        <a href="#" class="linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Chef cuisinier -->
+                <div class="team-card fade-in" data-category="operations">
+                    <div class="card-header">
+                        <span class="function-badge">Cuisine</span>
+                        <h3>Maurille Rafanomezantsoa</h3>
+                        <p>Chef cuisinier</p>
+                    </div>
+                    <div class="card-body">
+                        <p>13 ans d'expérience en cantine, service traiteur et certification HACCP. Maîtrise parfaite des normes d'hygiène et de sécurité alimentaire avec une créativité culinaire exceptionnelle.</p>
+                        <div class="experience">
+                            <i class="far fa-clock"></i>
+                            <span>13 années d'expérience</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="expertise-tags">
+                            <span class="tag">HACCP</span>
+                            <span class="tag">Cuisine</span>
+                            <span class="tag">Traiteur</span>
+                        </div>
+                        <a href="#" class="linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Responsable qualité -->
+                <div class="team-card fade-in" data-category="operations">
+                    <div class="card-header">
+                        <span class="function-badge">Qualité</span>
+                        <h3>Karen Rananja</h3>
+                        <p>Responsable qualité</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Formée à Vatel avec expérience internationale. Garante du respect des standards de qualité et des processus d'hygiène les plus exigeants dans toutes nos opérations.</p>
+                        <div class="experience">
+                            <i class="far fa-clock"></i>
+                            <span>Expérience internationale</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="expertise-tags">
+                            <span class="tag">Qualité</span>
+                            <span class="tag">Vatel</span>
+                            <span class="tag">International</span>
+                        </div>
+                        <a href="#" class="linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Responsable cantine -->
+                <div class="team-card fade-in" data-category="operations">
+                    <div class="card-header">
+                        <span class="function-badge">Cantine</span>
+                        <h3>Violette Razanajatovo</h3>
+                        <p>Responsable cantine</p>
+                    </div>
+                    <div class="card-body">
+                        <p>BAFA, Croix-Rouge, Master en hôtellerie. Combine expertise pédagogique et gestion hôtelière pour créer un environnement cantine optimal pour les enfants.</p>
+                        <div class="experience">
+                            <i class="far fa-clock"></i>
+                            <span>Formation complète</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="expertise-tags">
+                            <span class="tag">BAFA</span>
+                            <span class="tag">Hôtellerie</span>
+                            <span class="tag">Pédagogie</span>
+                        </div>
+                        <a href="#" class="linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Développement commercial -->
+                <div class="team-card fade-in" data-category="commercial">
+                    <div class="card-header">
+                        <span class="function-badge">Commercial</span>
+                        <h3>Parianos Athena</h3>
+                        <p>Développement commercial</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Master 2 en chimie, entrepreneure expérimentée. Apporte une approche scientifique et entrepreneuriale au développement commercial de SOREA.</p>
+                        <div class="experience">
+                            <i class="far fa-clock"></i>
+                            <span>Entrepreneure confirmée</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="expertise-tags">
+                            <span class="tag">Chimie</span>
+                            <span class="tag">Entrepreneuriat</span>
+                            <span class="tag">Commercial</span>
+                        </div>
+                        <a href="#" class="linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Nutritionniste -->
+                <div class="team-card fade-in" data-category="expertise">
+                    <div class="card-header">
+                        <span class="function-badge">Santé</span>
+                        <h3>Dr Amitia A. Ramarosandy</h3>
+                        <p>Nutritionniste</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Médecin spécialisée en nutrition et santé communautaire. Garantit l'équilibre nutritionnel de tous nos menus et conseille sur les aspects santé de notre offre.</p>
+                        <div class="experience">
+                            <i class="far fa-clock"></i>
+                            <span>Expertise médicale</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="expertise-tags">
+                            <span class="tag">Nutrition</span>
+                            <span class="tag">Médecine</span>
+                            <span class="tag">Santé communautaire</span>
+                        </div>
+                        <a href="#" class="linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section" id="mission">
+        <div class="container">
+            <div class="mission-content fade-in">
+                <h2>Notre Mission Collective</h2>
+                <p>Servir, accompagner et innover au service des enfants : telle est la mission qui unit chaque membre de l'équipe SOREA. Nous croyons en une approche holistique qui combine excellence culinaire, éducation nutritionnelle et développement personnel des enfants.</p>
+                
+                <div class="mission-values">
+                    <div class="value-item">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h4>Servir</h4>
+                        <p>Des repas sains, équilibrés et savoureux</p>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-users"></i>
+                        <h4>Accompagner</h4>
+                        <p>Un suivi éducatif personnalisé</p>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Innover</h4>
+                        <p>Des solutions adaptées au contexte local</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>SOREA</h3>
+                    <p>Une équipe pluridisciplinaire unie autour d'une même mission : servir, accompagner et innover au service des enfants.</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contactez-nous</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Madagascar</p>
+                    <p><i class="fas fa-phone"></i> +261 XX XXX XX XX</p>
+                    <p><i class="fas fa-envelope"></i> contact@sorea.mg</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 SOREA. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation au défilement
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les éléments avec la classe fade-in
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Filtrage de l'équipe
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const teamCards = document.querySelectorAll('.team-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Retirer la classe active de tous les boutons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Ajouter la classe active au bouton cliqué
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filtrer les cartes
+                    teamCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || filterValue === category) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 400);
+                        }
+                    });
+                });
+            });
+            
+            // Navigation fluide
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Effet de scroll sur la navbar
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 100) {
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

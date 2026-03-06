@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPRING SUMMER · LOCK code</title>
+  <!-- Police élégante Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #fafafa;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8%;
+      opacity: 0;
+      transition: opacity 1s ease;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+      pointer-events: auto;
+    }
+
+    /* ---------- CONTENU TEXTE ---------- */
+    .content {
+      max-width: 450px;
+      animation: fadeText 1s ease;
+    }
+
+    .content h4 {
+      letter-spacing: 4px;
+      color: #a0a0a0;
+      font-weight: 300;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .content h1 {
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+
+    .content p {
+      color: #6a6a6a;
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    /* ----- BADGE LOCK:15/0:10 (style monospaced) ----- */
+    .lock-badge {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #3d3d3d;
+      background: rgba(200, 200, 200, 0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 40px;
+      letter-spacing: 1.5px;
+      border: 1px solid rgba(0,0,0,0.1);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    /* Icône cadenas (optionnel) */
+    .lock-badge::before {
+      content: "🔒 ";
+      font-size: 0.9rem;
+      opacity: 0.8;
+      filter: grayscale(0.5);
+    }
+
+    /* ---------- IMAGES AVEC SUPERPOSITION FLOUE ---------- */
+    .images {
+      position: relative;
+      width: 55%;
+      height: 100%;
+    }
+
+    .images img {
+      position: absolute;
+      bottom: 0;
+      transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.3, 1), filter 0.8s ease, opacity 0.8s ease;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 2px;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+    }
+
+    /* ARRIÈRE-PLANS : flous et estompés (superposition) */
+    .images .back {
+      height: 65%;
+      filter: blur(6px) grayscale(0.3);   /* ← flou prononcé pour l'effet de profondeur */
+      opacity: 0.4;                        /* transparence pour mieux superposer */
+      transform: scale(0.92) translateX(-5%);
+    }
+
+    .images .back1 {
+      left: 0%;
+      bottom: 5%;
+    }
+
+    .images .back2 {
+      left: 18%;
+      bottom: 8%;
+      filter: blur(5px) grayscale(0.2);    /* léger variante */
+      opacity: 0.45;
+    }
+
+    /* IMAGE PRINCIPALE : nette et mise en avant */
+    .images .main {
+      right: 5%;
+      height: 90%;
+      z-index: 10;
+      filter: brightness(1.02) contrast(1.02);
+      box-shadow: -10px 20px 40px -10px rgba(0,0,0,0.25);
+      border-radius: 4px;
+    }
+
+    /* Animation subtile au changement de slide */
+    .slide.active .images .main {
+      transform: translateY(-8px);
+    }
+
+    .slide.active .images .back {
+      filter: blur(5px) grayscale(0.2);
+      opacity: 0.5;
+    }
+
+    /* ---------- BOUTONS DE NAVIGATION ---------- */
+    .controls {
+      position: absolute;
+      bottom: 40px;
+      left: 8%;
+      z-index: 20;
+      display: flex;
+      gap: 12px;
+    }
+
+    .controls button {
+      width: 52px;
+      height: 52px;
+      font-size: 28px;
+      font-weight: 300;
+      background: transparent;
+      color: #2c2c2c;
+      border: 1.2px solid #aaa;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      backdrop-filter: blur(4px);
+      background-color: rgba(255,255,255,0.5);
+    }
+
+    .controls button:hover {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      border-color: #1a1a1a;
+      transform: scale(1.05);
+    }
+
+    /* Animation d'apparition du texte */
+    @keyframes fadeText {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Overlay lumineux subtil (optionnel) */
+    .slide::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, rgba(245,245,245,0.4) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .content, .images {
+      z-index: 3;
+    }
+
+    /* Responsive pour mobiles */
+    @media (max-width: 900px) {
+      .slide {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0 5%;
+      }
+
+      .content {
+        max-width: 90%;
+        margin-top: 20px;
+      }
+
+      .images {
+        width: 100%;
+        height: 55%;
+        margin-top: 20px;
+      }
+
+      .images .main {
+        right: 50%;
+        transform: translateX(50%);
+        height: 85%;
+      }
+
+      .images .back1, .images .back2 {
+        display: none;   /* plus propre sur petit écran */
+      }
+
+      .controls {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 25px;
+      }
+
+      .lock-badge {
+        font-size: 0.9rem;
+        padding: 4px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="slider">
+
+  <!-- SLIDE 1 – PRINTEMPS/ÉTÉ 2019 avec badge LOCK -->
+  <div class="slide active">
+    <div class="content">
+      <h4>SPRING SUMMER 2019</h4>
+      <h1>Modern Collection</h1>
+      <p>Discover elegant and refined styles designed for contemporary women.</p>
+      <!-- Badge exact comme sur l'image : LOCK:15/0:10 -->
+      <div class="lock-badge">LOCK:15/0:10</div>
+    </div>
+
+    <div class="images">
+      <!-- Arrière-plans flous (superposés) -->
+      <img src="https://images.unsplash.com/photo-1520975922284-9f4a63f9f5a7?auto=format&fit=crop&w=600&q=80" class="back back1" alt="blurred back 1">
+      <img src="https://images.unsplash.com/photo-1520974735194-6c0c0c4b8c9b?auto=format&fit=crop&w=600&q=80" class="back back2" alt="blurred back 2">
+      <!-- Image principale nette -->
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" class="main" alt="main model">
+    </div>
+  </div>
+
+  <!-- SLIDE 2 – NOUVELLES ARRIVAGES avec le même style -->
+  <div class="slide">
+    <div class="content">
+      <h4>NEW ARRIVALS</h4>
+      <h1>Autumn Edition</h1>
+      <p>Minimalist fashion blended with premium materials and luxury finishes.</p>
+      <div class="lock-badge">LOCK:15/0:10</div>
+    </div>
+
+    <div class="images">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" class="back back1" alt="blurred autumn back">
+      <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=600&q=80" class="back back2" alt="blurred autumn second">
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" class="main" alt="main autumn model">
+    </div>
+  </div>
+
+  <!-- Boutons de navigation -->
+  <div class="controls">
+    <button id="prev" aria-label="previous slide">‹</button>
+    <button id="next" aria-label="next slide">›</button>
+  </div>
+
+</section>
+
+<script>
+  (function() {
+    const slides = document.querySelectorAll(".slide");
+    const next = document.getElementById("next");
+    const prev = document.getElementById("prev");
+
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      slides[index].classList.add("active");
+    }
+
+    next.addEventListener("click", () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+
+    prev.addEventListener("click", () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+
+    // Défilement automatique toutes les 5 secondes, avec pause au survol
+    let interval = setInterval(() => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 5000);
+
+    const slider = document.querySelector('.slider');
+    slider.addEventListener('mouseenter', () => clearInterval(interval));
+    slider.addEventListener('mouseleave', () => {
+      interval = setInterval(() => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+      }, 5000);
+    });
+  })();
+</script>
+
+</body>
+</html>

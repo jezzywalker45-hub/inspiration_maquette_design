@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Primary meta tags & SEO -->
+  <title>ADC – Professional Sound Therapy in Mauritius</title>
+  <meta name="description" content="Explore ADC’s Sound Healing services, professional training and complementary holistic practices including singing bowls, sound baths and energy balancing.">
+  <meta name="keywords" content="Sound Therapy in Mauritius">
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- DESIGN SYSTEM ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F9F7F5;  /* soft off-white */
+      color: #2D2D2D;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, .logo, .nav-links a, .btn {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #1B2A4A; /* deep indigo */
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #1B2A4A;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      color: #1B2A4A;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    section {
+      background-color: #F9F7F5;
+    }
+
+    section:nth-child(even) {
+      background-color: #ffffff; /* white for alternating contrast */
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #C97C5D; /* warm terracotta */
+      color: white;
+      border-color: #C97C5D;
+    }
+
+    .btn-primary:hover {
+      background-color: #b56748;
+      border-color: #b56748;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #C97C5D;
+      border: 2px solid #C97C5D;
+    }
+
+    .btn-outline:hover {
+      background-color: #C97C5D;
+      color: white;
+    }
+
+    /* header */
+    header {
+      background-color: #F9F7F5;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(27, 42, 74, 0.1);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1B2A4A;
+      line-height: 1.2;
+    }
+    .logo span {
+      color: #C97C5D;
+      font-weight: 500;
+      font-size: 1rem;
+      display: block;
+      margin-top: 0.2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #1B2A4A;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #C97C5D;
+    }
+    .book-nav {
+      background: transparent;
+      border: 2px solid #C97C5D;
+      color: #C97C5D;
+      padding: 0.4rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+    }
+    .book-nav:hover {
+      background: #C97C5D;
+      color: white;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      background: linear-gradient(135deg, #F9F7F5 0%, #eae6e0 100%);
+    }
+    .hero h2 {
+      color: #C97C5D;
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-top: -0.2rem;
+    }
+    .hero p {
+      max-width: 700px;
+      margin: 1.5rem auto 2rem;
+      font-size: 1.2rem;
+      color: #2D2D2D;
+    }
+
+    /* benefits grid */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      margin: 2.5rem 0 1rem;
+    }
+    .benefit-item {
+      background: white;
+      padding: 1.5rem 0.5rem;
+      text-align: center;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(27,42,74,0.03);
+      transition: transform 0.2s;
+      border: 1px solid rgba(138,155,110,0.1);
+    }
+    .benefit-item i {
+      font-size: 2rem;
+      color: #8A9B6E; /* dusty sage */
+      margin-bottom: 0.5rem;
+    }
+    .benefit-item p {
+      font-weight: 500;
+      color: #1B2A4A;
+    }
+
+    /* services cards */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .service-card {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 12px 30px rgba(27,42,74,0.05);
+      border: 1px solid rgba(138,155,110,0.15);
+      transition: all 0.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 35px rgba(27,42,74,0.1);
+    }
+    .service-card ul {
+      list-style: none;
+      margin: 1.5rem 0 2rem;
+    }
+    .service-card li {
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed rgba(27,42,74,0.05);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .service-card li:before {
+      content: "•";
+      color: #C97C5D;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    .service-card .btn {
+      margin-top: 1rem;
+    }
+
+    /* testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 2.5rem 0;
+    }
+    .testimonial {
+      background: white;
+      padding: 2rem 1.8rem;
+      border-radius: 30px;
+      box-shadow: 0 5px 20px rgba(27,42,74,0.03);
+      border: 1px solid rgba(138,155,110,0.1);
+    }
+    .testimonial i {
+      color: #8A9B6E;
+      font-size: 1.8rem;
+      opacity: 0.4;
+      margin-bottom: 1rem;
+    }
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: #2D2D2D;
+    }
+    .testimonial h4 {
+      color: #1B2A4A;
+      font-weight: 600;
+    }
+
+    /* why choose us (4 features) */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+    .feature {
+      text-align: center;
+      background: white;
+      padding: 2rem 1rem;
+      border-radius: 30px;
+      border: 1px solid rgba(138,155,110,0.15);
+    }
+    .feature i {
+      font-size: 2.5rem;
+      color: #C97C5D;
+      margin-bottom: 1rem;
+    }
+    .feature h4 {
+      font-size: 1.2rem;
+      color: #1B2A4A;
+      margin-bottom: 0.5rem;
+    }
+    .feature p {
+      font-size: 0.95rem;
+      color: #2D2D2D;
+    }
+
+    /* CTA section */
+    .cta-section {
+      background-color: #1B2A4A;
+      color: white;
+      text-align: center;
+    }
+    .cta-section h2 {
+      color: white;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin: 1rem auto 2rem;
+    }
+
+    /* footer */
+    footer {
+      background-color: #2D2D2D;
+      color: #F9F7F5;
+      padding: 2rem 1.5rem;
+      font-size: 0.95rem;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-links a {
+      color: #F9F7F5;
+      text-decoration: none;
+      margin: 0 1rem;
+      opacity: 0.8;
+    }
+    .footer-links a:hover {
+      opacity: 1;
+      color: #C97C5D;
+    }
+    .social i {
+      font-size: 1.4rem;
+      margin: 0 0.5rem;
+      color: #F9F7F5;
+      transition: color 0.2s;
+    }
+    .social i:hover {
+      color: #C97C5D;
+    }
+    hr {
+      border: 0.5px solid rgba(255,255,255,0.1);
+      margin: 1.5rem 0 1rem;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .benefits-grid { grid-template-columns: repeat(3,1fr); }
+      .testimonials-grid { grid-template-columns: repeat(2,1fr); }
+      .features-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 700px) {
+      h1 { font-size: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: repeat(2,1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; gap: 1rem; }
+      .nav-links { justify-content: center; gap: 1rem; }
+    }
+    @media (max-width: 450px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+    }
+
+    /* utilities */
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 2rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    ADC <span>ArcAngel Divine Connection</span>
+  </div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Testimonials</a>
+    <a href="#">Contact</a>
+    <a href="#" class="book-nav">Book Now</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>ADC – Professional Sound Healing & Vibrational Wellness</h1>
+      <h2>Reconnect. Realign. Restore.</h2>
+      <p>Looking for a professional Sound Therapy institute in Mauritius? At ArcAngel Divine Connection, we offer personalized sound healing sessions designed to restore harmony between body, mind and emotional wellbeing through sound, resonance and relaxation-based practices.</p>
+      <a href="#" class="btn btn-primary">Schedule Your Session</a>
+    </div>
+  </section>
+
+  <!-- WHAT IS SOUND THERAPY? -->
+  <section>
+    <div class="container">
+      <h2>What is Sound Therapy?</h2>
+      <p style="max-width: 800px; margin-bottom: 2rem;">Sound therapy is a holistic wellness practice that uses vibrational frequencies to support relaxation, nervous system regulation, and emotional clarity. The goal is not to “treat,” but to allow the body to return to a balanced state through resonance and deep listening.</p>
+      
+      <div class="benefits-grid">
+        <div class="benefit-item"><i class="fas fa-leaf"></i><p>Stress reduction</p></div>
+        <div class="benefit-item"><i class="fas fa-moon"></i><p>Improved sleep quality</p></div>
+        <div class="benefit-item"><i class="fas fa-droplet"></i><p>Emotional release</p></div>
+        <div class="benefit-item"><i class="fas fa-brain"></i><p>Mental clarity</p></div>
+        <div class="benefit-item"><i class="fas fa-bolt"></i><p>Energetic grounding</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section>
+    <div class="container">
+      <h2 class="text-center">Our Sound Therapy Services</h2>
+      <div class="services-grid">
+        <!-- Individual card -->
+        <div class="service-card">
+          <h3>Individual Sound Healing Sessions</h3>
+          <p>Each session at ADC is personalized according to your needs and intentions. Individual sessions include:</p>
+          <ul>
+            <li>Tibetan Singing Bowl Therapy</li>
+            <li>Sound Massage</li>
+            <li>Sound Bath</li>
+            <li>Chakra Balancing</li>
+            <li>Third Eye Activation</li>
+            <li>Support for stress, anxiety, insomnia, and emotional fatigue</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Book a Private Session</a>
+        </div>
+        <!-- Collective / complementary card -->
+        <div class="service-card">
+          <h3>Complimentary Holistic Therapies</h3>
+          <p>ADC also offers collective sound healing experiences for those wishing to explore vibrational work in a group setting.</p>
+          <ul>
+            <li>Tibetan Tuning Fork Therapy</li>
+            <li>Crystal Sound Healing</li>
+            <li>Tarot Card Reading for intuitive guidance</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Book a Collective Session</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="container">
+      <h2 class="text-center">Testimonials from our satisfied clients</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <i class="fas fa-quote-right"></i>
+          <p>“I didn’t realize how tense I was until the session ended. I felt lighter, and I slept deeply that night.”</p>
+          <h4>— Sophie R.</h4>
+        </div>
+        <div class="testimonial">
+          <i class="fas fa-quote-right"></i>
+          <p>“The sounds helped me slow down and clear my thoughts. It felt simple, natural, and deeply calming.”</p>
+          <h4>— Daniel M.</h4>
+        </div>
+        <div class="testimonial">
+          <i class="fas fa-quote-right"></i>
+          <p>“I walked in feeling overwhelmed and left feeling balanced and grounded. The experience felt safe and genuine.”</p>
+          <h4>— Isabelle L.</h4>
+        </div>
+      </div>
+      <div class="text-center mt-2">
+        <a href="#" class="btn btn-outline">About ADC</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE ADC -->
+  <section>
+    <div class="container">
+      <h2 class="text-center">Why Choose ADC?</h2>
+      <p style="max-width: 800px; margin: 0 auto 1.5rem; text-align: center;">Our approach combines ancestral sound instruments with mindful awareness. Sound Healing can be experienced in many forms. At ADC, it is approached with:</p>
+      <div class="features-grid">
+        <div class="feature">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h4>Personalized & Human-Centered</h4>
+          <p>A methodology focused on you.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-globe-asia"></i>
+          <h4>Traditional Techniques</h4>
+          <p>Practices inspired by ancient vibrational wisdom.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-feather"></i>
+          <h4>Ethical & Respectful</h4>
+          <p>Guidance that is safe and genuine.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-spa"></i>
+          <h4>Serene Environment</h4>
+          <p>A calm, dedicated space for well-being.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Begin Your Sound Healing Journey?</h2>
+      <p>Whether you are seeking deep relaxation or emotional balance, your session begins with a simple step. Give yourself the space to slow down, reset, and reconnect.</p>
+      <a href="#" class="btn btn-primary" style="background-color: #C97C5D; border-color: #C97C5D;">Reserve Your Therapy</a>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="logo" style="color: #F9F7F5;">ADC <span style="color:#C97C5D;">ArcAngel Divine Connection</span></div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="social">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    </div>
+  </div>
+  <hr>
+  <div style="text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem;">
+    © 2024 ArcAngel Divine Connection. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine TakelakaRoa - Le Coin des Parents & Actualités</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A5F7A;
+            --secondary: #57CC99;
+            --accent: #FF9A3C;
+            --light: #F7F9FC;
+            --dark: #0A1931;
+            --text: #2D3748;
+            --gray-light: #E2E8F0;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--text);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Minimal */
+        .site-header {
+            padding: 30px 0;
+            background-color: white;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .site-title span {
+            color: var(--accent);
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        /* Hero Minimal */
+        .blog-hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, rgba(26, 95, 122, 0.03) 0%, rgba(87, 204, 153, 0.03) 100%);
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text);
+        }
+        
+        /* Main Layout - Magazine Style */
+        .magazine-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 50px;
+            padding: 60px 0;
+        }
+        
+        /* Category Navigation */
+        .category-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: 10px 22px;
+            background-color: white;
+            border: 1px solid var(--gray-light);
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+        }
+        
+        .category-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Magazine Grid */
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        /* Article Cards - Clean Design */
+        .article-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .article-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image img {
+            transform: scale(1.05);
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .article-content {
+            padding: 25px;
+        }
+        
+        .article-date {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .article-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .article-excerpt {
+            color: var(--text);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        .read-time {
+            font-size: 13px;
+            color: #718096;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Featured Section - Large Card */
+        .featured-section {
+            margin-bottom: 60px;
+        }
+        
+        .featured-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            transition: var(--transition);
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .featured-image {
+            height: 350px;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .featured-tag {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            align-self: flex-start;
+        }
+        
+        .featured-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        /* Authors Spotlight */
+        .authors-section {
+            margin-bottom: 60px;
+        }
+        
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .author-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        
+        .author-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .author-name {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .author-role {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 30px;
+            height: fit-content;
+        }
+        
+        .sidebar-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Top Books */
+        .top-book {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .top-book:last-child {
+            border-bottom: none;
+        }
+        
+        .book-rank {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 30px;
+        }
+        
+        .book-cover-small {
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .book-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .book-author {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .testimonial-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .author-initials {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        /* Newsletter */
+        .newsletter-box {
+            background: linear-gradient(135deg, var(--primary), #2C7A9E);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .newsletter-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-box p {
+            opacity: 0.9;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .newsletter-form input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 6px;
+            border: none;
+            margin-bottom: 15px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .newsletter-form button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #ff8a1c;
+        }
+        
+        /* Footer */
+        .site-footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .magazine-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            .featured-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .main-nav {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .magazine-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .authors-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .category-nav {
+                justify-content: center;
+            }
+            
+            .featured-content {
+                padding: 25px;
+            }
+            
+            .featured-title {
+                font-size: 24px;
+            }
+        }
+        
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="site-title">
+                    <i class="fas fa-book-open"></i>
+                    Takelaka<span>Roa</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <a href="#" class="nav-link">Accueil</a>
+                    <a href="#" class="nav-link">Livres</a>
+                    <a href="#" class="nav-link">Auteurs</a>
+                    <a href="#" class="nav-link active">Magazine</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Le Magazine TakelakaRoa</h1>
+                <p>Conseils pédagogiques, rencontres avec nos auteurs, actualités littéraires et témoignages. Tout pour accompagner l'éducation bilingue de vos enfants.</p>
+                
+                <div class="category-nav">
+                    <button class="category-btn active" data-category="all">Tous les sujets</button>
+                    <button class="category-btn" data-category="conseils">Conseils</button>
+                    <button class="category-btn" data-category="auteurs">Auteurs</button>
+                    <button class="category-btn" data-category="actualites">Actualités</button>
+                    <button class="category-btn" data-category="temoignages">Témoignages</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <div class="magazine-layout">
+            <!-- Main Content -->
+            <div class="magazine-content">
+                <!-- Featured Article -->
+                <section class="featured-section">
+                    <div class="featured-card fade-in">
+                        <div class="featured-image">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1A5F7A, #57CC99); display: flex; align-items: center; justify-content: center; color: white; font-size: 60px;">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                        </div>
+                        <div class="featured-content">
+                            <span class="featured-tag">Le Coin des Parents</span>
+                            <h2 class="featured-title">Pourquoi lire en deux langues dès 3 ans ?</h2>
+                            <p class="article-excerpt">Le bilinguisme précoce stimule le développement cognitif, améliore la flexibilité mentale et ouvre l'enfant à la diversité culturelle. Découvrez les bénéfices scientifiquement prouvés de la lecture bilingue dès le plus jeune âge.</p>
+                            <div class="article-footer">
+                                <div class="article-date">
+                                    <i class="far fa-calendar"></i> 15 mars 2023
+                                </div>
+                                <div class="read-time">
+                                    <i class="far fa-clock"></i> 6 min de lecture
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Articles Grid -->
+                <div class="magazine-grid">
+                    <!-- Article 1 -->
+                    <article class="article-card fade-in delay-1" data-category="conseils">
+                        <div class="article-image">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #FF9A3C, #FF6F3C); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px;">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <span class="article-category">Conseils</span>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-date">
+                                <i class="far fa-calendar"></i> 12 mars 2023
+                            </div>
+                            <h3 class="article-title">Comment accompagner son enfant qui apprend l'anglais avec nos livres ?</h3>
+                            <p class="article-excerpt">Des stratégies pratiques pour soutenir l'apprentissage de l'anglais à travers la lecture bilingue, avec des activités complémentaires à faire à la maison.</p>
+                            <div class="article-footer">
+                                <div class="author-avatar" style="width: 30px; height: 30px; font-size: 14px; margin: 0;">MR</div>
+                                <div class="read-time">
+                                    <i class="far fa-clock"></i> 5 min
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Article 2 -->
+                    <article class="article-card fade-in delay-2" data-category="conseils">
+                        <div class="article-image">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #57CC99, #38A3A5); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px;">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <span class="article-category">Guide</span>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-date">
+                                <i class="far fa-calendar"></i> 8 mars 2023
+                            </div>
+                            <h3 class="article-title">Quel livre choisir pour un enfant de 5 ans qui entre au CP ?</h3>
+                            <p class="article-excerpt">Notre sélection de livres bilingues adaptés à la transition entre la maternelle et l'école primaire, avec des conseils pour chaque profil d'enfant.</p>
+                            <div class="article-footer">
+                                <div class="author-avatar" style="width: 30px; height: 30px; font-size: 14px; margin: 0;">SA</div>
+                                <div class="read-time">
+                                    <i class="far fa-clock"></i> 4 min
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Article 3 -->
+                    <article class="article-card fade-in delay-3" data-category="auteurs">
+                        <div class="article-image">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1A5F7A, #2C7A9E); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px;">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <span class="article-category">Portrait</span>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-date">
+                                <i class="far fa-calendar"></i> 5 mars 2023
+                            </div>
+                            <h3 class="article-title">De l'esquisse à la couleur : comment est né l'album "Ny Lanitra Manga"</h3>
+                            <p class="article-excerpt">Plongez dans l'atelier de Marie Rakoto et découvrez le processus créatif derrière l'un de nos best-sellers, de la première idée aux illustrations finales.</p>
+                            <div class="article-footer">
+                                <div class="author-avatar" style="width: 30px; height: 30px; font-size: 14px; margin: 0;">MR</div>
+                                <div class="read-time">
+                                    <i class="far fa-clock"></i> 7 min
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Article 4 -->
+                    <article class="article-card fade-in delay-4" data-category="actualites">
+                        <div class="article-image">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #9D4EDD, #7B2CBF); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px;">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <span class="article-category">Événement</span>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-date">
+                                <i class="far fa-calendar"></i> 1 mars 2023
+                            </div>
+                            <h3 class="article-title">TakelakaRoa au Salon International du Livre de Madagascar</h3>
+                            <p class="article-excerpt">Nous serons présents du 15 au 20 avril avec un stand dédié aux livres jeunesse bilingues. Ateliers de lecture et rencontres avec nos auteurs au programme.</p>
+                            <div class="article-footer">
+                                <div class="author-avatar" style="width: 30px; height: 30px; font-size: 14px; margin: 0;">TR</div>
+                                <div class="read-time">
+                                    <i class="far fa-clock"></i> 3 min
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Authors Spotlight -->
+                <section class="authors-section">
+                    <h2 style="margin-bottom: 30px; font-size: 24px;">Rencontrez nos auteurs</h2>
+                    
+                    <div class="authors-grid">
+                        <div class="author-card fade-in">
+                            <div class="author-avatar">MR</div>
+                            <h3 class="author-name">Marie Rakoto</h3>
+                            <div class="author-role">Auteure jeunesse</div>
+                            <p style="font-size: 14px; color: var(--text);">Spécialiste des livres bilingues malgache-français. Auteure de "Ny Lanitra Manga".</p>
+                        </div>
+                        
+                        <div class="author-card fade-in delay-1">
+                            <div class="author-avatar">JR</div>
+                            <h3 class="author-name">Jean Rabe</h3>
+                            <div class="author-role">Illustrateur & Auteur</div>
+                            <p style="font-size: 14px; color: var(--text);">Créateur des personnages emblématiques de la collection "Tetiky sy Fafy".</p>
+                        </div>
+                        
+                        <div class="author-card fade-in delay-2">
+                            <div class="author-avatar">SA</div>
+                            <h3 class="author-name">Sarah Andriamalala</h3>
+                            <div class="author-role">Pédagogue & Auteure</div>
+                            <p style="font-size: 14px; color: var(--text);">Experte en bilinguisme précoce et auteure de guides pédagogiques.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Top Books -->
+                <div class="sidebar-section fade-in">
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-chart-line"></i>
+                        Top des ventes
+                    </h3>
+                    
+                    <div class="top-book">
+                        <div class="book-rank">1</div>
+                        <div class="book-cover-small">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="book-info">
+                            <h4>Ny Lanitra Manga</h4>
+                            <div class="book-author">Marie Rakoto</div>
+                            <div style="color: var(--primary); font-weight: 600; font-size: 14px;">35.590 €</div>
+                        </div>
+                    </div>
+                    
+                    <div class="top-book">
+                        <div class="book-rank">2</div>
+                        <div class="book-cover-small">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <div class="book-info">
+                            <h4>Tetiky sy Fafy</h4>
+                            <div class="book-author">Jean Rabe</div>
+                            <div style="color: var(--primary); font-weight: 600; font-size: 14px;">30.360 €</div>
+                        </div>
+                    </div>
+                    
+                    <div class="top-book">
+                        <div class="book-rank">3</div>
+                        <div class="book-cover-small">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="book-info">
+                            <h4>Le Petit Prince</h4>
+                            <div class="book-author">Saint-Exupéry</div>
+                            <div style="color: var(--primary); font-weight: 600; font-size: 14px;">27.500 €</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonials -->
+                <div class="sidebar-section fade-in delay-1">
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-quote-left"></i>
+                        Témoignages
+                    </h3>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Les livres bilingues ont transformé notre routine du soir. Mon fils de 4 ans demande maintenant ses histoires en malgache et en français!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-initials">LM</div>
+                            <div>
+                                <div style="font-weight: 600;">Lucie Martin</div>
+                                <div style="font-size: 13px; color: #718096;">Maman de Lucas</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"En tant qu'enseignante, je recommande vivement ces livres. Ils sont parfaits pour initier les enfants au bilinguisme de manière ludique."</p>
+                        <div class="testimonial-author">
+                            <div class="author-initials">AR</div>
+                            <div>
+                                <div style="font-weight: 600;">Anna Rabe</div>
+                                <div style="font-size: 13px; color: #718096;">Professeure des écoles</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="newsletter-box fade-in delay-2">
+                    <h3>Ne manquez rien</h3>
+                    <p>Inscrivez-vous à notre newsletter pour recevoir nos derniers articles et offres spéciales.</p>
+                    
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre adresse email" required>
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>TakelakaRoa.mg</h3>
+                    <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.7);">Cultiver l'imaginaire, partager les langues. La première plateforme dédiée aux livres jeunesse bilingues à Madagascar.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Catégories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Conseils pédagogiques</a></li>
+                        <li><a href="#">Zoom sur les auteurs</a></li>
+                        <li><a href="#">Actualités</a></li>
+                        <li><a href="#">Bilinguisme</a></li>
+                        <li><a href="#">Lecture jeunesse</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:+261376268809"><i class="fas fa-phone"></i> (+261) 37 62 688 09</a></li>
+                        <li><a href="mailto:contact@TakelakaRoa.mg"><i class="fas fa-envelope"></i> contact@TakelakaRoa.mg</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Antananarivo, Madagascar</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TakelakaRoa.mg - Tous droits réservés | Deux langues, une seule passion : l'épanouissement de nos enfants.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                
+                // Filter articles
+                document.querySelectorAll('.article-card').forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Newsletter subscription
+        document.querySelector('.newsletter-form button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = document.querySelector('.newsletter-form input').value;
+            
+            if (email && email.includes('@')) {
+                alert(`Merci pour votre inscription avec l'adresse: ${email}`);
+                document.querySelector('.newsletter-form input').value = '';
+            } else {
+                alert('Veuillez entrer une adresse email valide');
+            }
+        });
+        
+        // Article click
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.article-title').textContent;
+                alert(`Ouverture de l'article: ${title}`);
+            });
+        });
+        
+        // Author card click
+        document.querySelectorAll('.author-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const name = this.querySelector('.author-name').textContent;
+                alert(`Ouverture du profil de l'auteur: ${name}`);
+            });
+        });
+        
+        // Top book click
+        document.querySelectorAll('.top-book').forEach(book => {
+            book.addEventListener('click', function() {
+                const title = this.querySelector('h4').textContent;
+                alert(`Ouverture de la fiche du livre: ${title}`);
+            });
+        });
+        
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements
+        document.querySelectorAll('.article-card, .author-card, .sidebar-section, .newsletter-box').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

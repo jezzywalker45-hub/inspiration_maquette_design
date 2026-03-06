@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAIBOHO - Agro-export de grains secs depuis Madagascar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7d32;    /* Vert profond élégant */
+            --accent: #c8b28f;     /* Terre beige */
+            --text: #333;
+            --light: #f8f5f2;
+            --glass: rgba(255, 255, 255, 0.15);
+        }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--light); color: var(--text); line-height: 1.8; overflow-x: hidden; }
+        h1, h2 { font-family: 'Playfair Display', serif; }
+        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); background: var(--glass); z-index: 1000; transition: background 0.3s; }
+        header.scrolled { background: rgba(255,255,255,0.9); box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+        nav a { margin-left: 2rem; text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--primary); }
+        .hero { height: 100vh; background: url('https://thumbs.dreamstime.com/b/typical-madagascar-landscape-rice-terrace-fields-green-yellow-small-hills-region-near-vohiposa-along-main-road-grass-303644862.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: white; position: relative; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+        .hero-content { position: relative; max-width: 900px; padding: 2rem; }
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.4rem; margin-bottom: 2rem; opacity: 0.95; }
+        .btn { background: var(--primary); color: white; padding: 1rem 2.5rem; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px); }
+        .btn:hover { background: #1b5e20; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        section { padding: 8rem 5%; max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.8rem; margin-bottom: 4rem; color: var(--primary); }
+        .about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+        .about-text ul { list-style: none; padding: 0; }
+        .about-text li { margin: 1.5rem 0; font-size: 1.2rem; position: relative; padding-left: 2rem; }
+        .about-text li::before { content: '—'; position: absolute; left: 0; color: var(--primary); }
+        .about-img img { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .product-card { position: relative; overflow: hidden; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.4s; }
+        .product-card:hover { transform: translateY(-10px); }
+        .product-card img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.5s; }
+        .product-card:hover img { transform: scale(1.1); }
+        .product-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 2rem; text-align: center; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; text-align: center; }
+        .feature { padding: 2rem; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .cta { background: var(--primary); color: white; text-align: center; padding: 6rem 5%; }
+        .cta h2 { font-size: 3rem; margin-bottom: 2rem; }
+        footer { text-align: center; padding: 3rem; background: var(--primary); color: white; font-size: 0.9rem; }
+        @media (max-width: 968px) {
+            .hero h1 { font-size: 3rem; }
+            .about { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">BAIBOHO</div>
+    <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#produits">Produits</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero" id="accueil">
+    <div class="hero-content">
+        <h1>Spécialiste de l’agro-export pour marchés exigeants</h1>
+        <p>Vous êtes un importateur B2B, une industrie agroalimentaire, ou un grossiste régional ? BAIBOHO est votre solution fiable et structurée pour assurer votre approvisionnement régulier.</p>
+        <a href="#contact" class="btn">En savoir plus</a>
+    </div>
+</section>
+
+<section id="qui">
+    <h2 class="section-title">Qui sommes-nous ?</h2>
+    <div class="about">
+        <div class="about-text">
+            <p>BAIBOHO est un exportateur malgache spécialisé en grains secs provenant du Sud de Madagascar. Notre modèle repose sur une maîtrise complète de la chaîne :</p>
+            <ul>
+                <li>Collecte directe auprès des producteurs locaux</li>
+                <li>Tri et contrôle qualité rigoureux</li>
+                <li>Structuration logistique vers les marchés internationaux</li>
+            </ul>
+            <a href="#apropos" class="btn">Découvrir BAIBOHO</a>
+        </div>
+        <div class="about-img">
+            <img src="https://c8.alamy.com/comp/2NFA31K/ranomafana-madagascar-november-1-2022-malagasy-farmers-working-on-rice-fields-agriculture-is-one-of-the-main-means-of-livelihood-in-the-country-2NFA31K.jpg" alt="Producteurs malgaches">
+        </div>
+    </div>
+</section>
+
+<section id="produits">
+    <h2 class="section-title">Nos produits phares</h2>
+    <p style="text-align:center; max-width:800px; margin:0 auto 4rem;">Chez BAIBOHO, les produits sont sélectionnés avec exigence pour répondre aux standards des marchés internationaux.</p>
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="https://c8.alamy.com/comp/2F1FY1H/pile-of-peanuts-in-shells-close-up-2F1FY1H.jpg" alt="Arachide">
+            <div class="product-overlay">
+                <h3>Arachide</h3>
+                <p>Récolte locale issue de filières rigoureusement maîtrisées</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://i.etsystatic.com/23404686/r/il/0b3d5f/2438415449/il_fullxfull.2438415449_tiab.jpg" alt="Pois du cap">
+            <div class="product-overlay">
+                <h3>Pois du cap / Niébé</h3>
+                <p>Production agricole locale valorisée pour sa qualité constante</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://c8.alamy.com/comp/C94B26/a-close-up-view-of-a-pile-of-lima-beans-C94B26.jpg" alt="Haricots secs">
+            <div class="product-overlay">
+                <h3>Haricots secs</h3>
+                <p>Sélection agricole locale reconnue pour son homogénéité</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71BFksQ0frL.jpg" alt="Tamarin">
+            <div class="product-overlay">
+                <h3>Tamarin</h3>
+                <p>Produit authentique d’origine locale soigneusement sélectionné</p>
+            </div>
+        </div>
+    </div>
+    <p style="text-align:center; margin-top:4rem;"><a href="#contact" class="btn">Voir tous nos produits</a></p>
+</section>
+
+<section>
+    <h2 class="section-title">Pourquoi nous choisir ?</h2>
+    <div class="features">
+        <div class="feature">Spécialisation exclusive en grains secs</div>
+        <div class="feature">Origine Sud Madagascar valorisée</div>
+        <div class="feature">Produits stockables et normés</div>
+        <div class="feature">Connexion directe avec les producteurs locaux</div>
+    </div>
+    <div style="text-align:center; margin-top:4rem;">
+        <img src="https://www.rishifibc.com/wp-content/uploads/2025/04/Grain-Storage-Solution_Silo-Bags-scaled.jpg" alt="Stockage moderne" style="max-width:100%; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.1);">
+    </div>
+</section>
+
+<section class="cta" id="contact">
+    <h2>Vous êtes à la recherche d’un partenaire fiable en agro-export B2B ?</h2>
+    <p>Notre équipe est prête à satisfaire vos besoins spécifiques en volume, destination et exigences normatives.</p>
+    <a href="mailto:contact@baiboho.com" class="btn">Nous contacter</a>
+</section>
+
+<footer>
+    <p>© 2026 BAIBOHO — Exportateur de grains secs depuis le Sud de Madagascar</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+</script>
+
+</body>
+</html>

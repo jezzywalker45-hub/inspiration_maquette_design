@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOREA Sakafo Matsiro - Carte Dynamique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2E86AB 0%, #1C5D7A 100%);
+            padding: 20px;
+        }
+        
+        .card-style-dynamic {
+            width: 100%;
+            max-width: 900px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .card-style-dynamic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 0 0 0 100%;
+            z-index: 0;
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(90deg, #FF6B35 0%, #FF8E53 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+            z-index: 1;
+        }
+        
+        .card-style-dynamic h2 {
+            color: #2D2D2D;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card-style-dynamic h2 small {
+            display: block;
+            font-size: 1.5rem;
+            color: #2E86AB;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .hook {
+            font-size: 1.3rem;
+            color: #64748b;
+            margin-bottom: 40px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(46, 134, 171, 0.15);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(46, 134, 171, 0.25);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .delivery {
+            background-color: rgba(46, 134, 171, 0.1);
+            color: #2E86AB;
+        }
+        
+        .menu {
+            background-color: rgba(255, 107, 53, 0.1);
+            color: #FF6B35;
+        }
+        
+        .benefit-card h3 {
+            color: #2D2D2D;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-card ul {
+            list-style-type: none;
+        }
+        
+        .benefit-card li {
+            padding: 8px 0;
+            color: #4a5568;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .benefit-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2E86AB;
+            font-weight: bold;
+        }
+        
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #2E86AB;
+            border: 2px solid #2E86AB;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2E86AB;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 134, 171, 0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card-style-dynamic {
+                padding: 30px 25px;
+            }
+            
+            .card-style-dynamic h2 {
+                font-size: 2rem;
+            }
+            
+            .card-style-dynamic h2 small {
+                font-size: 1.3rem;
+            }
+            
+            .benefit-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+            }
+            
+            .btn-primary, .btn-secondary {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-style-dynamic h2 {
+                font-size: 1.8rem;
+            }
+            
+            .card-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+            
+            .benefit-card {
+                padding: 25px 20px;
+            }
+            
+            .benefit-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-style-dynamic">
+        <div class="card-badge">Service Clé en Main</div>
+        <h2>SOREA Sakafo Matsiro<br><small>Cantine d'entreprise</small></h2>
+        <p class="hook">Des repas livrés, du temps gagné. Concentrez-vous sur votre travail.</p>
+        <div class="benefit-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon delivery">⏱️</div>
+                <h3>Ponctualité & Simplicité</h3>
+                <ul>
+                    <li>Livraison quotidienne à heure fixe.</li>
+                    <li>Directement dans vos locaux.</li>
+                    <li>Service sans interruption.</li>
+                </ul>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon menu">🍛</div>
+                <h3>Tradition & Variété</h3>
+                <ul>
+                    <li>Menus 100% malagasy.</li>
+                    <li>Recettes traditionnelles revisitées.</li>
+                    <li>Adapté aux contraintes professionnelles.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="cta-container">
+            <a href="#" class="btn-primary">Demander un devis</a>
+            <a href="#" class="btn-secondary">Voir la galerie</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapeaux de cheminée | Stan Toiture Luxembourg</title>
+    <meta name="description" content="Installation et remplacement de chapeaux de cheminée au Luxembourg. Protection contre la pluie, les animaux, amélioration du tirage. Devis gratuit.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0A2540;
+            --primary-light: #1A4060;
+            --secondary: #D35400;
+            --accent: #3498DB;
+            --danger: #E74C3C;
+            --dark: #001524;
+            --light: #FDFDFD;
+            --gray-50: #F8F9FA;
+            --gray-100: #E9ECEF;
+            --gray-200: #DEE2E6;
+            --gray-500: #6C757D;
+            --gray-700: #495057;
+            --success: #27AE60;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            --transition-fast: 0.2s ease;
+            --transition-base: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, .font-display {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        /* Typography Scale */
+        .text-display {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+        }
+        
+        .text-h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+        
+        .text-h2 {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        }
+        
+        .text-h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        .text-lead {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--gray-700);
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-sm {
+            padding: 3rem 0;
+        }
+
+        .section-lg {
+            padding: 7rem 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .mb-5 { margin-bottom: 3rem; }
+        .mb-6 { margin-bottom: 4rem; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: var(--transition-base);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+
+        .logo {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero-chimney {
+            padding-top: 10rem;
+            padding-bottom: 5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-chimney::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1588421023052-c50c7c9986f4?auto=format&fit=crop&w=800') center/cover no-repeat;
+            opacity: 0.15;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-xl);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background: linear-gradient(90deg, rgba(231, 76, 60, 0.1) 0%, rgba(231, 76, 60, 0.05) 100%);
+            border-left: 4px solid var(--danger);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .warning-icon {
+            color: var(--danger);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Problem Cards */
+        .problem-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-base);
+            border-top: 4px solid var(--danger);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--danger) 0%, transparent 100%);
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            color: var(--danger);
+            margin-bottom: 1rem;
+        }
+
+        /* Chimney Cap Types */
+        .cap-types {
+            background: var(--gray-50);
+        }
+
+        .type-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .type-tab {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            font-family: 'Archivo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .type-tab:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .type-tab.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .type-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .type-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .type-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .type-header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .type-body {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .type-visual {
+            background: var(--gray-100);
+            height: 200px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+        }
+
+        .type-features {
+            list-style: none;
+        }
+
+        .type-features li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.75rem;
+            position: relative;
+        }
+
+        .type-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Installation Process */
+        .process-steps {
+            counter-reset: step;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            counter-increment: step;
+        }
+
+        .process-step::before {
+            content: counter(step);
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Materials Comparison */
+        .materials-comparison {
+            background: var(--gray-50);
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-top: 3rem;
+        }
+
+        .table-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 1rem;
+            font-weight: 600;
+        }
+
+        .table-row {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 1rem;
+            align-items: center;
+            border-bottom: 1px solid var(--gray-100);
+            transition: var(--transition-fast);
+        }
+
+        .table-row:hover {
+            background: var(--gray-50);
+        }
+
+        .material-rating {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .rating-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray-200);
+        }
+
+        .rating-dot.filled {
+            background: var(--secondary);
+        }
+
+        /* CTA Section */
+        .cta-chimney {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: 5rem 0;
+            position: relative;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .form-input {
+            flex-grow: 1;
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            font-family: 'Archivo', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-base);
+            border: 2px solid transparent;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(211, 84, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(211, 84, 0, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-title {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .type-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-header, .table-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .table-header div:nth-child(4),
+            .table-row div:nth-child(4) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 6rem 2rem 2rem;
+                box-shadow: var(--shadow-lg);
+                transition: var(--transition-base);
+                z-index: 1000;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .cta-form {
+                flex-direction: column;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .table-header, .table-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .table-header div:nth-child(3),
+            .table-row div:nth-child(3) {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-home logo-icon"></i>
+                    Stan Toiture
+                </a>
+                
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="index.html#services" class="nav-link">Services</a></li>
+                    <li><a href="#types" class="nav-link">Types de chapeaux</a></li>
+                    <li><a href="#installation" class="nav-link">Installation</a></li>
+                    <li><a href="#contact" class="nav-link btn-primary">Devis gratuit</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-chimney section">
+        <div class="container">
+            <div class="hero-content animate-in">
+                <span class="hero-badge animate-in delay-1">Spécialiste chapeaux de cheminée</span>
+                <h1 class="text-display mb-3">Protégez votre cheminée avec <span style="color: var(--accent);">le bon chapeau</span></h1>
+                <p class="text-lead mb-4" style="color: rgba(255,255,255,0.9);">
+                    Votre cheminée n'a pas de chapeau ? L'ancien s'est détaché ou rouillé ? Chez Stan Toiture, on pose et on remplace tous types de chapeaux de cheminée au Luxembourg. Cette pièce métallique installée en haut du conduit joue un rôle important : elle protège contre la pluie, empêche les animaux d'entrer, améliore le tirage.
+                </p>
+                
+                <div class="warning-banner animate-in delay-2">
+                    <i class="fas fa-exclamation-triangle warning-icon"></i>
+                    <div>
+                        <strong>Sans chapeau, votre conduit est exposé.</strong> L'eau s'infiltre, les oiseaux font leur nid, le vent perturbe l'évacuation des fumées.
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-shield-alt stat-icon"></i>
+                        <div>
+                            <div style="font-weight: 600; font-size: 1.25rem;">Protection complète</div>
+                            <div style="font-size: 0.875rem;">Contre les intempéries et animaux</div>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-wind stat-icon"></i>
+                        <div>
+                            <div style="font-weight: 600; font-size: 1.25rem;">Tirage amélioré</div>
+                            <div style="font-size: 0.875rem;">Évacuation optimale des fumées</div>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-home stat-icon"></i>
+                        <div>
+                            <div style="font-weight: 600; font-size: 1.25rem;">Durée de vie prolongée</div>
+                            <div style="font-size: 0.875rem;">Pour votre cheminée et votre maison</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="section" id="problems">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag" style="background: rgba(231, 76, 60, 0.1); color: var(--danger); padding: 0.5rem 1rem; border-radius: var(--radius-xl); font-size: 0.875rem; font-weight: 600;">Risques à éviter</span>
+                <h2 class="text-h2 mb-2">Les problèmes d'une cheminée sans chapeau</h2>
+                <p class="text-lead">Une cheminée sans protection, c'est ouvert à tous les éléments :</p>
+            </div>
+            
+            <div class="problem-cards">
+                <div class="problem-card animate-in">
+                    <i class="fas fa-tint problem-icon"></i>
+                    <h3 class="text-h3 mb-2">Infiltrations d'eau</h3>
+                    <p>La pluie tombe directement dans le conduit. L'eau ruisselle le long des parois intérieures, détériore le mortier, provoque des traces d'humidité à l'intérieur de la maison.</p>
+                </div>
+                
+                <div class="problem-card animate-in delay-1">
+                    <i class="fas fa-dove problem-icon"></i>
+                    <h3 class="text-h3 mb-2">Intrusion d'animaux</h3>
+                    <p>Les oiseaux adorent les conduits pour nidifier. Leurs nids bouchent le passage, causant mauvais tirage, refoulement de fumées et risque d'intoxication au monoxyde de carbone.</p>
+                </div>
+                
+                <div class="problem-card animate-in delay-2">
+                    <i class="fas fa-snowflake problem-icon"></i>
+                    <h3 class="text-h3 mb-2">Détérioration du conduit</h3>
+                    <p>Le gel, la pluie, le vent. Sans chapeau, le haut du conduit subit de plein fouet les intempéries. Les briques s'effritent, les joints se creusent, la structure se fragilise.</p>
+                </div>
+                
+                <div class="problem-card animate-in delay-3">
+                    <i class="fas fa-wind problem-icon"></i>
+                    <h3 class="text-h3 mb-2">Problèmes de tirage</h3>
+                    <p>Certains vents créent des turbulences au sommet de la cheminée. Ils peuvent provoquer un refoulement de fumée ou empêcher l'évacuation correcte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cap Types Section -->
+    <section class="cap-types section" id="types">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag" style="background: rgba(52, 152, 219, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: var(--radius-xl); font-size: 0.875rem; font-weight: 600;">Solutions adaptées</span>
+                <h2 class="text-h2 mb-2">Les différents types de chapeaux</h2>
+                <p class="text-lead mb-5">Choisissez le modèle adapté à votre installation : cheminée à foyer ouvert, poêle à bois, chaudière à gaz, conduit inutilisé à protéger.</p>
+            </div>
+            
+            <div class="type-tabs" id="typeTabs">
+                <button class="type-tab active" data-type="anti-pluie">Anti-pluie simple</button>
+                <button class="type-tab" data-type="anti-refoulement">Anti-refoulement</button>
+                <button class="type-tab" data-type="pare-etincelles">Pare-étincelles</button>
+                <button class="type-tab" data-type="clapet">À clapet</button>
+                <button class="type-tab" data-type="mitres">Mitres tournantes</button>
+            </div>
+            
+            <!-- Anti-pluie simple -->
+            <div class="type-content active" id="anti-pluie">
+                <div class="type-card">
+                    <div class="type-header">
+                        <h3 class="text-h3">Chapeau anti-pluie simple</h3>
+                        <p>Le modèle de base - Économique et discret</p>
+                    </div>
+                    <div class="type-body">
+                        <div class="type-visual">
+                            <i class="fas fa-umbrella"></i>
+                        </div>
+                        <div>
+                            <p class="mb-3">Une plaque métallique soutenue par des pattes. Protège de la pluie verticale, empêche les gros débris de tomber dans le conduit.</p>
+                            <ul class="type-features">
+                                <li>Protection contre la pluie directe</li>
+                                <li>Économique et discret</li>
+                                <li>Empêche les gros débris</li>
+                                <li>Installation simple</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Anti-refoulement -->
+            <div class="type-content" id="anti-refoulement">
+                <div class="type-card">
+                    <div class="type-header">
+                        <h3 class="text-h3">Chapeau anti-refoulement</h3>
+                        <p>Améliore le tirage - Idéal pour les zones venteuses</p>
+                    </div>
+                    <div class="type-body">
+                        <div class="type-visual">
+                            <i class="fas fa-fan"></i>
+                        </div>
+                        <div>
+                            <p class="mb-3">Équipé d'une structure qui canalise les vents. Améliore le tirage même par temps venteux.</p>
+                            <ul class="type-features">
+                                <li>Améliore significativement le tirage</li>
+                                <li>Protège contre les refoulements</li>
+                                <li>Idéal pour les zones exposées au vent</li>
+                                <li>Réduit les problèmes de fumée en maison</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pare-étincelles -->
+            <div class="type-content" id="pare-etincelles">
+                <div class="type-card">
+                    <div class="type-header">
+                        <h3 class="text-h3">Chapeau pare-étincelles</h3>
+                        <p>Sécurité incendie - Obligatoire en zones sensibles</p>
+                    </div>
+                    <div class="type-body">
+                        <div class="type-visual">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div>
+                            <p class="mb-3">Avec un grillage fin qui retient les escarbilles. Obligatoire dans certaines zones ou si votre toiture est en matériaux combustibles.</p>
+                            <ul class="type-features">
+                                <li>Grillage anti-étincelles</li>
+                                <li>Conforme aux réglementations</li>
+                                <li>Protège les toitures combustibles</li>
+                                <li>Évite les risques d'incendie</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- À clapet -->
+            <div class="type-content" id="clapet">
+                <div class="type-card">
+                    <div class="type-header">
+                        <h3 class="text-h3">Chapeau à clapet</h3>
+                        <p>Étanchéité totale - Économies d'énergie</p>
+                    </div>
+                    <div class="type-body">
+                        <div class="type-visual">
+                            <i class="fas fa-door-closed"></i>
+                        </div>
+                        <div>
+                            <p class="mb-3">Modèle fermé quand vous n'utilisez pas la cheminée. S'ouvre automatiquement avec la chaleur ou manuellement.</p>
+                            <ul class="type-features">
+                                <li>Étanchéité totale contre l'eau</li>
+                                <li>Limite les déperditions de chaleur</li>
+                                <li>Empêche totalement les intrusions</li>
+                                <li>Ouverture automatique ou manuelle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mitres tournantes -->
+            <div class="type-content" id="mitres">
+                <div class="type-card">
+                    <div class="type-header">
+                        <h3 class="text-h3">Mitres tournantes (aspirateurs statiques)</h3>
+                        <p>Performance maximale - Pour conduits difficiles</p>
+                    </div>
+                    <div class="type-body">
+                        <div class="type-visual">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div>
+                            <p class="mb-3">Elles pivotent avec le vent et créent une dépression qui améliore le tirage. Efficaces sur les conduits qui tirent mal.</p>
+                            <ul class="type-features">
+                                <li>Tirage optimal par tous temps</li>
+                                <li>Rotation avec le vent</li>
+                                <li>Solution pour conduits problématiques</li>
+                                <li>Haute performance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Process -->
+    <section class="section" id="installation">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag" style="background: rgba(39, 174, 96, 0.1); color: var(--success); padding: 0.5rem 1rem; border-radius: var(--radius-xl); font-size: 0.875rem; font-weight: 600;">Processus professionnel</span>
+                <h2 class="text-h2 mb-2">Installation professionnelle et sécurisée</h2>
+                <p class="text-lead">Poser un chapeau de cheminée demande du matériel et du savoir-faire. Il faut monter sur le toit, travailler en hauteur, fixer solidement.</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step animate-in">
+                    <i class="fas fa-search step-icon"></i>
+                    <h3 class="text-h3 mb-2">Évaluation du conduit</h3>
+                    <p>Avant toute pose, on inspecte l'état du conduit. Si le haut est fissuré ou abîmé, on le répare d'abord. Pas question de fixer un chapeau sur une base fragile.</p>
+                </div>
+                
+                <div class="process-step animate-in delay-1">
+                    <i class="fas fa-ruler-combined step-icon"></i>
+                    <h3 class="text-h3 mb-2">Choix du modèle adapté</h3>
+                    <p>On prend les mesures exactes de votre conduit. Carré, rectangulaire, rond : chaque forme a ses contraintes. Le chapeau doit être dimensionné correctement.</p>
+                </div>
+                
+                <div class="process-step animate-in delay-2">
+                    <i class="fas fa-tools step-icon"></i>
+                    <h3 class="text-h3 mb-2">Fixation solide</h3>
+                    <p>On fixe le chapeau avec des pattes métalliques ancrées dans la maçonnerie ou serrées autour du conduit. Le tout doit résister aux vents violents, aux tempêtes.</p>
+                </div>
+                
+                <div class="process-step animate-in delay-3">
+                    <i class="fas fa-check-circle step-icon"></i>
+                    <h3 class="text-h3 mb-2">Contrôle final</h3>
+                    <p>Une fois posé, on vérifie que le chapeau n'entrave pas le tirage. L'air doit circuler librement. Si nécessaire, on ajoute un joint d'étanchéité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Comparison -->
+    <section class="materials-comparison section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag" style="background: rgba(10, 37, 64, 0.1); color: var(--primary); padding: 0.5rem 1rem; border-radius: var(--radius-xl); font-size: 0.875rem; font-weight: 600;">Qualité des matériaux</span>
+                <h2 class="text-h2 mb-2">Les matériaux utilisés</h2>
+                <p class="text-lead">Le matériau dépend aussi du type de combustible. Pour une chaudière à gaz ou à fioul, on préfère l'inox qui résiste mieux aux condensats acides.</p>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="table-header">
+                    <div>Matériau</div>
+                    <div>Durabilité</div>
+                    <div>Résistance corrosion</div>
+                    <div>Prix</div>
+                    <div>Utilisation recommandée</div>
+                </div>
+                
+                <div class="table-row">
+                    <div><strong>Acier galvanisé</strong></div>
+                    <div class="material-rating">
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot"></span>
+                        <span class="rating-dot"></span>
+                        <span class="rating-dot"></span>
+                    </div>
+                    <div class="material-rating">
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot"></span>
+                        <span class="rating-dot"></span>
+                    </div>
+                    <div>€€</div>
+                    <div>Cheminées bois, usage standard</div>
+                </div>
+                
+                <div class="table-row">
+                    <div><strong>Inox</strong></div>
+                    <div class="material-rating">
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                    </div>
+                    <div class="material-rating">
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                    </div>
+                    <div>€€€€</div>
+                    <div>Chaudières gaz/fioul, environnements corrosifs</div>
+                </div>
+                
+                <div class="table-row">
+                    <div><strong>Zinc</strong></div>
+                    <div class="material-rating">
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot"></span>
+                    </div>
+                    <div class="material-rating">
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot"></span>
+                    </div>
+                    <div>€€€</div>
+                    <div>Toitures en zinc, esthétique patinée</div>
+                </div>
+                
+                <div class="table-row">
+                    <div><strong>Cuivre</strong></div>
+                    <div class="material-rating">
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                    </div>
+                    <div class="material-rating">
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                        <span class="rating-dot filled"></span>
+                    </div>
+                    <div>€€€€€</div>
+                    <div>Haut de gamme, patrimoine, très longue durée</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-chimney" id="contact">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title text-h2 mb-2">Besoin d'un chapeau de cheminée ?</h2>
+                <p class="cta-subtitle mb-4">Installation neuve ou remplacement d'un chapeau endommagé : Stan Toiture intervient partout au Luxembourg. On évalue votre installation, on vous conseille le modèle adapté, on pose en sécurité.</p>
+                
+                <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: var(--radius-md); margin: 2rem 0;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; font-size: 1.5rem;">
+                        <i class="fas fa-phone-alt" style="color: var(--accent);"></i>
+                        <strong>Demandez votre devis gratuit dès maintenant</strong>
+                    </div>
+                </div>
+                
+                <form class="cta-form" id="contactForm">
+                    <input type="tel" class="form-input" placeholder="Votre numéro de téléphone" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Être rappelé
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-title">Stan Toiture</h3>
+                    <p style="opacity: 0.7; margin-bottom: 1.5rem;">Expert couvreur au Luxembourg, spécialiste des chapeaux de cheminée.</p>
+                    <a href="#contact" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
+                        <i class="fas fa-phone-alt"></i>
+                        Devis chapeau cheminée
+                    </a>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Navigation</h3>
+                    <ul class="footer-links" style="list-style: none; padding: 0;">
+                        <li><a href="index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: var(--transition-fast);">Accueil</a></li>
+                        <li><a href="index.html#services" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: var(--transition-fast);">Services toiture</a></li>
+                        <li><a href="#types" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: var(--transition-fast);">Types de chapeaux</a></li>
+                        <li><a href="#installation" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: var(--transition-fast);">Installation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Contact</h3>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt contact-icon"></i>
+                            <span>+352 XXX XXX XXX</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span>Intervention sur tout le Luxembourg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Stan Toiture - Tous droits réservés. | Spécialiste chapeaux de cheminée Luxembourg</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Chimney Cap Type Tabs
+            const typeTabs = document.querySelectorAll('.type-tab');
+            const typeContents = document.querySelectorAll('.type-content');
+            
+            typeTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const type = this.getAttribute('data-type');
+                    
+                    // Remove active class from all tabs and contents
+                    typeTabs.forEach(t => t.classList.remove('active'));
+                    typeContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(type).classList.add('active');
+                });
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const phoneInput = this.querySelector('input[type="tel"]');
+                const phoneNumber = phoneInput.value;
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Demande envoyée !';
+                submitBtn.style.backgroundColor = '#27AE60';
+                
+                setTimeout(() => {
+                    alert(`Merci ! Nous vous rappellerons au ${phoneNumber} pour votre chapeau de cheminée.`);
+                    contactForm.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.backgroundColor = '';
+                }, 1500);
+            });
+            
+            // Scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.problem-card, .process-step').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Table row hover effect
+            const tableRows = document.querySelectorAll('.table-row');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

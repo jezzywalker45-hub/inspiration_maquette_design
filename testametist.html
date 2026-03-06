@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Fashion Slider</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f3f3f3;
+    overflow:hidden;
+}
+
+.slider{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 8%;
+    opacity:0;
+    transition:1s ease;
+}
+
+.slide.active{
+    opacity:1;
+    z-index:1;
+}
+
+/* TEXT */
+
+.content{
+    max-width:450px;
+    animation:fadeText 1s ease;
+}
+
+.content h4{
+    letter-spacing:3px;
+    color:#999;
+    font-weight:400;
+    margin-bottom:15px;
+}
+
+.content h1{
+    font-size:52px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.content p{
+    color:#666;
+    line-height:1.6;
+}
+
+/* IMAGES */
+
+.images{
+    position:relative;
+    width:55%;
+    height:100%;
+}
+
+.images img{
+    position:absolute;
+    bottom:0;
+    transition:1s ease;
+}
+
+/* background models */
+.images .back{
+    height:65%;
+    filter:blur(6px);
+    opacity:0.4;
+    transform:scale(0.9);
+}
+
+.images .back1{
+    left:5%;
+}
+
+.images .back2{
+    left:25%;
+}
+
+/* main model */
+.images .main{
+    right:10%;
+    height:90%;
+    z-index:2;
+}
+
+/* CONTROLS */
+
+.controls{
+    position:absolute;
+    bottom:40px;
+    left:8%;
+}
+
+.controls button{
+    padding:10px 16px;
+    font-size:20px;
+    background:#000;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    margin-right:10px;
+    transition:0.3s;
+}
+
+.controls button:hover{
+    background:#444;
+}
+
+/* Animation */
+
+@keyframes fadeText{
+    from{
+        transform:translateY(30px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .slide{
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+    }
+
+    .images{
+        width:100%;
+        height:60%;
+        margin-top:30px;
+    }
+
+    .images .main{
+        right:50%;
+        transform:translateX(50%);
+    }
+
+    .controls{
+        left:50%;
+        transform:translateX(-50%);
+    }
+}
+
+</style>
+</head>
+<body>
+
+<section class="slider">
+
+    <!-- SLIDE 1 -->
+    <div class="slide active">
+        <div class="content">
+            <h4>SPRING SUMMER 2019</h4>
+            <h1>Modern Collection</h1>
+            <p>Discover elegant and refined styles designed for contemporary women.</p>
+        </div>
+
+        <div class="images">
+            <img src="https://images.unsplash.com/photo-1520975922284-9f4a63f9f5a7?auto=format&fit=crop&w=600&q=80" class="back back1">
+            <img src="https://images.unsplash.com/photo-1520974735194-6c0c0c4b8c9b?auto=format&fit=crop&w=600&q=80" class="back back2">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" class="main">
+        </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+        <div class="content">
+            <h4>NEW ARRIVALS</h4>
+            <h1>Autumn Edition</h1>
+            <p>Minimalist fashion blended with premium materials and luxury finishes.</p>
+        </div>
+
+        <div class="images">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" class="back back1">
+            <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=600&q=80" class="back back2">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" class="main">
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prev">‹</button>
+        <button id="next">›</button>
+    </div>
+
+</section>
+
+<script>
+
+const slides = document.querySelectorAll(".slide");
+const next = document.getElementById("next");
+const prev = document.getElementById("prev");
+
+let current = 0;
+
+function showSlide(index){
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[index].classList.add("active");
+}
+
+next.addEventListener("click",()=>{
+    current++;
+    if(current >= slides.length){
+        current = 0;
+    }
+    showSlide(current);
+});
+
+prev.addEventListener("click",()=>{
+    current--;
+    if(current < 0){
+        current = slides.length - 1;
+    }
+    showSlide(current);
+});
+
+// Auto Slide
+setInterval(()=>{
+    current++;
+    if(current >= slides.length){
+        current = 0;
+    }
+    showSlide(current);
+},5000);
+
+</script>
+
+</body>
+</html>

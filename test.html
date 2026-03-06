@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>À propos - SOREA Madagascar</title>
+  <meta name="description" content="Découvrez SOREA Madagascar : restauration collective saine et accompagnement périscolaire pour l'épanouissement des enfants.">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --sorea-vert: #04ba71;
+      --sorea-jaune: #fdc827;
+      --sorea-orange: #fb6841;
+      --sorea-bleu: #0b8bcb;
+      --sorea-bleu-clair: #e8f4fd;
+      --sorea-vert-clair: #e8f9f2;
+      --text: #1c1c1c;
+      --text-muted: #6c757d;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background: #fefefe;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Comfortaa', sans-serif;
+      font-weight: 700;
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, var(--sorea-bleu-clair) 0%, var(--sorea-vert-clair) 100%);
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230b8bcb' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+
+    .badge-sorea {
+      background: var(--sorea-jaune);
+      color: #1a1a1a;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .h1-main {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      margin-bottom: 25px;
+      background: linear-gradient(90deg, var(--sorea-bleu), var(--sorea-vert));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead-text {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+    }
+
+    .feature-card.vert::before {
+      background: linear-gradient(90deg, var(--sorea-vert), #03a05d);
+    }
+
+    .feature-card.bleu::before {
+      background: linear-gradient(90deg, var(--sorea-bleu), #0978b2);
+    }
+
+    .feature-card.orange::before {
+      background: linear-gradient(90deg, var(--sorea-orange), #e85a3d);
+    }
+
+    .feature-card.jaune::before {
+      background: linear-gradient(90deg, var(--sorea-jaune), #e6b413);
+    }
+
+    .icon-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .icon-circle {
+      transform: scale(1.1);
+    }
+
+    .icon-circle.vert {
+      background: linear-gradient(135deg, var(--sorea-vert), #03a05d);
+      color: white;
+    }
+
+    .icon-circle.bleu {
+      background: linear-gradient(135deg, var(--sorea-bleu), #0978b2);
+      color: white;
+    }
+
+    .icon-circle.orange {
+      background: linear-gradient(135deg, var(--sorea-orange), #e85a3d);
+      color: white;
+    }
+
+    .icon-circle.jaune {
+      background: linear-gradient(135deg, var(--sorea-jaune), #e6b413);
+      color: #1a1a1a;
+    }
+
+    .feature-card.jaune h4 {
+      color: #1a1a1a;
+    }
+
+    .feature-card.jaune p {
+      color: #555;
+    }
+
+    .founder-section {
+      background: white;
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .founder-card {
+      background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      margin-top: -50px;
+    }
+
+    .founder-image {
+      height: 100%;
+      min-height: 500px;
+      background: linear-gradient(45deg, var(--sorea-vert), var(--sorea-bleu));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .founder-image::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 30px 30px;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-30px) rotate(360deg); }
+    }
+
+    .founder-image-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 30px;
+      color: white;
+    }
+
+    .founder-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid rgba(255,255,255,0.3);
+      margin: 0 auto 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .expertise-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+      padding: 100px 0;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      margin-top: 50px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--sorea-vert), var(--sorea-bleu));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--sorea-vert);
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px var(--sorea-vert);
+    }
+
+    .value-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .value-card:hover {
+      border-color: var(--sorea-vert);
+      transform: translateY(-5px);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    .stats-section {
+      background: linear-gradient(135deg, var(--sorea-bleu), var(--sorea-vert));
+      color: white;
+      padding: 80px 0;
+      border-radius: 30px;
+      margin: 80px 0;
+    }
+
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-family: 'Comfortaa', sans-serif;
+    }
+
+    .btn-sorea {
+      background: linear-gradient(90deg, var(--sorea-vert), var(--sorea-bleu));
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-sorea:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(4, 186, 113, 0.3);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .h1-main {
+        font-size: 2.2rem;
+      }
+      
+      .hero-section {
+        padding: 60px 0 40px;
+      }
+      
+      .founder-section, .expertise-section {
+        padding: 60px 0;
+      }
+      
+      .feature-card {
+        padding: 30px 20px;
+      }
+    }
+
+    .floating-element {
+      animation: floatElement 3s ease-in-out infinite;
+    }
+
+    @keyframes floatElement {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      color: var(--sorea-bleu);
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+    <div class="container">
+      <a class="navbar-brand" href="#" style="color: var(--sorea-vert); font-family: 'Comfortaa', sans-serif; font-weight: 700; font-size: 1.8rem;">
+        SOREA
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">À propos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Équipe</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          <li class="nav-item ms-3">
+            <a href="#" class="btn btn-sorea">Nous contacter</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <span class="badge-sorea">Restauration & Accompagnement</span>
+          <h1 class="h1-main">SOREA – Un acteur engagé pour l'alimentation et l'éveil des enfants</h1>
+          <p class="lead-text">
+            Chez SOREA, nous croyons qu'un enfant bien nourri et bien entouré a toutes les clés pour grandir et s'épanouir.
+            Spécialisée dans la restauration collective et l'accompagnement périscolaire, notre entreprise œuvre chaque jour 
+            pour offrir aux enfants un environnement sain, éducatif et bienveillant, au service des familles et des 
+            établissements scolaires à Madagascar.
+          </p>
+          <a href="#fondatrice" class="btn btn-sorea">Découvrir notre histoire</a>
+        </div>
+        <div class="col-lg-4">
+          <div class="floating-element">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Enfants heureux" 
+                 class="img-fluid rounded-4 shadow-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features - 4 Cartes -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nos Engagements pour le Bien-être des Enfants</h2>
+        <p>Quatre piliers fondamentaux qui guident chaque action de SOREA pour l'épanouissement complet des enfants</p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Carte 1 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-card vert">
+            <div class="icon-circle vert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+              </svg>
+            </div>
+            <h4>Bien-être Emotionnel</h4>
+            <p>Création d'un environnement bienveillant qui favorise l'épanouissement affectif et le développement harmonieux de chaque enfant.</p>
+          </div>
+        </div>
+        
+        <!-- Carte 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-card bleu">
+            <div class="icon-circle bleu">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
+                <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.531 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+              </svg>
+            </div>
+            <h4>Sécurité & Hygiène</h4>
+            <p>Normes HACCP strictes et protocoles rigoureux pour garantir la sécurité alimentaire et sanitaire de chaque repas.</p>
+          </div>
+        </div>
+        
+        <!-- Carte 3 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-card orange">
+            <div class="icon-circle orange">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-tree-fill" viewBox="0 0 16 16">
+                <path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5z"/>
+              </svg>
+            </div>
+            <h4>Éco-responsabilité</h4>
+            <p>Approvisionnement local et saisonnier pour réduire notre empreinte carbone et soutenir l'économie malgache.</p>
+          </div>
+        </div>
+        
+        <!-- Carte 4 - Nouvelle carte avec couleur #FDC827 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-card jaune">
+            <div class="icon-circle jaune">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+            </div>
+            <h4>Éveil & Créativité</h4>
+            <p>Programmes périscolaires innovants stimulant la curiosité, la créativité et le développement intellectuel des enfants.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Section supplémentaire avec 3 cartes horizontales sous les 4 cartes -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="section-title">
+            <h3>Notre Approche Holistique</h3>
+            <p>Une méthode intégrée qui considère l'enfant dans sa globalité</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-12 mb-4">
+          <div class="value-card h-100" style="border-top: 4px solid var(--sorea-vert);">
+            <div class="value-icon" style="color: var(--sorea-vert);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2z"/>
+              </svg>
+            </div>
+            <h4>Nutrition Optimale</h4>
+            <p>Menus équilibrés élaborés par des nutritionnistes, adaptés aux besoins spécifiques de chaque tranche d'âge.</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-12 mb-4">
+          <div class="value-card h-100" style="border-top: 4px solid var(--sorea-bleu);">
+            <div class="value-icon" style="color: var(--sorea-bleu);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+              </svg>
+            </div>
+            <h4>Socialisation</h4>
+            <p>Activités collectives favorisant les interactions sociales, le partage et le développement des compétences relationnelles.</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-12 mb-4">
+          <div class="value-card h-100" style="border-top: 4px solid var(--sorea-jaune);">
+            <div class="value-icon" style="color: var(--sorea-jaune);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+              </svg>
+            </div>
+            <h4>Apprentissage Continu</h4>
+            <p>Ateliers éducatifs complémentaires à la scolarité, stimulant l'apprentissage par le jeu et la découverte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Section -->
+  <section id="fondatrice" class="founder-section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="mb-3" style="color: var(--sorea-bleu);">Une fondatrice engagée</h2>
+          <p class="lead-text">Le leadership et la vision qui guident SOREA vers l'excellence</p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="founder-card">
+            <div class="row g-0">
+              <div class="col-lg-4">
+                <div class="founder-image">
+                  <div class="founder-image-content">
+                    <div class="founder-avatar">
+                      <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                           alt="Mara Louisa Mansaré" 
+                           class="img-fluid">
+                    </div>
+                    <h3 class="h4 mb-2">Mara Louisa Mansaré</h3>
+                    <p class="mb-0">Fondatrice & Directrice Générale</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="p-5">
+                  <h3 class="mb-4" style="color: var(--sorea-vert);">Une vision claire pour l'avenir de nos enfants</h3>
+                  <p class="mb-4">
+                    Mara Louisa Mansaré, fondatrice de SOREA, porte une vision claire de la restauration collective. 
+                    Avec plus de quinze ans d'expérience dans ce domaine, elle s'appuie sur une double source d'apprentissage : 
+                    le terrain malgache et les références françaises du secteur.
+                  </p>
+                  
+                  <div class="timeline">
+                    <div class="timeline-item">
+                      <h5>Formation internationale</h5>
+                      <p>Diplômée d'établissements prestigieux spécialisés en restauration collective et nutrition.</p>
+                    </div>
+                    <div class="timeline-item">
+                      <h5>Expérience terrain</h5>
+                      <p>15 ans d'expérience pratique dans la gestion de cantines scolaires et services périscolaires.</p>
+                    </div>
+                    <div class="timeline-item">
+                      <h5>Vision biculturelle</h5>
+                      <p>Alliage unique entre les meilleures pratiques françaises et la réalité malgache.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section class="expertise-section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="mb-3" style="color: var(--sorea-vert);">Une expertise terrain et internationale</h2>
+          <p class="lead-text">L'excellence au service du développement des enfants</p>
+        </div>
+      </div>
+      
+      <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+          <div class="value-card">
+            <div class="value-icon" style="color: var(--sorea-bleu);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0 4z"/>
+              </svg>
+            </div>
+            <h4>Équipe qualifiée</h4>
+            <p>Autour d'elle, une équipe qualifiée et engagée formée dans des établissements reconnus tels que Vatel ou l'INTH, partage une même exigence : proposer une cuisine saine, équilibrée, responsable et adaptée aux enfants.</p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="value-card">
+            <div class="value-icon" style="color: var(--sorea-vert);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-recycle" viewBox="0 0 16 16">
+                <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .613.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
+              </svg>
+            </div>
+            <h4>Démarche éco-responsable</h4>
+            <p>SOREA adopte une démarche éco-responsable. Chaque plat est conçu dans le respect des règles d'hygiène, de propreté et de qualité. Rien n'est laissé au hasard : chaque repas est pensé pour être sain, sûr et savoureux.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Stats -->
+      <div class="stats-section">
+        <div class="row text-center">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stat-number">15+</div>
+            <p>Années d'expérience</p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stat-number">100%</div>
+            <p>Sécurité alimentaire</p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stat-number">50+</div>
+            <p>Écoles partenaires</p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stat-number">24/7</div>
+            <p>Disponibilité</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA -->
+      <div class="row mt-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h3 class="mb-4">Prêt à offrir le meilleur à vos enfants ?</h3>
+          <p class="mb-4">Rejoignez les nombreuses écoles et familles qui font confiance à SOREA pour l'alimentation et l'éveil de leurs enfants.</p>
+          <a href="#" class="btn btn-sorea me-3">Nos services</a>
+          <a href="#" class="btn btn-outline-primary" style="border-color: var(--sorea-vert); color: var(--sorea-vert);">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h3 class="mb-3" style="color: var(--sorea-vert); font-family: 'Comfortaa', sans-serif;">SOREA</h3>
+          <p>Acteur engagé pour l'alimentation et l'éveil des enfants à Madagascar.</p>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5>Contact</h5>
+          <p>Antananarivo, Madagascar<br>
+          +261 XX XX XX XX<br>
+          contact@sorea.mg</p>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5>Suivez-nous</h5>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-white">Facebook</a>
+            <a href="#" class="text-white">Instagram</a>
+            <a href="#" class="text-white">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-4 mb-4">
+      <div class="text-center">
+        <p class="mb-0">© 2024 SOREA Madagascar. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all feature cards and timeline items
+      document.querySelectorAll('.feature-card, .timeline-item, .value-card').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ny Lanitra Manga - Le Ciel Bleu | TakelakaRoa.mg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4A6FA5;
+            --secondary: #FF9F1C;
+            --accent: #2A9D8F;
+            --light: #F8F9FA;
+            --dark: #264653;
+            --text: #333333;
+            --gray: #6C757D;
+            --success: #28A745;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            background-color: var(--dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-header {
+            padding: 20px 0;
+        }
+        
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fredoka One', cursive;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .cart-btn {
+            position: relative;
+            font-size: 20px;
+            color: var(--dark);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            background-color: var(--light);
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: var(--gray);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+        
+        /* Product Section */
+        .product-section {
+            padding: 40px 0 80px;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        /* Product Gallery */
+        .product-gallery {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .main-image {
+            background-color: #E9F7FE;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            height: 400px;
+        }
+        
+        .main-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.1));
+        }
+        
+        .image-thumbnails {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background-color: #F0F0F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+        
+        /* Product Info */
+        .product-info {
+            padding-top: 20px;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .product-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .product-subtitle {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .product-author {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+        
+        .product-author a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .product-author a:hover {
+            text-decoration: underline;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .stars {
+            color: #FFC107;
+            font-size: 20px;
+        }
+        
+        .rating-text {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .product-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .product-meta {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+        }
+        
+        .meta-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .meta-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .meta-label {
+            width: 150px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .meta-value {
+            flex: 1;
+        }
+        
+        .lang-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background-color: white;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        /* Product Actions */
+        .product-actions {
+            margin-bottom: 30px;
+        }
+        
+        .action-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 120px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 50px;
+            background-color: var(--light);
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 50px;
+            border: none;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        /* Delivery Info */
+        .delivery-info {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+        }
+        
+        .delivery-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .delivery-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .delivery-icon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .payment-method {
+            width: 60px;
+            height: 40px;
+            background-color: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--dark);
+        }
+        
+        /* Product Tabs */
+        .product-tabs {
+            margin-top: 60px;
+        }
+        
+        .tab-headers {
+            display: flex;
+            border-bottom: 2px solid var(--light);
+            margin-bottom: 30px;
+        }
+        
+        .tab-header {
+            padding: 15px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            color: var(--gray);
+        }
+        
+        .tab-header.active {
+            color: var(--primary);
+        }
+        
+        .tab-header.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .description-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .description-content p {
+            margin-bottom: 20px;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specs-table tr {
+            border-bottom: 1px solid var(--light);
+        }
+        
+        .specs-table td {
+            padding: 15px 0;
+        }
+        
+        .specs-table td:first-child {
+            font-weight: 600;
+            width: 200px;
+            color: var(--dark);
+        }
+        
+        /* Reviews */
+        .review-summary {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+        
+        .review-score {
+            text-align: center;
+        }
+        
+        .review-score-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .review-stars {
+            font-size: 24px;
+            color: #FFC107;
+            margin: 10px 0;
+        }
+        
+        .review-count {
+            color: var(--gray);
+        }
+        
+        .review-bars {
+            flex: 1;
+        }
+        
+        .review-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .review-bar-label {
+            width: 40px;
+            font-size: 14px;
+        }
+        
+        .review-bar-line {
+            flex: 1;
+            height: 8px;
+            background-color: #E0E0E0;
+            border-radius: 4px;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+        
+        .review-bar-fill {
+            height: 100%;
+            background-color: #FFC107;
+            border-radius: 4px;
+        }
+        
+        .review-list {
+            margin-top: 30px;
+        }
+        
+        .review-item {
+            padding: 25px 0;
+            border-bottom: 1px solid var(--light);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .reviewer-name {
+            font-weight: 600;
+        }
+        
+        .review-date {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Related Products */
+        .related-products {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .product-card-img {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-card-info {
+            padding: 20px;
+        }
+        
+        .product-card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            height: 50px;
+            overflow: hidden;
+        }
+        
+        .product-card-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .product-gallery {
+                position: static;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-header .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .action-row {
+                flex-direction: column;
+            }
+            
+            .review-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tab-headers {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .tab-header {
+                padding: 15px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .product-title {
+                font-size: 26px;
+            }
+            
+            .product-price {
+                font-size: 28px;
+            }
+            
+            .main-image {
+                height: 300px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="contact-info">
+                <a href="tel:+261376268809"><i class="fas fa-phone"></i> (+261) 37 62 688 09</a>
+            </div>
+            <div class="top-links">
+                <a href="#"><i class="fas fa-question-circle"></i> Aide</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Header -->
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo-icon">📚</div>
+                    <h1>Takelaka<span>Roa</span></h1>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">Librairie</a></li>
+                        <li><a href="#">Auteurs</a></li>
+                        <li><a href="#">Éditeurs</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="#">Accueil</a> / 
+            <a href="#">Librairie</a> / 
+            <a href="#">Malagasy - Français</a> / 
+            <span>Ny Lanitra Manga</span>
+        </div>
+    </div>
+    
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="container">
+            <div class="product-container">
+                <!-- Product Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <div style="font-size: 120px; color: #4A6FA5;">📖</div>
+                    </div>
+                    
+                    <div class="image-thumbnails">
+                        <div class="thumbnail active">
+                            <div style="font-size: 40px;">📖</div>
+                        </div>
+                        <div class="thumbnail">
+                            <div style="font-size: 40px;">📘</div>
+                        </div>
+                        <div class="thumbnail">
+                            <div style="font-size: 40px;">🔍</div>
+                        </div>
+                        <div class="thumbnail">
+                            <div style="font-size: 40px;">👁️</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Info -->
+                <div class="product-info">
+                    <span class="product-category">Livre jeunesse bilingue</span>
+                    
+                    <h1 class="product-title">Ny Lanitra Manga</h1>
+                    <h2 class="product-subtitle">Le Ciel Bleu</h2>
+                    
+                    <div class="product-author">
+                        Par <a href="#">Marie Rakoto</a>
+                    </div>
+                    
+                    <div class="rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="rating-text">4.5/5 (128 avis)</div>
+                    </div>
+                    
+                    <div class="product-price">35.590 €</div>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Langues:</div>
+                            <div class="meta-value">
+                                <span class="lang-badge">🇲🇬 Malagasy</span>
+                                <span class="lang-badge">🇫🇷 Français</span>
+                            </div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Format:</div>
+                            <div class="meta-value">Broché</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">ISBN:</div>
+                            <div class="meta-value">978-2-1234-5678-9</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Disponibilité:</div>
+                            <div class="meta-value">
+                                <span style="color: var(--success); font-weight: 600;">
+                                    <i class="fas fa-check-circle"></i> En stock
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Actions -->
+                    <div class="product-actions">
+                        <div class="action-row">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="text" class="quantity-input" value="1" readonly>
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            
+                            <button class="btn btn-primary">
+                                <i class="fas fa-cart-plus"></i> Ajouter au panier
+                            </button>
+                            
+                            <button class="btn btn-outline">
+                                <i class="far fa-heart"></i> Favoris
+                            </button>
+                        </div>
+                        
+                        <button class="btn btn-secondary" style="width: 100%;">
+                            <i class="fas fa-bolt"></i> Acheter maintenant
+                        </button>
+                    </div>
+                    
+                    <!-- Delivery Info -->
+                    <div class="delivery-info">
+                        <div class="delivery-item">
+                            <div class="delivery-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Livraison rapide</div>
+                                <div style="font-size: 14px;">48h à Antananarivo, 5 jours en province, 7 jours à l'international</div>
+                            </div>
+                        </div>
+                        
+                        <div class="delivery-item">
+                            <div class="delivery-icon">
+                                <i class="fas fa-undo-alt"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Retours faciles</div>
+                                <div style="font-size: 14px;">Retours acceptés sous 14 jours si le livre arrive abîmé</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <div style="font-weight: 600; margin-bottom: 10px;">Modes de paiement acceptés:</div>
+                            <div class="payment-methods">
+                                <div class="payment-method">
+                                    <i class="fab fa-cc-visa"></i>
+                                </div>
+                                <div class="payment-method">
+                                    <i class="fab fa-cc-mastercard"></i>
+                                </div>
+                                <div class="payment-method">
+                                    <div style="font-size: 14px; font-weight: 600; color: #FF6B00;">MVol</div>
+                                </div>
+                                <div class="payment-method">
+                                    <div style="font-size: 14px; font-weight: 600; color: #FF6600;">OM</div>
+                                </div>
+                                <div class="payment-method">
+                                    <div style="font-size: 14px; font-weight: 600;">Livr.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tab-headers">
+                    <div class="tab-header active" data-tab="description">Description</div>
+                    <div class="tab-header" data-tab="specs">Caractéristiques</div>
+                    <div class="tab-header" data-tab="reviews">Avis (128)</div>
+                    <div class="tab-header" data-tab="shipping">Livraison & Retours</div>
+                </div>
+                
+                <!-- Description Tab -->
+                <div class="tab-content active" id="description">
+                    <div class="description-content">
+                        <h3 style="margin-bottom: 20px;">Un voyage poétique à travers le ciel malgache</h3>
+                        
+                        <p>Plongez dans l'univers magique de <strong>Ny Lanitra Manga</strong>, un livre jeunesse bilingue qui invite les enfants à découvrir la beauté du ciel malgache à travers les yeux de deux jeunes amis, Mia et Noah.</p>
+                        
+                        <p>Ce récit poétique suit leur aventure alors qu'ils partent à la découverte des merveilles du ciel bleu de Madagascar, des nuages fantaisistes aux oiseaux colorés qui peuplent l'île. Chaque page est une invitation à l'émerveillement et à la curiosité.</p>
+                        
+                        <h4 style="margin: 25px 0 15px;">Pourquoi ce livre est unique :</h4>
+                        
+                        <ul style="margin-left: 20px; margin-bottom: 20px;">
+                            <li><strong>Bilinguisme intégral :</strong> Texte présenté en malagasy et français sur chaque page</li>
+                            <li><strong>Illustrations vibrantes :</strong> Dessins colorés inspirés de l'art malgache</li>
+                            <li><strong>Valeurs éducatives :</strong> Encourage la curiosité, l'amitié et l'amour de la nature</li>
+                            <li><strong>Glossaire inclus :</strong> Vocabulaire spécifique expliqué en fin d'ouvrage</li>
+                        </ul>
+                        
+                        <p>Idéal pour les enfants de 3 à 8 ans, ce livre est un outil pédagogique puissant pour l'apprentissage des langues et l'ouverture interculturelle. Les textes simples et répétitifs facilitent la mémorisation et renforcent la confiance en lecture.</p>
+                        
+                        <div style="background-color: var(--light); padding: 25px; border-radius: var(--border-radius); margin-top: 30px;">
+                            <h4 style="margin-bottom: 15px; color: var(--primary);">
+                                <i class="fas fa-award"></i> Distinctions
+                            </h4>
+                            <ul style="margin-left: 20px;">
+                                <li>Prix du Livre Jeunesse Bilingue 2022</li>
+                                <li>Sélection officielle du Salon du Livre de Madagascar</li>
+                                <li>Coup de cœur de la librairie TakelakaRoa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Specifications Tab -->
+                <div class="tab-content" id="specs">
+                    <table class="specs-table">
+                        <tr>
+                            <td>Titre complet</td>
+                            <td>Ny Lanitra Manga - Le Ciel Bleu</td>
+                        </tr>
+                        <tr>
+                            <td>Auteur</td>
+                            <td><a href="#" style="color: var(--primary);">Marie Rakoto</a></td>
+                        </tr>
+                        <tr>
+                            <td>Illustrateur</td>
+                            <td><a href="#" style="color: var(--primary);">Jean Rabe</a></td>
+                        </tr>
+                        <tr>
+                            <td>Éditeur</td>
+                            <td><a href="#" style="color: var(--primary);">Éditions Malagasy</a></td>
+                        </tr>
+                        <tr>
+                            <td>Date de publication</td>
+                            <td>15 mars 2022</td>
+                        </tr>
+                        <tr>
+                            <td>Format</td>
+                            <td>Broché, couverture souple</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de pages</td>
+                            <td>48 pages</td>
+                        </tr>
+                        <tr>
+                            <td>Dimensions</td>
+                            <td>21 x 21 cm</td>
+                        </tr>
+                        <tr>
+                            <td>Poids</td>
+                            <td>250 g</td>
+                        </tr>
+                        <tr>
+                            <td>ISBN</td>
+                            <td>978-2-1234-5678-9</td>
+                        </tr>
+                        <tr>
+                            <td>Âge recommandé</td>
+                            <td>3-8 ans</td>
+                        </tr>
+                        <tr>
+                            <td>Langues</td>
+                            <td>Malagasy, Français</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Reviews Tab -->
+                <div class="tab-content" id="reviews">
+                    <div class="review-summary">
+                        <div class="review-score">
+                            <div class="review-score-value">4.5</div>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="review-count">128 avis</div>
+                        </div>
+                        
+                        <div class="review-bars">
+                            <div class="review-bar">
+                                <div class="review-bar-label">5★</div>
+                                <div class="review-bar-line">
+                                    <div class="review-bar-fill" style="width: 70%;"></div>
+                                </div>
+                                <div class="review-bar-count">90</div>
+                            </div>
+                            <div class="review-bar">
+                                <div class="review-bar-label">4★</div>
+                                <div class="review-bar-line">
+                                    <div class="review-bar-fill" style="width: 20%;"></div>
+                                </div>
+                                <div class="review-bar-count">25</div>
+                            </div>
+                            <div class="review-bar">
+                                <div class="review-bar-label">3★</div>
+                                <div class="review-bar-line">
+                                    <div class="review-bar-fill" style="width: 5%;"></div>
+                                </div>
+                                <div class="review-bar-count">8</div>
+                            </div>
+                            <div class="review-bar">
+                                <div class="review-bar-label">2★</div>
+                                <div class="review-bar-line">
+                                    <div class="review-bar-fill" style="width: 3%;"></div>
+                                </div>
+                                <div class="review-bar-count">3</div>
+                            </div>
+                            <div class="review-bar">
+                                <div class="review-bar-label">1★</div>
+                                <div class="review-bar-line">
+                                    <div class="review-bar-fill" style="width: 2%;"></div>
+                                </div>
+                                <div class="review-bar-count">2</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-outline" style="margin-bottom: 30px;">
+                        <i class="fas fa-pen"></i> Écrire un avis
+                    </button>
+                    
+                    <div class="review-list">
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div>
+                                    <div class="reviewer-name">Sophie Martin</div>
+                                    <div class="review-stars" style="font-size: 16px;">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-date">15 mars 2023</div>
+                            </div>
+                            <div class="review-text">
+                                <p>Mon fils de 5 ans adore ce livre ! Les illustrations sont magnifiques et le texte bilingue lui permet d'apprendre des mots en malagasy tout en renforçant son français. Il demande à le lire tous les soirs. Je recommande vivement !</p>
+                            </div>
+                        </div>
+                        
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div>
+                                    <div class="reviewer-name">Thomas R.</div>
+                                    <div class="review-stars" style="font-size: 16px;">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="review-date">28 février 2023</div>
+                            </div>
+                            <div class="review-text">
+                                <p>Excellent livre pour initier les enfants au bilinguisme. En tant qu'enseignant, j'apprécie particulièrement la qualité pédagogique de l'ouvrage. La livraison a été rapide et le livre est arrivé en parfait état.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shipping Tab -->
+                <div class="tab-content" id="shipping">
+                    <h3 style="margin-bottom: 20px;">Politique de livraison</h3>
+                    
+                    <div style="background-color: var(--light); padding: 25px; border-radius: var(--border-radius); margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 15px; color: var(--primary);">
+                            <i class="fas fa-shipping-fast"></i> Délais de livraison
+                        </h4>
+                        <ul style="margin-left: 20px;">
+                            <li><strong>Antananarivo :</strong> 48 heures maximum</li>
+                            <li><strong>Province (Madagascar) :</strong> 3 à 5 jours ouvrés</li>
+                            <li><strong>International :</strong> 7 à 14 jours selon la destination</li>
+                        </ul>
+                        
+                        <p style="margin-top: 15px; font-size: 14px;">
+                            <i class="fas fa-info-circle"></i> Les commandes passées avant 14h sont traitées le jour même.
+                        </p>
+                    </div>
+                    
+                    <h3 style="margin-bottom: 20px;">Politique de retour</h3>
+                    
+                    <div style="background-color: var(--light); padding: 25px; border-radius: var(--border-radius); margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 15px; color: var(--primary);">
+                            <i class="fas fa-undo-alt"></i> Retours et échanges
+                        </h4>
+                        <p>Nous acceptons les retours sous 14 jours à réception de votre commande dans les cas suivants :</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Le livre est endommagé (pages déchirées, couverture abîmée, etc.)</li>
+                            <li>Vous avez reçu un livre différent de votre commande</li>
+                            <li>Le livre présente un défaut de fabrication</li>
+                        </ul>
+                        
+                        <p style="margin-top: 15px;">
+                            <strong>Processus de retour :</strong> Contactez-nous à <a href="mailto:contact@TakelakaRoa.mg" style="color: var(--primary);">contact@TakelakaRoa.mg</a> dans les 14 jours suivant la réception. Nous vous enverrons une étiquette de retour et organiserons l'échange ou le remboursement.
+                        </p>
+                        
+                        <p style="margin-top: 15px; font-size: 14px;">
+                            <i class="fas fa-exclamation-circle"></i> Les livres numériques ne sont pas éligibles au retour.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Products -->
+    <section class="related-products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Vous aimerez aussi</h2>
+                <p>Découvrez d'autres livres jeunesse bilingues</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-card-img" style="background-color: #FFEED9;">
+                        <div style="font-size: 60px; color: #FF9F1C;">🌍</div>
+                    </div>
+                    <div class="product-card-info">
+                        <h3 class="product-card-title">Tetiky sy Fafy</h3>
+                        <p style="color: var(--gray); margin-bottom: 15px; font-size: 14px;">L'Aventure de Fafy</p>
+                        <div class="product-card-price">30.360 €</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-card-img" style="background-color: #E9F7FE;">
+                        <div style="font-size: 60px; color: #4A6FA5;">🐦</div>
+                    </div>
+                    <div class="product-card-info">
+                        <h3 class="product-card-title">Ny Vorona Mena</h3>
+                        <p style="color: var(--gray); margin-bottom: 15px; font-size: 14px;">L'Oiseau Rouge</p>
+                        <div class="product-card-price">21.950 €</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-card-img" style="background-color: #E6F7E9;">
+                        <div style="font-size: 60px; color: #2A9D8F;">👑</div>
+                    </div>
+                    <div class="product-card-info">
+                        <h3 class="product-card-title">Le Petit Prince</h3>
+                        <p style="color: var(--gray); margin-bottom: 15px; font-size: 14px;">The Little Prince</p>
+                        <div class="product-card-price">27.500 €</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-card-img" style="background-color: #F3E8FF;">
+                        <div style="font-size: 60px; color: #7C3AED;">🏃</div>
+                    </div>
+                    <div class="product-card-info">
+                        <h3 class="product-card-title">Mora sy Mahery</h3>
+                        <p style="color: var(--gray); margin-bottom: 15px; font-size: 14px;">Rapide et Fort</p>
+                        <div class="product-card-price">22.750 €</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>TakelakaRoa.mg</h3>
+                    <p>Deux langues, une seule passion : l'épanouissement de nos enfants.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">Librairie</a></li>
+                        <li><a href="#">Auteurs</a></li>
+                        <li><a href="#">Éditeurs</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Informations</h4>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Paiement</a></li>
+                        <li><a href="#">Retours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (+261) 37 62 688 09</li>
+                        <li><i class="fas fa-envelope"></i> contact@TakelakaRoa.mg</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Antananarivo, Madagascar</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TakelakaRoa.mg - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-header').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-header').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Quantity selector
+        document.querySelector('.quantity-btn.minus').addEventListener('click', function() {
+            const input = document.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        });
+        
+        document.querySelector('.quantity-btn.plus').addEventListener('click', function() {
+            const input = document.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            input.value = value + 1;
+        });
+        
+        // Add to cart
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            const quantity = document.querySelector('.quantity-input').value;
+            const productName = document.querySelector('.product-title').textContent;
+            const cartCount = document.querySelector('.cart-count');
+            
+            let currentCount = parseInt(cartCount.textContent);
+            cartCount.textContent = currentCount + parseInt(quantity);
+            
+            // Animation
+            this.style.backgroundColor = '#2A9D8F';
+            setTimeout(() => {
+                this.style.backgroundColor = '';
+            }, 300);
+            
+            alert(`${quantity} exemplaire(s) de "${productName}" ajouté(s) au panier !`);
+        });
+        
+        // Buy now button
+        document.querySelector('.btn-secondary').addEventListener('click', function() {
+            const quantity = document.querySelector('.quantity-input').value;
+            const productName = document.querySelector('.product-title').textContent;
+            
+            alert(`Redirection vers le paiement pour ${quantity} exemplaire(s) de "${productName}"`);
+        });
+        
+        // Thumbnail selection
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real implementation, this would change the main image
+                alert('Image changée (simulation)');
+            });
+        });
+        
+        // Related product click
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.product-card-title').textContent;
+                alert(`Ouverture de la fiche produit: ${title}`);
+            });
+        });
+    </script>
+</body>
+</html>

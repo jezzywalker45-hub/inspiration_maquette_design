@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Solutions - Relia Consulting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Nouvelle palette de couleurs */
+        :root {
+            --primary: #cd2330; /* Rouge vif - couleur principale */
+            --primary-dark: #a81c27; /* Rouge foncé pour les survols */
+            --secondary: #040315; /* Bleu nuit très foncé */
+            --accent: #99aab2; /* Gris bleuté - couleur d'accent */
+            --light: #fbeeef; /* Rose très clair - arrière-plan */
+            --light-alt: #ffffff; /* Blanc pur pour les cartes */
+            --gray-light: #e8e8e8; /* Gris très clair pour les bordures */
+            --gray: #6c757d; /* Gris standard pour texte */
+            --dark: #1a1a1a; /* Presque noir pour texte */
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(4, 3, 21, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--light-alt);
+            box-shadow: 0 2px 10px rgba(4, 3, 21, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(4, 3, 21, 0.9), rgba(4, 3, 21, 0.85)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 160px 0 100px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(205, 35, 48, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--secondary);
+        }
+
+        .btn-accent:hover {
+            background-color: #8899a2;
+            color: var(--secondary);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* Solutions Grid */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .solution-card {
+            background: var(--light-alt);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(4, 3, 21, 0.1);
+        }
+
+        .solution-icon {
+            background-color: rgba(205, 35, 48, 0.1);
+            color: var(--primary);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .solution-card h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .solution-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Tabs pour les références */
+        .tabs-container {
+            margin-top: 40px;
+        }
+
+        .tabs-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Références Grid */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .reference-card {
+            background: var(--light-alt);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .reference-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 3, 21, 0.1);
+        }
+
+        .reference-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .reference-details {
+            margin-bottom: 15px;
+        }
+
+        .reference-detail {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        .reference-detail strong {
+            min-width: 120px;
+            color: var(--secondary);
+        }
+
+        .reference-detail span {
+            color: var(--gray);
+        }
+
+        .reference-tech, .reference-context {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tech-tag {
+            background-color: rgba(205, 35, 48, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .context-tag {
+            background-color: rgba(153, 170, 178, 0.2);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Section alternative pour contraster */
+        .section-alt {
+            background-color: rgba(153, 170, 178, 0.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 70px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-col p {
+            color: rgba(251, 238, 239, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(251, 238, 239, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--light);
+            padding-left: 5px;
+        }
+
+        .contact-info div {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 12px;
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(251, 238, 239, 0.1);
+            font-size: 0.9rem;
+            color: rgba(251, 238, 239, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 140px 0 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 10px 10px;
+            }
+            
+            .hero {
+                padding: 180px 0 60px;
+            }
+            
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .references-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-header {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid var(--gray-light);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+            
+            .reference-detail {
+                flex-direction: column;
+            }
+            
+            .reference-detail strong {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-cube"></i> Relia Consulting
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="expertises.html">Expertises</a></li>
+                    <li><a href="solutions.html" class="active">Solutions</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Votre réussite digitale commence ici</h1>
+            <p>Vous êtes confrontés à un délai à respecter, l'évolution continue des technologies, la pression sur les coûts ou encore la pénurie de talents ? Relia Consulting est là pour vous aider à innover, automatiser et dominer le marché grâce à des produits digitaux puissants et efficaces.</p>
+            <a href="#contact" class="btn">Prêt à lancer votre projet digital ?</a>
+        </div>
+    </section>
+
+    <!-- Section Solutions -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos solutions</h2>
+                <p>Nous vous apportons des solutions fiables, innovantes et parfaitement adaptées à vos enjeux métiers.</p>
+            </div>
+            
+            <div class="solutions-grid">
+                <!-- Développement Web -->
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Développement Web</h3>
+                    <p>Site vitrine et e-Commerce, solutions digitales pour l'hôtellerie et le tourisme.</p>
+                    <a href="#developpement-web" class="btn btn-secondary tab-link" data-tab="developpement-web">En savoir plus</a>
+                </div>
+                
+                <!-- Solution de paiement mobile -->
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Solution de paiement mobile</h3>
+                    <p>MVOLA, ORANGE MONEY, AIRTELMONEY et solutions de paiement internationales.</p>
+                    <a href="#paiement-mobile" class="btn btn-secondary tab-link" data-tab="paiement-mobile">En savoir plus</a>
+                </div>
+                
+                <!-- Intégration ERP -->
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Intégration ERP</h3>
+                    <p>Odoo et Sage - solutions pour structurer, automatiser et piloter vos opérations.</p>
+                    <a href="#integration-erp" class="btn btn-secondary tab-link" data-tab="integration-erp">En savoir plus</a>
+                </div>
+                
+                <!-- Intégration SMS -->
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-sms"></i>
+                    </div>
+                    <h3>Intégration de solutions SMS</h3>
+                    <p>Via SMS By Befiana pour une communication efficace avec vos utilisateurs.</p>
+                    <a href="#integration-sms" class="btn btn-secondary tab-link" data-tab="integration-sms">En savoir plus</a>
+                </div>
+            </div>
+            
+            <!-- Section Références avec Tabs -->
+            <div class="tabs-container">
+                <div class="section-title">
+                    <h2>Nos références</h2>
+                    <p>Découvrez nos réalisations et cas clients par domaine d'expertise</p>
+                </div>
+                
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="developpement-web">Développement Web</button>
+                    <button class="tab-btn" data-tab="paiement-mobile">Paiement Mobile</button>
+                    <button class="tab-btn" data-tab="integration-erp">Intégration ERP</button>
+                    <button class="tab-btn" data-tab="integration-sms">Intégration SMS</button>
+                </div>
+                
+                <!-- Développement Web Tab -->
+                <div class="tab-content active" id="developpement-web">
+                    <div class="section-title">
+                        <h3>Nos références en Développement Web</h3>
+                        <p>Nous concevons et développons des sites vitrines, des sites e-Commerce (vente de produits ou services), des plateformes web métiers sur mesure, ainsi que des solutions digitales pour l'hôtellerie et le tourisme.</p>
+                    </div>
+                    
+                    <div class="references-grid">
+                        <!-- INTERCAMPS -->
+                        <div class="reference-card">
+                            <h3>INTERCAMPS</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Un logiciel de gestion des dossiers patients destinés aux centres médico-sociaux français, avec suivi complet des activités, gestion documentaire et tableaux de bord analytiques.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Application web métier (santé/ médico-social)</span>
+                                </div>
+                            </div>
+                            <div class="reference-tech">
+                                <span class="tech-tag">Symfony</span>
+                                <span class="tech-tag">Angular</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Microservices</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Commission de l'Océan Indien -->
+                        <div class="reference-card">
+                            <h3>Commission de l'Océan Indien - Projet STARFISH</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Réalisation de l'application web STARFISH pour la surveillance et suivi des navires de pêche passant dans les littorales de l'Océan Indien.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Application web institutionnelle</span>
+                                </div>
+                            </div>
+                            <div class="reference-tech">
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">Javascript</span>
+                                <span class="tech-tag">Alpine.js</span>
+                                <span class="tech-tag">Tailwind CSS</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                        </div>
+                        
+                        <!-- INSYNIUM -->
+                        <div class="reference-card">
+                            <h3>INSYNIUM</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Maintenance évolutive d'un système de Product Lifecycle Management, utilisé par Airbus UK, France et Espagne.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Application web industrielle (B2B)</span>
+                                </div>
+                            </div>
+                            <div class="reference-tech">
+                                <span class="tech-tag">Java 11</span>
+                                <span class="tech-tag">Spring</span>
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">BPM</span>
+                                <span class="tech-tag">Thingworx</span>
+                                <span class="tech-tag">Oracle DB</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">S.O.A</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Orange Madagascar -->
+                        <div class="reference-card">
+                            <h3>Orange Madagascar – My Business Care</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Gestion, optimisation et maintenance de la plateforme CRM My Business Care d'Orange Madagascar.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Application web CRM</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Valeurs :</strong>
+                                    <span>Stabilité opérationnelle / Amélioration continue des fonctionnalités / Support B2B</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- MCB -->
+                        <div class="reference-card">
+                            <h3>MCB – Plateforme Clients</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Maintenance évolutive et corrective de la plateforme de gestion des dossiers clients de la Mauritius Commercial Bank.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Application web bancaire</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Contexte :</strong>
+                                    <span>Environnement bancaire à forte exigences réglementaires</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Logiciel e-tantana -->
+                        <div class="reference-card">
+                            <h3>Logiciel e-tantana – GIZ ProDéCID</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Contribution au renforcement du logiciel e-tantana dans le cadre de la modernisation de l'administration locale à Madagascar.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Application web administrative</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités :</strong>
+                                    <span>Compte de gestion - Sécurité renforcée - Formation utilisateurs FR/MG</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Météo Madagascar -->
+                        <div class="reference-card">
+                            <h3>Météo Madagascar</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Développement d'une suite de plugins avancés afin de moderniser et d'automatiser les activités de prévision cyclonique.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Application web SIG</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités :</strong>
+                                    <span>Cône d'incertitude / Trajectoires cycloniques / Affichage web SIG</span>
+                                </div>
+                            </div>
+                            <div class="reference-tech">
+                                <span class="tech-tag">QGIS</span>
+                                <span class="tech-tag">Web mapping</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paiement Mobile Tab -->
+                <div class="tab-content" id="paiement-mobile">
+                    <div class="section-title">
+                        <h3>Nos références en Intégration de solutions mobile & international</h3>
+                        <p>Notre engagement consiste à accompagner les entreprises dans l'intégration sécurisée de solutions de paiement, adaptées aux usages locaux et internationaux.</p>
+                    </div>
+                    
+                    <div class="references-grid">
+                        <!-- ARSF -->
+                        <div class="reference-card">
+                            <h3>ARSF</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Un logiciel de gestion de fiscalité foncière déployé dans plusieurs communes rurales à Madagascar, intégrant le paiement des impôts via des canaux digitaux.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Logiciel de fiscalité foncière</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités :</strong>
+                                    <span>Encaissement des impôts fonciers / Suivi des paiements / Statistiques et traçabilité financière / Impression des avis d'imposition</span>
+                                </div>
+                            </div>
+                            <div class="reference-context">
+                                <span class="context-tag">Institutions publiques</span>
+                                <span class="context-tag">Collectivités locales</span>
+                                <span class="context-tag">Déployé – multi-communes</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Orange Madagascar -->
+                        <div class="reference-card">
+                            <h3>Orange Madagascar</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Participation à la gestion et à l'évolution de plateformes web intégrant des logiques de facturation, suivi clients et services digitaux.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Plateforme B2B</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Liens avec le paiement :</strong>
+                                    <span>Gestion de services clients payants / Suivi des opérations commerciales / Interopérabilité avec les solutions de paiement opérateur</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Intégration ERP Tab -->
+                <div class="tab-content" id="integration-erp">
+                    <div class="section-title">
+                        <h3>Nos références en Intégration ERP</h3>
+                        <p>Notre ESN intègre et personnalise des ERP reconnus pour structurer, automatiser et piloter les opérations des entreprises.</p>
+                    </div>
+                    
+                    <div class="references-grid">
+                        <!-- ARSF – ERP -->
+                        <div class="reference-card">
+                            <h3>ARSF – Logiciel de fiscalité foncière</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Développement et intégration d'un logiciel de gestion de fiscalité foncière déployé dans plusieurs communes rurales à Madagascar.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Système de gestion institutionnel (ERP public)</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités ERP :</strong>
+                                    <span>Gestion des contribuables / Paramétrage des taxes et impôts / Génération des avis d'imposition / Paiement des impôts / Statistiques et reporting</span>
+                                </div>
+                            </div>
+                            <div class="reference-context">
+                                <span class="context-tag">Administration publique</span>
+                                <span class="context-tag">Collectivités locales</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Orange Madagascar – ERP -->
+                        <div class="reference-card">
+                            <h3>Orange Madagascar – My Business Care</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Gestion et maintenance de la plateforme intégrée de gestion des clients entreprises, connectée aux systèmes internes d'Orange Madagascar.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Système de gestion B2B</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités ERP :</strong>
+                                    <span>Gestion des comptes entreprises / Processus de support et services / Suivi opérationnel / Intégration SI existant</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Logiciel e-tantana – ERP -->
+                        <div class="reference-card">
+                            <h3>Logiciel e-tantana – GIZ ProDéCID</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Amélioration, intégration et sécurisation du logiciel e-tantana, utilisé par les communes malgaches pour la gestion administrative et financière.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>ERP administratif et financier</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités ERP :</strong>
+                                    <span>Gestion financière et budgétaire / Module « compte de gestion » / Sécurisation des accès / Comptabilité multi-OS / Formation et accompagnement utilisateurs</span>
+                                </div>
+                            </div>
+                            <div class="reference-context">
+                                <span class="context-tag">Collectivités territoriales</span>
+                            </div>
+                        </div>
+                        
+                        <!-- SIPEM Ny Bankintsika -->
+                        <div class="reference-card">
+                            <h3>SIPEM Ny Bankintsika</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Accompagnement dans le cadre du changement de core banking avec migration complète des données critiques.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Système de gestion bancaire (ERP financier)</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités ERP :</strong>
+                                    <span>Données clients / Comptes bancaires / Historiques de transactions / Scripts de migration et contrôles de cohérence / Sécurisation des flux</span>
+                                </div>
+                            </div>
+                            <div class="reference-context">
+                                <span class="context-tag">Banque & Finance</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Mauritius Commercial Bank -->
+                        <div class="reference-card">
+                            <h3>Mauritius Commercial Bank</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Maintenance évolutive et corrective de la plateforme de gestion des dossiers clients de la MCB, intégrée au système d'information bancaire.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Système de gestion clients (ERP bancaire)</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités ERP :</strong>
+                                    <span>Gestion centralisée des clients / Sécurité aux normes bancaires / Performance et disponibilité / Développement de nouveaux modules</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Insynium – Plateforme PLM -->
+                        <div class="reference-card">
+                            <h3>Insynium – Plateforme PLM</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Intégration, refonte et maintenance de la plateforme PLM utilisée par Airbus pour la gestion d'un système de Product Lifecycle Management.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>ERP industriel/PLM</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités ERP :</strong>
+                                    <span>Gestion des processus métiers industriels / Suivi du cycle de vie produit / Intégration multi-modules / Conformité aux exigences industrielles</span>
+                                </div>
+                            </div>
+                            <div class="reference-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Spring</span>
+                                <span class="tech-tag">VueJS</span>
+                                <span class="tech-tag">Oracle DB</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Logiciel E-RH -->
+                        <div class="reference-card">
+                            <h3>Logiciel E-RH</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Développement d'un logiciel de gestion des absences et congés intégrant des notifications automatisées pour informer les collaborateurs, managers et ressources humaines des changements des statuts et nouvelles demandes.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Type :</strong>
+                                    <span>Application web métier</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités :</strong>
+                                    <span>Consultation de solde de congés / Dépôt de demande de congés ou absence / Suivi des demandes / Notification sur les changements de statut</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Contexte :</strong>
+                                    <span>Entreprise</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Intégration SMS Tab -->
+                <div class="tab-content" id="integration-sms">
+                    <div class="section-title">
+                        <h3>Nos références en intégration de solutions SMS professionnelles</h3>
+                        <p>Via SMS By Befiana, nous intégrons des solutions SMS professionnelles afin de permettre aux entreprises et institutions de communiquer efficacement avec leurs utilisateurs, clients ou citoyens.</p>
+                    </div>
+                    
+                    <div class="references-grid">
+                        <!-- Centre fiscal Ivato -->
+                        <div class="reference-card">
+                            <h3>Centre fiscal Ivato</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Mise en place d'un service d'envoi de SMS automatisé, connecté aux fichiers/logiciels du centre fiscal afin de déclencher des messages ciblés.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Cas d'usage :</strong>
+                                    <span>Sensibilisation : Rappels préventifs avant les échéances fiscales / Relance : Relances progressives après échéance pour les contribuables défaillants / Relance paiement : Notification des montants dus, références et délais</span>
+                                </div>
+                            </div>
+                            <div class="reference-context">
+                                <span class="context-tag">Administrations</span>
+                            </div>
+                        </div>
+                        
+                        <!-- AZ+ -->
+                        <div class="reference-card">
+                            <h3>AZ+</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Un service SMS transactionnel automatisé au service de la super application AZ+ afin de renforcer l'expérience utilisateur, la communication et la fiabilité des échanges.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités SMS :</strong>
+                                    <span>Confirmation des transactions et paiements / Notifications de commandes / Alertes de livraison / Notifications utilisateurs</span>
+                                </div>
+                            </div>
+                            <div class="reference-context">
+                                <span class="context-tag">Marketplace</span>
+                            </div>
+                        </div>
+                        
+                        <!-- SADC - Evènement SIW 2025 -->
+                        <div class="reference-card">
+                            <h3>SADC - Evènement SIW 2025</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Intégration de solutions SMS dédiée à l'évènement SIW 2025 (SADC Industrialization Week) afin d'assurer la communication entre les participants, partenaires et parties prenantes.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités :</strong>
+                                    <span>Campagnes d'information / Rappels automatiques / Notifications logistiques (changement de programme, salle, horaire) / Messages d'accueil et d'orientation pour les participants</span>
+                                </div>
+                            </div>
+                            <div class="reference-context">
+                                <span class="context-tag">Évènements institutionnels</span>
+                                <span class="context-tag">Forums économiques</span>
+                            </div>
+                        </div>
+                        
+                        <!-- ESMIA -->
+                        <div class="reference-card">
+                            <h3>ESMIA</h3>
+                            <div class="reference-details">
+                                <div class="reference-detail">
+                                    <strong>Description :</strong>
+                                    <span>Une solution d'intégration SMS dédiée à faciliter la communication entre l'établissement et les étudiants et les parents.</span>
+                                </div>
+                                <div class="reference-detail">
+                                    <strong>Fonctionnalités :</strong>
+                                    <span>Rappels et rendez-vous pédagogiques et administratifs / Rappels d'examens / Notification d'informations importantes à destination des parents</span>
+                                </div>
+                            </div>
+                            <div class="reference-context">
+                                <span class="context-tag">Établissement d'enseignement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Relia Consulting</h3>
+                    <p>Votre partenaire fiable dans le développement et ingénierie logicielle à Madagascar.</p>
+                    <div class="contact-info">
+                        <div><i class="fas fa-phone"></i> +261 38 10 500 92 / +261 34 77 558 34</div>
+                        <div><i class="fas fa-envelope"></i> sales@relia-consulting.com</div>
+                        <div><i class="fas fa-map-marker-alt"></i> Lot Près VP 28 Ambohimiandra ANTANANARIVO 101 MADAGASCAR</div>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Nos Solutions</h3>
+                    <ul>
+                        <li><a href="#developpement-web">Développement Web</a></li>
+                        <li><a href="#paiement-mobile">Solutions de paiement mobile</a></li>
+                        <li><a href="#integration-erp">Intégration ERP</a></li>
+                        <li><a href="#integration-sms">Intégration SMS</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="expertises.html">Expertises</a></li>
+                        <li><a href="solutions.html">Solutions</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Rapide</h3>
+                    <p>Besoin d'un diagnostic express ? Planifiez un appel de 15 minutes pour valider vos priorités.</p>
+                    <a href="contact.html" class="btn" style="margin-top: 15px;">Contactez-nous</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Relia Consulting. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Système d'onglets
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des onglets
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabLinks = document.querySelectorAll('.tab-link');
+            
+            // Fonction pour changer d'onglet
+            function switchTab(tabId) {
+                // Désactiver tous les onglets
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Activer l'onglet sélectionné
+                document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                
+                // Mettre à jour l'URL avec l'ancre
+                history.pushState(null, null, `#${tabId}`);
+            }
+            
+            // Écouteurs pour les boutons d'onglets
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    switchTab(tabId);
+                });
+            });
+            
+            // Écouteurs pour les liens dans les cartes
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    switchTab(tabId);
+                    
+                    // Scroll vers les onglets
+                    document.querySelector('.tabs-container').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+            
+            // Vérifier l'URL pour un onglet spécifique au chargement
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                switchTab(hash);
+            }
+            
+            // Animation au scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Appliquer l'animation aux cartes
+            document.querySelectorAll('.solution-card, .reference-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 5px 15px rgba(4, 3, 21, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 2px 10px rgba(4, 3, 21, 0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

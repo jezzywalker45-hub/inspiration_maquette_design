@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Équipe - SOREA - Restauration collective à Madagascar</title>
+    
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Comfortaa -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === PALETTE SOREA === */
+        :root {
+            --sorea-vert: #04ba71;
+            --sorea-jaune: #fdc827;
+            --sorea-orange: #fb6841;
+            --sorea-bleu: #0b8bcb;
+            --sorea-vert-dark: #03995c;
+            --sorea-bleu-dark: #0876a6;
+            
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --dark: #1c1c1c;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            
+            --border-radius: 16px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comfortaa', cursive;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+        }
+        
+        /* Team Hero Section */
+        .team-hero {
+            background: linear-gradient(135deg, rgba(4, 186, 113, 0.1), rgba(11, 139, 203, 0.1));
+            padding: 4rem 0 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .team-hero h1 {
+            font-size: 3rem;
+            color: var(--sorea-bleu);
+            margin-bottom: 1rem;
+        }
+        
+        .team-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Filters Section */
+        .filters-section {
+            padding: 2rem 0;
+            background: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .filters-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .filters-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--sorea-vert);
+            font-size: 1.5rem;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .filter-tab {
+            background: var(--light-gray);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Comfortaa', cursive;
+            font-weight: 600;
+            color: var(--sorea-bleu);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-tab:hover {
+            background: rgba(4, 186, 113, 0.1);
+            color: var(--sorea-vert);
+        }
+        
+        .filter-tab.active {
+            background: linear-gradient(135deg, var(--sorea-vert), var(--sorea-vert-dark));
+            color: white;
+            box-shadow: 0 5px 15px rgba(4, 186, 113, 0.3);
+        }
+        
+        .filter-tab i {
+            font-size: 0.9rem;
+        }
+        
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 50px;
+            font-family: 'Comfortaa', cursive;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-input:focus {
+            border-color: var(--sorea-vert);
+            box-shadow: 0 0 0 0.25rem rgba(4, 186, 113, 0.2);
+            outline: none;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--sorea-vert);
+        }
+        
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 1.5rem;
+            min-height: 40px;
+        }
+        
+        .active-filter {
+            background: var(--sorea-bleu);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .clear-filters {
+            background: transparent;
+            border: none;
+            color: var(--sorea-orange);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        
+        .clear-filters:hover {
+            background: rgba(251, 104, 65, 0.1);
+        }
+        
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .team-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .team-card.hidden {
+            display: none;
+        }
+        
+        .team-card.fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .team-img {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .team-card:hover .team-img img {
+            transform: scale(1.05);
+        }
+        
+        .team-category {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--sorea-vert);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+        }
+        
+        .team-info h3 {
+            color: var(--sorea-bleu);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-role {
+            color: var(--sorea-orange);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .team-experience {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .team-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag {
+            background: rgba(4, 186, 113, 0.1);
+            color: var(--sorea-vert);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .no-results h3 {
+            color: var(--sorea-bleu);
+            margin-bottom: 1rem;
+        }
+        
+        .no-results p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Team Stats */
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--sorea-vert);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--sorea-bleu);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--sorea-bleu);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .team-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .team-hero {
+                padding: 3rem 0 2rem;
+            }
+            
+            .filter-tabs {
+                gap: 8px;
+            }
+            
+            .filter-tab {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .team-img {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .team-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-tab {
+                width: 80%;
+                justify-content: center;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Team Hero Section -->
+    <section class="team-hero">
+        <div class="container">
+            <h1>Notre Équipe Pluridisciplinaire</h1>
+            <p>Une équipe unie autour d'une même mission : servir, accompagner et innover au service des enfants à Madagascar.</p>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <h3 class="filters-title">Filtrer par département</h3>
+                
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">
+                        <i class="fas fa-users"></i> Tous les membres
+                    </button>
+                    <button class="filter-tab" data-filter="direction">
+                        <i class="fas fa-crown"></i> Direction
+                    </button>
+                    <button class="filter-tab" data-filter="cuisine">
+                        <i class="fas fa-utensils"></i> Cuisine
+                    </button>
+                    <button class="filter-tab" data-filter="education">
+                        <i class="fas fa-graduation-cap"></i> Éducation
+                    </button>
+                    <button class="filter-tab" data-filter="marketing">
+                        <i class="fas fa-bullhorn"></i> Marketing
+                    </button>
+                    <button class="filter-tab" data-filter="qualite">
+                        <i class="fas fa-award"></i> Qualité
+                    </button>
+                    <button class="filter-tab" data-filter="commercial">
+                        <i class="fas fa-handshake"></i> Commercial
+                    </button>
+                </div>
+                
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Rechercher un membre par nom, fonction ou compétence...">
+                </div>
+                
+                <div class="active-filters">
+                    <!-- Les filtres actifs apparaîtront ici dynamiquement -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Stats -->
+    <div class="container">
+        <div class="team-stats">
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Membres d'équipe</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Ans d'expérience moyenne</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Départements</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Engagement qualité</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="container">
+        <div class="team-grid" id="teamContainer">
+            <!-- Fondatrice -->
+            <div class="team-card" data-category="direction" data-skills="leadership,gestion,restauration-collective,innovation">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Mara Louisa Mansaré">
+                    <div class="team-category">Direction</div>
+                </div>
+                <div class="team-info">
+                    <h3>Mara Louisa Mansaré</h3>
+                    <div class="team-role">Fondatrice</div>
+                    <div class="team-experience">15 ans d'expérience en restauration collective scolaire. Visionnaire du secteur avec expertise terrain et références internationales.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Leadership</span>
+                        <span class="skill-tag">Stratégie</span>
+                        <span class="skill-tag">Innovation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gérante -->
+            <div class="team-card" data-category="direction" data-skills="finance,gouvernance,gestion,administration">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Gizy Michaela Afrani">
+                    <div class="team-category">Direction</div>
+                </div>
+                <div class="team-info">
+                    <h3>Gizy Michaela Afrani</h3>
+                    <div class="team-role">Gérante</div>
+                    <div class="team-experience">Master 2 finance & gouvernance, 8 ans de gestion d'entreprise. Expertise en développement organisationnel et management.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Finance</span>
+                        <span class="skill-tag">Gestion</span>
+                        <span class="skill-tag">Administration</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Co-gérant -->
+            <div class="team-card" data-category="direction" data-skills="politique,gestion,leadership,strategie">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Steeve Mansaré">
+                    <div class="team-category">Direction</div>
+                </div>
+                <div class="team-info">
+                    <h3>Steeve Mansaré</h3>
+                    <div class="team-role">Co-gérant</div>
+                    <div class="team-experience">Master 2 science politique, 5 ans de gestion. Spécialiste en développement stratégique et relations institutionnelles.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Politique</span>
+                        <span class="skill-tag">Stratégie</span>
+                        <span class="skill-tag">Relations</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Responsable Marketing -->
+            <div class="team-card" data-category="marketing" data-skills="communication,strategie,marketing,reseaux-sociaux">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1556157382-2eda3e8a9944?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Mahefason Bertrand">
+                    <div class="team-category">Marketing</div>
+                </div>
+                <div class="team-info">
+                    <h3>Mahefason Bertrand</h3>
+                    <div class="team-role">Responsable Marketing</div>
+                    <div class="team-experience">9 ans en stratégie de communication. Expert en développement de marque et communication digitale.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Communication</span>
+                        <span class="skill-tag">Stratégie</span>
+                        <span class="skill-tag">Digital</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chef cuisinier -->
+            <div class="team-card" data-category="cuisine" data-skills="cuisine,haccp,traiteur,restauration-collective">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Maurille Rafanomezantsoa">
+                    <div class="team-category">Cuisine</div>
+                </div>
+                <div class="team-info">
+                    <h3>Maurille Rafanomezantsoa</h3>
+                    <div class="team-role">Chef cuisinier</div>
+                    <div class="team-experience">13 ans en cantine, service traiteur et HACCP. Expert en cuisine saine, équilibrée et adaptée aux enfants.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Cuisine</span>
+                        <span class="skill-tag">HACCP</span>
+                        <span class="skill-tag">Nutrition</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Responsable qualité -->
+            <div class="team-card" data-category="qualite" data-skills="qualite,haccp,formation-internationale,standards">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Karen Rananja">
+                    <div class="team-category">Qualité</div>
+                </div>
+                <div class="team-info">
+                    <h3>Karen Rananja</h3>
+                    <div class="team-role">Responsable qualité</div>
+                    <div class="team-experience">Formée à Vatel, expérience internationale. Garante des standards de qualité et sécurité alimentaire.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Qualité</span>
+                        <span class="skill-tag">HACCP</span>
+                        <span class="skill-tag">Standards</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Responsable cantine -->
+            <div class="team-card" data-category="education" data-skills="animation,bafa,hotellerie,encadrement">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Violette Razanajatovo">
+                    <div class="team-category">Éducation</div>
+                </div>
+                <div class="team-info">
+                    <h3>Violette Razanajatovo</h3>
+                    <div class="team-role">Responsable cantine</div>
+                    <div class="team-experience">BAFA, Croix-Rouge, Master en hôtellerie. Spécialiste en encadrement éducatif et animation périscolaire.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Animation</span>
+                        <span class="skill-tag">BAFA</span>
+                        <span class="skill-tag">Éducation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Développement commercial -->
+            <div class="team-card" data-category="commercial" data-skills="commerce,chimie,entrepreneuriat,developpement">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Parianos Athena">
+                    <div class="team-category">Commercial</div>
+                </div>
+                <div class="team-info">
+                    <h3>Parianos Athena</h3>
+                    <div class="team-role">Développement commercial</div>
+                    <div class="team-experience">Master 2 en chimie, entrepreneure expérimentée. Expertise en développement commercial et partenariats stratégiques.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Commerce</span>
+                        <span class="skill-tag">Partnerships</span>
+                        <span class="skill-tag">Développement</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nutritionniste -->
+            <div class="team-card" data-category="qualite" data-skills="nutrition,medecine,sante-communautaire,diététique">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Dr Amitia A. Ramarosandy">
+                    <div class="team-category">Qualité</div>
+                </div>
+                <div class="team-info">
+                    <h3>Dr Amitia A. Ramarosandy</h3>
+                    <div class="team-role">Nutritionniste</div>
+                    <div class="team-experience">Médecin, spécialisée en nutrition et santé communautaire. Garante de l'équilibre nutritionnel de nos repas.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Nutrition</span>
+                        <span class="skill-tag">Médecine</span>
+                        <span class="skill-tag">Diététique</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chef de projet éducatif -->
+            <div class="team-card" data-category="education" data-skills="pedagogie,animation,developpement-enfant,creativite">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1544717305-99670f9c28f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Lucie Martin">
+                    <div class="team-category">Éducation</div>
+                </div>
+                <div class="team-info">
+                    <h3>Lucie Martin</h3>
+                    <div class="team-role">Chef de projet éducatif</div>
+                    <div class="team-experience">10 ans d'expérience en animation et pédagogie. Créatrice de programmes éducatifs ludiques et innovants.</div>
+                    <div class="team-skills">
+                        <span class="skill-tag">Pédagogie</span>
+                        <span class="skill-tag">Animation</span>
+                        <span class="skill-tag">Créativité</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- No Results Message (hidden by default) -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <h3>Aucun membre trouvé</h3>
+            <p>Aucun membre de l'équipe ne correspond à vos critères de recherche. Essayez de modifier vos filtres ou votre recherche.</p>
+            <button class="clear-filters" id="resetAllFilters">
+                <i class="fas fa-redo"></i> Réinitialiser tous les filtres
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 SOREA Groupe. Tous droits réservés. | Restauration collective et accompagnement éducatif à Madagascar</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Variables globales
+        let activeFilters = {
+            category: 'all',
+            search: ''
+        };
+        
+        // Éléments DOM
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const searchInput = document.querySelector('.search-input');
+        const teamCards = document.querySelectorAll('.team-card');
+        const teamContainer = document.getElementById('teamContainer');
+        const noResults = document.getElementById('noResults');
+        const activeFiltersContainer = document.querySelector('.active-filters');
+        const resetAllFiltersBtn = document.getElementById('resetAllFilters');
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ajouter les événements aux filtres
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Mettre à jour l'état actif des tabs
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Mettre à jour le filtre actif
+                    activeFilters.category = this.getAttribute('data-filter');
+                    
+                    // Filtrer les cartes
+                    filterTeamCards();
+                    
+                    // Mettre à jour les filtres actifs affichés
+                    updateActiveFiltersDisplay();
+                });
+            });
+            
+            // Événement de recherche
+            searchInput.addEventListener('input', function() {
+                activeFilters.search = this.value.toLowerCase().trim();
+                filterTeamCards();
+                updateActiveFiltersDisplay();
+            });
+            
+            // Réinitialiser tous les filtres
+            resetAllFiltersBtn.addEventListener('click', resetAllFilters);
+            
+            // Initialiser le compteur de membres
+            updateMemberCount();
+        });
+        
+        // Fonction pour filtrer les cartes d'équipe
+        function filterTeamCards() {
+            let visibleCards = 0;
+            
+            teamCards.forEach(card => {
+                // Récupérer les données de la carte
+                const category = card.getAttribute('data-category');
+                const skills = card.getAttribute('data-skills');
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const role = card.querySelector('.team-role').textContent.toLowerCase();
+                const experience = card.querySelector('.team-experience').textContent.toLowerCase();
+                
+                // Vérifier les filtres
+                const matchesCategory = activeFilters.category === 'all' || category === activeFilters.category;
+                const matchesSearch = !activeFilters.search || 
+                    name.includes(activeFilters.search) || 
+                    role.includes(activeFilters.search) || 
+                    experience.includes(activeFilters.search) ||
+                    skills.includes(activeFilters.search);
+                
+                // Appliquer les filtres
+                if (matchesCategory && matchesSearch) {
+                    card.classList.remove('hidden', 'fade-out');
+                    visibleCards++;
+                } else {
+                    card.classList.add('fade-out');
+                    
+                    // Après l'animation de disparition, cacher la carte
+                    setTimeout(() => {
+                        card.classList.add('hidden');
+                    }, 300);
+                }
+            });
+            
+            // Afficher/masquer le message "Aucun résultat"
+            if (visibleCards === 0) {
+                noResults.style.display = 'block';
+                teamContainer.style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                teamContainer.style.display = 'grid';
+                
+                // Animation d'apparition pour les cartes visibles
+                setTimeout(() => {
+                    const visibleCards = document.querySelectorAll('.team-card:not(.hidden)');
+                    visibleCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.remove('fade-out');
+                        }, index * 50);
+                    });
+                }, 100);
+            }
+            
+            // Mettre à jour le compteur de membres
+            updateMemberCount(visibleCards);
+        }
+        
+        // Fonction pour mettre à jour l'affichage des filtres actifs
+        function updateActiveFiltersDisplay() {
+            // Vider le conteneur
+            activeFiltersContainer.innerHTML = '';
+            
+            // Ajouter le filtre de catégorie si différent de "all"
+            if (activeFilters.category !== 'all') {
+                const categoryFilter = document.createElement('div');
+                categoryFilter.className = 'active-filter';
+                categoryFilter.innerHTML = `
+                    <i class="fas fa-filter"></i>
+                    ${getCategoryLabel(activeFilters.category)}
+                    <i class="fas fa-times remove-filter" data-type="category"></i>
+                `;
+                activeFiltersContainer.appendChild(categoryFilter);
+            }
+            
+            // Ajouter le filtre de recherche si non vide
+            if (activeFilters.search) {
+                const searchFilter = document.createElement('div');
+                searchFilter.className = 'active-filter';
+                searchFilter.innerHTML = `
+                    <i class="fas fa-search"></i>
+                    Recherche: "${activeFilters.search}"
+                    <i class="fas fa-times remove-filter" data-type="search"></i>
+                `;
+                activeFiltersContainer.appendChild(searchFilter);
+            }
+            
+            // Ajouter l'événement aux boutons de suppression
+            const removeButtons = document.querySelectorAll('.remove-filter');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterType = this.getAttribute('data-type');
+                    
+                    if (filterType === 'category') {
+                        // Réinitialiser le filtre de catégorie
+                        filterTabs.forEach(tab => tab.classList.remove('active'));
+                        document.querySelector('.filter-tab[data-filter="all"]').classList.add('active');
+                        activeFilters.category = 'all';
+                    } else if (filterType === 'search') {
+                        // Réinitialiser le filtre de recherche
+                        searchInput.value = '';
+                        activeFilters.search = '';
+                    }
+                    
+                    // Re-filtrer les cartes
+                    filterTeamCards();
+                    updateActiveFiltersDisplay();
+                });
+            });
+        }
+        
+        // Fonction pour réinitialiser tous les filtres
+        function resetAllFilters() {
+            // Réinitialiser les filtres
+            activeFilters = {
+                category: 'all',
+                search: ''
+            };
+            
+            // Réinitialiser l'UI
+            filterTabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.filter-tab[data-filter="all"]').classList.add('active');
+            searchInput.value = '';
+            
+            // Re-filtrer les cartes
+            filterTeamCards();
+            updateActiveFiltersDisplay();
+        }
+        
+        // Fonction pour obtenir le libellé d'une catégorie
+        function getCategoryLabel(category) {
+            const labels = {
+                'all': 'Tous les membres',
+                'direction': 'Direction',
+                'cuisine': 'Cuisine',
+                'education': 'Éducation',
+                'marketing': 'Marketing',
+                'qualite': 'Qualité',
+                'commercial': 'Commercial'
+            };
+            
+            return labels[category] || category;
+        }
+        
+        // Fonction pour mettre à jour le compteur de membres
+        function updateMemberCount(count = null) {
+            const statNumber = document.querySelector('.stat-card .stat-number');
+            if (statNumber) {
+                if (count !== null) {
+                    statNumber.textContent = count;
+                } else {
+                    statNumber.textContent = teamCards.length;
+                }
+            }
+        }
+        
+        // Animation au défilement
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.team-card, .stat-card');
+            
+            cards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (cardPosition < screenPosition) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialiser l'animation
+        document.querySelectorAll('.team-card, .stat-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord des services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        /* Style principal des cartes */
+        .service-card {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 180px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Section image - remplace l'icône */
+        .card-icon {
+            flex: 0 0 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .card-icon img {
+            transform: scale(1.05);
+        }
+        
+        /* Overlay coloré pour les images */
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+            z-index: 1;
+        }
+        
+        /* Section contenu */
+        .card-content {
+            flex: 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-description {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .card-button {
+            align-self: flex-start;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .card-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Styles pour chaque service */
+        .card-1 .card-button {
+            background-color: #3498db;
+        }
+        
+        .card-1 .card-button:hover {
+            background-color: #2980b9;
+        }
+        
+        .card-2 .card-button {
+            background-color: #e74c3c;
+        }
+        
+        .card-2 .card-button:hover {
+            background-color: #c0392b;
+        }
+        
+        .card-3 .card-button {
+            background-color: #2ecc71;
+        }
+        
+        .card-3 .card-button:hover {
+            background-color: #27ae60;
+        }
+        
+        .card-4 .card-button {
+            background-color: #f39c12;
+        }
+        
+        .card-4 .card-button:hover {
+            background-color: #d68910;
+        }
+        
+        .card-5 .card-button {
+            background-color: #9b59b6;
+        }
+        
+        .card-5 .card-button:hover {
+            background-color: #8e44ad;
+        }
+        
+        .card-6 .card-button {
+            background-color: #1abc9c;
+        }
+        
+        .card-6 .card-button:hover {
+            background-color: #16a085;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+            
+            .service-card {
+                height: auto;
+                flex-direction: column;
+                max-width: 100%;
+            }
+            
+            .card-icon {
+                flex: 0 0 200px;
+                width: 100%;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-content {
+                padding: 1.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.2rem;
+            }
+            
+            .card-description {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nos Services</h1>
+            <p class="subtitle">Découvrez l'ensemble de nos services professionnels et spécialisés</p>
+        </header>
+        
+        <div class="dashboard-grid">
+            <!-- Carte 1: Import-Export -->
+            <div class="service-card card-1">
+                <div class="card-icon">
+                    <div class="image-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Import-Export">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Import-Export</h3>
+                        <p class="card-description">Solutions complètes pour le commerce international avec gestion des douanes, logistique et accompagnement personnalisé pour vos échanges mondiaux.</p>
+                    </div>
+                    <button class="card-button">
+                        <span>Plus de détails</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carte 2: Construction et Immobilier -->
+            <div class="service-card card-2">
+                <div class="card-icon">
+                    <div class="image-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Construction et Immobilier">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Construction et Immobilier</h3>
+                        <p class="card-description">De la conception à la réalisation, nous gérons vos projets immobiliers résidentiels et commerciaux avec expertise et innovation.</p>
+                    </div>
+                    <button class="card-button">
+                        <span>Plus de détails</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carte 3: Produits locaux Madagascar -->
+            <div class="service-card card-3">
+                <div class="card-icon">
+                    <div class="image-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1592921870789-04563d55041c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Produits locaux Madagascar">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Produits locaux Madagascar</h3>
+                        <p class="card-description">Découvrez les richesses du terroir malgache : vanille, épices, fruits exotiques et produits artisanaux de qualité exceptionnelle.</p>
+                    </div>
+                    <button class="card-button">
+                        <span>Plus de détails</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carte 4: Machinerie et Equipment -->
+            <div class="service-card card-4">
+                <div class="card-icon">
+                    <div class="image-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Machinerie et Equipment">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Machinerie et Equipment</h3>
+                        <p class="card-description">Équipements industriels, machines agricoles et outils spécialisés pour répondre à tous vos besoins techniques et opérationnels.</p>
+                    </div>
+                    <button class="card-button">
+                        <span>Plus de détails</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carte 5: Agro-industrie -->
+            <div class="service-card card-5">
+                <div class="card-icon">
+                    <div class="image-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Agro-industrie">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Agro-industrie</h3>
+                        <p class="card-description">Solutions innovantes pour la transformation agroalimentaire, la production agricole et le développement des chaînes de valeur.</p>
+                    </div>
+                    <button class="card-button">
+                        <span>Plus de détails</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carte 6: Textile et vêtements -->
+            <div class="service-card card-6">
+                <div class="card-icon">
+                    <div class="image-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Textile et vêtements">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="card-title">Textile et vêtements</h3>
+                        <p class="card-description">Fabrication de textiles, conception de vêtements et services de confection sur mesure pour le marché local et international.</p>
+                    </div>
+                    <button class="card-button">
+                        <span>Plus de détails</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Tableau de bord des services. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des clics sur les boutons "Plus de détails"
+            const detailButtons = document.querySelectorAll('.card-button');
+            
+            detailButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cardTitle = this.closest('.service-card').querySelector('.card-title').textContent;
+                    const cardDescription = this.closest('.service-card').querySelector('.card-description').textContent;
+                    
+                    // Animation du bouton
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                    
+                    // Afficher une alerte avec titre et description
+                    alert(`Service sélectionné : ${cardTitle}\n\nDescription : ${cardDescription}\n\nCette fonctionnalité permettrait d'afficher une page détaillée avec plus d'informations sur ce service.`);
+                });
+            });
+            
+            // Animation des images au survol
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const img = this.querySelector('.card-icon img');
+                    if (img) {
+                        img.style.transform = 'scale(1.05)';
+                        img.style.transition = 'transform 0.5s ease';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const img = this.querySelector('.card-icon img');
+                    if (img) {
+                        img.style.transform = 'scale(1)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

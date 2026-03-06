@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stan Toiture Luxembourg – Toiture, gouttières & entretien | Devis gratuit</title>
+    <meta name="description" content="Artisan couvreur au Luxembourg : réparation de toiture, gouttières, démoussage, charpente et cheminée. Devis gratuit et intervention rapide.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blue-ardoise: #2C3E50;
+            --gris-acier: #7F8C8D;
+            --orange-terracotta: #E67E22;
+            --blanc-neutre: #ECF0F1;
+            --vert-foret: #27AE60;
+            --text-dark: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--blue-ardoise);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--orange-terracotta);
+        }
+        
+        .text-center h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--blue-ardoise);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--orange-terracotta);
+            color: white;
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-light {
+            background-color: var(--blanc-neutre);
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--blue-ardoise);
+        }
+        
+        .logo-text span {
+            color: var(--orange-terracotta);
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--orange-terracotta);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--blue-ardoise);
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        nav ul li a:hover {
+            color: var(--orange-terracotta);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--blue-ardoise);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--blanc-neutre);
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--orange-terracotta);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--blanc-neutre);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--orange-terracotta);
+            font-size: 1.8rem;
+        }
+        
+        /* Why Choose Us */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .why-icon {
+            background-color: var(--orange-terracotta);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Zones */
+        .zones-container {
+            max-width: 900px;
+            margin: 40px auto 0;
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .zones-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .zone-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .zone-item i {
+            color: var(--vert-foret);
+            margin-right: 10px;
+        }
+        
+        /* Testimonials */
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 40px auto 0;
+            overflow: hidden;
+        }
+        
+        .testimonial {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin: 0 15px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid var(--orange-terracotta);
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--gris-acier);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-info {
+            background-color: var(--blue-ardoise);
+            color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+        }
+        
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contact-form {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--orange-terracotta);
+            box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--blue-ardoise);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo span {
+            color: var(--orange-terracotta);
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: var(--blanc-neutre);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--orange-terracotta);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--blanc-neutre);
+            font-size: 0.9rem;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 10px 0 0 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .service-card, .contact-form, .contact-info, .zones-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">STAN<span>TOITURE</span></div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pourquoi">Pourquoi nous ?</a></li>
+                    <li><a href="#zones">Zones d'intervention</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <h1>Couvreur au Luxembourg – Toiture, gouttières & entretien</h1>
+            <p>Votre toiture a besoin d'une réparation ? Vos gouttières débordent à chaque averse ? Chez Stan Toiture, on s'occupe de tout. Depuis plusieurs années, nous intervenons partout au Luxembourg pour l'entretien, la réparation et la rénovation de votre couverture.</p>
+            <a href="#contact" class="btn"><i class="fas fa-file-alt"></i> Demandez votre devis gratuit</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-light">
+        <div class="container">
+            <h2 class="text-center">Nos prestations de couvreur</h2>
+            <p class="text-center mb-4">On intervient sur tous les aspects de votre toiture avec du matériel professionnel et des matériaux adaptés au climat luxembourgeois.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Réparation de toiture</h3>
+                    <p>Tuiles cassées, ardoises fissurées, problèmes d'étanchéité. Nous identifions et réparons tous les types de problèmes de toiture.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Pose et entretien de gouttières</h3>
+                    <p>Nettoyage, débouchage, remplacement de gouttières. Nous assurons une évacuation efficace des eaux de pluie.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Démoussage et traitement</h3>
+                    <p>Pour prolonger la durée de vie de votre couverture, nous effectuons un démoussage professionnel et appliquons des traitements protecteurs.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Charpente</h3>
+                    <p>Diagnostic, renforcement, remplacement de charpente. Nous assurons la solidité structurelle de votre toiture.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Cheminée</h3>
+                    <p>Réparation, rejointoiement, pose de chapeau de cheminée. Nous prenons soin de tous les éléments de votre toiture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="pourquoi">
+        <div class="container">
+            <h2 class="text-center">Pourquoi choisir Stan Toiture ?</h2>
+            <p class="text-center mb-4">Parce qu'on connaît le terrain. On travaille au Luxembourg, on connaît les toitures locales, les problématiques récurrentes. Pas de sous-traitance, pas de surprise sur le devis.</p>
+            
+            <div class="why-grid">
+                <div>
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h3>Rapidité</h3>
+                            <p>On intervient vite, surtout en cas d'urgence (fuite, tuile arrachée après une tempête).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Durabilité</h3>
+                            <p>On ne bricole pas. Les réparations sont faites pour tenir. On utilise des matériaux de qualité, point final.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Expertise locale</h3>
+                            <p>Chaque région a ses spécificités. Ici, on sait ce qui fonctionne et ce qui ne fonctionne pas sur le long terme.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div>
+                            <h3>Devis transparent</h3>
+                            <p>Pas de frais cachés, pas de mauvaise surprise. Un devis clair et détaillé avant chaque intervention.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zones d'intervention -->
+    <section id="zones" class="section-light">
+        <div class="container">
+            <h2 class="text-center">Nos zones d'intervention au Luxembourg</h2>
+            <p class="text-center mb-4">On se déplace partout au Grand-Duché et dans toutes les communes environnantes. Besoin d'un couvreur près de chez vous ? On vous rappelle sous 24h.</p>
+            
+            <div class="zones-container">
+                <div class="zones-list">
+                    <div>
+                        <div class="zone-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Luxembourg-Ville et périphérie</span>
+                        </div>
+                        <div class="zone-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Esch-sur-Alzette</span>
+                        </div>
+                        <div class="zone-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Differdange</span>
+                        </div>
+                        <div class="zone-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Dudelange</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="zone-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ettelbruck</span>
+                        </div>
+                        <div class="zone-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Diekirch</span>
+                        </div>
+                        <div class="zone-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mersch</span>
+                        </div>
+                        <div class="zone-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Toutes les communes environnantes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="temoignages">
+        <div class="container">
+            <h2 class="text-center">Des réalisations concrètes, des clients satisfaits</h2>
+            <p class="text-center mb-4">On ne vous vend pas du rêve. Juste du travail bien fait. Nos chantiers parlent pour nous : toitures rénovées, gouttières qui fonctionnent, problèmes réglés pour de bon.</p>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Intervention rapide après une tempête qui avait arraché plusieurs tuiles. Devis clair, travail soigné, et équipe sympathique. Je recommande Stan Toiture sans hésiter !"
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">PD</div>
+                        <div>
+                            <h4>Pierre D.</h4>
+                            <p>Luxembourg-Ville</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-light">
+        <div class="container">
+            <h2 class="text-center">Besoin d'un devis gratuit ?</h2>
+            <p class="text-center mb-4">Vous avez un projet ou une urgence ? Contactez-nous pour un devis gratuit et sans engagement. On se déplace, on évalue, on vous propose une solution claire.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contactez-nous</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <p>Appelez-nous pour une urgence ou un devis</p>
+                            <p><strong>+352 XXX XXX XXX</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>Envoyez-nous vos questions et photos</p>
+                            <p><strong>contact@stantoiture.lu</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horaires</h4>
+                            <p>Disponible pour les urgences 7j/7</p>
+                            <p><strong>Lun-Ven: 8h-18h</strong></p>
+                        </div>
+                    </div>
+                    
+                    <a href="tel:+352XXXXXXXXX" class="btn" style="width: 100%; margin-top: 20px;">
+                        <i class="fas fa-phone-alt"></i> Appelez-nous maintenant
+                    </a>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Demande de devis</h3>
+                    <form id="devisForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone *</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="commune">Commune *</label>
+                            <input type="text" id="commune" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Description des travaux *</label>
+                            <textarea id="message" class="form-control" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i> Envoyer la demande
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">STAN<span>TOITURE</span></div>
+                    <p>Artisan couvreur au Luxembourg spécialisé dans la réparation de toiture, gouttières, démoussage, charpente et cheminée. Devis gratuit et intervention rapide.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="#" class="btn" style="margin-right: 10px;">
+                            <i class="fas fa-file-alt"></i> Devis
+                        </a>
+                        <a href="tel:+352XXXXXXXXX" class="btn">
+                            <i class="fas fa-phone-alt"></i> Appeler
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Réparation de toiture</a></li>
+                        <li><a href="#services">Gouttières</a></li>
+                        <li><a href="#services">Démoussage</a></li>
+                        <li><a href="#services">Charpente</a></li>
+                        <li><a href="#services">Cheminée</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Liens utiles</h4>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#pourquoi">Pourquoi nous ?</a></li>
+                        <li><a href="#zones">Zones d'intervention</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#contact">Devis gratuit</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Stan Toiture Luxembourg. Tous droits réservés.</p>
+                <p>Artisan couvreur agréé - Assurance responsabilité civile professionnelle</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const devisForm = document.getElementById('devisForm');
+        devisForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const commune = document.getElementById('commune').value;
+            
+            // In a real implementation, you would send this data to a server
+            // For this example, we'll just show an alert
+            alert(`Merci ${name} ! Votre demande de devis pour ${commune} a été envoyée. Nous vous contacterons au ${phone} sous 24h.`);
+            
+            // Reset form
+            devisForm.reset();
+        });
+        
+        // Change header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
+            }
+        });
+    </script>
+</body>
+</html>

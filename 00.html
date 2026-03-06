@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SOREA – Restauration collective et accompagnement éducatif à Madagascar</title>
+  <meta name="description" content="SOREA accompagne écoles et familles avec une restauration collective saine, des services périscolaires et des centres de loisirs sécurisés à Madagascar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --primary:#0ea5a4;
+  --secondary:#6366f1;
+  --text:#0f172a;
+  --muted:#64748b;
+  --radius:18px;
+  --shadow:0 20px 40px rgba(2,6,23,.08);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#f8fafc,#eef2ff);
+  color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto;
+  line-height:1.6;
+}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:auto;padding:24px}
+
+/* NAV */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb}
+nav{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:grid;place-items:center;color:#fff;font-weight:800}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-weight:600;color:var(--muted)}
+.cta{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:10px 16px;border-radius:14px;font-weight:700}
+
+/* HERO */
+.hero{display:grid;gap:28px;padding:72px 0;align-items:center}
+.hero h1{font-size:clamp(28px,4vw,48px);line-height:1.2;margin:0}
+.hero p{color:var(--muted);max-width:600px}
+.kicker{display:inline-block;background:#ccfbf1;color:#065f46;padding:6px 12px;border-radius:999px;font-weight:800;margin-bottom:12px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+/* SECTIONS */
+section{padding:64px 0}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+  transition:.3s ease;
+}
+.card:hover{transform:translateY(-4px)}
+
+/* GRID */
+.grid{display:grid;gap:24px}
+.cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+
+/* TEAM */
+.team-member{display:flex;gap:14px;align-items:center}
+.avatar{width:72px;height:72px;border-radius:18px;background:linear-gradient(135deg,#a7f3d0,#bfdbfe);display:grid;place-items:center;font-weight:800;color:#064e3b}
+
+/* CONTACT */
+.input,textarea{
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #e5e7eb;
+  font-size:15px
+}
+.input:focus,textarea:focus{outline:none;border-color:var(--primary)}
+.btn{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:14px;border-radius:14px;border:none;font-weight:800;cursor:pointer}
+
+footer{padding:40px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">S</div>
+          <div>
+            <div style="font-weight:700">SOREA</div>
+            <div class="muted" style="font-size:12px">Restauration & accompagnement périscolaire</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#apropos">À propos</a>
+          <a href="#services">Services</a>
+          <a href="#equipe">Équipe</a>
+          <a href="#contact" class="cta">Contactez-nous</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="kicker">SOREA</span>
+        <h1>SOREA – Un acteur engagé pour l’alimentation et l’éveil des enfants</h1>
+        <p>Chez SOREA, nous croyons qu’un enfant bien nourri et bien entouré a toutes les clés pour grandir et s’épanouir. Nous proposons une restauration collective saine, des services périscolaires et des centres de loisirs sécurisés à Madagascar.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">Demander un devis</a>
+          <a class="pill" href="#services">Nos services</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Notre mission</h3>
+        <p class="muted">Nourrir, encadrer et accompagner — offrir des repas équilibrés, un accompagnement périscolaire structuré et des activités ludiques pour favoriser l’éveil, la socialisation et l’autonomie des enfants.</p>
+        <hr style="margin:12px 0">
+        <div class="grid cols-3">
+          <div>
+            <strong>Restauration collective</strong>
+            <p class="muted">Menus équilibrés, locaux et adaptés aux tranches d’âge.</p>
+          </div>
+          <div>
+            <strong>Accueil de loisirs</strong>
+            <p class="muted">Aide aux devoirs, jeux et activités créatives.</p>
+          </div>
+          <div>
+            <strong>Centres de vacances</strong>
+            <p class="muted">Vacances actives, ludiques et pédagogiques.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="card">
+        <h2>Pourquoi choisir SOREA ?</h2>
+        <div class="grid cols-3" style="margin-top:12px">
+          <div>
+            <h4>1. Expertise en restauration collective</h4>
+            <p class="muted">Menus conçus par des professionnels, respect des protocoles HACCP et qualité nutritionnelle adaptée aux enfants.</p>
+          </div>
+          <div>
+            <h4>2. Organisation logistique maîtrisée</h4>
+            <p class="muted">Livraisons, coordination de centres et respect de la chaîne du froid pour préserver la fraîcheur.</p>
+          </div>
+          <div>
+            <h4>3. Équipe réactive et à l’écoute</h4>
+            <p class="muted">Animateurs, coordinateurs et cuisiniers formés pour garantir sécurité et bien-être.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="card">
+        <h2>Nos services</h2>
+        <p class="muted">SOREA propose des solutions globales alliant alimentation saine, accompagnement éducatif et activités de loisirs.</p>
+        <div class="grid cols-2" style="margin-top:18px">
+          <div>
+            <h4>Restauration quotidienne</h4>
+            <p class="muted">Cuisine fraîche, produits locaux, menus variés et adaptés aux enfants et aux entreprises.</p>
+          </div>
+          <div>
+            <h4>Service traiteur & livraisons</h4>
+            <p class="muted">Prestations adaptées pour événements et cantines d’entreprise.</p>
+          </div>
+          <div>
+            <h4>Accompagnement périscolaire</h4>
+            <p class="muted">Aide aux devoirs, ateliers et encadrement bienveillant.</p>
+          </div>
+          <div>
+            <h4>Centres de loisirs et vacances</h4>
+            <p class="muted">Programmes ludiques, activités pédagogiques et sécurité renforcée.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="engagements">
+      <div class="card">
+        <h2>Nos engagements</h2>
+        <ul class="muted">
+          <li>Appliquer rigoureusement les normes d’hygiène (HACCP).</li>
+          <li>Préparer une cuisine fraîche, à base de produits locaux.</li>
+          <li>Assurer une logistique maîtrisée pour la chaîne du froid et la liaison chaude.</li>
+          <li>Réduire le gaspillage alimentaire et proposer des menus végétariens hebdomadaires.</li>
+          <li>Créer un environnement sûr et stimulant pour les enfants.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="equipe">
+      <div class="card">
+        <h2>Notre équipe</h2>
+        <p class="muted">Une équipe pluridisciplinaire unie autour d’une même mission : servir, accompagner et innover au service des enfants.</p>
+        <div class="team-grid" style="margin-top:14px">
+          <div class="team-member card">
+            <div class="avatar">ML</div>
+            <div>
+              <strong>Mara Louisa Mansaré</strong>
+              <div class="muted">Fondatrice — 15 ans d’expérience en restauration collective scolaire</div>
+            </div>
+          </div>
+
+          <div class="team-member card">
+            <div class="avatar">GM</div>
+            <div>
+              <strong>Gizy Michaela Afrani</strong>
+              <div class="muted">Gérante — Master 2 finance & gouvernance</div>
+            </div>
+          </div>
+
+          <div class="team-member card">
+            <div class="avatar">SM</div>
+            <div>
+              <strong>Steeve Mansaré</strong>
+              <div class="muted">Co-gérant — Master 2 science politique</div>
+            </div>
+          </div>
+
+          <div class="team-member card">
+            <div class="avatar">MB</div>
+            <div>
+              <strong>Mahefason Bertrand</strong>
+              <div class="muted">Responsable Marketing — 9 ans en stratégie</div>
+            </div>
+          </div>
+
+          <div class="team-member card">
+            <div class="avatar">MR</div>
+            <div>
+              <strong>Maurille Rafanomezantsoa</strong>
+              <div class="muted">Chef cuisinier — 13 ans en cantine & HACCP</div>
+            </div>
+          </div>
+
+          <div class="team-member card">
+            <div class="avatar">KR</div>
+            <div>
+              <strong>Karen Rananja</strong>
+              <div class="muted">Responsable qualité — Formée à Vatel, expérience internationale</div>
+            </div>
+          </div>
+
+        </div>
+
+        <h3 style="margin-top:18px">Autres membres clés</h3>
+        <table style="margin-top:8px">
+          <thead>
+            <tr><th>Fonction</th><th>Nom</th><th>Parcours</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Responsable cantine</td><td>Violette Razanajatovo</td><td>BAFA, Croix-Rouge, Master en hôtellerie</td></tr>
+            <tr><td>Développement commercial</td><td>Parianos Athena</td><td>Master 2 en chimie, entrepreneure</td></tr>
+            <tr><td>Nutritionniste</td><td>Dr Amitia A. Ramarosandy</td><td>Médecin, spécialisée en nutrition</td></tr>
+          </tbody>
+        </table>
+
+      </div>
+    </section>
+
+    <section id="equipements">
+      <div class="card">
+        <h2>Nos équipements & certifications</h2>
+        <h4>Cuisine centrale</h4>
+        <p class="muted">Cuisine centrale moderne, équipements professionnels et protocoles de sécurité pour la production collective.</p>
+        <h4>Logistique</h4>
+        <p class="muted">Véhicules isothermes, conteneurs et vitrines réfrigérées pour préserver la chaîne du froid.</p>
+        <h4>Plan de maîtrise sanitaire</h4>
+        <p class="muted">Procédures HACCP : contrôle des températures, hygiène rigoureuse, traçabilité et formation continue.</p>
+        <h4>Documents officiels</h4>
+        <p class="muted">RCS, RIB, attestations Croix-Rouge Malagasy, certificats fournisseurs et documents d’immatriculation.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card">
+        <h2>Travaillons ensemble</h2>
+        <p class="muted">Vous êtes parent, chef d’établissement ou représentant d’une collectivité ? Contactez-nous et construisons ensemble la solution qui vous convient.</p>
+        <div class="contact-row" style="margin-top:12px">
+          <input class="input" type="text" placeholder="Votre nom">
+          <input class="input" type="email" placeholder="Votre email">
+          <input class="input" type="text" placeholder="Objet / établissement">
+          <textarea class="input" rows="5" placeholder="Message"></textarea>
+          <button class="btn">Envoyer</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <strong>SOREA</strong>
+          <div class="muted" style="font-size:13px">Restauration collective & accompagnement périscolaire — Madagascar</div>
+        </div>
+        <div class="muted">© SOREA • Tous droits réservés</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

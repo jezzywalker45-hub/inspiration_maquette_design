@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nos Expertises</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A5B9A;
+            --primary-dark: #1E4475;
+            --primary-light: #3F7AC9;s
+            --secondary: #FF6B35;
+            --secondary-dark: #E05A2B;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --light-gray: #E9ECEF;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-light {
+            background-color: var(--light);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo i {
+            margin-right: 8px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a.active {
+            color: var(--primary);
+        }
+
+        nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* Expertises Section */
+        .expertise-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .expertise-intro h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .expertise-intro h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .expertise-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .expertise-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .expertise-icon {
+            background-color: var(--light);
+            color: var(--primary);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .expertise-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .expertise-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .expertise-list li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .expertise-list li:before {
+            content: "•";
+            color: var(--secondary);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .prestation-types {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 15px;
+        }
+
+        .prestation-type {
+            text-align: center;
+            padding: 8px 12px;
+            background-color: var(--light);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Prestations Section */
+        .prestations-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .prestation-box {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .prestation-box h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .step {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .step h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Garanties Section */
+        .garanties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .garantie-item {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .garantie-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .garantie-icon {
+            background-color: var(--primary-light);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+
+        .garantie-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info div {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 12px;
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 130px 0 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                margin: 0 0 15px 0;
+            }
+
+            .header-container {
+                padding: 15px 0;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .prestations-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .expertise-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-cube"></i>Relia<span>Consulting</span>
+            </a>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#" class="active">Expertises</a></li>
+                    <li><a href="#">Solutions</a></li>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Un partenaire fiable dans le développement et ingénierie logicielle</h1>
+            <p>Chez Relia Consulting, nous ne livrons pas uniquement des solutions informatiques. Nous concevons des outils performants, sécurisés et évolutifs, intégrant l'ingénierie logicielle, la data et l'intelligence artificielle au cœur de vos métiers.</p>
+            <a href="#" class="btn">Parlons de votre projet</a>
+        </div>
+    </section>
+
+    <!-- Expertises Section -->
+    <section class="section">
+        <div class="container">
+            <div class="expertise-intro">
+                <h2>Nos expertises</h2>
+                <p>Nous mettons en œuvre notre expertise pour transformer les enjeux technologiques en avantages concurrentiels durables.</p>
+            </div>
+            
+            <div class="expertise-cards">
+                <!-- SoftXpertise -->
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>SoftXpertise</h3>
+                    <ul class="expertise-list">
+                        <li>Ingénierie logicielle</li>
+                        <li>Conception et développement sur mesure d'applications web et mobiles</li>
+                        <li>Mise à jour de solutions obsolètes (legacy)</li>
+                    </ul>
+                    <div class="prestation-types">
+                        <div class="prestation-type">Prestations en régie</div>
+                        <div class="prestation-type">Prestation au forfait</div>
+                    </div>
+                </div>
+                
+                <!-- Techstaffing -->
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Techstaffing</h3>
+                    <p>Mise à disposition de profils hautement qualifiés au service des entreprises pour les aider à atteindre leurs objectifs stratégiques et opérationnels :</p>
+                    <ul class="expertise-list">
+                        <li>Développeurs de logiciels</li>
+                        <li>Administrateurs systèmes, analystes de données, experts en cybersécurité, etc.</li>
+                        <li>Product owner, QA tester</li>
+                    </ul>
+                    <div class="prestation-types">
+                        <div class="prestation-type">Prestations en régie</div>
+                        <div class="prestation-type">Prestation au forfait</div>
+                    </div>
+                </div>
+                
+                <!-- Optech -->
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Optech</h3>
+                    <ul class="expertise-list">
+                        <li>Conception et déploiement infra cloud et on prem</li>
+                        <li>Administration système et réseau</li>
+                        <li>Cybersécurité et sécurisation des systèmes</li>
+                        <li>Maintenance et support</li>
+                        <li>Audit et gestion des vulnérabilités</li>
+                    </ul>
+                    <div class="prestation-types">
+                        <div class="prestation-type">Prestations en régie</div>
+                        <div class="prestation-type">Prestation au forfait</div>
+                    </div>
+                </div>
+                
+                <!-- Data & Business Intelligence -->
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data & Business Intelligence</h3>
+                    <ul class="expertise-list">
+                        <li>Collecte, analyse et visualisation des données pour orienter la prise de décision</li>
+                        <li>Intégration de chatbots, automatisation intelligente, outils d'aide à la décision et solutions prédictives basées sur les données</li>
+                    </ul>
+                    <div class="prestation-types">
+                        <div class="prestation-type">Prestations en régie</div>
+                        <div class="prestation-type">Prestation au forfait</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Prestations Section -->
+            <div class="prestations-container">
+                <!-- Prestation en régie -->
+                <div class="prestation-box">
+                    <h3>Prestation en régie</h3>
+                    
+                    <div class="step">
+                        <h4>1. Expression des besoins (2 à 5 jours)</h4>
+                        <p>Définition du type et du nombre de profils dont vous avez besoin. Sélection et proposition des meilleurs profils par nos soins.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>2. Test et entretien</h4>
+                        <p>Test de 2 à 4 semaines du candidat sélectionné par vos soins. Évaluation par les deux parties.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>3. Intégration dans votre projet</h4>
+                        <p>L'intégration du profil dans votre équipe pour une collaboration efficace.</p>
+                    </div>
+                </div>
+                
+                <!-- Prestation au forfait -->
+                <div class="prestation-box">
+                    <h3>Prestation au forfait</h3>
+                    
+                    <div class="step">
+                        <h4>1. Expression des besoins (2 à 5 jours)</h4>
+                        <p>Visio de 30 mn pour comprendre vos besoins et objectifs commerciaux. Analyse technique. Proposition d'une solution technique sur mesure.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>2. Développement et tests</h4>
+                        <p>Conception de maquette. Développement. Recette – livraisons intermédiaires – traitement des retours.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h4>3. Livraison et service Après-Vente</h4>
+                        <p>Livraison finale. Garantie sans frais pendant une période de 3 mois.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Garanties Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2>Des services garantis et sécurisés</h2>
+            <p>Nous nous engageons à vous offrir un cadre de collaboration clair, sécurisé et transparent.</p>
+            
+            <div class="garanties-grid">
+                <!-- Confidentialité -->
+                <div class="garantie-item">
+                    <div class="garantie-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Confidentialité</h3>
+                    <p>Signature d'un accord de confidentialité garantissant la protection totale de vos données.</p>
+                </div>
+                
+                <!-- Modalités de paiement -->
+                <div class="garantie-item">
+                    <div class="garantie-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Modalités de paiement</h3>
+                    <p>Paiements échelonnés, définis en fonction de l'avancement du projet.</p>
+                </div>
+                
+                <!-- Support après livraison -->
+                <div class="garantie-item">
+                    <div class="garantie-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Support après livraison</h3>
+                    <p>Chaque projet bénéficie d'un service après-vente (SAV) gratuit de 90 jours après livraison.</p>
+                </div>
+                
+                <!-- Livraison des sources -->
+                <div class="garantie-item">
+                    <div class="garantie-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Livraison complète des sources</h3>
+                    <p>Remise complète des codes sources en fin de mission, assurant transparence et continuité.</p>
+                </div>
+                
+                <!-- Propriété intellectuelle -->
+                <div class="garantie-item">
+                    <div class="garantie-icon">
+                        <i class="fas fa-copyright"></i>
+                    </div>
+                    <h3>Propriété intellectuelle</h3>
+                    <p>Vous êtes entièrement propriétaire de la solution développée sans dépendance technique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Relia Consulting</h3>
+                    <p>Votre partenaire fiable dans le développement et ingénierie logicielle à Madagascar.</p>
+                    <div class="contact-info">
+                        <div><i class="fas fa-phone"></i> +261 38 10 500 92 / +261 34 77 558 34</div>
+                        <div><i class="fas fa-envelope"></i> sales@relia-consulting.com</div>
+                        <div><i class="fas fa-map-marker-alt"></i> Lot Près VP 28 Ambohimiandra ANTANANARIVO 101 MADAGASCAR</div>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Nos Services</h3>
+                    <ul>
+                        <li><a href="#">SoftXpertise</a></li>
+                        <li><a href="#">Techstaffing</a></li>
+                        <li><a href="#">Optech</a></li>
+                        <li><a href="#">Data & Business Intelligence</a></li>
+                        <li><a href="#">Développement Web</a></li>
+                        <li><a href="#">Solutions de paiement mobile</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">Expertises</a></li>
+                        <li><a href="#">Solutions</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Références</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Rapide</h3>
+                    <p>Besoin d'un diagnostic express ? Planifiez un appel de 15 minutes pour valider vos priorités.</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 15px;">Réservez un créneau</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Relia Consulting. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileToggle.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add shadow to header on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
