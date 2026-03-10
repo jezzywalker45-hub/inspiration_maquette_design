@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini-site / Landing Page — SoavaTech</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1B6EF3;
+    --blue-dark: #0D4FC4;
+    --blue-light: #E8F0FE;
+    --navy: #0A1628;
+    --accent: #00D4AA;
+    --accent2: #FF6B35;
+    --gray: #6B7280;
+    --light: #F8FAFF;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 6%;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(27,110,243,0.08);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-icon {
+    width: 36px; height: 36px; background: var(--blue);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-icon svg { width: 20px; height: 20px; fill: white; }
+  .nav-logo span { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--navy); }
+  .nav-logo span em { color: var(--blue); font-style: normal; }
+  .nav-cta {
+    background: var(--blue); color: white; padding: 10px 22px;
+    border-radius: 50px; font-weight: 500; font-size: 0.9rem;
+    text-decoration: none; transition: all .2s;
+  }
+  .nav-cta:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    padding: 120px 6% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(27,110,243,0.25) 0%, transparent 70%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--blue) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--blue) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 600px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,212,170,0.12); border: 1px solid rgba(0,212,170,0.3);
+    color: var(--accent); padding: 6px 16px; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 500; margin-bottom: 28px;
+    animation: fadeUp .6s ease both;
+  }
+  .hero-badge span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800; line-height: 1.1;
+    color: white; margin-bottom: 22px;
+    animation: fadeUp .6s .1s ease both;
+  }
+  h1 .highlight {
+    color: var(--blue);
+    position: relative;
+  }
+  h1 .highlight::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+    border-radius: 2px;
+  }
+  .hero-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.65);
+    line-height: 1.7; margin-bottom: 36px;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeUp .6s .3s ease both;
+  }
+  .btn-primary {
+    background: var(--blue); color: white;
+    padding: 14px 30px; border-radius: 50px;
+    font-weight: 600; font-size: 1rem;
+    text-decoration: none; transition: all .25s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(27,110,243,0.4); }
+  .btn-secondary {
+    border: 1px solid rgba(255,255,255,0.2); color: white;
+    padding: 14px 30px; border-radius: 50px;
+    font-weight: 500; font-size: 1rem;
+    text-decoration: none; transition: all .25s;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+
+  .hero-price {
+    position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
+    animation: fadeUp .6s .4s ease both;
+  }
+  .price-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px; padding: 32px 36px;
+    text-align: center;
+  }
+  .price-label { color: rgba(255,255,255,0.5); font-size: 0.82rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .price-amount { font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800; color: white; }
+  .price-currency { font-size: 1rem; vertical-align: super; color: var(--accent); }
+  .price-renew { color: rgba(255,255,255,0.4); font-size: 0.78rem; margin-top: 8px; }
+
+  /* ─── TRUST BAR ─── */
+  .trust-bar {
+    background: var(--blue-light);
+    padding: 22px 6%;
+    display: flex; align-items: center; justify-content: center;
+    gap: 48px; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--navy); font-size: 0.9rem; font-weight: 500;
+  }
+  .trust-item svg { width: 20px; height: 20px; color: var(--blue); flex-shrink: 0; }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 90px 6%; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--blue);
+    background: var(--blue-light); padding: 5px 14px; border-radius: 50px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800; line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 1.05rem; color: var(--gray); line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* ─── PROBLEM ─── */
+  .problem { background: var(--light); }
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    align-items: center; margin-top: 48px;
+  }
+  .pain-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .pain-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 20px; background: white;
+    border-radius: 14px; border-left: 3px solid var(--accent2);
+  }
+  .pain-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .pain-text strong { display: block; font-weight: 600; margin-bottom: 3px; }
+  .pain-text span { font-size: 0.88rem; color: var(--gray); }
+
+  .solution-block {
+    background: var(--navy); border-radius: 24px;
+    padding: 40px; color: white; position: relative; overflow: hidden;
+  }
+  .solution-block::before {
+    content: '→';
+    position: absolute; right: 30px; top: 30px;
+    font-size: 4rem; opacity: .05; font-family: 'Syne', sans-serif;
+  }
+  .solution-block h3 {
+    font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700;
+    margin-bottom: 16px; color: white;
+  }
+  .solution-block p { color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 24px; }
+  .solution-block .cta-inline {
+    background: var(--accent); color: var(--navy);
+    padding: 12px 24px; border-radius: 50px;
+    font-weight: 600; text-decoration: none; font-size: 0.95rem;
+    display: inline-block; transition: all .2s;
+  }
+  .solution-block .cta-inline:hover { transform: translateY(-2px); }
+
+  /* ─── FEATURES ─── */
+  .features-header { text-align: center; margin-bottom: 56px; }
+  .features-header .section-sub { margin: 0 auto; }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .feature-card {
+    background: var(--light); border-radius: 18px; padding: 28px 24px;
+    border: 1px solid rgba(27,110,243,0.08);
+    transition: all .25s;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue);
+    box-shadow: 0 16px 40px rgba(27,110,243,0.1);
+  }
+  .feature-icon {
+    width: 48px; height: 48px; background: var(--blue-light);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px; font-size: 1.4rem;
+  }
+  .feature-card h4 {
+    font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .feature-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+  /* ─── OFFER ─── */
+  .offer { background: var(--light); }
+  .offer-wrapper {
+    background: white; border-radius: 28px;
+    border: 1.5px solid rgba(27,110,243,0.15);
+    overflow: hidden; max-width: 900px; margin: 48px auto 0;
+    box-shadow: 0 24px 80px rgba(27,110,243,0.08);
+  }
+  .offer-header {
+    background: var(--navy); padding: 36px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .offer-header h3 {
+    font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: white;
+  }
+  .offer-header h3 span { color: var(--blue); }
+  .offer-price-block { text-align: right; }
+  .offer-price-main {
+    font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: white;
+  }
+  .offer-price-renew { color: rgba(255,255,255,0.45); font-size: 0.8rem; margin-top: 4px; }
+  .offer-body { padding: 40px; }
+  .offer-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .offer-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 12px 14px; border-radius: 10px;
+    transition: background .2s;
+    font-size: 0.9rem;
+  }
+  .offer-item:hover { background: var(--blue-light); }
+  .check {
+    width: 20px; height: 20px; background: var(--blue);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .check svg { width: 11px; height: 11px; stroke: white; fill: none; stroke-width: 2.5; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 48px;
+  }
+  .testi-card {
+    background: var(--light); border-radius: 18px; padding: 28px 24px;
+    border: 1px solid rgba(27,110,243,0.08);
+  }
+  .stars { color: #FBBF24; font-size: 1rem; margin-bottom: 14px; }
+  .testi-text { font-size: 0.92rem; color: var(--navy); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--blue); display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 700; color: white; font-size: 1rem;
+  }
+  .author-info strong { display: block; font-size: 0.9rem; font-weight: 600; }
+  .author-info span { font-size: 0.8rem; color: var(--gray); }
+
+  /* ─── FAQ ─── */
+  .faq { background: var(--light); }
+  .faq-list { max-width: 720px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    background: white; border-radius: 14px;
+    border: 1px solid rgba(27,110,243,0.1);
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 20px 24px; font-weight: 600; font-size: 0.95rem;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    user-select: none;
+  }
+  .faq-q .icon { font-size: 1.2rem; transition: transform .3s; color: var(--blue); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .35s ease, padding .25s;
+    padding: 0 24px; font-size: 0.9rem; color: var(--gray); line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding: 0 24px 20px; }
+  .faq-item.open .faq-q .icon { transform: rotate(45deg); }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    background: var(--navy); text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(27,110,243,0.3) 0%, transparent 70%);
+  }
+  .final-cta > * { position: relative; }
+  .final-cta h2 { color: white; }
+  .final-cta .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 36px; }
+  .cta-group { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .btn-accent {
+    background: var(--accent); color: var(--navy);
+    padding: 16px 36px; border-radius: 50px;
+    font-weight: 700; font-size: 1.05rem;
+    text-decoration: none; transition: all .25s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0,212,170,0.35); }
+  .guarantee { color: rgba(255,255,255,0.4); font-size: 0.82rem; margin-top: 22px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 28px 6%; display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 14px;
+  }
+  footer .logo-text { font-family: 'Syne', sans-serif; font-weight: 800; color: white; font-size: 1rem; }
+  footer .logo-text em { color: var(--blue); font-style: normal; }
+  footer .legal { display: flex; gap: 20px; }
+  footer .legal a { color: rgba(255,255,255,0.4); font-size: 0.82rem; text-decoration: none; }
+  footer .legal a:hover { color: white; }
+  footer .contact a { color: rgba(255,255,255,0.45); font-size: 0.82rem; text-decoration: none; }
+  footer .contact a:hover { color: var(--accent); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-price { display: none; }
+    .problem-grid,
+    .features-grid,
+    .testimonials-grid,
+    .offer-cols { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .offer-header { flex-direction: column; gap: 16px; text-align: center; }
+    .offer-price-block { text-align: center; }
+    .trust-bar { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <span>Soava<em>Tech</em></span>
+  </a>
+  <a href="#contact" class="nav-cta">Démarrer mon projet →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Offre Mini-site / Landing Page</div>
+    <h1>Convertissez vos visiteurs en <span class="highlight">clients</span>, dès le premier clic.</h1>
+    <p class="hero-sub">Une landing page conçue pour l'essentiel : capter l'attention, présenter votre offre et déclencher l'action. Idéale pour un lancement, une campagne Ads ou un événement.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Lancer mon projet <span>→</span></a>
+      <a href="#offre" class="btn-secondary">Voir l'offre complète</a>
+    </div>
+  </div>
+  <div class="hero-price">
+    <div class="price-card">
+      <div class="price-label">À partir de</div>
+      <div class="price-amount"><span class="price-currency">Ar </span>550 000</div>
+      <div style="color:var(--accent);font-size:.82rem;font-weight:600;margin-top:6px;">MGA</div>
+      <div class="price-renew">Renouvellement : 300 000 MGA/an</div>
+      <a href="#contact" class="btn-primary" style="margin-top:20px;font-size:.88rem;padding:11px 22px;">Démarrer →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Design responsive mobile
+  </div>
+  <div class="trust-item">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    Livraison rapide
+  </div>
+  <div class="trust-item">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Support 1h/mois inclus
+  </div>
+  <div class="trust-item">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Sécurité & conformité
+  </div>
+  <div class="trust-item">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/></svg>
+    Domaine + hébergement inclus
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem reveal">
+  <div class="section-tag">Le constat</div>
+  <h2>Votre activité mérite une vitrine qui performe.</h2>
+  <p class="section-sub">Trop de projets sont ralentis par les mêmes obstacles. Reconnaissez-vous ces situations ?</p>
+  <div class="problem-grid">
+    <ul class="pain-list">
+      <li class="pain-item">
+        <div class="pain-icon">⏳</div>
+        <div class="pain-text">
+          <strong>Pas le temps de gérer un site complexe</strong>
+          <span>Vous avez un business à faire tourner, pas des heures à passer sur WordPress.</span>
+        </div>
+      </li>
+      <li class="pain-item">
+        <div class="pain-icon">💸</div>
+        <div class="pain-text">
+          <strong>Budget limité pour un site complet</strong>
+          <span>Une landing page ciblée est souvent plus efficace qu'un site de 10 pages.</span>
+        </div>
+      </li>
+      <li class="pain-item">
+        <div class="pain-icon">📣</div>
+        <div class="pain-text">
+          <strong>Campagne Ads sans page de destination</strong>
+          <span>Vos publicités dépensent votre budget sans page dédiée pour convertir.</span>
+        </div>
+      </li>
+      <li class="pain-item">
+        <div class="pain-icon">🚀</div>
+        <div class="pain-text">
+          <strong>Lancement urgent à venir</strong>
+          <span>Événement, nouvelle offre, promotion : vous avez besoin d'être en ligne vite.</span>
+        </div>
+      </li>
+    </ul>
+    <div class="solution-block">
+      <h3>La solution SoavaTech : aller à l'essentiel et convertir.</h3>
+      <p>Notre offre Mini-site / Landing Page a été conçue pour répondre exactement à ces situations. Une page unique, percutante, optimisée SEO et orientée conversion. Rien de superflu, tout ce qui compte.</p>
+      <a href="#contact" class="cta-inline">Parler de mon projet →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="reveal" id="fonctionnalites">
+  <div class="features-header">
+    <div class="section-tag">Ce qui est inclus</div>
+    <h2>Tout ce dont vous avez besoin, rien de moins.</h2>
+    <p class="section-sub">Chaque élément de l'offre a été pensé pour vous donner une présence web professionnelle et efficace, sans vous noyer dans des détails techniques.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <h4>Design UX/UI orienté conversion</h4>
+      <p>Une interface pensée pour guider votre visiteur vers l'action, avec une expérience fluide et engageante.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h4>100% responsive</h4>
+      <p>Votre page s'affiche parfaitement sur mobile, tablette et ordinateur. Plus de 60% de votre trafic vient du mobile.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✍️</div>
+      <h4>Rédaction de contenu incluse</h4>
+      <p>Nos rédacteurs créent les textes optimisés de votre page complète. Vous n'avez rien à rédiger.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔍</div>
+      <h4>Optimisation SEO de base</h4>
+      <p>Structure, balises et métadonnées optimisées pour que Google vous trouve dès le départ.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌐</div>
+      <h4>Domaine + hébergement 1 an</h4>
+      <p>Nom de domaine, hébergement et 1 adresse email professionnelle inclus pour votre première année.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h4>Sécurité & conformité</h4>
+      <p>SSL, protection des données et pages légales intégrées. Votre site est conforme et protégé dès le lancement.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📬</div>
+      <h4>Formulaire de contact</h4>
+      <p>Un formulaire connecté directement à votre boîte mail pour ne manquer aucune demande de vos visiteurs.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎓</div>
+      <h4>Formation client 1h</h4>
+      <p>Une session de prise en main pour que vous soyez autonome et à l'aise avec votre nouvelle page.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔧</div>
+      <h4>Maintenance 1h/mois</h4>
+      <p>Un suivi technique mensuel pour maintenir votre site à jour et régler tout problème rapidement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER DETAILS -->
+<section class="offer reveal" id="offre">
+  <div style="text-align:center">
+    <div class="section-tag">L'offre complète</div>
+    <h2>Mini-site / Landing Page</h2>
+    <p class="section-sub" style="margin:0 auto">Idéal pour un lancement rapide, une offre unique, un événement ou une campagne publicitaire.</p>
+  </div>
+  <div class="offer-wrapper">
+    <div class="offer-header">
+      <h3>Mini-site / <span>Landing Page</span></h3>
+      <div class="offer-price-block">
+        <div class="offer-price-main">550 000 MGA</div>
+        <div class="offer-price-renew">*Renouvellement annuel : 300 000 MGA</div>
+      </div>
+    </div>
+    <div class="offer-body">
+      <div class="offer-cols">
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Conception UX/UI orientée conversion</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Rédaction de contenus optimisés (page complète)</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Site 1 page avec menu dynamique</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Formulaire de contact</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Structure claire (présentation, offre, avantages, contact)</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Nom de domaine, hébergement et 1 email pro (1 an)</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Optimisation SEO de base incluse</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Sécurité et conformité intégrées</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Site développé sous WordPress</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Formation client : 1 heure</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Design responsive (mobile, tablette, ordinateur)</span></div>
+        <div class="offer-item"><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span>Maintenance & support technique : 1h / mois</span></div>
+      </div>
+      <div style="text-align:center;margin-top:32px">
+        <a href="#contact" class="btn-primary" style="font-size:1.05rem;padding:15px 38px;">Je veux cette offre →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="reveal">
+  <div style="text-align:center">
+    <div class="section-tag">Ils nous font confiance</div>
+    <h2>Ce que disent nos clients</h2>
+    <p class="section-sub" style="margin:0 auto">Des entrepreneurs et PME qui ont osé tracer leur route digitale avec SoavaTech.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Notre landing page a été livrée en moins de 2 semaines. Le design est moderne et les demandes de contact ont triplé dès le premier mois. Je recommande vivement SoavaTech !"</p>
+      <div class="testi-author">
+        <div class="avatar">RA</div>
+        <div class="author-info"><strong>Rivo Andriamahefa</strong><span>Fondateur, AgriConnect Madagascar</span></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"J'avais besoin d'une page pour ma campagne pub Facebook. SoavaTech a tout géré : rédaction, design, hébergement. Un service vraiment complet pour le prix."</p>
+      <div class="testi-author">
+        <div class="avatar">NR</div>
+        <div class="author-info"><strong>Noëlle Rakoto</strong><span>Coach professionnelle indépendante</span></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"La formation de prise en main était très utile. On peut modifier nous-mêmes les textes et photos facilement. L'équipe SoavaTech est réactive et professionnelle."</p>
+      <div class="testi-author">
+        <div class="avatar">HM</div>
+        <div class="author-info"><strong>Haja Manana</strong><span>Directeur, Hôtel Le Palmier</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq reveal">
+  <div style="text-align:center">
+    <div class="section-tag">Vos questions</div>
+    <h2>Foire aux questions</h2>
+    <p class="section-sub" style="margin:0 auto">Tout ce que vous voulez savoir avant de vous lancer.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Combien de temps pour livrer ma landing page ? <span class="icon">+</span></div>
+      <div class="faq-a">En général, nous livrons une landing page en 7 à 14 jours ouvrables après réception de toutes les informations nécessaires (logo, photos, brief de l'offre). Un planning précis est défini lors du démarrage du projet.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Je peux modifier moi-même le contenu après livraison ? <span class="icon">+</span></div>
+      <div class="faq-a">Oui, absolument. Votre site est développé sous WordPress, ce qui vous permet de modifier textes et images facilement. La formation client d'1h incluse vous guide pour être 100% autonome.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Est-ce que je dois fournir le contenu ou vous vous en chargez ? <span class="icon">+</span></div>
+      <div class="faq-a">La rédaction de contenu est incluse dans l'offre. Vous nous transmettez un brief sur votre activité, votre offre et vos cibles, et notre équipe rédige les textes optimisés pour vous.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Que se passe-t-il après la première année d'hébergement ? <span class="icon">+</span></div>
+      <div class="faq-a">Un renouvellement annuel de 300 000 MGA couvre le nom de domaine, l'hébergement et l'email professionnel pour l'année suivante. Vous êtes librement informé bien avant l'échéance.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">La landing page peut-elle être connectée à mes publicités Facebook/Google ? <span class="icon">+</span></div>
+      <div class="faq-a">Oui, c'est même l'usage idéal ! Nous pouvons intégrer les pixels de suivi Facebook et Google Analytics sur votre page pour mesurer précisément les résultats de vos campagnes publicitaires.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Comment se déroule le paiement ? <span class="icon">+</span></div>
+      <div class="faq-a">Le règlement s'effectue en deux fois : 50% à la commande pour lancer le projet, et 50% à la livraison finale avant mise en ligne. Nous acceptons les virements bancaires et Mobile Money.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta reveal" id="contact">
+  <div class="section-tag" style="background:rgba(27,110,243,0.2);color:var(--blue)">Passez à l'action</div>
+  <h2>Prêt à convertir vos visiteurs ?</h2>
+  <p class="section-sub">Votre landing page professionnelle à 550 000 MGA, livrée clé en main. Discutons de votre projet dès aujourd'hui.</p>
+  <div class="cta-group">
+    <a href="mailto:commercial@soavatech.com" class="btn-accent">✉ Envoyer un email</a>
+    <a href="https://wa.me/261370999990" class="btn-primary" target="_blank">💬 WhatsApp</a>
+  </div>
+  <p class="guarantee">📞 +261 37 09 999 00 · Enceinte SITRAM Ankorondrano, Antananarivo</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo-text">Soava<em>Tech</em> <span style="color:rgba(255,255,255,.3);font-size:.75rem;font-weight:400"> by Befiana</span></div>
+  <div class="legal">
+    <a href="#">Mentions légales</a>
+    <a href="#">Politique de confidentialité</a>
+    <a href="https://soavatech.com">Site principal</a>
+  </div>
+  <div class="contact">
+    <a href="mailto:commercial@soavatech.com">commercial@soavatech.com</a>
+  </div>
+</footer>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
