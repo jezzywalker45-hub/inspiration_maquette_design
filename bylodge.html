@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manga Bay Lodge – Lagon de Tuléar, Madagascar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean: #0a2a35;
+    --lagoon: #1a6b6b;
+    --turquoise: #4ecdc4;
+    --sand: #e8d5b0;
+    --coral: #c4735a;
+    --cream: #f7f2ea;
+    --white: #fdfaf5;
+    --text: #1a1a18;
+    --muted: #8a7d6b;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    mix-blend-mode: normal;
+    transition: background 0.4s, padding 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(10, 42, 53, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 1rem 4rem;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--turquoise); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--turquoise); }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--turquoise);
+    color: var(--turquoise);
+    padding: 0.6rem 1.8rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .nav-cta:hover {
+    background: var(--turquoise);
+    color: var(--ocean);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--ocean);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(78,205,196,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 20% 80%, rgba(26,107,107,0.25) 0%, transparent 50%),
+      linear-gradient(160deg, #041820 0%, #0a2a35 40%, #0d3d3d 100%);
+  }
+  .hero-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    overflow: hidden;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+  }
+  .wave svg { width: 100%; height: 100%; }
+  .wave-1 { animation: wave-move 8s linear infinite; opacity: 0.15; }
+  .wave-2 { animation: wave-move 12s linear infinite reverse; opacity: 0.08; }
+  .wave-3 { animation: wave-move 6s linear infinite; opacity: 0.06; bottom: -20px; }
+  @keyframes wave-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .hero-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(78,205,196,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78,205,196,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 2rem;
+    animation: fadeUp 1.2s ease forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: 2rem;
+  }
+  .hero-label::before, .hero-label::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--turquoise);
+    opacity: 0.5;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--turquoise);
+  }
+
+  .hero-sub {
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--turquoise);
+    color: var(--ocean);
+    padding: 1rem 2.8rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--sand);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    padding: 1rem 2.8rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-ghost:hover {
+    border-color: var(--turquoise);
+    color: var(--turquoise);
+  }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 4rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    z-index: 2;
+    animation: fadeUp 1.4s 0.3s ease both;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.4rem;
+    display: block;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    align-self: center;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 8rem 4rem; }
+  .section-label {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--turquoise);
+  }
+  h2.display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ocean);
+    max-width: 600px;
+  }
+  h2.display em { font-style: italic; color: var(--lagoon); }
+
+  /* ─── STORY ─── */
+  .story {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .story-visual {
+    position: relative;
+    min-height: 600px;
+    background: var(--ocean);
+    overflow: hidden;
+  }
+  .story-pattern {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 70%, rgba(78,205,196,0.2) 0%, transparent 50%),
+      radial-gradient(circle at 70% 20%, rgba(26,107,107,0.3) 0%, transparent 40%),
+      linear-gradient(135deg, #041820, #0a3040);
+  }
+  .story-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(78,205,196,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .story-circle::before {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(78,205,196,0.1);
+  }
+  .story-circle-inner {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(78,205,196,0.15), rgba(26,107,107,0.2));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  .story-circle-inner svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--turquoise);
+    stroke-width: 1;
+    fill: none;
+  }
+  .story-icon-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--turquoise);
+    letter-spacing: 0.1em;
+  }
+  .story-coords {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.15em;
+    font-weight: 300;
+  }
+  .story-tag {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(78,205,196,0.3);
+    font-size: 0.6rem;
+    color: var(--turquoise);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .story-content {
+    padding: 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .story-content p {
+    font-size: 0.95rem;
+    line-height: 1.95;
+    color: var(--muted);
+    font-weight: 300;
+    margin-top: 2rem;
+  }
+  .story-content p + p { margin-top: 1.2rem; }
+  .story-highlight {
+    margin-top: 3rem;
+    padding: 1.5rem 2rem;
+    border-left: 2px solid var(--turquoise);
+    background: rgba(78,205,196,0.05);
+  }
+  .story-highlight p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--lagoon);
+    margin-top: 0 !important;
+    line-height: 1.6;
+  }
+
+  /* ─── HÉBERGEMENTS ─── */
+  .lodging {
+    background: var(--white);
+    padding: 8rem 4rem;
+  }
+  .lodging-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .lodging-intro {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 300px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .lodging-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .lodge-card {
+    position: relative;
+    min-height: 520px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--ocean);
+  }
+  .lodge-card-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.7s ease;
+  }
+  .lodge-card:hover .lodge-card-bg { transform: scale(1.06); }
+
+  .card-bg-1 {
+    background: linear-gradient(160deg, #052030 0%, #0d4545 50%, #1a6b6b 100%);
+  }
+  .card-bg-2 {
+    background: linear-gradient(160deg, #1a3a20 0%, #2d5a35 50%, #3d7a4a 100%);
+  }
+  .card-bg-3 {
+    background: linear-gradient(160deg, #2a1a10 0%, #5a3520 50%, #8a5030 100%);
+  }
+
+  .card-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: repeating-linear-gradient(
+      45deg,
+      #fff 0px,
+      #fff 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  }
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
+  }
+  .card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem;
+    transform: translateY(60px);
+    transition: transform 0.5s ease;
+  }
+  .lodge-card:hover .card-content { transform: translateY(0); }
+  .card-type {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: 0.6rem;
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .card-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .card-tag {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+  }
+  .card-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    opacity: 0;
+    transition: opacity 0.4s 0.1s;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .lodge-card:hover .card-desc { opacity: 1; }
+  .card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    text-decoration: none;
+    font-weight: 400;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  .card-btn::after {
+    content: '→';
+    transition: transform 0.3s;
+  }
+  .card-btn:hover::after { transform: translateX(4px); }
+
+  .card-num {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+
+  /* ─── ACTIVITÉS ─── */
+  .activities {
+    background: var(--ocean);
+    padding: 8rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .activities::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(78,205,196,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .activities .section-label { color: var(--turquoise); }
+  .activities h2.display { color: var(--white); max-width: 500px; }
+  .activities h2.display em { color: var(--turquoise); }
+
+  .activities-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  .activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .activity-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .activity-item:hover { padding-left: 0.5rem; }
+  .activity-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.2);
+    min-width: 28px;
+    font-weight: 300;
+    padding-top: 2px;
+  }
+  .activity-info { flex: 1; }
+  .activity-name {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.3rem;
+  }
+  .activity-desc {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .activity-arrow {
+    color: rgba(78,205,196,0);
+    font-size: 1rem;
+    transition: all 0.3s;
+    align-self: center;
+  }
+  .activity-item:hover .activity-arrow { color: var(--turquoise); }
+
+  .activities-cta-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(78,205,196,0.15);
+    padding: 3.5rem;
+    position: sticky;
+    top: 6rem;
+  }
+  .cta-box-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .cta-box-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--turquoise);
+  }
+  .cta-box-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .cta-box-body {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+  .btn-outline-light {
+    display: inline-block;
+    padding: 1rem 2.4rem;
+    border: 1px solid var(--turquoise);
+    color: var(--turquoise);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: none;
+  }
+  .btn-outline-light:hover {
+    background: var(--turquoise);
+    color: var(--ocean);
+  }
+
+  /* ─── RESTAURANT ─── */
+  .restaurant {
+    background: var(--cream);
+    padding: 8rem 4rem;
+  }
+  .restaurant-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    margin-top: 4rem;
+    align-items: center;
+  }
+  .restaurant-body {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .cuisine-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  .cuisine-tag {
+    padding: 0.6rem 1.5rem;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    font-size: 0.72rem;
+    color: var(--ocean);
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+  .restaurant-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .resto-block {
+    background: var(--ocean);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .resto-block:first-child {
+    grid-column: span 2;
+    background: var(--lagoon);
+  }
+  .resto-block-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .resto-block-title {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+  .resto-block-sub {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .resto-icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(78,205,196,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  /* ─── AVIS ─── */
+  .reviews {
+    background: var(--white);
+    padding: 8rem 4rem;
+  }
+  .reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .platforms {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .platform-badge {
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .reviews-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .review-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .review-card::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    color: rgba(0,0,0,0.04);
+    line-height: 1;
+    font-weight: 300;
+  }
+  .review-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 1.5rem;
+  }
+  .star { color: var(--coral); font-size: 0.75rem; }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ocean);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .review-author {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .author-name {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+  }
+  .author-origin {
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .review-platform {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(78,205,196,0.3);
+  }
+
+  /* ─── CTA FINAL ─── */
+  .cta-section {
+    background: var(--ocean);
+    padding: 10rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 50%, rgba(78,205,196,0.08), transparent 70%),
+      radial-gradient(circle at 10% 90%, rgba(26,107,107,0.2), transparent 40%);
+  }
+  .cta-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .cta-label::before, .cta-label::after {
+    content: '';
+    width: 50px;
+    height: 1px;
+    background: var(--turquoise);
+    opacity: 0.4;
+  }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .cta-title em { font-style: italic; color: var(--turquoise); }
+  .cta-body {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.45);
+    max-width: 460px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .cta-response {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+    margin-top: 1.5rem;
+  }
+  .cta-response::before {
+    content: '◉';
+    color: var(--turquoise);
+    font-size: 0.5rem;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #040f14;
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+  }
+  .footer-logo span { color: var(--turquoise); }
+  .footer-copy {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+  }
+  .footer-contact {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── REVEAL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    nav.scrolled { padding: 0.8rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    .story { grid-template-columns: 1fr; }
+    .story-visual { min-height: 350px; }
+    .lodging-grid { grid-template-columns: 1fr; gap: 2px; }
+    .lodge-card { min-height: 380px; }
+    .lodge-card .card-content { transform: translateY(0); }
+    .lodge-card .card-desc { opacity: 1; }
+    .activities-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .restaurant-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .reviews-track { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; bottom: 2rem; }
+    .lodging-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .reviews-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Manga<span>Bay</span></a>
+  <ul class="nav-links">
+    <li><a href="#story">Le Lodge</a></li>
+    <li><a href="#lodging">Hébergements</a></li>
+    <li><a href="#activities">Activités</a></li>
+    <li><a href="#restaurant">Restaurant</a></li>
+    <li><a href="#reviews">Avis</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Réserver</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-label">Sud de Madagascar · Lagon de Tuléar</div>
+    <h1>Éveillez-vous<br>au bord du <em>lagon</em></h1>
+    <p class="hero-sub">Un lodge d'exception niché sur la côte Sud-Ouest de Madagascar. Ici, le temps s'arrête, le lagon murmure, et chaque aube révèle la beauté intacte d'un monde préservé.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Réservez maintenant</a>
+      <a href="#lodging" class="btn-ghost">Découvrir le lodge</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">12</span>
+      <span class="stat-label">Hébergements</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">360°</span>
+      <span class="stat-label">Vue sur le lagon</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">15+</span>
+      <span class="stat-label">Activités</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">FR · EN</span>
+      <span class="stat-label">Service bilingue</span>
+    </div>
+  </div>
+
+  <div class="hero-waves">
+    <div class="wave wave-1">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C150,100 350,0 600,60 C850,120 1050,20 1200,60 L1200,120 L0,120 Z" fill="#4ecdc4"/>
+      </svg>
+    </div>
+    <div class="wave wave-2">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C200,90 400,10 600,50 C800,90 1000,30 1200,40 L1200,120 L0,120 Z" fill="#1a6b6b"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-visual">
+    <div class="story-pattern"></div>
+    <div class="story-tag">Ambokatsaka · Madagascar</div>
+    <div class="story-circle">
+      <div class="story-circle-inner">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke-dasharray="4 3"/>
+          <path d="M24 6 Q32 20 24 34 Q16 20 24 6Z"/>
+          <circle cx="24" cy="24" r="3" fill="#4ecdc4"/>
+        </svg>
+        <span class="story-icon-text">Manga Bay</span>
+      </div>
+    </div>
+    <div class="story-coords">22°48'S 43°17'E · Côte Sud-Ouest</div>
+  </div>
+  <div class="story-content reveal">
+    <div class="section-label">Notre histoire</div>
+    <h2 class="display">Un lieu unique entre la nature et <em>l'authenticité</em></h2>
+    <p>Né de la rencontre entre un amour profond pour Madagascar et la sagesse des sociétés Vezo, Manga Bay Lodge est votre invitation à rejoindre un monde à part. L'hôtel se situe à Ambokatsaka, à environ 90 km au Nord de Tuléar et 12 km au Sud du Lagon de Salary.</p>
+    <p>Notre lodge célèbre la beauté brute d'un littoral encore vierge entre le lagon turquoise et la végétation tropicale de la côte Sud-Ouest de Madagascar. Chaque détail est pensé pour vous immerger : l'architecture s'effaçant devant la nature, les saveurs de l'Océan Indien, et nos équipes issues des communautés Vezo locales.</p>
+    <div class="story-highlight">
+      <p>Ici, le voyage reprend sa vraie signification.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HÉBERGEMENTS -->
+<section class="lodging" id="lodging">
+  <div class="lodging-header reveal">
+    <div>
+      <div class="section-label">Vos hébergements</div>
+      <h2 class="display">Votre coin paisible face à <em>l'Océan Indien</em></h2>
+    </div>
+    <p class="lodging-intro">Trois typologies d'hébergements pensées pour s'accorder à chaque moment de vie, chaque voyage, chaque désir de solitude ou de partage.</p>
+  </div>
+
+  <div class="lodging-grid">
+    <div class="lodge-card reveal reveal-delay-1">
+      <div class="lodge-card-bg card-bg-1"></div>
+      <div class="card-pattern"></div>
+      <div class="card-overlay"></div>
+      <div class="card-num">01</div>
+      <div class="card-content">
+        <div class="card-type">Hébergement · Standard</div>
+        <div class="card-title">Bungalow</div>
+        <div class="card-tags">
+          <span class="card-tag">Terrasse privée</span>
+          <span class="card-tag">Vue panoramique</span>
+          <span class="card-tag">Double / Twin</span>
+        </div>
+        <p class="card-desc">Architecture en bois naturel, literie premium, moustiquaire de tradition et hamac suspendu face à l'horizon. Éveillez-vous face au lagon turquoise depuis votre terrasse privée.</p>
+        <button class="card-btn">Réserver</button>
+      </div>
+    </div>
+
+    <div class="lodge-card reveal reveal-delay-2">
+      <div class="lodge-card-bg card-bg-2"></div>
+      <div class="card-pattern"></div>
+      <div class="card-overlay"></div>
+      <div class="card-num">02</div>
+      <div class="card-content">
+        <div class="card-type">Hébergement · Nature</div>
+        <div class="card-title">Suite Jardin Tropical</div>
+        <div class="card-tags">
+          <span class="card-tag">Jardin privé</span>
+          <span class="card-tag">Douche extérieure</span>
+          <span class="card-tag">Ambiance végétale</span>
+        </div>
+        <p class="card-desc">Votre cocon végétal niché dans la végétation tropicale. Douche en plein air sous les étoiles, mobilier en bois local, ambiance zen et authentique au cœur de la nature.</p>
+        <button class="card-btn">Réserver</button>
+      </div>
+    </div>
+
+    <div class="lodge-card reveal reveal-delay-3">
+      <div class="lodge-card-bg card-bg-3"></div>
+      <div class="card-pattern"></div>
+      <div class="card-overlay"></div>
+      <div class="card-num">03</div>
+      <div class="card-content">
+        <div class="card-type">Hébergement · Famille</div>
+        <div class="card-title">Villa Familiale</div>
+        <div class="card-tags">
+          <span class="card-tag">2 chambres</span>
+          <span class="card-tag">Espace salon</span>
+          <span class="card-tag">4 personnes</span>
+        </div>
+        <p class="card-desc">Espace et intimité pour toute la famille : deux chambres communicatives, salon commun, terrasse panoramique et accès direct au lagon. </p>
+        <button class="card-btn">Réserver</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITÉS -->
+<section class="activities" id="activities">
+  <div class="reveal">
+    <div class="section-label">Nos activités phares</div>
+    <h2 class="display">Vivez l'âme de <em>Madagascar</em></h2>
+  </div>
+
+  <div class="activities-layout">
+    <div class="activity-list reveal">
+      <div class="activity-item">
+        <span class="activity-num">01</span>
+        <div class="activity-info">
+          <div class="activity-name">Plongée & Snorkeling</div>
+          <div class="activity-desc">Explorez les récifs coralliens parmi les plus préservés de l'Océan Indien, à quelques brasses du rivage.</div>
+        </div>
+        <span class="activity-arrow">→</span>
+      </div>
+      <div class="activity-item">
+        <span class="activity-num">02</span>
+        <div class="activity-info">
+          <div class="activity-name">Randonnées & Forêts-galeries</div>
+          <div class="activity-desc">Parcourez des sentiers secrets à travers une biodiversité unique, guidé par nos équipes locales.</div>
+        </div>
+        <span class="activity-arrow">→</span>
+      </div>
+      <div class="activity-item">
+        <span class="activity-num">03</span>
+        <div class="activity-info">
+          <div class="activity-name">Yoga & Bien-être</div>
+          <div class="activity-desc">Séances de yoga en plein air face à l'Océan Indien, massages aux huiles naturelles de Madagascar.</div>
+        </div>
+        <span class="activity-arrow">→</span>
+      </div>
+      <div class="activity-item">
+        <span class="activity-num">04</span>
+        <div class="activity-info">
+          <div class="activity-name">Excursions en Boutre Vezo</div>
+          <div class="activity-desc">Naviguez sur les embarcations traditionnelles des pêcheurs Vezo et profitez du coucher de soleil sur le lagon.</div>
+        </div>
+        <span class="activity-arrow">→</span>
+      </div>
+      <div class="activity-item">
+        <span class="activity-num">05</span>
+        <div class="activity-info">
+          <div class="activity-name">Pêche Traditionnelle</div>
+          <div class="activity-desc">Partagez le quotidien des pêcheurs locaux : pêche à la ligne ou au filet selon la tradition ancestrale.</div>
+        </div>
+        <span class="activity-arrow">→</span>
+      </div>
+    </div>
+
+    <div class="activities-cta-box reveal reveal-delay-2">
+      <div class="cta-box-label">Planifier votre séjour</div>
+      <div class="cta-box-title">Votre séjour sur mesure à Madagascar</div>
+      <p class="cta-box-body">Chaque voyage est unique. Nos équipes vous accompagnent dans la conception d'un programme personnalisé, alliant découverte, authenticité et sérénité.</p>
+      <button class="btn-outline-light">Demander un devis</button>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANT -->
+<section class="restaurant" id="restaurant">
+  <div class="reveal">
+    <div class="section-label">Le restaurant</div>
+    <h2 class="display">Les saveurs de la <em>culture Vezo</em></h2>
+  </div>
+
+  <div class="restaurant-grid">
+    <div class="reveal">
+      <p class="restaurant-body">Petit-déjeuner face à l'aube, déjeuner les pieds dans le sable, dîner sous les étoiles — la cuisine chez Manga Bay Lodge célèbre la générosité de la terre et de la mer malgache. Chaque moment à table est une expérience à part entière.<br><br>Dans une atmosphère ouverte sur le lagon, nos chefs subliment chaque repas et vous font découvrir les saveurs de l'Océan Indien.</p>
+      <div class="cuisine-tags">
+        <span class="cuisine-tag">Produits locaux</span>
+        <span class="cuisine-tag">Pêche du jour</span>
+        <span class="cuisine-tag">Fruits tropicaux</span>
+        <span class="cuisine-tag">Dîner en plein air</span>
+        <span class="cuisine-tag">Cuisine malgache</span>
+      </div>
+    </div>
+
+    <div class="restaurant-visual reveal reveal-delay-1">
+      <div class="resto-block">
+        <div class="resto-icon">🌊</div>
+        <div class="resto-block-num">01</div>
+        <div class="resto-block-title">Face au lagon</div>
+        <div class="resto-block-sub">Une atmosphère entièrement ouverte sur l'Océan Indien</div>
+      </div>
+      <div class="resto-block">
+        <div class="resto-icon">🐟</div>
+        <div class="resto-block-num">02</div>
+        <div class="resto-block-title">Pêche du jour</div>
+        <div class="resto-block-sub">Fraîcheur garantie, chaque matin du lagon</div>
+      </div>
+      <div class="resto-block">
+        <div class="resto-icon">🌴</div>
+        <div class="resto-block-num">03</div>
+        <div class="resto-block-title">Fruits tropicaux</div>
+        <div class="resto-block-sub">Cueillis au cœur de la végétation locale</div>
+      </div>
+      <div class="resto-block">
+        <div class="resto-icon">✨</div>
+        <div class="resto-block-num">04</div>
+        <div class="resto-block-title">Sous les étoiles</div>
+        <div class="resto-block-sub">Dîner en plein air, loin de toute lumière artificielle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-header reveal">
+    <div>
+      <div class="section-label">Avis des voyageurs</div>
+      <h2 class="display">Ce qu'ils ont <em>vécu ici</em></h2>
+    </div>
+    <div class="platforms">
+      <span class="platform-badge">TripAdvisor</span>
+      <span class="platform-badge">Booking.com</span>
+      <span class="platform-badge">Google Reviews</span>
+    </div>
+  </div>
+
+  <div class="reviews-track">
+    <div class="review-card reveal reveal-delay-1">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">Un moment hors du temps, le lagon était d'une beauté à couper le souffle et l'équipe du Manga Bay Lodge était d'une générosité rare. Je n'oublierai jamais ce coucher de soleil sur le boutre.</p>
+      <div class="review-author">
+        <div>
+          <div class="author-name">Sophie M.</div>
+          <div class="author-origin">France</div>
+        </div>
+        <span class="review-platform">TripAdvisor</span>
+      </div>
+    </div>
+
+    <div class="review-card reveal reveal-delay-2">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">Exactly what we were looking for: untouched nature, authentic culture and a warm welcome. The snorkeling was incredible. We saw turtles every day — a true paradise.</p>
+      <div class="review-author">
+        <div>
+          <div class="author-name">James & Anna K.</div>
+          <div class="author-origin">United Kingdom</div>
+        </div>
+        <span class="review-platform">Google Reviews</span>
+      </div>
+    </div>
+
+    <div class="review-card reveal reveal-delay-3">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">Madagascar m'avait toujours fait rêver mais Manga Bay Lodge a dépassé toutes mes attentes. La cuisine, les excursions, le personnel… tout était parfait. Un séjour qui change une vie.</p>
+      <div class="review-author">
+        <div>
+          <div class="author-name">Marie-Claire G.</div>
+          <div class="author-origin">Belgique</div>
+        </div>
+        <span class="review-platform">Booking.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contact">
+  <div class="cta-label">Planifiez votre séjour</div>
+  <h2 class="cta-title">Réservez votre évasion<br>à <em>Madagascar</em></h2>
+  <p class="cta-body">Chaque séjour à Manga Bay Lodge est unique. Contactez-nous directement et profitez de nos meilleures offres. Nous répondons généralement sous 24h.</p>
+  <a href="mailto:contact@mangabaylodge.com" class="btn-primary">Nous contacter</a>
+  <div class="cta-response">Réponse garantie sous 24h</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Manga<span>Bay</span> Lodge</div>
+  <div class="footer-copy">© 2026 Manga Bay Lodge · Ambokatsaka, Madagascar</div>
+  <div class="footer-contact">contact@mangabaylodge.com</div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

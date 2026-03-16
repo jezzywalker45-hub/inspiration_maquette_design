@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manga Bay Lodge – Lagon de Salary, Madagascar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1c13;
+  --deep:#0c2a1e;
+  --mid:#1a5c48;
+  --teal:#35c9ac;
+  --gold:#c8a84b;
+  --sand:#ede0c4;
+  --ecru:#f8f4ec;
+  --fog:#f2ede3;
+  --muted:#7a8c80;
+  --rule:rgba(27,80,60,.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--ecru);color:var(--ink);overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#cx{position:fixed;width:9px;height:9px;background:var(--teal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+#cr{position:fixed;width:34px;height:34px;border:1px solid var(--teal);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s,top .12s,width .3s,height .3s;opacity:.45}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.6rem 5%;display:flex;align-items:center;justify-content:space-between;transition:background .45s,padding .35s,box-shadow .45s}
+nav.s{background:rgba(11,28,19,.96);backdrop-filter:blur(18px);padding:1rem 5%;box-shadow:0 1px 0 rgba(53,201,172,.1)}
+.logo-img{height:56px;width:auto;display:block;filter:drop-shadow(0 2px 12px rgba(0,0,0,.65));transition:transform .3s}
+.logo-img:hover{transform:scale(1.04)}
+.nav-links{display:flex;gap:2.6rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.7rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;transition:color .3s;position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--teal);transition:width .3s}
+.nav-links a:hover{color:var(--teal)}
+.nav-links a:hover::after{width:100%}
+.nav-r{padding:.62rem 1.8rem;background:var(--teal);color:var(--ink);font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:background .3s,transform .2s;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px))}
+.nav-r:hover{background:var(--gold);transform:translateY(-1px)}
+
+/* PAGES */
+.pg{display:none}.pg.on{display:block}
+
+/* ── BTN SYSTEM ── */
+.bf{display:inline-block;padding:.95rem 2.7rem;background:var(--teal);color:var(--ink);font-size:.7rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;transition:background .3s,transform .2s;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px))}
+.bf:hover{background:var(--gold);transform:translateY(-2px)}
+.bo{display:inline-block;padding:.95rem 2.7rem;background:transparent;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.85);font-size:.7rem;font-weight:400;letter-spacing:.17em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:border-color .3s,color .3s}
+.bo:hover{border-color:var(--teal);color:var(--teal)}
+.bd{display:inline-block;padding:.85rem 2.2rem;background:transparent;border:1px solid var(--mid);color:var(--mid);font-size:.68rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .3s,color .3s}
+.bd:hover{background:var(--mid);color:#fff}
+.bw{display:inline-block;padding:.95rem 2.7rem;background:#fff;color:var(--mid);font-size:.7rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .3s;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px))}
+.bw:hover{background:var(--sand)}
+
+/* TAG */
+.tag{display:inline-flex;align-items:center;gap:.65rem;font-size:.59rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:.85rem}
+.tag::before{content:'';width:26px;height:1px;background:var(--teal)}
+.tag.c{justify-content:center}
+.tag.c::before,.tag.c::after{content:'';width:26px;height:1px;background:var(--teal)}
+.tag.dark{color:rgba(255,255,255,.55)}
+.tag.dark::before,.tag.dark::after{background:rgba(255,255,255,.3)}
+
+/* HEADINGS */
+h1.hero-h{font-family:'Cormorant',serif;font-size:clamp(3.4rem,7.5vw,6.8rem);font-weight:300;line-height:1.02;color:#fff;letter-spacing:-.015em}
+h1.hero-h em{font-style:italic;color:var(--teal)}
+h2.disp{font-family:'Cormorant',serif;font-size:clamp(2.1rem,4vw,3.5rem);font-weight:300;line-height:1.12;color:var(--ink)}
+h2.disp em{font-style:italic;color:var(--mid)}
+h2.disp-w{font-family:'Cormorant',serif;font-size:clamp(2.1rem,4vw,3.5rem);font-weight:300;line-height:1.12;color:#fff}
+h2.disp-w em{font-style:italic;color:var(--teal)}
+h1.ph{font-family:'Cormorant',serif;font-size:clamp(3rem,6.5vw,5.8rem);font-weight:300;line-height:1.04;color:#fff}
+h1.ph em{font-style:italic;color:var(--teal)}
+p.lead{font-size:.92rem;font-weight:300;line-height:1.95;color:var(--muted)}
+
+/* ═══ HERO ═══ */
+.hero{height:100vh;min-height:680px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:var(--ink)}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 55% 35%,rgba(53,201,172,.11) 0%,transparent 62%),radial-gradient(ellipse 55% 90% at 12% 78%,rgba(26,92,72,.22) 0%,transparent 55%),radial-gradient(ellipse 65% 45% at 82% 82%,rgba(200,168,75,.06) 0%,transparent 50%),linear-gradient(155deg,#04100a 0%,#0b1c13 40%,#0c2a1e 100%)}
+.hgrain{position:absolute;inset:0;opacity:.038;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(53,201,172,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(53,201,172,.022) 1px,transparent 1px);background-size:72px 72px}
+.hcontent{position:relative;z-index:2;text-align:center;max-width:880px;padding:0 2rem;animation:up 1.3s cubic-bezier(.22,1,.36,1) both}
+@keyframes up{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{display:inline-flex;align-items:center;gap:1rem;font-size:.61rem;font-weight:400;letter-spacing:.33em;text-transform:uppercase;color:var(--teal);margin-bottom:2rem}
+.eyebrow span{width:42px;height:1px;background:var(--teal);opacity:.55}
+.hero-sub{font-size:.93rem;font-weight:300;line-height:1.9;color:rgba(255,255,255,.48);max-width:560px;margin:1.6rem auto 3rem}
+.hbtns{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+.hstats{position:absolute;bottom:3.5rem;left:0;right:0;display:flex;justify-content:center;z-index:2;animation:up 1.3s .5s both}
+.hs{padding:0 3rem;border-right:1px solid rgba(255,255,255,.07);text-align:center}
+.hs:last-child{border-right:none}
+.hs-n{font-family:'Cormorant',serif;font-size:2.5rem;font-weight:300;color:#fff;display:block;line-height:1}
+.hs-l{font-size:.57rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.32);display:block;margin-top:.38rem}
+.hscroll{position:absolute;bottom:3.2rem;right:5%;display:flex;flex-direction:column;align-items:center;gap:.45rem;z-index:2;font-size:.53rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.22)}
+.sl{width:1px;height:52px;background:linear-gradient(to bottom,rgba(53,201,172,.55),transparent);animation:sl 2.2s ease-in-out infinite}
+@keyframes sl{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ═══ STORY SPLIT ═══ */
+.split{display:grid;grid-template-columns:1fr 1fr}
+.split-l{background:var(--deep);position:relative;min-height:580px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:3.5rem}
+.slbg{position:absolute;inset:0;background:radial-gradient(circle at 35% 30%,rgba(53,201,172,.14),transparent 50%),radial-gradient(circle at 75% 80%,rgba(26,92,72,.2),transparent 45%),linear-gradient(135deg,#040e08,#0c2a1e)}
+.sc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:210px;height:210px;border-radius:50%;border:1px solid rgba(53,201,172,.18);display:flex;align-items:center;justify-content:center}
+.sc::before{content:'';position:absolute;inset:16px;border-radius:50%;border:1px solid rgba(53,201,172,.08)}
+.sc-in{text-align:center}
+.sc-in p{font-family:'Cormorant',serif;font-size:.95rem;font-style:italic;color:rgba(255,255,255,.45);line-height:1.45}
+.sc-in span{font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);opacity:.65}
+.scoords{position:absolute;top:2.8rem;right:2.8rem;font-size:.58rem;color:rgba(255,255,255,.18);letter-spacing:.18em;writing-mode:vertical-rl}
+.sloc{position:relative;z-index:1;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.22);border-top:1px solid rgba(255,255,255,.06);padding-top:1.4rem}
+.split-r{padding:5rem;display:flex;flex-direction:column;justify-content:center;background:var(--ecru)}
+.sq{margin-top:2.5rem;padding:1.4rem 1.8rem;border-left:2px solid var(--teal);background:rgba(53,201,172,.04)}
+.sq p{font-family:'Cormorant',serif;font-size:1.12rem;font-style:italic;color:var(--mid);line-height:1.6}
+
+/* ═══ LODGING CARDS ═══ */
+.lg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3.5rem}
+.lc{position:relative;min-height:500px;overflow:hidden;cursor:pointer}
+.lcbg{position:absolute;inset:0;transition:transform .8s cubic-bezier(.25,1,.5,1)}
+.lc:hover .lcbg{transform:scale(1.07)}
+.lb1{background:linear-gradient(158deg,#031610 0%,#0c3c30 55%,#1a5c48 100%)}
+.lb2{background:linear-gradient(158deg,#16300e 0%,#285220 55%,#3a7030 100%)}
+.lb3{background:linear-gradient(158deg,#281a0a 0%,#523820 55%,#7a5530 100%)}
+.lb4{background:linear-gradient(158deg,#0e1626 0%,#1c2c55 55%,#2a4480 100%)}
+.lb5{background:linear-gradient(158deg,#1a1a0e 0%,#3a3820 55%,#5a5530 100%)}
+.lov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.18) 58%,transparent 100%)}
+.lpat{position:absolute;inset:0;opacity:.025;background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.lnum{position:absolute;top:1.8rem;right:1.8rem;font-family:'Cormorant',serif;font-size:5rem;font-weight:300;color:rgba(255,255,255,.04);line-height:1}
+.lcon{position:absolute;bottom:0;left:0;right:0;padding:2.3rem;transform:translateY(52px);transition:transform .5s cubic-bezier(.25,1,.5,1)}
+.lc:hover .lcon{transform:translateY(0)}
+.ltype{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--teal);margin-bottom:.45rem}
+.ltit{font-family:'Cormorant',serif;font-size:1.75rem;font-weight:300;color:#fff;margin-bottom:.5rem}
+.lprice{font-size:.76rem;font-weight:300;color:rgba(255,255,255,.45);margin-bottom:.9rem}
+.lprice strong{color:var(--gold);font-weight:400}
+.ltags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem}
+.ltag{padding:.18rem .65rem;border:1px solid rgba(255,255,255,.14);font-size:.56rem;color:rgba(255,255,255,.5);letter-spacing:.07em}
+.ldesc{font-size:.76rem;line-height:1.7;color:rgba(255,255,255,.48);font-weight:300;margin-bottom:1.4rem;opacity:0;transition:opacity .4s .1s}
+.lc:hover .ldesc{opacity:1}
+.lbtn{display:inline-flex;align-items:center;gap:.45rem;font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);background:none;border:none;cursor:pointer;font-family:'Outfit',sans-serif}
+.lbtn::after{content:'→';transition:transform .3s}
+.lbtn:hover::after{transform:translateX(4px)}
+
+/* ═══ SECTION BLOCKS ═══ */
+.sec{padding:7rem 5%}
+.sec-sm{padding:5rem 5%}
+
+/* RESTAURANT */
+.rsec{background:var(--deep);padding:7rem 5%;position:relative;overflow:hidden}
+.rsec::after{content:'';position:absolute;top:-120px;right:-180px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(200,168,75,.055),transparent 70%);pointer-events:none}
+.rmenu{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:2rem}
+.rmc{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.045);padding:2rem 1.8rem;transition:background .3s}
+.rmc:hover{background:rgba(53,201,172,.06)}
+.rmi{font-size:1.35rem;margin-bottom:1rem}
+.rmn{font-family:'Cormorant',serif;font-size:1.05rem;font-weight:300;color:#fff;margin-bottom:.35rem}
+.rmd{font-size:.7rem;color:rgba(255,255,255,.3);font-weight:300;line-height:1.5}
+.rmp{margin-top:.9rem;font-size:.76rem;color:var(--gold);font-weight:400}
+.ctags{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.8rem}
+.ct{padding:.5rem 1.25rem;border:1px solid rgba(53,201,172,.18);font-size:.64rem;color:rgba(255,255,255,.5);letter-spacing:.09em}
+
+/* ACTIVITIES */
+.alayout{display:grid;grid-template-columns:1.1fr 1fr;gap:6rem;margin-top:4rem;align-items:start}
+.alist{display:flex;flex-direction:column}
+.ai{display:grid;grid-template-columns:42px 1fr 22px;gap:1.1rem;align-items:start;padding:1.55rem 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:padding-left .3s}
+.ai:first-child{border-top:1px solid var(--rule)}
+.ai:hover{padding-left:.38rem}
+.ain{font-family:'Cormorant',serif;font-size:1rem;font-weight:300;color:var(--muted);opacity:.4;padding-top:1px}
+.ainame{font-size:.88rem;font-weight:400;color:var(--ink);margin-bottom:.22rem}
+.aidesc{font-size:.74rem;color:var(--muted);line-height:1.6;font-weight:300}
+.aiarr{color:transparent;font-size:.95rem;align-self:center;transition:color .3s}
+.ai:hover .aiarr{color:var(--teal)}
+.acbox{background:var(--deep);padding:3rem;position:sticky;top:5.5rem}
+.acbox .tag{color:var(--teal)}
+.act-t{font-family:'Cormorant',serif;font-size:2rem;font-weight:300;color:#fff;line-height:1.18;margin:.8rem 0 1.1rem}
+.acbody{font-size:.77rem;color:rgba(255,255,255,.32);line-height:1.8;font-weight:300;margin-bottom:2rem}
+
+/* REVIEWS */
+.rvsec{background:var(--ink);padding:7rem 5%}
+.rvgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.rvc{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.045);padding:2.5rem;position:relative;overflow:hidden;transition:background .3s,border-color .3s}
+.rvc:hover{background:rgba(53,201,172,.045);border-color:rgba(53,201,172,.14)}
+.rvc::before{content:'"';position:absolute;top:0;right:1.8rem;font-family:'Cormorant',serif;font-size:10rem;color:rgba(255,255,255,.025);line-height:1}
+.stars{display:flex;gap:2px;margin-bottom:1.4rem}
+.st{color:var(--gold);font-size:.7rem}
+.rvt{font-family:'Cormorant',serif;font-size:.98rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.68);line-height:1.72;margin-bottom:1.8rem}
+.rvfoot{display:flex;justify-content:space-between;align-items:flex-end}
+.rvn{font-size:.7rem;font-weight:500;color:rgba(255,255,255,.55)}
+.rvo{font-size:.6rem;color:rgba(255,255,255,.22);margin-top:2px}
+.rvp{font-size:.53rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);padding:.28rem .65rem;border:1px solid rgba(53,201,172,.22)}
+
+/* CTA BAND */
+.cband{background:var(--deep);padding:6.5rem 5%;text-align:center;position:relative;overflow:hidden}
+.cband::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 80% at 50% 50%,rgba(53,201,172,.065),transparent 70%);pointer-events:none}
+.cband p{font-size:.88rem;font-weight:300;line-height:1.88;color:rgba(255,255,255,.38);max-width:440px;margin:0 auto 2.5rem}
+.pdot{display:inline-flex;align-items:center;gap:.38rem;font-size:.58rem;color:rgba(255,255,255,.2);letter-spacing:.1em;margin-top:1.2rem}
+.pdot::before{content:'◉';color:var(--teal);font-size:.48rem;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* ── PAGE HEROES ── */
+.phero{height:58vh;min-height:480px;background:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.phbg{position:absolute;inset:0;background:radial-gradient(ellipse 75% 65% at 50% 40%,rgba(53,201,172,.09),transparent 62%),linear-gradient(165deg,#040e08,#0c2a1e)}
+.phcon{position:relative;z-index:1;padding:0 2rem;max-width:800px}
+
+/* ── VEZO SECTION ── */
+.vzgrid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;margin-top:4rem;align-items:center}
+.vzstack{position:relative;height:460px}
+.vzcard{position:absolute;padding:2.4rem}
+.vz1{top:0;left:0;width:68%;background:var(--deep)}
+.vz2{bottom:0;right:0;width:62%;background:var(--mid);padding:1.8rem}
+.vz3{top:38%;left:18%;width:54%;background:var(--ink);z-index:2;border:1px solid rgba(53,201,172,.14)}
+.vzn{font-family:'Cormorant',serif;font-size:3.2rem;font-weight:300;color:rgba(255,255,255,.055);line-height:1;margin-bottom:.45rem}
+.vzti{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.45rem}
+.vzb{font-size:.76rem;color:rgba(255,255,255,.32);line-height:1.6;font-weight:300}
+.vzq{margin-top:2rem;padding:1.7rem;background:var(--deep);border-left:2px solid var(--gold)}
+.vzq p{font-family:'Cormorant',serif;font-size:.98rem;font-style:italic;color:rgba(255,255,255,.68);line-height:1.7}
+
+/* ── PHILOSOPHY ── */
+.philsec{background:var(--ink);padding:7rem 5%}
+.philgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:4rem;background:rgba(255,255,255,.04)}
+.phi{padding:2.8rem 2.4rem;background:var(--ink);border-bottom:3px solid transparent;transition:border-color .3s,background .3s}
+.phi:hover{border-color:var(--teal);background:rgba(53,201,172,.04)}
+.phin{font-family:'Cormorant',serif;font-size:3rem;font-weight:300;color:rgba(255,255,255,.04);line-height:1;margin-bottom:.9rem}
+.phit{font-size:.78rem;font-weight:500;color:var(--teal);letter-spacing:.07em;margin-bottom:.7rem}
+.phib{font-size:.76rem;color:rgba(255,255,255,.32);line-height:1.7;font-weight:300}
+
+/* ── LODGING PAGE ── */
+.lppg{padding:5.5rem 5%;background:var(--ecru)}
+.lpgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3.5rem}
+.lpc{background:#fff;padding:3.2rem;border:1px solid var(--rule);position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.lpc:hover{border-color:var(--teal);box-shadow:0 8px 38px rgba(53,201,172,.07)}
+.lpc::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--teal);transition:height .4s}
+.lpc:hover::after{height:100%}
+.lpc-feat{border-color:var(--teal)}
+.lpc-feat-badge{position:absolute;top:1.8rem;right:1.8rem;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);padding:.28rem .75rem;border:1px solid rgba(53,201,172,.38)}
+.lpc-n{font-family:'Cormorant',serif;font-size:3.8rem;font-weight:300;color:rgba(0,0,0,.04);line-height:1;margin-bottom:.9rem}
+.lpc-t{font-family:'Cormorant',serif;font-size:1.55rem;font-weight:300;color:var(--ink);margin-bottom:.35rem}
+.lpc-sub{font-size:.7rem;color:var(--muted);letter-spacing:.07em;margin-bottom:1.4rem}
+.lpc-conf{font-size:.78rem;color:var(--ink);font-weight:300;line-height:1.72;margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid var(--rule)}
+.lpc-eq-lbl{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.55rem}
+.lpc-eqs{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.4rem}
+.lpc-eq{font-size:.62rem;padding:.22rem .68rem;background:var(--fog);border:1px solid var(--rule);color:var(--ink)}
+.lpc-price{display:flex;align-items:baseline;gap:.45rem;margin-bottom:1.4rem}
+.lpc-pm{font-family:'Cormorant',serif;font-size:2rem;font-weight:300;color:var(--mid)}
+.lpc-pe{font-size:.72rem;color:var(--muted)}
+.lpc-pu{font-size:.68rem;color:var(--muted)}
+.lnote{margin-top:4rem;padding:3rem;background:var(--deep);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.lnote h3{font-family:'Cormorant',serif;font-size:1.55rem;font-weight:300;color:#fff;margin-bottom:.75rem}
+.lnote p{font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.8;font-weight:300}
+
+/* GARDEN BUNGALOW SECTION */
+.garden-sec{background:var(--fog);padding:4.5rem 5%}
+.garden-card{background:#fff;border:1px solid var(--rule);padding:3rem;max-width:600px;position:relative;overflow:hidden;transition:border-color .3s}
+.garden-card:hover{border-color:var(--teal)}
+.garden-card::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--teal);transition:height .4s}
+.garden-card:hover::after{height:100%}
+
+/* RESTAURANT PAGE */
+.rpgsec{padding:7rem 5%;background:var(--ecru)}
+.rpgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3.5rem}
+.rpcard{background:#fff;padding:2.4rem;border:1px solid var(--rule);transition:all .3s}
+.rpcard:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 12px 38px rgba(0,0,0,.055)}
+.rpci{font-size:1.9rem;margin-bottom:1.1rem}
+.rpct{font-family:'Cormorant',serif;font-size:1.12rem;font-weight:300;color:var(--ink);margin-bottom:.45rem}
+.rpcd{font-size:.76rem;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:1.1rem}
+.rpcp{font-size:.8rem;color:var(--mid);font-weight:500;padding-top:1rem;border-top:1px solid var(--rule)}
+
+/* ACTIVITIES PAGE */
+.apgsec{padding:7rem 5%;background:var(--ecru)}
+.apgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.apcard{padding:2.8rem;background:#fff;border:1px solid var(--rule);position:relative;overflow:hidden;transition:all .3s}
+.apcard::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.apcard:hover::before{transform:scaleX(1)}
+.apcard:hover{box-shadow:0 8px 28px rgba(0,0,0,.055)}
+.apbadge{display:inline-block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);padding:.22rem .68rem;border:1px solid rgba(53,201,172,.28);margin-bottom:.9rem}
+.aptt{font-family:'Cormorant',serif;font-size:1.3rem;font-weight:300;color:var(--ink);margin-bottom:.7rem}
+.apbody{font-size:.78rem;color:var(--muted);line-height:1.75;font-weight:300}
+.apnote{margin-top:.9rem;font-size:.68rem;color:var(--muted);opacity:.55;font-style:italic}
+.leisure{background:var(--sand);padding:4rem 5%}
+.litems{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.5rem}
+.li{padding:.65rem 1.45rem;background:#fff;border:1px solid var(--rule);font-size:.73rem;color:var(--ink);letter-spacing:.04em}
+
+/* GALLERY PAGE */
+.gallsec{background:var(--ink);padding:7rem 5%}
+.gallintro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:4rem}
+.gallgrid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:2px}
+.gc{background:var(--deep);overflow:hidden;position:relative}
+.gc.tall{grid-row:span 2;min-height:520px}
+.gc.nm{min-height:252px}
+.gcin{position:absolute;inset:0;display:flex;align-items:flex-end;padding:1.8rem;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 55%);transition:opacity .3s}
+.gc:hover .gcin{opacity:.6}
+.gcl{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.48)}
+.gcp1{background:radial-gradient(circle at 30% 60%,rgba(53,201,172,.2),transparent 52%),linear-gradient(152deg,#031610,#1a5c48)}
+.gcp2{background:radial-gradient(circle at 65% 30%,rgba(200,168,75,.15),transparent 48%),linear-gradient(122deg,#162e10,#3a7030)}
+.gcp3{background:radial-gradient(circle at 40% 68%,rgba(53,201,172,.12),transparent 52%),linear-gradient(158deg,#0c2a1e,#285040)}
+.gcp4{background:radial-gradient(circle at 72% 40%,rgba(200,168,75,.1),transparent 48%),linear-gradient(132deg,#261c0c,#7a5530)}
+.gcp5{background:radial-gradient(circle at 28% 32%,rgba(53,201,172,.14),transparent 48%),linear-gradient(148deg,#0e1626,#2a4480)}
+
+/* CONTACT PAGE */
+.ctsec{padding:7rem 5%;background:var(--ecru);display:grid;grid-template-columns:1fr 1fr;gap:6rem}
+.ctinfo h2{font-family:'Cormorant',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--ink);margin:.7rem 0 1.3rem;line-height:1.12}
+.ctinfo h2 em{font-style:italic;color:var(--mid)}
+.ctchans{margin-top:2.5rem;display:flex;flex-direction:column;gap:.9rem}
+.cch{display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.4rem;background:#fff;border:1px solid var(--rule);transition:border-color .3s}
+.cch:hover{border-color:var(--teal)}
+.cchi{font-size:1.15rem}
+.cchl{font-size:.58rem;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+.cchv{font-size:.8rem;color:var(--ink);font-weight:400;margin-top:1px}
+.ftitle{font-family:'Cormorant',serif;font-size:1.4rem;font-weight:300;color:var(--ink);margin-bottom:1.8rem}
+.fg{margin-bottom:1.1rem}
+.fg label{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
+.fg input,.fg select,.fg textarea{width:100%;padding:.82rem .95rem;background:#fff;border:1px solid var(--rule);font-family:'Outfit',sans-serif;font-size:.83rem;color:var(--ink);outline:none;transition:border-color .3s;appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal)}
+.fg textarea{resize:vertical;min-height:128px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* FOOTER */
+footer{background:#030c06;padding:3.2rem 5%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem;border-top:1px solid rgba(53,201,172,.07)}
+.logo-ft{height:50px;width:auto;display:block;filter:drop-shadow(0 1px 8px rgba(0,0,0,.55));opacity:.88}
+.ftcopy{font-size:.6rem;color:rgba(255,255,255,.16);letter-spacing:.1em;text-align:center;line-height:1.7}
+.ftlinks{display:flex;gap:2rem;justify-content:flex-end;list-style:none}
+.ftlinks a{font-size:.6rem;color:rgba(255,255,255,.2);text-decoration:none;letter-spacing:.1em;transition:color .3s}
+.ftlinks a:hover{color:var(--teal)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .82s ease,transform .82s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1rem 5%}nav.s{padding:.8rem 5%}
+  .nav-links{display:none}
+  .split,.vzgrid,.rpgsec .rvgrid,.ctsec,.lpgrid,.gallintro,.lnote{grid-template-columns:1fr}
+  .lg-grid,.rvgrid,.rpgrid,.philgrid,.apgrid{grid-template-columns:1fr}
+  .alayout{grid-template-columns:1fr;gap:3rem}
+  .gallgrid{grid-template-columns:1fr 1fr}
+  .gc.tall{grid-row:auto;min-height:240px}
+  .hstats{flex-wrap:wrap}.hs{flex:0 0 50%;padding:.7rem 1.5rem}
+  footer{grid-template-columns:1fr;text-align:center}.ftlinks{justify-content:center}
+  h1.hero-h{font-size:2.8rem}
+}
+</style>
+</head>
+<body>
+<div id="cx"></div><div id="cr"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" onclick="sp('home')"><img src="data:image/jpeg;base64,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" alt="Manga Bay Lodge" class="logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="sp('home');return false">Accueil</a></li>
+    <li><a href="#" onclick="sp('lodge');return false">Le Lodge</a></li>
+    <li><a href="#" onclick="sp('heb');return false">Hébergements</a></li>
+    <li><a href="#" onclick="sp('resto');return false">Restaurant</a></li>
+    <li><a href="#" onclick="sp('act');return false">Activités</a></li>
+    <li><a href="#" onclick="sp('gal');return false">Galerie</a></li>
+    <li><a href="#" onclick="sp('contact');return false">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-r" onclick="sp('contact');return false">Réserver</a>
+</nav>
+
+<!-- ══════════════════════════════════════
+     PAGE : ACCUEIL
+══════════════════════════════════════ -->
+<div class="pg on" id="pg-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hbg"></div><div class="hgrain"></div><div class="hgrid"></div>
+    <div class="hcontent">
+      <div class="eyebrow"><span></span>Lagon de Salary · Madagascar<span></span></div>
+      <h1 class="hero-h">Éveillez-vous<br>au bord du <em>lagon</em></h1>
+      <p class="hero-sub">Un lodge d'exception niché sur la côte Sud-Ouest de Madagascar. Ici, le temps s'arrête, le lagon murmure, et chaque aube révèle la beauté intacte d'un monde préservé.</p>
+      <div class="hbtns">
+        <a href="#" class="bf" onclick="sp('contact');return false">Réservez maintenant</a>
+        <a href="#" class="bo" onclick="sp('lodge');return false">Découvrir le lodge</a>
+      </div>
+    </div>
+    <div class="hstats">
+      <div class="hs"><span class="hs-n">7</span><span class="hs-l">Hébergements</span></div>
+      <div class="hs"><span class="hs-n">360°</span><span class="hs-l">Vue sur le lagon</span></div>
+      <div class="hs"><span class="hs-n">15+</span><span class="hs-l">Activités</span></div>
+      <div class="hs"><span class="hs-n">FR·EN</span><span class="hs-l">Service bilingue</span></div>
+    </div>
+    <div class="hscroll"><div class="sl"></div>Scroll</div>
+  </section>
+
+  <!-- STORY SPLIT -->
+  <div class="split rv">
+    <div class="split-l">
+      <div class="slbg"></div>
+      <div class="scoords">22°48'S · 43°17'E</div>
+      <div class="sc"><div class="sc-in"><p>Côte<br>Sud-Ouest</p><span>Madagascar</span></div></div>
+      <div class="sloc">Ambokatsa · ~90 km Nord de Tuléar</div>
+    </div>
+    <div class="split-r">
+      <div class="tag">Notre histoire</div>
+      <h2 class="disp">Un lieu unique entre<br>la nature et <em>l'authenticité</em></h2>
+      <p class="lead" style="margin-top:1.5rem">Né de la rencontre entre un amour profond pour Madagascar et la sagesse des sociétés Vezo, Manga Bay Lodge est votre invitation à rejoindre un monde à part. Notre lodge célèbre la beauté brute d'un littoral encore vierge entre le lagon turquoise et la végétation endémique de la côte Sud-Ouest.</p>
+      <p class="lead" style="margin-top:1rem">Chaque détail est pensé pour vous immerger : l'architecture s'effaçant devant la nature, les saveurs du Canal de Mozambique, et nos équipes issues des communautés Vezo locales.</p>
+      <div class="sq"><p>Ici, le voyage reprend sa vraie signification.</p></div>
+      <div style="margin-top:2.4rem"><a href="#" class="bd" onclick="sp('lodge');return false">Le lodge</a></div>
+    </div>
+  </div>
+
+  <!-- HÉBERGEMENTS HOME -->
+  <section class="sec" style="background:#fff">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="tag">Vos hébergements</div>
+        <h2 class="disp">Votre coin paisible face<br>au <em>Canal du Mozambique</em></h2>
+      </div>
+      <a href="#" class="bd" onclick="sp('heb');return false">Tous nos bungalows</a>
+    </div>
+    <div class="lg-grid">
+      <div class="lc rv d1">
+        <div class="lcbg lb1"></div><div class="lpat"></div><div class="lov"></div>
+        <div class="lnum">01</div>
+        <div class="lcon">
+          <div class="ltype">Duo · Vue mer</div>
+          <div class="ltit">Bungalow Double ou Twin</div>
+          <div class="lprice">À partir de <strong>280 000 Ar</strong> · ~58 €/nuit</div>
+          <div class="ltags"><span class="ltag">Vue lagon</span><span class="ltag">Lit double / twin</span><span class="ltag">Énergie solaire</span></div>
+          <p class="ldesc">Bungalow en bois naturel, literie confortable, moustiquaire traditionnelle. Un espace simple et chaleureux face au lagon.</p>
+          <button class="lbtn" onclick="sp('contact')">Réserver</button>
+        </div>
+      </div>
+      <div class="lc rv d2">
+        <div class="lcbg lb2"></div><div class="lpat"></div><div class="lov"></div>
+        <div class="lnum">02</div>
+        <div class="lcon">
+          <div class="ltype">Trio · Vue mer</div>
+          <div class="ltit">Bungalow Triple</div>
+          <div class="lprice">À partir de <strong>310 000 Ar</strong> · ~66 €/nuit</div>
+          <div class="ltags"><span class="ltag">Vue lagon</span><span class="ltag">3 couchages</span><span class="ltag">Entre amis</span></div>
+          <p class="ldesc">Parfait pour un petit groupe ou une famille avec enfant. Même confort, même vue, plus d'espace.</p>
+          <button class="lbtn" onclick="sp('contact')">Réserver</button>
+        </div>
+      </div>
+      <div class="lc rv d3">
+        <div class="lcbg lb3"></div><div class="lpat"></div><div class="lov"></div>
+        <div class="lnum">03</div>
+        <div class="lcon">
+          <div class="ltype">Famille · Vue mer</div>
+          <div class="ltit">Bungalow Familial</div>
+          <div class="lprice">À partir de <strong>340 000 Ar</strong> · ~73 €/nuit</div>
+          <div class="ltags"><span class="ltag">2 chambres</span><span class="ltag">4–5 pers.</span><span class="ltag">Salon privé</span></div>
+          <p class="ldesc">Un bungalow spacieux conçu pour les familles. Deux chambres et espace commun face au lagon de Salary.</p>
+          <button class="lbtn" onclick="sp('contact')">Réserver</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESTAURANT HOME -->
+  <section class="rsec">
+    <div class="rv">
+      <div class="tag dark">Le restaurant</div>
+      <h2 class="disp-w">Les saveurs de la <em>culture Vezo</em></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:4rem" class="rv d1">
+      <div>
+        <p style="font-size:.9rem;font-weight:300;line-height:1.9;color:rgba(255,255,255,.42);margin-bottom:0">Petit-déjeuner face au lagon, déjeuner les pieds dans le sable, dîner sous les étoiles — la cuisine chez Manga Bay Lodge célèbre la générosité de la terre et de la mer malgache.</p>
+        <div class="ctags">
+          <span class="ct">Produits locaux</span><span class="ct">Pêche du jour</span>
+          <span class="ct">Fruits tropicaux</span><span class="ct">Cuisine malgache</span>
+        </div>
+        <div style="margin-top:2.4rem"><a href="#" class="bo" onclick="sp('resto');return false">Voir le restaurant</a></div>
+      </div>
+      <div class="rmenu">
+        <div class="rmc"><div class="rmi">🌅</div><div class="rmn">Petit-déj continental</div><div class="rmd">Boisson chaude, crêpes, pain, beurre, confiture, miel</div><div class="rmp">25 000 Ar · ~5 €</div></div>
+        <div class="rmc"><div class="rmi">🐟</div><div class="rmn">Plat principal</div><div class="rmd">Pêche du jour des pêcheurs Vezo</div><div class="rmp">39 000 Ar · ~8 €</div></div>
+        <div class="rmc" style="grid-column:span 2"><div class="rmi">🍽️</div><div class="rmn">Menu complet</div><div class="rmd">Entrée + plat + dessert</div><div class="rmp">77 000 Ar · ~15 €</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA ENTRE TABLE ET AVENTURES -->
+  <div style="background:var(--mid);padding:4.5rem 5%;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(255,255,255,.07),transparent 70%)"></div>
+    <div class="tag c dark rv" style="margin-bottom:1rem">Votre escapade commence ici</div>
+    <h2 style="font-family:'Cormorant',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:#fff;margin-bottom:2rem;position:relative" class="rv d1">Entre la table et les <em style="font-style:italic;color:var(--sand)">aventures</em></h2>
+    <a href="#" class="bw rv d2" onclick="sp('contact');return false">Vérifier les disponibilités</a>
+  </div>
+
+  <!-- ACTIVITÉS HOME -->
+  <section class="sec" style="background:var(--ecru)">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="tag">Nos activités phares</div>
+        <h2 class="disp">Vivez l'âme de <em>Madagascar</em></h2>
+      </div>
+      <a href="#" class="bd" onclick="sp('act');return false">Toutes nos activités</a>
+    </div>
+    <div class="alayout" style="margin-top:3rem">
+      <div class="alist rv">
+        <div class="ai"><span class="ain">01</span><div><div class="ainame">Plongée en apnée ou snorkeling</div><div class="aidesc">Récifs coralliens parmi les plus préservés du lagon, faune marine exceptionnelle à quelques minutes du rivage.</div></div><span class="aiarr">→</span></div>
+        <div class="ai"><span class="ain">02</span><div><div class="ainame">Festival des baleines</div><div class="aidesc">Juillet–septembre : baleines à bosse, dauphins, globicéphales. Organisé par Madagascar Diving de Fred Lucas.</div></div><span class="aiarr">→</span></div>
+        <div class="ai"><span class="ain">03</span><div><div class="ainame">Excursion en pirogue Vezo</div><div class="aidesc">Naviguez sur les embarcations traditionnelles et découvrez la beauté paisible du lagon au rythme de l'océan.</div></div><span class="aiarr">→</span></div>
+        <div class="ai"><span class="ain">04</span><div><div class="ainame">Pêche traditionnelle</div><div class="aidesc">Partagez le quotidien des pêcheurs Vezo et leurs techniques ancestrales transmises de génération en génération.</div></div><span class="aiarr">→</span></div>
+      </div>
+      <div class="acbox rv d2">
+        <div class="tag">Sur mesure</div>
+        <div class="act-t">Votre séjour,<br>vos aventures</div>
+        <p class="acbody">Certaines activités sont à réserver à l'avance. Nos équipes vous accompagnent pour composer un programme selon vos envies.</p>
+        <a href="#" class="bf" onclick="sp('contact');return false">Planifier mon séjour</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section class="rvsec">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="tag dark">Avis des voyageurs</div>
+        <h2 class="disp-w">Ce qu'ils ont <em>vécu ici</em></h2>
+      </div>
+      <div style="display:flex;gap:.6rem">
+        <span style="padding:.35rem .9rem;border:1px solid rgba(255,255,255,.09);font-size:.55rem;color:rgba(255,255,255,.22);letter-spacing:.12em">TripAdvisor</span>
+        <span style="padding:.35rem .9rem;border:1px solid rgba(255,255,255,.09);font-size:.55rem;color:rgba(255,255,255,.22);letter-spacing:.12em">Booking.com</span>
+        <span style="padding:.35rem .9rem;border:1px solid rgba(255,255,255,.09);font-size:.55rem;color:rgba(255,255,255,.22);letter-spacing:.12em">Google</span>
+      </div>
+    </div>
+    <div class="rvgrid">
+      <div class="rvc rv d1"><div class="stars"><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span></div><p class="rvt">Un moment hors du temps, le lagon était d'une beauté à couper le souffle et l'équipe du Manga Bay Lodge était d'une générosité rare. Je n'oublierai jamais ce coucher de soleil.</p><div class="rvfoot"><div><div class="rvn">Sophie M.</div><div class="rvo">France</div></div><span class="rvp">TripAdvisor</span></div></div>
+      <div class="rvc rv d2"><div class="stars"><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span></div><p class="rvt">Exactly what we were looking for: untouched nature, authentic culture and a warm welcome. The snorkeling was incredible. We saw turtles every day, a true paradise.</p><div class="rvfoot"><div><div class="rvn">James &amp; Anna K.</div><div class="rvo">United Kingdom</div></div><span class="rvp">Google</span></div></div>
+      <div class="rvc rv d3"><div class="stars"><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span></div><p class="rvt">Madagascar m'avait toujours fait rêver mais Manga Bay Lodge a dépassé toutes mes attentes. La cuisine, les excursions, le personnel… tout était parfait. Un séjour qui change une vie.</p><div class="rvfoot"><div><div class="rvn">Marie-Claire G.</div><div class="rvo">Belgique</div></div><span class="rvp">Booking.com</span></div></div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cband">
+    <div class="tag c dark rv">Planifiez votre séjour</div>
+    <h2 class="disp-w rv d1" style="max-width:none;margin:1rem auto">Réservez votre évasion<br>à <em>Madagascar</em></h2>
+    <p class="rv d2">Chaque séjour à Manga Bay Lodge est unique. Contactez-nous directement et profitez de nos meilleures offres. Nous répondons généralement sous 24h.</p>
+    <a href="#" class="bf rv d3" onclick="sp('contact');return false">Nous contacter</a>
+    <div class="pdot rv d4">Réponse garantie sous 24h</div>
+  </section>
+</div><!-- /home -->
+
+<!-- ══════════════════════════════════════
+     PAGE : LE LODGE
+══════════════════════════════════════ -->
+<div class="pg" id="pg-lodge">
+  <div class="phero">
+    <div class="phbg"></div>
+    <div class="phcon">
+      <div class="tag c dark">Tuléar · Madagascar</div>
+      <h1 class="ph">Le lodge &amp;<br><em>son âme</em></h1>
+      <p class="lead" style="color:rgba(255,255,255,.42);max-width:520px;margin:1rem auto 0">Un paradis né d'une rencontre entre un lieu d'exception et un peuple de la mer millénaire.</p>
+    </div>
+  </div>
+
+  <div class="split rv">
+    <div class="split-l">
+      <div class="slbg"></div>
+      <div class="sc"><div class="sc-in"><p>Tourisme<br>authentique</p><span>Manga Bay</span></div></div>
+      <div class="sloc">Entre forêt sèche endémique et récifs coralliens</div>
+    </div>
+    <div class="split-r">
+      <div class="tag">Le lieu</div>
+      <h2 class="disp">Un lodge bâti au<br><em>bord du monde</em></h2>
+      <p class="lead" style="margin-top:1.5rem">Manga Bay Lodge s'est construit autour d'une volonté simple et profonde : offrir bien plus qu'un hébergement. Sur la côte sud-ouest de Madagascar, entre forêt sèche endémique et récifs coralliens, le lodge s'intègre dans le paysage du lagon.</p>
+      <p class="lead" style="margin-top:1rem">Ici, chaque bungalow ouvre sur une étendue turquoise que seules les pirogues à balancier des pêcheurs Vezo sillonnent à l'aurore.</p>
+      <div class="sq"><p>Tourisme authentique. Gastronomie locale. Partage culturel. Trois engagements au cœur de l'identité de Manga Bay Lodge.</p></div>
+    </div>
+  </div>
+
+  <section class="sec" style="background:var(--ecru)">
+    <div class="rv">
+      <div class="tag">Les racines</div>
+      <h2 class="disp">Un peuple qui ne pêche pas,<br>mais <em>cherche sa nourriture</em></h2>
+      <p class="lead" style="max-width:700px;margin-top:1.2rem">Les Vezo, « nomades de la mer », sont l'une des 18 ethnies de Madagascar. Leur langue n'a pas de mot pour « pêcher » : ils appellent cela simplement « chercher de la nourriture », <em>mizaha hanina</em> — révélant leur rapport profondément organique à l'océan.</p>
+    </div>
+    <div class="vzgrid">
+      <div class="vzstack rv">
+        <div class="vzcard vz1"><div class="vzn">01</div><div class="vzti">La pirogue à balancier</div><div class="vzb">Taillée dans un tronc de farafatse, 2 à 8 mètres. Voile carrée, couleurs vives, savoir-faire inchangé depuis des générations. Pour un Vezo, elle vaut plus que sa maison.</div></div>
+        <div class="vzcard vz2"><div class="vzn">02</div><div class="vzti">Hommes &amp; femmes de mer</div><div class="vzb">La mer appartient à toute la communauté. Techniques transmises dès l'enfance, jamais écrites.</div></div>
+        <div class="vzcard vz3"><div class="vzn">03</div><div class="vzti">Spiritualité &amp; codes</div><div class="vzb">Les fady (tabous) régissent la vie en mer. Ne jamais prélever plus que ses besoins — ces règles protègent l'océan depuis des siècles.</div></div>
+      </div>
+      <div class="rv d2">
+        <p class="lead">Manga Bay Lodge a choisi de s'inscrire dans ce territoire avec humilité, en nouant un partenariat authentique avec les pêcheurs Vezo locaux. Leurs prises du matin arrivent directement à notre cuisine. Leur pirogue peut devenir votre fenêtre sur le lagon.</p>
+        <div class="vzq">
+          <p>« Pour les Vezo, la mer est une mère nourricière. On ne pêche que ce dont on a besoin. Pêcher plus serait offenser les forces de l'océan. »</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="philsec">
+    <div class="rv" style="text-align:center;max-width:580px;margin:0 auto">
+      <div class="tag c dark">Notre philosophie</div>
+      <h2 class="disp-w">Quatre engagements,<br>un seul <em>territoire</em></h2>
+    </div>
+    <div class="philgrid">
+      <div class="phi rv d1"><div class="phin">01</div><div class="phit">Pêche locale &amp; circuit court</div><div class="phib">Les fruits de mer ont été pêchés ce matin par les pêcheurs Vezo du village voisin. Pas d'intermédiaire, pas de congélation, juste la mer au plus direct.</div></div>
+      <div class="phi rv d2"><div class="phin">02</div><div class="phit">Respect de l'environnement</div><div class="phib">Le lagon est notre patrimoine commun. Manga Bay Lodge s'engage à ne jamais prélever au-delà de ce que l'écosystème peut régénérer.</div></div>
+      <div class="phi rv d3"><div class="phin">03</div><div class="phit">Partage culturel authentique</div><div class="phib">Nos guides locaux sont Vezo. Nos excursions en pirogue sont menées par des pêcheurs. Chaque échange est une rencontre réelle.</div></div>
+      <div class="phi rv d4"><div class="phin">04</div><div class="phit">Tourisme durable &amp; communauté</div><div class="phib">Nos recrutements privilégient les habitants de la région. En choisissant Manga Bay, vous soutenez directement l'économie locale.</div></div>
+    </div>
+  </section>
+
+  <section class="cband">
+    <div class="tag c dark rv">L'évasion vous attend</div>
+    <h2 class="disp-w rv d1" style="max-width:none;margin:1rem auto">Prêts à vivre une<br><em>évasion qui change</em> ?</h2>
+    <p class="rv d2">Le lagon vous attend, la pirogue est prête, la table est mise. Alors qu'attendez-vous ?</p>
+    <a href="#" class="bf rv d3" onclick="sp('contact');return false">Réserver un séjour</a>
+  </section>
+</div><!-- /lodge -->
+
+<!-- ══════════════════════════════════════
+     PAGE : HÉBERGEMENT
+══════════════════════════════════════ -->
+<div class="pg" id="pg-heb">
+  <div class="phero">
+    <div class="phbg"></div>
+    <div class="phcon">
+      <div class="tag c dark">Salary Lagoon</div>
+      <h1 class="ph">Votre refuge<br><em>face au lagon</em></h1>
+      <p class="lead" style="color:rgba(255,255,255,.42);max-width:500px;margin:1rem auto 0">Réveils face à la mer, bruits des vagues, lumière du lagon. Bienvenue chez vous.</p>
+    </div>
+  </div>
+
+  <section class="lppg">
+    <div class="rv">
+      <div class="tag">Bungalows avec vue sur la mer</div>
+      <h2 class="disp">Confort authentique,<br>vue <em>imprenable</em></h2>
+    </div>
+    <div class="lpgrid">
+      <div class="lpc rv d1">
+        <div class="lpc-n">01</div>
+        <div class="lpc-t">Bungalow Double ou Twin</div>
+        <div class="lpc-sub">Vue mer · 2 personnes</div>
+        <div class="lpc-conf">1 grand lit double ou 2 lits simples<br>Vue directe sur la mer, intimité assurée, confort simple et authentique.</div>
+        <div class="lpc-eq-lbl">Équipements inclus</div>
+        <div class="lpc-eqs"><span class="lpc-eq">Énergie solaire</span><span class="lpc-eq">Eau froide &amp; chaude</span><span class="lpc-eq">Coffre-fort</span><span class="lpc-eq">Moustiquaire</span><span class="lpc-eq">Toilettes standard</span></div>
+        <div class="lpc-price"><span class="lpc-pm">280 000 Ar</span><span class="lpc-pe">≈ 58 €</span><span class="lpc-pu">/nuit</span></div>
+        <a href="#" class="bf" onclick="sp('contact');return false">Réserver</a>
+      </div>
+      <div class="lpc rv d2">
+        <div class="lpc-n">02</div>
+        <div class="lpc-t">Bungalow Triple</div>
+        <div class="lpc-sub">Vue mer · 3 personnes</div>
+        <div class="lpc-conf">1 grand lit double + 1 lit simple ou 3 lits simples<br>Parfait pour un petit groupe ou une famille avec enfant. Même confort, même vue, plus d'espace.</div>
+        <div class="lpc-eq-lbl">Équipements inclus</div>
+        <div class="lpc-eqs"><span class="lpc-eq">Énergie solaire</span><span class="lpc-eq">Eau froide &amp; chaude</span><span class="lpc-eq">Coffre-fort</span><span class="lpc-eq">Moustiquaire</span><span class="lpc-eq">Toilettes standard</span></div>
+        <div class="lpc-price"><span class="lpc-pm">310 000 Ar</span><span class="lpc-pe">≈ 66 €</span><span class="lpc-pu">/nuit</span></div>
+        <a href="#" class="bf" onclick="sp('contact');return false">Réserver</a>
+      </div>
+      <div class="lpc rv d1">
+        <div class="lpc-n">03</div>
+        <div class="lpc-t">Bungalow Familial – 4 personnes</div>
+        <div class="lpc-sub">Vue mer · 4 personnes</div>
+        <div class="lpc-conf">1 grand lit double + 1 lit superposé ou 2 lits simples + 1 lit superposé<br>Un espace pensé pour les familles, tout le nécessaire pour un séjour confortable face au lagon.</div>
+        <div class="lpc-eq-lbl">Équipements inclus</div>
+        <div class="lpc-eqs"><span class="lpc-eq">Énergie solaire</span><span class="lpc-eq">Eau froide &amp; chaude</span><span class="lpc-eq">Coffre-fort</span><span class="lpc-eq">Moustiquaire</span><span class="lpc-eq">Toilettes standard</span></div>
+        <div class="lpc-price"><span class="lpc-pm">340 000 Ar</span><span class="lpc-pe">≈ 73 €</span><span class="lpc-pu">/nuit</span></div>
+        <a href="#" class="bf" onclick="sp('contact');return false">Réserver</a>
+      </div>
+      <div class="lpc lpc-feat rv d2">
+        <div class="lpc-feat-badge">Notre plus grand</div>
+        <div class="lpc-n">04</div>
+        <div class="lpc-t">Bungalow Familial – 5 personnes</div>
+        <div class="lpc-sub">Vue mer · 5 personnes · 2 chambres + salon</div>
+        <div class="lpc-conf">1 chambre lit double + 1 chambre 3 lits simples + séjour<br>Notre hébergement le plus spacieux. Idéal pour les grandes familles souhaitant un espace commun tout en préservant leur intimité.</div>
+        <div class="lpc-eq-lbl">Équipements inclus</div>
+        <div class="lpc-eqs"><span class="lpc-eq">Énergie solaire</span><span class="lpc-eq">Eau froide &amp; chaude</span><span class="lpc-eq">Coffre-fort</span><span class="lpc-eq">Moustiquaire</span><span class="lpc-eq">Salon privé</span></div>
+        <div class="lpc-price"><span class="lpc-pm">410 000 Ar</span><span class="lpc-pe">≈ 86 €</span><span class="lpc-pu">/nuit</span></div>
+        <a href="#" class="bf" onclick="sp('contact');return false">Réserver</a>
+      </div>
+    </div>
+
+    <div class="lnote rv" style="margin-top:4rem">
+      <div>
+        <h3>Un cadre pensé pour la nature</h3>
+        <p>Nos bungalows sont construits avec des matériaux locaux pour se fondre dans l'environnement. Électricité solaire, bois naturel, architecture ouverte sur le lagon.</p>
+      </div>
+      <div><a href="#" class="bf" onclick="sp('contact');return false">Réserver un séjour</a></div>
+    </div>
+  </section>
+
+  <section class="garden-sec">
+    <div class="rv">
+      <div class="tag">Bungalow avec vue sur le jardin</div>
+      <h2 class="disp">Au cœur de la <em>nature endémique</em></h2>
+    </div>
+    <div style="margin-top:2.5rem">
+      <div class="garden-card rv d1">
+        <div class="lpc-n" style="color:rgba(0,0,0,.04)">05</div>
+        <div class="lpc-t">Bungalow Double ou Twin – Jardin</div>
+        <div class="lpc-sub">Vue jardin · 2 personnes</div>
+        <div class="lpc-conf" style="margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid var(--rule)">1 chambre avec 1 grand lit double ou 2 lits simples<br>Des bungalows simples et authentiques au cœur de la nature. Parfait pour les voyageurs recherchant une expérience proche de l'environnement.</div>
+        <div class="lpc-eq-lbl">Équipements inclus</div>
+        <div class="lpc-eqs" style="margin-bottom:1.4rem"><span class="lpc-eq">Électricité 24h/24</span><span class="lpc-eq">Toilettes sèches</span><span class="lpc-eq">Douche commune kapoka</span><span class="lpc-eq">Moustiquaire</span></div>
+        <div class="lpc-price"><span class="lpc-pm">100 000 Ar</span><span class="lpc-pe">≈ 20 €</span><span class="lpc-pu">/nuit</span></div>
+        <a href="#" class="bf" onclick="sp('contact');return false">Réserver</a>
+      </div>
+    </div>
+  </section>
+</div><!-- /heb -->
+
+<!-- ══════════════════════════════════════
+     PAGE : RESTAURANT
+══════════════════════════════════════ -->
+<div class="pg" id="pg-resto">
+  <div class="phero">
+    <div class="phbg"></div>
+    <div class="phcon">
+      <div class="tag c dark">Gastronomie locale</div>
+      <h1 class="ph">La mer dans<br><em>votre assiette</em></h1>
+      <p class="lead" style="color:rgba(255,255,255,.42);max-width:500px;margin:1rem auto 0">Savourez l'expérience d'une cuisine authentique au rythme de l'océan.</p>
+    </div>
+  </div>
+
+  <section class="rpgsec">
+    <div class="rv" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:5rem">
+      <div>
+        <div class="tag">Notre cuisine</div>
+        <h2 class="disp">Un menu dicté<br>par la <em>passion</em></h2>
+        <p class="lead" style="margin-top:1.5rem">Notre chef compose chaque jour ses plats à partir des produits de la mer fournis directement par les pêcheurs Vezo, créant un menu qui évolue selon les arrivages de poissons frais et fruits de mer.</p>
+        <p class="lead" style="margin-top:1rem">Une sélection de cocktails et boissons accompagnera vos soirées face au coucher de soleil sur le lagon.</p>
+      </div>
+      <div style="padding:3rem;background:var(--deep)">
+        <div style="font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem">Nos engagements table</div>
+        <div style="display:flex;gap:.9rem;align-items:flex-start;margin-bottom:1.2rem"><span style="color:var(--gold);margin-top:2px">✦</span><p style="font-size:.8rem;color:rgba(255,255,255,.42);line-height:1.7;font-weight:300">Pêche du jour directement des pêcheurs Vezo du village voisin</p></div>
+        <div style="display:flex;gap:.9rem;align-items:flex-start;margin-bottom:1.2rem"><span style="color:var(--gold);margin-top:2px">✦</span><p style="font-size:.8rem;color:rgba(255,255,255,.42);line-height:1.7;font-weight:300">Fruits tropicaux cueillis dans la végétation endémique locale</p></div>
+        <div style="display:flex;gap:.9rem;align-items:flex-start"><span style="color:var(--gold);margin-top:2px">✦</span><p style="font-size:.8rem;color:rgba(255,255,255,.42);line-height:1.7;font-weight:300">Menu renouvelé chaque jour selon les arrivages</p></div>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div class="tag">Nos formules</div>
+      <h2 class="disp">La table <em>Manga Bay</em></h2>
+    </div>
+    <div class="rpgrid">
+      <div class="rpcard rv d1"><div class="rpci">🌅</div><div class="rpct">Petit-déjeuner continental</div><div class="rpcd">Boisson chaude, crêpes ou gâteau, pain, beurre, confiture, miel</div><div class="rpcp">25 000 Ar · ~5 €</div></div>
+      <div class="rpcard rv d2"><div class="rpci">🍳</div><div class="rpct">Petit-déjeuner international</div><div class="rpcd">Continental + jus de fruits frais, œufs, fruits tropicaux</div><div class="rpcp">35 000 Ar · ~7 €</div></div>
+      <div class="rpcard rv d3"><div class="rpci">🍮</div><div class="rpct">Entrée ou dessert</div><div class="rpcd">Saveurs locales et tropicales pour commencer ou terminer votre repas</div><div class="rpcp">19 000 Ar · ~4 €</div></div>
+      <div class="rpcard rv d1"><div class="rpci">🐟</div><div class="rpct">Plat principal</div><div class="rpcd">Pêche du jour sublimée par notre chef selon les arrivages Vezo</div><div class="rpcp">39 000 Ar · ~8 €</div></div>
+      <div class="rpcard rv d2" style="border-color:var(--teal)"><div class="rpci">⭐</div><div class="rpct">Menu complet</div><div class="rpcd">Entrée + plat du jour + dessert · L'expérience gastronomique complète</div><div class="rpcp">77 000 Ar · ~15 €</div></div>
+      <div class="rpcard rv d3"><div class="rpci">🍹</div><div class="rpct">Cocktails &amp; boissons</div><div class="rpcd">Sélection de cocktails et boissons pour vos soirées face au coucher de soleil</div><div class="rpcp">Sur la carte</div></div>
+    </div>
+  </section>
+
+  <section class="cband">
+    <div class="tag c dark rv">Une table ancrée dans son territoire</div>
+    <h2 class="disp-w rv d1" style="max-width:none;margin:1rem auto">Les pêcheurs Vezo<br>approvisionnent <em>notre cuisine</em></h2>
+    <p class="rv d2">Manger au Manga Bay Lodge, c'est soutenir une économie locale. Réservez votre séjour.</p>
+    <a href="#" class="bf rv d3" onclick="sp('contact');return false">Réserver un séjour</a>
+  </section>
+</div><!-- /resto -->
+
+<!-- ══════════════════════════════════════
+     PAGE : ACTIVITÉS
+══════════════════════════════════════ -->
+<div class="pg" id="pg-act">
+  <div class="phero">
+    <div class="phbg"></div>
+    <div class="phcon">
+      <div class="tag c dark">Lagon de Salary</div>
+      <h1 class="ph">L'aventure commence<br><em>au bord du lagon</em></h1>
+      <p class="lead" style="color:rgba(255,255,255,.42);max-width:560px;margin:1rem auto 0">L'un des derniers espaces sauvages préservés de Madagascar. Chaque journée est une invitation à explorer.</p>
+    </div>
+  </div>
+
+  <section class="apgsec">
+    <div class="rv">
+      <div class="tag">Observation des baleines</div>
+      <h2 class="disp">Un spectacle naturel <em>inoubliable</em></h2>
+      <p class="lead" style="max-width:700px;margin-top:1rem">Sorties assurées par Madagascar Diving de Frédéric Lucas du Salary Bay, sur réservation et selon conditions météorologiques.</p>
+    </div>
+    <div class="apgrid" style="margin-top:2.5rem">
+      <div class="apcard rv d1">
+        <span class="apbadge">Juillet – Septembre</span>
+        <div class="aptt">Festival des baleines à bosse</div>
+        <p class="apbody">Chaque année, les baleines à bosse longent la côte du Salary lors de leur grande migration annuelle. Sauts, battements de nageoires, nouveau-nés — et d'autres mammifères marins : dauphins, globicéphales, et parfois des orques.</p>
+        <p class="apnote">Sur réservation · Selon conditions météo · Madagascar Diving – Fred Lucas</p>
+      </div>
+      <div class="apcard rv d2">
+        <span class="apbadge">Nautique · 12–30 m</span>
+        <div class="aptt">Plongée sous-marine</div>
+        <p class="apbody">Mérous, barracudas, napoléons et raies vous attendent. Un plateau sous-marin d'une richesse et d'une préservation exceptionnelles, assuré par Madagascar Diving · CMAS Divemaster.</p>
+        <p class="apnote">Sur réservation · CMAS – Frédéric Lucas</p>
+      </div>
+    </div>
+
+    <div class="rv" style="margin-top:4.5rem">
+      <div class="tag">Activités nautiques depuis le lodge</div>
+      <h2 class="disp">Sur et sous <em>le lagon</em></h2>
+    </div>
+    <div class="apgrid" style="margin-top:2.5rem">
+      <div class="apcard rv d1">
+        <span class="apbadge">Surface</span>
+        <div class="aptt">Snorkeling</div>
+        <p class="apbody">Glissez en silence sur les eaux turquoise à bord d'une pirogue traditionnelle. Masque, palmes et tuba mis à disposition pour découvrir les coraux et la faune sous-marine au-dessus du récif.</p>
+      </div>
+      <div class="apcard rv d2">
+        <span class="apbadge">Loisir · Tous niveaux</span>
+        <div class="aptt">Stand up Paddle</div>
+        <p class="apbody">Explorez les eaux calmes du lagon à votre rythme, entre bancs de sable et reflets émeraude. Une activité accessible à tous, idéale pour profiter du cadre naturel exceptionnel.</p>
+      </div>
+      <div class="apcard rv d1">
+        <span class="apbadge">Tradition Vezo</span>
+        <div class="aptt">Navigation à la rame</div>
+        <p class="apbody">Expérimentez la navigation à la rame sur une mini-pirogue traditionnelle Vezo, glissant doucement sur le lagon, pour découvrir la mer comme les pêcheurs locaux.</p>
+      </div>
+      <div class="apcard rv d2">
+        <span class="apbadge">Tradition</span>
+        <div class="aptt">Pêche traditionnelle</div>
+        <p class="apbody">Partagez le quotidien des pêcheurs locaux et initiez-vous aux techniques ancestrales de pêche pratiquées depuis des générations : à la ligne ou au filet selon la tradition Vezo.</p>
+      </div>
+    </div>
+
+    <div class="rv" style="margin-top:4.5rem">
+      <div class="tag">Excursions &amp; découvertes locales</div>
+      <h2 class="disp">Immersion dans la <em>culture Vezo</em></h2>
+    </div>
+    <div class="apgrid" style="margin-top:2.5rem">
+      <div class="apcard rv d1">
+        <span class="apbadge">5 km Sud</span>
+        <div class="aptt">Marche vers Tsiandamba</div>
+        <p class="apbody">Promenez-vous vers le sud jusqu'au village de Tsiandamba, où de grandes dunes de sable vous offrent un panorama saisissant sur le littoral malgache.</p>
+      </div>
+      <div class="apcard rv d2">
+        <span class="apbadge">3 km Nord</span>
+        <div class="aptt">Village d'Ankaramifoka</div>
+        <p class="apbody">Direction le nord pour plonger dans la vie quotidienne des pêcheurs du village d'Ankaramifoka. Une immersion authentique dans la culture Vezo, loin du tourisme de masse.</p>
+      </div>
+      <div class="apcard rv d1" style="grid-column:span 2">
+        <span class="apbadge">En pirogue</span>
+        <div class="aptt">Visite des villages de pêcheurs</div>
+        <p class="apbody">Partez en pirogue à la rencontre des villages Vezo établis le long du lagon — des communautés qui vivent en harmonie avec la mer depuis des générations. Une rencontre authentique, pas une mise en scène touristique.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="leisure">
+    <div class="rv">
+      <div class="tag">Détente &amp; loisirs</div>
+      <h2 class="disp">Pour ceux qui souhaitent <em>simplement profiter</em></h2>
+    </div>
+    <div class="litems">
+      <span class="li">🏐 Volley-ball</span>
+      <span class="li">🎾 Beach-tennis</span>
+      <span class="li">🎯 Pétanque</span>
+      <span class="li">📚 Salon lecture · Vue sur la baie</span>
+      <span class="li">🎲 Jeux de société</span>
+      <span class="li">🃏 Jeux de cartes</span>
+    </div>
+  </section>
+
+  <section class="cband">
+    <div class="tag c dark rv">Planifiez vos activités</div>
+    <h2 class="disp-w rv d1" style="max-width:none;margin:1rem auto">Certaines activités<br>sont à <em>réserver à l'avance</em></h2>
+    <p class="rv d2">Contactez le Manga Bay Lodge dès maintenant pour organiser votre séjour selon vos envies.</p>
+    <a href="#" class="bf rv d3" onclick="sp('contact');return false">Nous contacter</a>
+  </section>
+</div><!-- /act -->
+
+<!-- ══════════════════════════════════════
+     PAGE : GALERIE
+══════════════════════════════════════ -->
+<div class="pg" id="pg-gal">
+  <section class="gallsec">
+    <div class="gallintro rv">
+      <div>
+        <div class="tag dark">Bungalows · Nature · Gastronomie</div>
+        <h2 class="disp-w">Le Manga Bay Lodge<br><em>en images</em></h2>
+      </div>
+      <div>
+        <p style="font-size:.9rem;color:rgba(255,255,255,.38);line-height:1.9;font-weight:300">Laissez-vous emporter par l'atmosphère unique du Lagon de Salary. La lumière au lever du soleil, l'ombre des palmes sur le sable blanc étincelant, la table dressée face à la mer.</p>
+        <p style="font-size:.7rem;color:rgba(255,255,255,.22);margin-top:.9rem;font-style:italic">Chaque image raconte un séjour.</p>
+      </div>
+    </div>
+    <div class="gallgrid rv d1">
+      <div class="gc tall gcp1"><div class="gcin"><span class="gcl">Le lagon au lever du soleil</span></div></div>
+      <div class="gc nm gcp2"><div class="gcin"><span class="gcl">Bungalow face à la mer</span></div></div>
+      <div class="gc nm gcp3"><div class="gcin"><span class="gcl">Pirogue Vezo traditionnelle</span></div></div>
+      <div class="gc nm gcp4"><div class="gcin"><span class="gcl">Gastronomie locale</span></div></div>
+      <div class="gc nm gcp5"><div class="gcin"><span class="gcl">Snorkeling sur le récif</span></div></div>
+    </div>
+    <div style="margin-top:4rem;text-align:center" class="rv d2">
+      <div class="tag c dark">Prêt à vivre l'expérience ?</div>
+      <p style="font-size:.88rem;color:rgba(255,255,255,.35);max-width:480px;margin:1rem auto 2.2rem;line-height:1.85;font-weight:300">Découvrez nos hébergements et choisissez le bungalow qui vous correspond en face du Lagon de Salary.</p>
+      <a href="#" class="bf" onclick="sp('heb');return false">Découvrir nos hébergements</a>
+    </div>
+  </section>
+</div><!-- /gal -->
+
+<!-- ══════════════════════════════════════
+     PAGE : CONTACT
+══════════════════════════════════════ -->
+<div class="pg" id="pg-contact">
+  <div class="phero" style="height:40vh;min-height:340px">
+    <div class="phbg"></div>
+    <div class="phcon">
+      <div class="tag c dark">Nous écrire</div>
+      <h1 class="ph" style="font-size:clamp(2.5rem,5.5vw,4.8rem)">Manga Bay Lodge<br><em>est à l'écoute</em></h1>
+    </div>
+  </div>
+  <section class="ctsec">
+    <div class="ctinfo rv">
+      <div class="tag">Retrouvez-nous</div>
+      <h2>Une question ?<br><em>Écrivez-nous.</em></h2>
+      <p class="lead">Une demande de réservation, ou simplement l'envie d'en savoir plus ? Nous vous répondons dans les plus brefs délais — généralement sous 24h.</p>
+      <div class="ctchans">
+        <div class="cch"><span class="cchi">💬</span><div><div class="cchl">WhatsApp</div><div class="cchv">+261 38 52 455 84</div></div></div>
+        <div class="cch"><span class="cchi">💬</span><div><div class="cchl">WhatsApp</div><div class="cchv">+261 32 47 454 00</div></div></div>
+        <div class="cch"><span class="cchi">✉️</span><div><div class="cchl">Email</div><div class="cchv">resa@mangabaylodge.com</div></div></div>
+      </div>
+    </div>
+    <div class="rv d2">
+      <div class="ftitle">Discutez avec l'équipe</div>
+      <div class="fg-row">
+        <div class="fg"><label>Nom complet</label><input type="text" placeholder="Jean Dupont"></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="+33 6 00 00 00 00"></div>
+      </div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="votre@email.com"></div>
+      <div class="fg"><label>Objet de la demande</label>
+        <select><option>Demande de réservation</option><option>Information hébergement</option><option>Activités &amp; excursions</option><option>Autre demande</option></select>
+      </div>
+      <div class="fg"><label>Message</label><textarea placeholder="Décrivez votre séjour idéal, vos dates, le nombre de personnes…"></textarea></div>
+      <button class="bf" style="width:100%;text-align:center;display:block">Envoyer la demande</button>
+    </div>
+  </section>
+</div><!-- /contact -->
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" onclick="sp('home')"><img src="data:image/jpeg;base64,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" alt="Manga Bay Lodge" class="logo-ft"></a>
+  <div class="ftcopy">© 2026 Manga Bay Lodge · Ambokatsa, Madagascar<br>resa@mangabaylodge.com · WhatsApp : +261 38 52 455 84</div>
+  <ul class="ftlinks">
+    <li><a href="#" onclick="sp('lodge');return false">Le Lodge</a></li>
+    <li><a href="#" onclick="sp('heb');return false">Hébergements</a></li>
+    <li><a href="#" onclick="sp('act');return false">Activités</a></li>
+    <li><a href="#" onclick="sp('contact');return false">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+const cx=document.getElementById('cx'),cr=document.getElementById('cr');
+document.addEventListener('mousemove',e=>{
+  cx.style.left=e.clientX+'px';cx.style.top=e.clientY+'px';
+  setTimeout(()=>{cr.style.left=e.clientX+'px';cr.style.top=e.clientY+'px'},65);
+});
+document.querySelectorAll('a,button,.lc,.ai,.rvc,.rpcard,.apcard').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cx.style.width='16px';cx.style.height='16px';cr.style.width='48px';cr.style.height='48px'});
+  el.addEventListener('mouseleave',()=>{cx.style.width='9px';cx.style.height='9px';cr.style.width='34px';cr.style.height='34px'});
+});
+
+function sp(name){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  const pg=document.getElementById('pg-'+name);
+  if(pg) pg.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(observe,120);
+}
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>55));
+
+function observe(){
+  const els=document.querySelectorAll('.rv:not(.vis)');
+  const ob=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+  },{threshold:.07,rootMargin:'0px 0px -35px 0px'});
+  els.forEach(el=>ob.observe(el));
+}
+observe();
+</script>
+</body>
+</html>
