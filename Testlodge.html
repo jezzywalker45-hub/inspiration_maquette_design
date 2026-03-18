@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Bay Lodge · Salary Lagoon</title>
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts : Inter + Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf7;
+            color: #1e2a2f;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #3fb4b0;
+            margin-top: 0.5rem;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f5f7a;
+        }
+        .logo span {
+            color: #3fb4b0;
+            font-weight: 400;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #1e2a2f;
+            font-weight: 500;
+            transition: color 0.2s;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            color: #3fb4b0;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* sections */
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid #eae2d7;
+        }
+        .section-hero {
+            padding-top: 3rem;
+            background: linear-gradient(145deg, #faf5eb 0%, #ffffff 100%);
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid #1f5f7a;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #1f5f7a;
+            transition: all 0.25s;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: #1f5f7a;
+            color: white;
+            border-color: #1f5f7a;
+        }
+        .btn-primary:hover {
+            background: #123b4d;
+            border-color: #123b4d;
+        }
+        .btn-outline:hover {
+            background: #1f5f7a;
+            color: white;
+        }
+
+        .badge-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            background: rgba(63, 180, 176, 0.08);
+            padding: 1.8rem 2.5rem;
+            border-radius: 60px;
+            justify-content: space-around;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f5f7a;
+            font-family: 'Playfair Display', serif;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2f4a5c;
+        }
+
+        /* cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 15px 30px -10px rgba(0,40,40,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(63, 180, 176, 0.2);
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 40px -10px rgba(31, 95, 122, 0.2);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #1f5f7a;
+        }
+        .card-price {
+            font-weight: 600;
+            color: #3fb4b0;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        .card ul {
+            margin: 1rem 0;
+            list-style: none;
+        }
+        .card li {
+            padding: 0.2rem 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card li i {
+            color: #3fb4b0;
+            width: 1.2rem;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 28px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            border: 1px solid #f0e8de;
+        }
+        .testimonial i {
+            color: #3fb4b0;
+            font-size: 1.5rem;
+            opacity: 0.4;
+            margin-bottom: 0.8rem;
+        }
+        .testimonial p {
+            font-style: italic;
+            margin: 0.8rem 0;
+        }
+        .testimonial footer {
+            font-weight: 600;
+            color: #1f5f7a;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            aspect-ratio: 4/3;
+            background: #cbd5d0;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #b6cfcc, #8eb5b0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 1.2rem;
+            transition: 0.2s;
+            border: 2px solid white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .form-group {
+            flex: 1 1 250px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid #dad3c9;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            transition: 0.2s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3fb4b0;
+            box-shadow: 0 0 0 3px rgba(63,180,176,0.2);
+        }
+        textarea {
+            border-radius: 28px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            background: #ecf6f5;
+            border-radius: 48px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        footer {
+            background: #1e2a2f;
+            color: #d6dadc;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dotted #cbd5d0;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 800px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .badge-stats {
+                flex-direction: column;
+                gap: 1rem;
+                border-radius: 40px;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Manga Bay <span>· Lodge</span></div>
+            <div class="nav-links">
+                <a href="#home">Accueil</a>
+                <a href="#histoire">Notre histoire</a>
+                <a href="#hebergements">Hébergements</a>
+                <a href="#restaurant">Restaurant</a>
+                <a href="#activites">Activités</a>
+                <a href="#galerie">Galerie</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <!-- HERO / SUD MADAGASCAR -->
+    <section class="section-hero" id="home">
+        <div class="container">
+            <h1>Eveillez vous au bord du lagon de Salary</h1>
+            <p style="font-size: 1.3rem; max-width: 700px; color: #2f4a5c;">Un lodge d’exception niché sur la côte Sud-Ouest de Madagascar. Ici, le temps s’arrête, le lagon murmure, et chaque aube révèle la beauté intacte d’un monde préservé.</p>
+            <div style="margin: 2.5rem 0;">
+                <a href="#" class="btn btn-primary">Réservez maintenant</a>
+                <a href="#" class="btn btn-outline">Découvrir le lodge</a>
+            </div>
+            <div class="badge-stats">
+                <div class="stat-item"><span class="stat-number">7</span> <div class="stat-label">Hébergements</div></div>
+                <div class="stat-item"><span class="stat-number">360°</span> <div class="stat-label">Vue lagon</div></div>
+                <div class="stat-item"><span class="stat-number">15+</span> <div class="stat-label">Activités</div></div>
+                <div class="stat-item"><span class="stat-number">FR/EN</span> <div class="stat-label">Service bilingue</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOTRE HISTOIRE -->
+    <section id="histoire">
+        <div class="container">
+            <h2>Un lieu unique entre la nature et l'authenticité</h2>
+            <p style="font-size: 1.2rem; max-width: 900px;">Né de la rencontre entre un amour profond pour Madagascar et la sagesse des sociétés Vezo, Manga Bay Lodge est votre invitation à rejoindre un monde à part. L’hôtel se situe à Ambokatsa, à environ 90 km au Nord de Tuléar et 12 km du Sud du Salary Lagoon. Notre lodge célèbre la beauté brute d’un littoral encore vierge entre le lagon turquoise et la végétation endémique de la côte Sud-Ouest de Madagascar. Chaque détail est pensé pour vous immerger : l’architecture s’effaçant devant la nature, les saveurs du Canal de Mozambique, et nos équipes issues des communautés Vezo locales qui vous ouvrent les portes d’une culture millénaire. Ici, le voyage reprend sa vraie signification.</p>
+            <a href="#" class="btn btn-outline" style="margin-top: 2rem;">Le lodge</a>
+        </div>
+    </section>
+
+    <!-- HÉBERGEMENTS (page d'accueil + détails) -->
+    <section id="hebergements">
+        <div class="container">
+            <h2>Votre coin paisible face au Canal du Mozambique</h2>
+            <!-- grille des bungalows (intégration de la page hébergement) -->
+            <div class="card-grid">
+                <!-- Double / Twin -->
+                <div class="card">
+                    <h3>Bungalow Double ou Twin</h3>
+                    <p>Lit double ou lits jumeaux – Vue sur le lagon – Séjour pour deux</p>
+                    <p class="card-price">280 000 Ar/nuit (≈58€)</p>
+                    <ul>
+                        <li><i class="fas fa-bolt"></i> électricité solaire</li>
+                        <li><i class="fas fa-water"></i> eau chaude/froide</li>
+                        <li><i class="fas fa-shield-alt"></i> coffre-fort</li>
+                        <li><i class="fas fa-mosquito"></i> moustiquaire</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Réserver</a>
+                </div>
+                <!-- Triple -->
+                <div class="card">
+                    <h3>Bungalow Triple</h3>
+                    <p>Trois couchages – Vue sur le lagon – Idéal entre amis</p>
+                    <p class="card-price">310 000 Ar/nuit (≈66€)</p>
+                    <ul>
+                        <li><i class="fas fa-bolt"></i> électricité solaire</li>
+                        <li><i class="fas fa-water"></i> eau chaude/froide</li>
+                        <li><i class="fas fa-shield-alt"></i> coffre-fort</li>
+                        <li><i class="fas fa-mosquito"></i> moustiquaire</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Réserver</a>
+                </div>
+                <!-- Familial 4p -->
+                <div class="card">
+                    <h3>Bungalow Familial 4p</h3>
+                    <p>Deux chambres – Espace convivial – Idéal pour 4 personnes</p>
+                    <p class="card-price">340 000 Ar/nuit (≈73€)</p>
+                    <ul>
+                        <li><i class="fas fa-bolt"></i> électricité solaire</li>
+                        <li><i class="fas fa-water"></i> eau chaude/froide</li>
+                        <li><i class="fas fa-shield-alt"></i> coffre-fort</li>
+                        <li><i class="fas fa-mosquito"></i> moustiquaire</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Réserver</a>
+                </div>
+                <!-- Familial 5p -->
+                <div class="card">
+                    <h3>Bungalow Familial 5p</h3>
+                    <p>Deux chambres + salon privé – Idéal pour 5 personnes</p>
+                    <p class="card-price">410 000 Ar/nuit (≈86€)</p>
+                    <ul>
+                        <li><i class="fas fa-bolt"></i> électricité solaire</li>
+                        <li><i class="fas fa-water"></i> eau chaude/froide</li>
+                        <li><i class="fas fa-couch"></i> salon privé</li>
+                        <li><i class="fas fa-mosquito"></i> moustiquaire</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Réserver</a>
+                </div>
+            </div>
+            <!-- Vue jardin (simplifié) -->
+            <h3 style="margin-top: 2.5rem;">Bungalow avec vue sur le jardin</h3>
+            <div style="background: #f2f0eb; border-radius: 32px; padding: 2rem; margin: 1rem 0;">
+                <p><strong>Bungalow Double ou Twin jardin</strong> – 100 000 Ar/nuit (≈20€) – toilettes sèches, douche commune à la kapoka, électricité 24h/24, moustiquaire.</p>
+                <a href="#" class="btn btn-outline">Réserver</a>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="btn btn-primary">Tous nos Bungalows</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESTAURANT -->
+    <section id="restaurant">
+        <div class="container">
+            <h2>Les saveurs de la culture Vezo</h2>
+            <p style="font-size: 1.2rem; max-width: 800px;">Petit-déjeuner face au lagon, déjeuner les pieds dans le sable, dîner sous les étoiles, la cuisine chez Manga Bay Lodge célèbre la générosité de la terre et de la mer malgache. Chaque moment à table est une expérience à part entière.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem; margin: 3rem 0;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h3>Formules</h3>
+                    <ul style="list-style: none; font-size: 1.1rem;">
+                        <li><i class="fas fa-utensils" style="color: #3fb4b0;"></i> Menu complet (E+P+D) : 77 000 Ar</li>
+                        <li><i class="fas fa-utensils" style="color: #3fb4b0;"></i> Plat principal : 39 000 Ar</li>
+                        <li><i class="fas fa-utensils" style="color: #3fb4b0;"></i> Entrée ou dessert : 19 000 Ar</li>
+                        <li><i class="fas fa-coffee"></i> Petit-déj continental : 25 000 Ar</li>
+                        <li><i class="fas fa-coffee"></i> Petit-déj international : 35 000 Ar</li>
+                    </ul>
+                </div>
+                <div style="flex: 1;">
+                    <h3>Produits locaux</h3>
+                    <p>Pêche du jour · fruits tropicaux · cuisine malgache</p>
+                    <p><em>Une sélection de cocktails et boissons accompagne vos soirées.</em></p>
+                </div>
+            </div>
+            <a href="#" class="btn btn-primary">Vérifier les disponibilités</a>
+        </div>
+    </section>
+
+    <!-- ACTIVITÉS PHARES -->
+    <section id="activites">
+        <div class="container">
+            <h2>Vivez l'âme de Madagascar</h2>
+            <div class="card-grid">
+                <div class="card"><i class="fas fa-snorkel" style="font-size: 2rem; color: #1f5f7a;"></i><h3>Plongée / snorkeling</h3><p>Explorez les récifs coralliens préservés du lagon.</p></div>
+                <div class="card"><i class="fas fa-fish" style="font-size: 2rem;"></i><h3>Festival des baleines</h3><p>Juillet-septembre : spectacle des baleines à bosse.</p></div>
+                <div class="card"><i class="fas fa-ship" style="font-size: 2rem;"></i><h3>Excursion pirogue Vezo</h3><p>Navigation traditionnelle au rythme de l'océan.</p></div>
+                <div class="card"><i class="fas fa-fish" style="font-size: 2rem;"></i><h3>Pêche traditionnelle</h3><p>Partagez le quotidien des pêcheurs locaux.</p></div>
+            </div>
+            <p style="margin: 2rem 0;"><strong>Activités supplémentaires :</strong> stand up paddle, plongée sous-marine (12-30m), marche vers Tsiandamba, visite villages de pêcheurs, volley, pétanque, jeux de société.</p>
+            <a href="#" class="btn btn-outline">Toutes nos activités</a>
+        </div>
+    </section>
+
+    <!-- AVIS VOYAGEURS -->
+    <section style="background: #faf5eb;">
+        <div class="container">
+            <h2>Ce qu'ils ont vécu ici</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial"><i class="fas fa-quote-left"></i><p>Un moment hors du temps, le lagon d’une beauté à couper le souffle et l’équipe d’une générosité rare. Je n’oublierai jamais ce coucher de soleil.</p><footer>Sophie M. · France</footer></div>
+                <div class="testimonial"><i class="fas fa-quote-left"></i><p>Exactly what we were looking for: untouched nature, authentic culture and a warm welcome. The snorkeling was incredible.</p><footer>James & Anna K. · UK</footer></div>
+                <div class="testimonial"><i class="fas fa-quote-left"></i><p>Madagascar m’avait toujours fait rêver mais Manga Bay Lodge a dépassé toutes mes attentes. Un séjour qui change une vie.</p><footer>Marie Claire G. · Belgique</footer></div>
+            </div>
+            <!-- CTA Planifiez -->
+            <div style="background: #fff; border-radius: 48px; padding: 3rem; margin-top: 4rem; text-align: center;">
+                <h2 style="margin-bottom: 1rem;">Planifiez votre séjour</h2>
+                <p>Réservez votre évasion à Madagascar. Contactez-nous directement et profitez de nos meilleures offres. Réponse sous 24h.</p>
+                <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE LE LODGE (extrait : lieu, racines, philosophie) -->
+    <section style="background: #ffffff;">
+        <div class="container">
+            <h1 style="font-size: 3rem;">Le lodge & son âme</h1>
+            <p style="font-size: 1.3rem; color: #1f5f7a;">Un paradis né d'une rencontre entre un lieu d'exception et un peuple de la mer millénaire.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 4rem 0;">
+                <div>
+                    <h2>Un lodge bâti au bord du monde</h2>
+                    <p>Manga Bay Lodge s'est construit autour d'une volonté simple et profonde : offrir bien plus qu'un hébergement. Sur la côte sud-ouest de Madagascar, entre forêt sèche endémique et récifs coralliens, le lodge s’intègre dans le paysage du lagon et des hommes qui le gardent depuis des siècles. Ici, chaque bungalow ouvre sur une étendue turquoise que seules les pirogues à balancier des pêcheurs Vezo sillonnent à l'aurore.</p>
+                </div>
+                <div>
+                    <h2>Un peuple qui ne pêche pas, mais cherche sa nourriture</h2>
+                    <p>Les Vezo, « nomades de la mer », sont l’une des 18 ethnies de Madagascar. Leur langue n'a pas de mot pour « pêcher » : ils appellent cela « mizaha hanina » (chercher de la nourriture). Manga Bay Lodge a choisi de s'inscrire dans ce territoire avec humilité, en nouant un partenariat authentique avec les pêcheurs Vezo locaux. Leurs prises du matin arrivent directement à notre cuisine.</p>
+                </div>
+            </div>
+            <!-- 4 piliers -->
+            <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; margin-top: 2rem;">
+                <div style="background: #ecf6f5; border-radius: 32px; padding: 2rem;"><i class="fas fa-fish" style="font-size: 2rem;"></i><h3>Pêche locale & circuit court</h3><p>Produits pêchés le matin par les Vezo du village voisin.</p></div>
+                <div style="background: #ecf6f5; border-radius: 32px; padding: 2rem;"><i class="fas fa-leaf"></i><h3>Respect de l'environnement</h3><p>Prélèvement raisonné, en accord avec la sagesse ancestrale.</p></div>
+                <div style="background: #ecf6f5; border-radius: 32px; padding: 2rem;"><i class="fas fa-handshake"></i><h3>Partage culturel authentique</h3><p>Guides Vezo, excursions menées par des pêcheurs.</p></div>
+                <div style="background: #ecf6f5; border-radius: 32px; padding: 2rem;"><i class="fas fa-users"></i><h3>Tourisme durable & communauté</h3><p>Recrutement local, soutien à l'économie et à la culture.</p></div>
+            </div>
+            <hr>
+        </div>
+    </section>
+
+    <!-- GALERIE -->
+    <section id="galerie">
+        <div class="container">
+            <h2>Le Manga Bay Lodge en image</h2>
+            <p>Lumière au lever du soleil, ombre des palmes, table dressée face à la mer.</p>
+            <div class="gallery-grid" style="margin: 2.5rem 0;">
+                <div class="gallery-item">🌅 Lagon</div>
+                <div class="gallery-item">🏝️ Bungalow</div>
+                <div class="gallery-item">🍽️ Restaurant</div>
+                <div class="gallery-item">🛶 Pirogue</div>
+                <div class="gallery-item">🐋 Baleine</div>
+                <div class="gallery-item">🌴 Coucher</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <h2>Manga Bay Lodge est à l’écoute</h2>
+            <div class="contact-info">
+                <p><i class="fab fa-whatsapp"></i> WhatsApp : +261 38 52 455 84 / +261 32 47 454 00</p>
+                <p><i class="far fa-envelope"></i> Email : resa@mangabaylodge.com</p>
+            </div>
+            <h3>Discutez avec l’équipe</h3>
+            <form>
+                <div class="form-row">
+                    <div class="form-group"><input type="text" placeholder="Nom complet"></div>
+                    <div class="form-group"><input type="tel" placeholder="Téléphone"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><input type="email" placeholder="Email"></div>
+                    <div class="form-group"><input type="text" placeholder="Objet de la demande"></div>
+                </div>
+                <textarea rows="5" placeholder="Votre message"></textarea>
+                <button class="btn btn-primary" style="border: none; cursor: pointer; margin-top: 1.5rem;">Envoyer la demande</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <p>© Manga Bay Lodge · Sud de Madagascar · Lagon de Salary</p>
+        <p style="margin-top: 1rem;">Suivez-nous : 
+            <a href="#" style="color: #d4e6e5; margin: 0 0.5rem;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="color: #d4e6e5; margin: 0 0.5rem;"><i class="fab fa-instagram"></i></a>
+        </p>
+    </footer>
+
+    <!-- small script for mobile toggle simulation (pas de fonctionnalité réelle) -->
+    <script>
+        // juste pour rendre le menu responsive symbolique
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            alert('Navigation mobile : Manga Bay Lodge - Accueil, Histoire, Hébergements, Restaurant, Activités, Galerie, Contact');
+        });
+    </script>
+</body>
+</html>
