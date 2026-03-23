@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecoprim — L'excellence de l'impression à Madagascar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0D0D0D;
+    --paper: #F5F0E8;
+    --cream: #EDE7D5;
+    --accent: #C8402A;
+    --accent2: #1A4A3A;
+    --gold: #B8860B;
+    --mid: #6B6355;
+    --white: #FDFAF4;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(245,240,232,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(13,13,13,0.08);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900;
+    letter-spacing: -0.03em; color: var(--ink);
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: var(--paper);
+    padding: 10px 22px; font-size: 0.8rem;
+    letter-spacing: 0.1em; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif; font-weight: 600;
+    text-transform: uppercase;
+  }
+  .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+    line-height: 1.08; font-weight: 900; letter-spacing: -0.02em;
+    margin-bottom: 32px; color: var(--ink);
+  }
+  h1 em { color: var(--accent); font-style: italic; }
+  .hero-quote {
+    border-left: 3px solid var(--accent2);
+    padding-left: 20px; margin-bottom: 40px;
+    max-width: 420px;
+  }
+  .hero-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-style: italic; line-height: 1.65;
+    color: var(--mid); margin-bottom: 10px;
+  }
+  .hero-quote cite {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent2); font-style: normal;
+  }
+  .hero-btns { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 14px 32px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; border: none; cursor: pointer;
+    transition: all 0.25s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--ink); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--ink);
+    padding: 13px 28px; border: 1.5px solid var(--ink);
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+    transition: all 0.25s; text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--paper); }
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--ink);
+  }
+  .hero-right::before {
+    content: 'ECOPRIM';
+    position: absolute; bottom: -20px; left: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 11rem; font-weight: 900; line-height: 1;
+    color: rgba(255,255,255,0.04); white-space: nowrap;
+    pointer-events: none; z-index: 1;
+  }
+  .hero-tags {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 160px;
+    display: flex; flex-wrap: wrap; align-content: center;
+    gap: 10px; padding: 60px 50px; z-index: 2;
+  }
+  .tag {
+    padding: 8px 18px;
+    border: 1px solid rgba(245,240,232,0.2);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(245,240,232,0.7); transition: all 0.3s; cursor: default;
+  }
+  .tag.active, .tag:hover {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+  }
+  .hero-stats {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; border-top: 1px solid rgba(245,240,232,0.1); z-index: 3;
+  }
+  .hero-stat {
+    flex: 1; padding: 24px 28px;
+    border-right: 1px solid rgba(245,240,232,0.1);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--paper); line-height: 1;
+  }
+  .hero-stat .label {
+    font-size: 0.72rem; color: rgba(245,240,232,0.5);
+    letter-spacing: 0.06em; margin-top: 4px;
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden; background: var(--accent); padding: 14px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 48px; white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 16px;
+  }
+  .marquee-item::after { content: '—'; opacity: 0.4; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTIONS COMMON */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3vw, 2.8rem);
+    font-weight: 700; line-height: 1.15; letter-spacing: -0.02em;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .about-text p {
+    font-size: 1rem; line-height: 1.8; color: var(--mid);
+    margin: 24px 0 36px;
+  }
+  .about-numbers {
+    display: flex; gap: 40px; margin-top: 20px;
+    padding-top: 40px; border-top: 1px solid rgba(13,13,13,0.12);
+  }
+  .about-num .big {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900; line-height: 1; color: var(--accent);
+  }
+  .about-num .small {
+    font-size: 0.78rem; color: var(--mid); letter-spacing: 0.04em;
+    margin-top: 6px; line-height: 1.4;
+  }
+  .about-visual { position: relative; height: 480px; }
+  .about-card {
+    position: absolute; background: var(--ink); padding: 40px;
+    width: 75%; top: 0; right: 0;
+  }
+  .about-card p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-style: italic; line-height: 1.7; color: var(--paper); margin: 0;
+  }
+  .about-card-accent {
+    position: absolute; bottom: 0; left: 0;
+    width: 55%; height: 55%;
+    background: var(--accent2);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-card-accent .year {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 900; color: rgba(245,240,232,0.15); line-height: 1;
+  }
+  .about-card-accent .founded {
+    position: absolute; bottom: 24px; left: 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,240,232,0.6);
+  }
+
+  /* SERVICES */
+  #services { background: var(--white); }
+  .services-head {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    align-items: end; margin-bottom: 64px;
+  }
+  .services-head .subtitle {
+    font-size: 1rem; color: var(--mid); line-height: 1.7; align-self: end;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+    background: rgba(13,13,13,0.1); border: 1px solid rgba(13,13,13,0.1);
+  }
+  .service-item {
+    background: var(--white); padding: 32px 24px;
+    transition: all 0.25s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .service-item::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); transform: scaleX(0);
+    transition: transform 0.3s; transform-origin: left;
+  }
+  .service-item:hover { background: var(--ink); }
+  .service-item:hover .service-name { color: var(--paper); }
+  .service-item:hover .service-desc { color: rgba(245,240,232,0.6); }
+  .service-item:hover::after { transform: scaleX(1); }
+  .service-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 16px;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; transition: color 0.25s;
+  }
+  .service-desc {
+    font-size: 0.8rem; line-height: 1.6; color: var(--mid); transition: color 0.25s;
+  }
+  .services-cta {
+    margin-top: 60px; padding: 48px 56px;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  }
+  .services-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: var(--paper);
+  }
+  .services-cta p {
+    font-size: 0.88rem; color: rgba(245,240,232,0.6);
+    margin-top: 8px; max-width: 480px; line-height: 1.6;
+  }
+
+  /* PROCESS */
+  #process { background: var(--ink); color: var(--paper); }
+  #process .section-label { color: var(--accent); }
+  #process .section-label::before { background: var(--accent); }
+  #process h2 { color: var(--paper); margin-bottom: 10px; }
+  .process-subtitle {
+    font-size: 1rem; color: rgba(245,240,232,0.5);
+    margin-bottom: 72px; max-width: 520px; line-height: 1.7;
+  }
+  .process-track {
+    position: relative;
+    display: grid; grid-template-columns: repeat(8, 1fr);
+  }
+  .process-track::before {
+    content: ''; position: absolute;
+    top: 36px; left: 36px; right: 36px; height: 1px;
+    background: rgba(245,240,232,0.12); z-index: 0;
+  }
+  .process-step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; position: relative; z-index: 1; padding: 0 8px;
+  }
+  .step-circle {
+    width: 72px; height: 72px;
+    border: 1px solid rgba(245,240,232,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px; transition: all 0.3s;
+    background: var(--ink); cursor: default;
+  }
+  .step-circle:hover { border-color: var(--accent); background: var(--accent); }
+  .step-circle span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.5); transition: color 0.3s;
+  }
+  .step-circle:hover span { color: #fff; }
+  .step-name {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: rgba(245,240,232,0.7);
+  }
+
+  /* WHY */
+  #why { background: var(--cream); }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 2fr; gap: 80px;
+    align-items: start; margin-top: 56px;
+  }
+  .why-intro { position: sticky; top: 120px; }
+  .why-intro h2 { margin-bottom: 20px; }
+  .why-intro p { font-size: 0.9rem; color: var(--mid); line-height: 1.7; }
+  .why-items { display: flex; flex-direction: column; }
+  .why-item {
+    padding: 40px 0; border-bottom: 1px solid rgba(13,13,13,0.1);
+    display: grid; grid-template-columns: auto 1fr; gap: 36px;
+    align-items: start; transition: padding 0.3s;
+  }
+  .why-item:first-child { border-top: 1px solid rgba(13,13,13,0.1); }
+  .why-item:hover { padding-left: 16px; }
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900; line-height: 1;
+    color: rgba(13,13,13,0.08);
+  }
+  .why-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; margin-top: 8px;
+  }
+  .why-content p { font-size: 0.9rem; color: var(--mid); line-height: 1.75; }
+
+  /* CERTIFICATIONS */
+  #certifications { background: var(--accent2); color: var(--paper); }
+  #certifications .section-label { color: rgba(245,240,232,0.5); }
+  #certifications .section-label::before { background: rgba(245,240,232,0.5); }
+  #certifications h2 { color: var(--paper); margin-bottom: 16px; }
+  .cert-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; margin-top: 56px;
+  }
+  .cert-text p {
+    font-size: 0.95rem; line-height: 1.75;
+    color: rgba(245,240,232,0.7); margin-bottom: 40px;
+  }
+  .cert-badges { display: flex; flex-direction: column; gap: 20px; }
+  .cert-badge {
+    display: flex; align-items: center; gap: 24px;
+    padding: 28px 32px; border: 1px solid rgba(245,240,232,0.15);
+  }
+  .cert-icon {
+    width: 56px; height: 56px; min-width: 56px;
+    border: 2px solid rgba(245,240,232,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.08em;
+    color: var(--paper); text-align: center; line-height: 1.3;
+  }
+  .cert-info strong {
+    display: block; font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--paper); margin-bottom: 4px;
+  }
+  .cert-info span { font-size: 0.78rem; color: rgba(245,240,232,0.5); }
+  .cert-cta-box {
+    background: rgba(245,240,232,0.05);
+    border: 1px solid rgba(245,240,232,0.1);
+    padding: 56px 48px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .cert-cta-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: var(--paper); margin-bottom: 16px;
+  }
+  .cert-cta-box p {
+    font-size: 0.9rem; color: rgba(245,240,232,0.6);
+    line-height: 1.7; margin-bottom: 36px;
+  }
+  .btn-light {
+    background: var(--paper); color: var(--ink);
+    padding: 14px 32px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; border: none; cursor: pointer;
+    transition: all 0.25s; text-decoration: none; display: inline-block;
+    align-self: flex-start;
+  }
+  .btn-light:hover { background: var(--accent); color: #fff; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: var(--paper);
+    padding: 60px 60px 30px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+    margin-bottom: 30px;
+  }
+  .footer-brand .logo { color: var(--paper); font-size: 1.8rem; }
+  .footer-brand p {
+    font-size: 0.85rem; color: rgba(245,240,232,0.5);
+    line-height: 1.7; margin-top: 16px;
+  }
+  footer h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  footer ul { list-style: none; }
+  footer ul li {
+    font-size: 0.85rem; color: rgba(245,240,232,0.5);
+    margin-bottom: 8px; cursor: pointer; transition: color 0.2s;
+  }
+  footer ul li:hover { color: var(--paper); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 0.75rem; color: rgba(245,240,232,0.3); }
+  .iso-badges { display: flex; gap: 10px; margin-top: 20px; }
+  .iso-pill {
+    padding: 6px 14px; border: 1px solid rgba(245,240,232,0.2);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(245,240,232,0.4);
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2) { transition-delay: 0.08s; }
+  .fade-up:nth-child(3) { transition-delay: 0.16s; }
+  .fade-up:nth-child(4) { transition-delay: 0.24s; }
+  .fade-up:nth-child(5) { transition-delay: 0.32s; }
+  .fade-up:nth-child(6) { transition-delay: 0.4s; }
+  .fade-up:nth-child(7) { transition-delay: 0.48s; }
+  .fade-up:nth-child(8) { transition-delay: 0.56s; }
+  .fade-up:nth-child(9) { transition-delay: 0.64s; }
+  .fade-up:nth-child(10) { transition-delay: 0.72s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">eco<span>prim</span></a>
+  <ul>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Processus</a></li>
+    <li><a href="#why">Pourquoi nous</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+  </ul>
+  <button class="nav-cta">Demander un devis</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Imprimerie industrielle et commerciale</p>
+    <h1>L'excellence de l'<em>impression</em> à Madagascar</h1>
+    <blockquote class="hero-quote">
+      <p>« La force d'un groupe vient de la cohésion de son équipe, mais surtout de l'entraide. »</p>
+      <cite>Edgard Razafindravahy — Président du Groupe PREY</cite>
+    </blockquote>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Nos services</a>
+      <a href="#about" class="btn-outline">Notre histoire</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-tags">
+      <span class="tag active">Cahiers</span>
+      <span class="tag">Brochures</span>
+      <span class="tag">Agendas</span>
+      <span class="tag">Booklets</span>
+      <span class="tag">Cartes</span>
+      <span class="tag">Affiches</span>
+      <span class="tag">Carnets</span>
+      <span class="tag">Calendriers</span>
+      <span class="tag">Catalogues</span>
+      <span class="tag">Dossiers</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">+33</div>
+        <div class="label">Années d'expérience</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">+25</div>
+        <div class="label">Collaborateurs</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">1</div>
+        <div class="label">Groupe de référence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Cahier</span>
+    <span class="marquee-item">Brochure</span>
+    <span class="marquee-item">Agenda</span>
+    <span class="marquee-item">Booklet</span>
+    <span class="marquee-item">Carte</span>
+    <span class="marquee-item">Affiche</span>
+    <span class="marquee-item">Carnet</span>
+    <span class="marquee-item">Calendrier</span>
+    <span class="marquee-item">Catalogue</span>
+    <span class="marquee-item">Dossier administratif</span>
+    <span class="marquee-item">Cahier</span>
+    <span class="marquee-item">Brochure</span>
+    <span class="marquee-item">Agenda</span>
+    <span class="marquee-item">Booklet</span>
+    <span class="marquee-item">Carte</span>
+    <span class="marquee-item">Affiche</span>
+    <span class="marquee-item">Carnet</span>
+    <span class="marquee-item">Calendrier</span>
+    <span class="marquee-item">Catalogue</span>
+    <span class="marquee-item">Dossier administratif</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text">
+    <p class="section-label">À propos d'Ecoprim</p>
+    <h2>Découvrez l'histoire de l'<em style="font-style:italic;color:var(--accent)">Ecoprim</em></h2>
+    <p>Fondée en 1992 au sein du Groupe Prey, Ecoprim, SARL, accompagne les marques les plus exigeantes avec des solutions d'impression innovantes et sur mesure. Grâce à un parc machine moderne et une équipe passionnée, nous donnons vie à des projets à la hauteur de vos ambitions.</p>
+    <a href="#" class="btn-primary">En savoir plus</a>
+    <div class="about-numbers">
+      <div class="about-num">
+        <div class="big">+33</div>
+        <div class="small">Années<br>d'expérience</div>
+      </div>
+      <div class="about-num">
+        <div class="big">+25</div>
+        <div class="small">Collaborateurs<br>passionnés</div>
+      </div>
+      <div class="about-num">
+        <div class="big">1</div>
+        <div class="small">Groupe de<br>référence</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual">
+    <div class="about-card">
+      <p>Nous donnons vie à des projets à la hauteur de vos ambitions, avec des solutions d'impression sur mesure depuis 1992.</p>
+    </div>
+    <div class="about-card-accent">
+      <div class="year">1992</div>
+      <span class="founded">Fondée en 1992</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-head">
+    <div>
+      <p class="section-label">Nos services</p>
+      <h2>Tous vos travaux d'impression</h2>
+    </div>
+    <p class="subtitle">Nous réalisons tout type de support avec soin à l'aide des meilleures technologies disponibles à Madagascar.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-item fade-up">
+      <div class="service-num">01</div>
+      <div class="service-name">Cahier</div>
+      <div class="service-desc">Intérieur et couverture sur mesure, à l'image de votre marque ou établissement.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">02</div>
+      <div class="service-name">Brochure</div>
+      <div class="service-desc">Brochures multi-pages pour présenter vos produits, services ou activités.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">03</div>
+      <div class="service-name">Agenda</div>
+      <div class="service-desc">Agendas personnalisés, journaliers ou hebdomadaires, pour particuliers et entreprises.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">04</div>
+      <div class="service-name">Booklet</div>
+      <div class="service-desc">Petits livrets agrafés ou reliés, idéaux pour les guides, programmes et notices.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">05</div>
+      <div class="service-name">Carte</div>
+      <div class="service-desc">Cartes de visite, de vœux, d'invitation avec finitions soignées.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">06</div>
+      <div class="service-name">Affiche</div>
+      <div class="service-desc">Affiches grand format pour vos campagnes, événements et points de vente.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">07</div>
+      <div class="service-name">Carnet</div>
+      <div class="service-desc">Carnets à souches, de notes ou de bons de commande, numérotés ou non.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">08</div>
+      <div class="service-name">Calendrier</div>
+      <div class="service-desc">Calendriers muraux ou de bureau, personnalisés aux couleurs de votre entreprise.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">09</div>
+      <div class="service-name">Catalogue</div>
+      <div class="service-desc">Catalogues produits détaillés, avec mise en page professionnelle et haute qualité.</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-num">10</div>
+      <div class="service-name">Dossier administratif</div>
+      <div class="service-desc">Chemises, pochettes à rabat aux couleurs et logo de votre organisation.</div>
+    </div>
+  </div>
+  <div class="services-cta">
+    <div>
+      <h3>Vous avez un projet ?</h3>
+      <p>Confiez-le à notre équipe. Nous vous accompagnons de la conception à la livraison, avec des délais adaptés à vos besoins.</p>
+    </div>
+    <a href="#" class="btn-primary" style="white-space:nowrap">Demander un devis</a>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <p class="section-label">Notre méthode</p>
+  <h2>De l'idée à l'impression</h2>
+  <p class="process-subtitle">8 étapes vers l'impression idéale — un processus rigoureux pour un résultat impeccable.</p>
+  <div class="process-track">
+    <div class="process-step fade-up">
+      <div class="step-circle"><span>01</span></div>
+      <div class="step-name">Fichier</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle"><span>02</span></div>
+      <div class="step-name">Pré-presse</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle"><span>03</span></div>
+      <div class="step-name">CTP</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle"><span>04</span></div>
+      <div class="step-name">Impression</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle"><span>05</span></div>
+      <div class="step-name">Finition</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle"><span>06</span></div>
+      <div class="step-name">Façonnage</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle"><span>07</span></div>
+      <div class="step-name">Conditionnement</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-circle"><span>08</span></div>
+      <div class="step-name">Expédition</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="why-grid">
+    <div class="why-intro">
+      <p class="section-label">Pourquoi nous choisir</p>
+      <h2>L'excellence au service de votre image</h2>
+      <p style="margin-top:20px">Trois engagements fondamentaux qui guident chacun de nos projets, de la conception à la livraison.</p>
+    </div>
+    <div class="why-items">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div class="why-content">
+          <h3>Qualité &amp; flexibilité</h3>
+          <p>Nous utilisons les technologies d'impression les plus récentes pour garantir un rendu impeccable, que ce soit pour une petite série ou un tirage industriel. Chaque commande est traitée avec la même exigence.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div class="why-content">
+          <h3>Réactivité &amp; fiabilité</h3>
+          <p>Nous respectons vos délais et tenons nos engagements. Notre organisation interne nous permet de répondre rapidement aux demandes urgentes sans jamais compromettre la qualité du résultat final.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div class="why-content">
+          <h3>Proximité &amp; engagement</h3>
+          <p>Basés à Antananarivo, nous connaissons les réalités du marché malgache. Nous construisons des relations durables avec nos clients, fondées sur la confiance et l'écoute.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">Certifications</p>
+  <h2>Un engagement certifié<br>pour votre tranquillité</h2>
+  <div class="cert-layout">
+    <div class="cert-text">
+      <p>Chez Ecoprim, nous plaçons la responsabilité environnementale et la maîtrise de la qualité au cœur de notre modèle. Une double certification qui témoigne de notre sérieux.</p>
+      <div class="cert-badges">
+        <div class="cert-badge">
+          <div class="cert-icon">ISO<br>9001<br>2015</div>
+          <div class="cert-info">
+            <strong>ISO 9001:2015</strong>
+            <span>Système de management qualité</span>
+          </div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-icon">ISO<br>14001</div>
+          <div class="cert-info">
+            <strong>ISO 14001</strong>
+            <span>Management environnemental</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cert-cta-box">
+      <h3>Travaillons ensemble</h3>
+      <p>Ecoprim, c'est l'imprimerie qui vous comprend. Confiez-nous vos projets et bénéficiez d'un accompagnement personnalisé de la conception à la livraison.</p>
+      <a href="#" class="btn-light">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">eco<span style="color:var(--accent)">prim</span></a>
+      <p>L'imprimerie de référence à Madagascar depuis 1992. Membre du Groupe Prey.</p>
+      <div class="iso-badges">
+        <span class="iso-pill">ISO 9001:2015</span>
+        <span class="iso-pill">ISO 14001</span>
+      </div>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li>Cahiers &amp; Brochures</li>
+        <li>Agendas &amp; Booklets</li>
+        <li>Affiches &amp; Cartes</li>
+        <li>Carnets &amp; Calendriers</li>
+        <li>Catalogues &amp; Dossiers</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Entreprise</h4>
+      <ul>
+        <li>À propos</li>
+        <li>Notre équipe</li>
+        <li>Certifications</li>
+        <li>Processus</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>Antananarivo, Madagascar</li>
+        <li>Enceinte SITRAM</li>
+        <li>contact@ecoprim.mg</li>
+        <li>Demander un devis</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Ecoprim SARL — Groupe Prey. Tous droits réservés.</p>
+    <p style="font-size:0.72rem;color:rgba(245,240,232,0.2)">Imprimerie industrielle et commerciale à Madagascar</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  const tags = document.querySelectorAll('.tag');
+  let current = 0;
+  setInterval(() => {
+    tags[current].classList.remove('active');
+    current = (current + 1) % tags.length;
+    tags[current].classList.add('active');
+  }, 1800);
+</script>
+</body>
+</html>
