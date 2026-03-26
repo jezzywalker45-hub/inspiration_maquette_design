@@ -1,390 +1,577 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>13 Cartes avec Modales Modernes</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manga Bay Lodge – Our Bungalows</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold:       #C89A2E;
+      --gold-dark:  #9A7318;
+      --gold-light: #F5EDD6;
+      --warm-white: #FAFAF7;
+      --dark:       #1A1A16;
+      --muted:      #7A786E;
+      --border:     #E6E2D8;
+      --bg-soft:    #F2F0EB;
+      --bg-nature:  #EDF1EC;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--dark);
+      font-size: 15px;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 58px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--dark); text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      letter-spacing: 0.05em; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-links a.active {
+      color: var(--dark); font-weight: 500;
+      border-bottom: 1.5px solid var(--dark); padding-bottom: 2px;
+    }
+    .btn-nav {
+      background: var(--gold); color: #fff; border: none;
+      padding: 9px 20px; font-family: 'Jost', sans-serif;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em;
+      border-radius: 4px; cursor: pointer; text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-nav:hover { background: var(--gold-dark); color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; height: 480px; overflow: hidden;
+    }
+    .hero img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center 55%; display: block;
+      transform: scale(1.04);
+      animation: heroZoom 8s ease-out forwards;
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.00); }
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(10,12,8,0.35) 0%,
+        rgba(10,12,8,0.45) 50%,
+        rgba(10,12,8,0.20) 100%);
+    }
+    .hero-text {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; color: #fff; padding: 0 24px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700; line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+      animation: fadeUp .9s .2s both;
+    }
+    .hero-sub {
+      margin-top: 14px;
+      font-size: 0.9rem; font-weight: 300;
+      opacity: 0.88; letter-spacing: 0.04em;
+      max-width: 480px;
+      animation: fadeUp .9s .4s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SEA SECTION ── */
+    .sea-section { padding: 64px 0 0; background: #fff; }
+    .section-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700; line-height: 1.15;
+      margin-bottom: 48px;
+    }
+
+    /* ── CARD GRID ── */
+    .bungalow-card {
+      position: relative; overflow: hidden;
+      border-radius: 6px; background: #fff;
+      transition: box-shadow .3s;
+    }
+    .bungalow-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.10); }
+    .bungalow-card img {
+      width: 100%; height: 240px; object-fit: cover;
+      display: block; transition: transform .5s;
+    }
+    .bungalow-card:hover img { transform: scale(1.03); }
+    .card-price-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: rgba(255,255,255,0.92);
+      font-size: 0.78rem; font-weight: 500;
+      padding: 5px 12px; border-radius: 20px;
+      color: var(--dark); letter-spacing: 0.02em;
+    }
+    .card-price-badge span { color: var(--muted); font-weight: 400; }
+    .card-body { padding: 18px 4px 28px; }
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
+    .card-tags { display: flex; gap: 12px; flex-wrap: wrap; }
+    .card-tag {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em;
+    }
+    .card-tag svg { color: var(--muted); }
+    .card-arrow {
+      position: absolute; bottom: 22px; right: 4px;
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: var(--dark);
+      transition: background .2s, border-color .2s;
+    }
+    .card-arrow:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+    /* Featured card (large) */
+    .bungalow-card.featured { grid-column: span 1; }
+    .bungalow-card.featured img { height: 320px; }
+    .card-details-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px; margin-top: 14px;
+    }
+    .card-detail-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+    .card-detail-tag {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 3px;
+      color: var(--muted);
+    }
+    .btn-details {
+      display: inline-block;
+      background: var(--dark); color: #fff;
+      border: none; padding: 10px 22px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.07em; border-radius: 4px;
+      cursor: pointer; text-decoration: none;
+      transition: background .2s; margin-top: 16px;
+    }
+    .btn-details:hover { background: var(--gold); color: #fff; }
+
+    /* ── NATURE SECTION ── */
+    .nature-section {
+      background: var(--bg-nature);
+      padding: 80px 0;
+      position: relative; overflow: hidden;
+    }
+    .nature-section::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .nature-img-wrap {
+      position: relative; height: 420px;
+      border-radius: 8px; overflow: hidden;
+    }
+    .nature-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .nature-label-badge {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px;
+    }
+    .nature-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      font-weight: 700; line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .nature-desc {
+      font-size: 0.87rem; color: var(--muted);
+      line-height: 1.8; margin-bottom: 28px;
+      max-width: 420px;
+    }
+
+    /* Mini booking card */
+    .booking-mini {
+      background: #fff;
+      border-radius: 8px;
+      padding: 22px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+    .booking-mini-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .booking-mini-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700;
+    }
+    .booking-mini-price {
+      text-align: right;
+    }
+    .booking-mini-price .amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 700;
+    }
+    .booking-mini-price .unit {
+      font-size: 0.7rem; color: var(--muted); display: block;
+    }
+    .booking-feature {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.82rem; color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .booking-feature svg { color: var(--gold); flex-shrink: 0; }
+    .btn-avail {
+      display: block; width: 100%; text-align: center;
+      border: 1.5px solid var(--border);
+      background: transparent; color: var(--dark);
+      padding: 11px; border-radius: 5px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.06em; margin-top: 18px;
+      cursor: pointer; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-avail:hover { border-color: var(--gold); background: var(--gold-light); }
+
+    /* ── NATURE CTA ── */
+    .cta-section {
+      background: var(--warm-white);
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+    .cta-icon {
+      margin: 0 auto 24px;
+      width: 42px; height: 42px;
+      color: var(--gold);
+    }
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 700; margin-bottom: 18px;
+    }
+    .cta-text {
+      font-size: 0.88rem; color: var(--muted);
+      line-height: 1.8; max-width: 420px; margin: 0 auto 36px;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: var(--gold); color: #fff;
+      border: none; padding: 14px 36px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem; font-weight: 500;
+      letter-spacing: 0.08em; border-radius: 5px;
+      cursor: pointer; text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .btn-cta:hover { background: var(--gold-dark); color: #fff; transform: translateY(-2px); }
+    .cta-deco {
+      position: absolute; top: 32px; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 48px; background: var(--border);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1D2228;
+      color: rgba(255,255,255,0.5);
+      padding: 44px 48px 32px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--gold);
+      margin-bottom: 4px; display: block;
+    }
+    .footer-tagline { font-size: 0.75rem; opacity: .6; }
+    .footer-links { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 0.78rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 0.7rem; opacity: .45; text-align: right; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { height: 320px; }
+      .cta-section { padding: 64px 0 56px; }
+      .footer-copy { text-align: left; margin-top: 16px; }
+    }
+  </style>
 </head>
-<body class="p-4">
-    <div class="container">
-        <h1 class="mb-4">13 Cartes Cliquables <i class="bi bi-arrow-left-right"></i></h1>
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-            <!-- Carte 1 -->
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal1">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-1-circle display-5 text-primary"></i>
-                        </div>
-                        <h5 class="card-title">Première Carte</h5>
-                        <p class="card-text text-muted">Cliquez pour ouvrir les détails</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Carte 2 -->
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal2">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-2-circle display-5 text-success"></i>
-                        </div>
-                        <h5 class="card-title">Deuxième Carte</h5>
-                        <p class="card-text text-muted">Informations détaillées</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-success"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Carte 3 -->
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal3">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-3-circle display-5 text-warning"></i>
-                        </div>
-                        <h5 class="card-title">Troisième Carte</h5>
-                        <p class="card-text text-muted">Contenu spécial</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Carte 4 -->
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal4">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-4-circle display-5 text-danger"></i>
-                        </div>
-                        <h5 class="card-title">Quatrième Carte</h5>
-                        <p class="card-text text-muted">Options avancées</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-danger"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Répétez pour les cartes 5 à 12 avec des icônes différentes -->
-            
-            <!-- Carte 5 à 8 - Exemple avec génération rapide -->
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal5">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-5-circle display-5 text-info"></i>
-                        </div>
-                        <h5 class="card-title">Carte 5</h5>
-                        <p class="card-text text-muted">Fonctionnalité A</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-info"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal6">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-6-circle display-5 text-primary"></i>
-                        </div>
-                        <h5 class="card-title">Carte 6</h5>
-                        <p class="card-text text-muted">Fonctionnalité B</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal7">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-7-circle display-5 text-success"></i>
-                        </div>
-                        <h5 class="card-title">Carte 7</h5>
-                        <p class="card-text text-muted">Fonctionnalité C</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-success"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal8">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-8-circle display-5 text-warning"></i>
-                        </div>
-                        <h5 class="card-title">Carte 8</h5>
-                        <p class="card-text text-muted">Fonctionnalité D</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Carte 9 à 13 - Ajoutez selon le même modèle -->
-            <!-- Pour cet exemple, je vais ajouter juste la 13ème pour compléter -->
-            
-            <div class="col">
-                <div class="card h-100 clickable-card border-0 shadow-hover" data-bs-toggle="modal" data-bs-target="#modal13">
-                    <div class="card-body text-center">
-                        <div class="icon-wrapper mb-3">
-                            <i class="bi bi-13-circle display-5 text-dark"></i>
-                        </div>
-                        <h5 class="card-title">Dernière Carte</h5>
-                        <p class="card-text text-muted">Fonctionnalité finale</p>
-                        <div class="mt-3">
-                            <i class="bi bi-arrow-right-circle text-dark"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body>
 
-    <!-- Modale 1 avec navigation -->
-    <div class="modal fade" id="modal1" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title">
-                        <i class="bi bi-1-circle me-2"></i>Première Carte - Détails
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-5">
-                    <div class="row align-items-center">
-                        <div class="col-md-4 text-center">
-                            <i class="bi bi-star-fill display-1 text-warning"></i>
-                        </div>
-                        <div class="col-md-8">
-                            <h4>Contenu Principal</h4>
-                            <p class="lead">Description détaillée de la première carte avec des informations importantes.</p>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Fonctionnalité 1</li>
-                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Fonctionnalité 2</li>
-                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Fonctionnalité 3</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        <i class="bi bi-x-circle me-1"></i>Fermer
-                    </button>
-                    <div class="nav-icons">
-                        <button class="btn btn-outline-primary disabled">
-                            <i class="bi bi-chevron-left"></i> Précédent
-                        </button>
-                        <button class="btn btn-primary ms-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">
-                            Suivant <i class="bi bi-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="#" class="nav-logo">Manga Bay Lodge</a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Our Bungalows</a></li>
+    <li><a href="#">Experiences</a></li>
+    <li><a href="#">Sustainability</a></li>
+    <li><a href="#">Gallery</a></li>
+  </ul>
+  <a href="#" class="btn-nav">Book Now</a>
+</nav>
 
-    <!-- Modale 2 avec navigation complète -->
-    <div class="modal fade" id="modal2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title">
-                        <i class="bi bi-2-circle me-2"></i>Deuxième Carte - Détails
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-5">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h4>Contenu Avancé</h4>
-                            <p class="lead">Description détaillée de la deuxième carte avec des options supplémentaires.</p>
-                            <div class="alert alert-info">
-                                <i class="bi bi-info-circle me-2"></i>
-                                Ceci est une information importante concernant cette fonctionnalité.
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <i class="bi bi-gear-fill display-1 text-success"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <div class="nav-icons">
-                        <button class="btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal1">
-                            <i class="bi bi-chevron-left"></i> Précédent
-                        </button>
-                        <button class="btn btn-success ms-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal3">
-                            Suivant <i class="bi bi-chevron-right"></i>
-                        </button>
-                    </div>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        <i class="bi bi-x-circle me-1"></i>Fermer
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- ── HERO ── -->
+<section class="hero">
+  <img
+    src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1600&q=85"
+    alt="Vue sur le lagon de Manga Bay"
+  />
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <h1 class="hero-title">Votre refuge face au lagon.</h1>
+    <p class="hero-sub">Réveils face à la mer, bruits des vagues, lumière du lagon. Bienvenue chez vous.</p>
+  </div>
+</section>
 
-    <!-- Modale 3 avec navigation moderne -->
-    <div class="modal fade" id="modal3" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-warning text-dark">
-                    <h5 class="modal-title">
-                        <i class="bi bi-3-circle me-2"></i>Troisième Carte - Détails
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-5">
-                    <div class="text-center mb-4">
-                        <i class="bi bi-lightning-charge-fill display-1 text-warning mb-3"></i>
-                        <h3>Fonctionnalité Spéciale</h3>
-                        <p class="text-muted">Cette carte offre des capacités uniques et des options de personnalisation.</p>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar bg-warning" style="width: 75%"></div>
-                    </div>
-                    <p>Progression des fonctionnalités disponibles.</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button class="btn btn-lg btn-outline-warning me-3" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">
-                        <i class="bi bi-arrow-left me-1"></i> Précédent
-                    </button>
-                    <button type="button" class="btn btn-lg btn-outline-secondary me-3" data-bs-dismiss="modal">
-                        <i class="bi bi-x-lg me-1"></i> Fermer
-                    </button>
-                    <button class="btn btn-lg btn-warning" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal4">
-                        Suivant <i class="bi bi-arrow-right ms-1"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- ── SEA BUNGALOWS SECTION ── -->
+<section class="sea-section">
+  <div class="container">
+    <p class="section-label">Destination Madagascar</p>
+    <h2 class="section-heading">Bungalows avec vue sur la mer.</h2>
 
-    <!-- Modale 13 (exemple final avec navigation) -->
-    <div class="modal fade" id="modal13" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title">
-                        <i class="bi bi-13-circle me-2"></i>Dernière Carte - Résumé
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-5">
-                    <div class="text-center">
-                        <i class="bi bi-flag-fill display-1 text-dark mb-3"></i>
-                        <h3>Félicitations !</h3>
-                        <p class="lead">Vous avez parcouru toutes les fonctionnalités.</p>
-                        <div class="mt-4">
-                            <i class="bi bi-check-all display-4 text-success"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button class="btn btn-outline-dark" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal12">
-                        <i class="bi bi-chevron-left"></i> Précédent
-                    </button>
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
-                        <i class="bi bi-check-circle me-1"></i> Terminer
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="row g-4 mb-5">
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- CSS personnalisé -->
-    <style>
-        .clickable-card {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        
-        .clickable-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .shadow-hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
-        .icon-wrapper {
-            padding: 20px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 10px;
-            display: inline-block;
-        }
-        
-        .modal-content {
-            border-radius: 20px;
-            overflow: hidden;
-        }
-        
-        .nav-icons .btn {
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-footer .btn {
-            min-width: 120px;
-        }
-        
-        .modal-header {
-            border-bottom: none;
-        }
-        
-        .modal-body {
-            background-color: #f8f9fa;
-        }
-        
-        .progress {
-            height: 10px;
-            border-radius: 5px;
-        }
-        
-        /* Animation pour les icônes */
-        .clickable-card i {
-            transition: transform 0.3s ease;
-        }
-        
-        .clickable-card:hover i {
-            transform: scale(1.2);
-        }
-        
-        /* Style pour les boutons de navigation dans les modales */
-        .btn-outline-primary:hover, .btn-primary:hover {
-            transform: scale(1.05);
-        }
-    </style>
+      <!-- Bungalow Double ou Twin -->
+      <div class="col-md-6">
+        <div class="bungalow-card position-relative">
+          <img
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+            alt="Bungalow Double ou Twin"
+          />
+          <div class="card-price-badge">280 000 Ar <span>/ nuit</span></div>
+          <div class="card-body">
+            <h3 class="card-name">Bungalow Double ou Twin</h3>
+            <div class="card-tags">
+              <span class="card-tag">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+                Électricité solaire
+              </span>
+              <span class="card-tag">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+                Eau chaude
+              </span>
+              <span class="card-tag">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Coffre-fort
+              </span>
+            </div>
+            <a href="#" class="card-arrow">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bungalow Triple -->
+      <div class="col-md-6">
+        <div class="bungalow-card position-relative">
+          <img
+            src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80"
+            alt="Bungalow Triple"
+          />
+          <div class="card-price-badge">310 000 Ar <span>/ nuit</span></div>
+          <div class="card-body">
+            <h3 class="card-name">Bungalow Triple</h3>
+            <p class="card-desc">Idéal pour les petits groupes ou familles.</p>
+            <a href="#" class="card-arrow">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bungalow Familial 4 -->
+      <div class="col-md-6">
+        <div class="bungalow-card position-relative">
+          <img
+            src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80"
+            alt="Bungalow Familial 4 personnes"
+          />
+          <div class="card-price-badge">340 000 Ar <span>/ nuit</span></div>
+          <div class="card-body">
+            <h3 class="card-name">Bungalow Familial – 4 personnes</h3>
+            <p class="card-desc">1 grand lit double + 1 lit superposé pour vos vacances en famille.</p>
+            <a href="#" class="card-arrow">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bungalow Familial 5 – featured -->
+      <div class="col-md-6">
+        <div class="bungalow-card featured position-relative">
+          <img
+            src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80"
+            alt="Bungalow Familial 5 personnes"
+          />
+          <div class="card-price-badge">410 000 Ar <span>/ nuit</span></div>
+          <div class="card-body">
+            <h3 class="card-name">Bungalow Familial – 5 personnes</h3>
+            <p class="card-desc">Deux chambres séparées et un salon privé pour une expérience enchantée en bord de mer.</p>
+            <p class="card-details-label">Inclus</p>
+            <div class="card-detail-tags">
+              <span class="card-detail-tag">Salon Privé</span>
+              <span class="card-detail-tag">2 Chambres</span>
+            </div>
+            <a href="#" class="btn-details">Détails</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── NATURE SECTION ── -->
+<section class="nature-section">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+
+      <!-- Left: image -->
+      <div class="col-lg-6">
+        <div class="nature-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1551918120-9739cb430c6d?w=800&q=80"
+            alt="Bungalow vue sur jardin"
+          />
+        </div>
+      </div>
+
+      <!-- Right: text + booking card -->
+      <div class="col-lg-6">
+        <p class="nature-label-badge">Immersion Nature</p>
+        <h2 class="nature-heading">Bungalow avec vue<br>sur le jardin.</h2>
+        <p class="nature-desc">
+          Pour les voyageurs en quête d'une expérience authentique et responsable. Une
+          retraite paisible nichée au cœur de la végétation malgache.
+        </p>
+
+        <div class="booking-mini">
+          <div class="booking-mini-header">
+            <div class="booking-mini-name">Bungalow Double ou Twin</div>
+            <div class="booking-mini-price">
+              <span class="amount">100 000 Ar</span>
+              <span class="unit">nuit/pers.</span>
+            </div>
+          </div>
+
+          <div class="booking-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/>
+              <circle cx="12" cy="10" r="2"/>
+            </svg>
+            Toilettes avec écotopaque
+          </div>
+          <div class="booking-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            Douche commune à la kopolo
+          </div>
+          <div class="booking-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            Électricité 24h/24
+          </div>
+
+          <a href="#" class="btn-avail">Consulter les disponibilités</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-deco"></div>
+  <div class="container">
+    <div class="cta-icon">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4C20 4 10 12 10 22C10 27.52 14.48 32 20 32C25.52 32 30 27.52 30 22C30 12 20 4 20 4Z" fill="currentColor" opacity=".25"/>
+        <path d="M20 8C20 8 12 15 12 22C12 26.42 15.58 30 20 30C24.42 30 28 26.42 28 22C28 15 20 8 20 8Z" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M15 18C15 18 17 22 20 22C23 22 25 18 25 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h2 class="cta-heading">Un cadre pensé pour la nature.</h2>
+    <p class="cta-text">
+      Nos bungalows sont construits avec des matériaux locaux pour se fondre dans
+      l'environnement, minimisant notre empreinte tout en maximisant votre confort
+      sensoriel.
+    </p>
+    <a href="#" class="btn-cta">Réserver un séjour</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-3 mb-3 mb-md-0">
+        <span class="footer-logo">Manga Bay Eco-Lodge</span>
+        <p class="footer-tagline">Madagascar Sanctuary.</p>
+      </div>
+      <div class="col-md-6 d-flex justify-content-md-center mb-3 mb-md-0">
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Sustainability Report</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <p class="footer-copy">© 2024 Manga Bay Lodge.<br>All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
