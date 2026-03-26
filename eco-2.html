@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecoprim – L'excellence de l'impression à Madagascar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:    #E8341A;
+    --orange: #F47B20;
+    --yellow: #F5C842;
+    --pink:   #F06292;
+    --teal:   #26C6DA;
+    --green:  #66BB6A;
+    --dark:   #1a1208;
+    --ink:    #2d2010;
+    --cream:  #fffdf7;
+    --muted:  #7a6a50;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 48px;
+    background: rgba(255,253,247,0.94); backdrop-filter: blur(12px);
+    border-bottom: 3px solid var(--orange);
+  }
+  .nav-logo { font-family:'Bebas Neue'; font-size:2rem; color:var(--red); letter-spacing:3px; }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { text-decoration:none; color:var(--ink); font-weight:700; font-size:.8rem; text-transform:uppercase; letter-spacing:1px; transition: color .2s; }
+  .nav-links a:hover { color:var(--red); }
+  .nav-cta { background: var(--red); color:#fff; padding:10px 24px; border-radius:3px; font-weight:800; text-decoration:none; font-size:.8rem; letter-spacing:1px; text-transform:uppercase; transition: all .2s; }
+  .nav-cta:hover { background:var(--orange); transform:translateY(-2px); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 120px 48px 80px;
+    position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+  .hero-bg {
+    position:absolute; right:-100px; top:-100px;
+    width:800px; height:800px; opacity:.07; pointer-events:none;
+  }
+  .hero-badge {
+    display:inline-block; background:var(--yellow); color:var(--dark);
+    font-weight:800; font-size:.72rem; letter-spacing:2px; text-transform:uppercase;
+    padding:6px 16px; border-radius:2px; margin-bottom:20px;
+  }
+  .hero-h1 {
+    font-family:'Bebas Neue'; font-size: clamp(3.8rem, 7vw, 6.5rem);
+    line-height:.95; color:var(--dark); margin-bottom:24px;
+  }
+  .hero-h1 .accent { color:var(--red); }
+  .hero-quote {
+    border-left:4px solid var(--orange); padding-left:20px;
+    margin:28px 0 36px; color:var(--muted); font-size:1rem;
+    line-height:1.75; font-style:italic; max-width:480px;
+  }
+  .hero-quote strong { display:block; color:var(--ink); font-style:normal; margin-top:10px; font-size:.78rem; text-transform:uppercase; letter-spacing:1.5px; }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary { background:var(--red); color:#fff; padding:14px 32px; border-radius:3px; font-weight:800; text-decoration:none; font-size:.88rem; letter-spacing:1px; text-transform:uppercase; transition:all .2s; box-shadow:4px 4px 0 var(--dark); display:inline-block; }
+  .btn-primary:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--dark); }
+  .btn-secondary { background:transparent; color:var(--dark); padding:14px 32px; border:2px solid var(--dark); border-radius:3px; font-weight:800; text-decoration:none; font-size:.88rem; letter-spacing:1px; text-transform:uppercase; transition:all .2s; display:inline-block; }
+  .btn-secondary:hover { background:var(--dark); color:var(--cream); }
+
+  .hero-visual { display:flex; justify-content:center; align-items:center; position:relative; }
+  .hero-tri-wrap { position:relative; width:440px; height:440px; }
+  .hero-tri-wrap svg { width:100%; height:100%; }
+  .hero-label {
+    position:absolute; bottom:-12px; right:0;
+    background:var(--dark); color:#fff; padding:12px 24px;
+    font-size:.7rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; border-radius:2px;
+  }
+
+  /* STATS */
+  .stats-bar { background:var(--dark); display:flex; justify-content:center; }
+  .stat-item { flex:1; max-width:300px; padding:36px 40px; text-align:center; border-right:1px solid rgba(255,255,255,.08); transition:background .3s; cursor:default; }
+  .stat-item:last-child { border:none; }
+  .stat-item:hover { background:var(--red); }
+  .stat-num { font-family:'Bebas Neue'; font-size:3.5rem; color:var(--yellow); line-height:1; }
+  .stat-label { font-size:.75rem; text-transform:uppercase; letter-spacing:2px; color:rgba(255,255,255,.5); margin-top:8px; }
+
+  /* SECTION BASE */
+  section { padding:100px 48px; }
+  .section-tag { display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:12px; }
+  h2.section-title { font-family:'Bebas Neue'; font-size:clamp(2.6rem,5vw,4rem); line-height:1; color:var(--dark); margin-bottom:20px; }
+  .section-sub { color:var(--muted); font-size:1.05rem; line-height:1.85; max-width:600px; margin-bottom:40px; }
+
+  /* ABOUT */
+  #about { background:#fff8f0; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .about-card { background:var(--dark); color:#fff; padding:52px 44px; border-radius:3px; position:relative; overflow:hidden; }
+  .about-card::before { content:''; position:absolute; top:-50px; right:-50px; width:220px; height:220px; background:var(--red); opacity:.12; border-radius:50%; }
+  .about-card::after { content:''; position:absolute; bottom:-30px; left:-30px; width:140px; height:140px; background:var(--yellow); opacity:.08; border-radius:50%; }
+  .about-card-line { width:56px; height:4px; background:var(--orange); margin-bottom:24px; border-radius:2px; }
+  .about-card p { font-size:1.02rem; line-height:1.9; color:rgba(255,255,255,.78); position:relative; z-index:1; }
+  .about-card p strong { color:var(--yellow); }
+  .about-sticker {
+    display:inline-block; margin-top:28px; background:var(--yellow); color:var(--dark);
+    font-weight:900; font-size:.7rem; letter-spacing:3px; text-transform:uppercase;
+    padding:8px 20px; border-radius:2px; position:relative; z-index:1;
+  }
+
+  /* SERVICES */
+  #services { background:var(--dark); }
+  #services .section-tag { color:var(--yellow); }
+  #services h2.section-title { color:#fff; }
+  #services .section-sub { color:rgba(255,255,255,.45); }
+  .services-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px; margin-top:48px; }
+  .service-card {
+    background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07);
+    padding:32px 26px; border-radius:3px; transition:all .3s; cursor:default; position:relative; overflow:hidden;
+  }
+  .service-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--orange); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+  .service-card:hover { background:rgba(255,255,255,.09); transform:translateY(-5px); }
+  .service-card:hover::after { transform:scaleX(1); }
+  .service-icon { font-size:1.6rem; margin-bottom:14px; }
+  .service-name { font-family:'Bebas Neue'; font-size:1.45rem; color:#fff; margin-bottom:8px; letter-spacing:1px; }
+  .service-desc { font-size:.83rem; color:rgba(255,255,255,.45); line-height:1.75; }
+
+  .services-cta {
+    margin-top:64px; padding:52px;
+    background:linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);
+    border-radius:3px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;
+  }
+  .services-cta h3 { font-family:'Bebas Neue'; font-size:2.4rem; color:#fff; }
+  .services-cta p { color:rgba(255,255,255,.8); font-size:.95rem; margin-top:6px; max-width:500px; line-height:1.7; }
+  .btn-white { background:#fff; color:var(--red); padding:14px 32px; border-radius:3px; font-weight:800; text-decoration:none; font-size:.85rem; letter-spacing:1px; text-transform:uppercase; transition:all .2s; white-space:nowrap; box-shadow:4px 4px 0 rgba(0,0,0,.2); display:inline-block; }
+  .btn-white:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 rgba(0,0,0,.2); }
+
+  /* PROCESS */
+  #process { background:var(--cream); }
+  .process-steps { display:flex; margin-top:60px; border:2px solid var(--dark); border-radius:3px; overflow:hidden; }
+  .step { flex:1; padding:44px 20px; text-align:center; border-right:2px solid var(--dark); background:#fff; transition:background .25s; cursor:default; }
+  .step:last-child { border-right:none; }
+  .step:hover { background:var(--red); }
+  .step:hover .step-num { color:rgba(255,255,255,.25); }
+  .step:hover .step-name { color:#fff; }
+  .step-num { font-family:'Bebas Neue'; font-size:2.8rem; color:var(--yellow); line-height:1; transition:color .25s; }
+  .step-name { font-weight:800; font-size:.75rem; text-transform:uppercase; letter-spacing:2px; color:var(--ink); margin-top:8px; transition:color .25s; }
+
+  /* WHY */
+  #why { background:#fff8f0; }
+  .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:48px; }
+  .why-card { padding:44px 36px; border:2px solid transparent; border-radius:3px; background:#fff; transition:all .3s; box-shadow:0 2px 16px rgba(0,0,0,.05); }
+  .why-card:hover { border-color:var(--red); transform:translateY(-6px); box-shadow:0 16px 40px rgba(232,52,26,.12); }
+  .why-num { font-family:'Bebas Neue'; font-size:4rem; line-height:1; color:var(--yellow); margin-bottom:8px; }
+  .why-title { font-weight:900; font-size:1rem; color:var(--dark); margin-bottom:14px; text-transform:uppercase; letter-spacing:1px; }
+  .why-text { font-size:.88rem; line-height:1.85; color:var(--muted); }
+
+  /* CERTIFICATIONS */
+  #certifications { background:var(--dark); text-align:center; }
+  #certifications .section-tag { color:var(--yellow); }
+  #certifications h2.section-title { color:#fff; }
+  #certifications .section-sub { color:rgba(255,255,255,.45); margin:0 auto 52px; }
+  .cert-grid { display:flex; gap:28px; justify-content:center; flex-wrap:wrap; margin-bottom:72px; }
+  .cert-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:52px 64px; border-radius:3px; min-width:280px; transition:all .3s; }
+  .cert-card:hover { background:rgba(255,255,255,.09); transform:translateY(-6px); border-color:rgba(255,255,255,.25); }
+  .cert-logo { font-family:'Bebas Neue'; font-size:3rem; letter-spacing:4px; margin-bottom:14px; }
+  .cert-logo.iso1 { color:var(--teal); }
+  .cert-logo.iso2 { color:var(--green); }
+  .cert-title { color:#fff; font-weight:800; font-size:.95rem; margin-bottom:8px; }
+  .cert-sub { color:rgba(255,255,255,.38); font-size:.78rem; letter-spacing:1px; }
+  .cert-cta { max-width:580px; margin:0 auto; }
+  .cert-cta h3 { font-family:'Bebas Neue'; font-size:2.8rem; color:#fff; margin-bottom:14px; }
+  .cert-cta p { color:rgba(255,255,255,.45); margin-bottom:36px; line-height:1.85; font-size:.95rem; }
+
+  /* FOOTER */
+  footer { background:var(--ink); color:rgba(255,255,255,.35); text-align:center; padding:32px 48px; font-size:.78rem; letter-spacing:1px; }
+  footer strong { color:var(--orange); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .hero-text > * { opacity:0; animation:fadeUp .7s ease forwards; }
+  .hero-text > *:nth-child(1){animation-delay:.1s}
+  .hero-text > *:nth-child(2){animation-delay:.25s}
+  .hero-text > *:nth-child(3){animation-delay:.4s}
+  .hero-text > *:nth-child(4){animation-delay:.55s}
+  .hero-text > *:nth-child(5){animation-delay:.7s}
+  .rotate-anim { animation: rotateSlow 60s linear infinite; transform-origin: center; }
+
+  /* RESPONSIVE */
+  @media(max-width:960px){
+    nav { padding:12px 20px; }
+    .nav-links { display:none; }
+    #hero { grid-template-columns:1fr; padding:100px 24px 60px; }
+    .hero-visual { display:none; }
+    #about { grid-template-columns:1fr; gap:40px; padding:60px 24px; }
+    section { padding:60px 24px; }
+    .process-steps { flex-wrap:wrap; }
+    .step { min-width:calc(50% - 2px); border-bottom:2px solid var(--dark); }
+    .why-grid { grid-template-columns:1fr; }
+    .services-cta { flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ECO<span>PRIM</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">À Propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Processus</a></li>
+    <li><a href="#why">Pourquoi nous</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+  </ul>
+  <a href="#certifications" class="nav-cta">Nous contacter</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <svg class="hero-bg" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon class="rotate-anim" points="400,30 770,770 30,770" fill="var(--orange)"/>
+  </svg>
+
+  <div class="hero-text">
+    <span class="hero-badge">Imprimerie Industrielle &amp; Commerciale · Madagascar</span>
+    <h1 class="hero-h1">L'excellence<br>de <span class="accent">l'impression</span><br>à Madagascar</h1>
+    <blockquote class="hero-quote">
+      « La force d'un groupe vient de la cohésion de son équipe, mais surtout de l'entraide. »
+      <strong>Edgard Razafindravahy — Président du Groupe PREY</strong>
+    </blockquote>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Nos services</a>
+      <a href="#about" class="btn-secondary">Découvrir Ecoprim</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-tri-wrap">
+      <svg viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- layered triangles matching logo palette -->
+        <polygon points="220,18 418,388 22,388" fill="var(--red)" opacity=".1"/>
+        <polygon points="220,46 400,378 40,378" fill="var(--orange)" opacity=".2"/>
+        <polygon points="220,74 382,368 58,368" fill="var(--yellow)" opacity=".45"/>
+        <polygon points="220,102 364,358 76,358" fill="var(--red)" opacity=".65"/>
+        <!-- stylized E -->
+        <rect x="178" y="198" width="64" height="11" rx="4" fill="#fff"/>
+        <rect x="178" y="218" width="52" height="11" rx="4" fill="#fff"/>
+        <rect x="178" y="238" width="64" height="11" rx="4" fill="#fff"/>
+        <rect x="178" y="198" width="11" height="51" rx="4" fill="#fff"/>
+      </svg>
+      <span class="hero-label">Etude · Conception · Production · Impression</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">+33</div><div class="stat-label">Années d'expérience</div></div>
+  <div class="stat-item"><div class="stat-num">+25</div><div class="stat-label">Collaborateurs</div></div>
+  <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Groupe de référence</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <div class="about-card">
+      <div class="about-card-line"></div>
+      <p>Fondée en <strong>1992</strong> au sein du Groupe Prey, Ecoprim, SARL, accompagne les marques les plus exigeantes avec des solutions d'impression innovantes et sur mesure. Grâce à un parc machine moderne et une équipe passionnée, nous donnons vie à des projets à la hauteur de vos ambitions.</p>
+      <span class="about-sticker">Depuis 1992 · Antananarivo</span>
+    </div>
+  </div>
+  <div>
+    <span class="section-tag">À propos</span>
+    <h2 class="section-title">Découvrez<br>l'histoire d'Ecoprim</h2>
+    <p class="section-sub">Trois décennies d'expertise au service de l'impression malgache. Un groupe solide, une équipe dévouée, une exigence constante pour chaque projet.</p>
+    <a href="#why" class="btn-primary">En savoir plus</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <span class="section-tag">Nos services</span>
+  <h2 class="section-title" style="color:#fff">Tous vos travaux<br>d'impression</h2>
+  <p class="section-sub">Nous réalisons tout type de support avec soin à l'aide des meilleures technologies disponibles à Madagascar.</p>
+
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">📓</div><div class="service-name">Cahier</div><div class="service-desc">Intérieur et couverture sur mesure, à l'image de votre marque ou établissement.</div></div>
+    <div class="service-card"><div class="service-icon">📄</div><div class="service-name">Brochure</div><div class="service-desc">Brochures multi-pages pour présenter vos produits, services ou activités.</div></div>
+    <div class="service-card"><div class="service-icon">📅</div><div class="service-name">Agenda</div><div class="service-desc">Agendas personnalisés, journaliers ou hebdomadaires, pour particuliers et entreprises.</div></div>
+    <div class="service-card"><div class="service-icon">📋</div><div class="service-name">Booklet</div><div class="service-desc">Petits livrets agrafés ou reliés, idéaux pour les guides, programmes et notices.</div></div>
+    <div class="service-card"><div class="service-icon">🪪</div><div class="service-name">Carte</div><div class="service-desc">Cartes de visite, vœux et invitation avec finitions soignées.</div></div>
+    <div class="service-card"><div class="service-icon">🖼️</div><div class="service-name">Affiche</div><div class="service-desc">Affiches grand format pour vos campagnes, événements et points de vente.</div></div>
+    <div class="service-card"><div class="service-icon">📒</div><div class="service-name">Carnet</div><div class="service-desc">Carnets à souches, de notes ou bons de commande, numérotés ou non.</div></div>
+    <div class="service-card"><div class="service-icon">📆</div><div class="service-name">Calendrier</div><div class="service-desc">Calendriers muraux ou de bureau, personnalisés aux couleurs de votre entreprise.</div></div>
+    <div class="service-card"><div class="service-icon">🗂️</div><div class="service-name">Catalogue</div><div class="service-desc">Catalogues produits détaillés, mise en page professionnelle et impression haute qualité.</div></div>
+    <div class="service-card"><div class="service-icon">📁</div><div class="service-name">Dossier admin.</div><div class="service-desc">Chemises, sous-dossiers et pochettes à rabat aux couleurs de votre organisation.</div></div>
+  </div>
+
+  <div class="services-cta">
+    <div>
+      <h3>Vous avez un projet ?</h3>
+      <p>Confiez-le à notre équipe. Nous vous accompagnons de la conception à la livraison, avec des délais adaptés à vos besoins.</p>
+    </div>
+    <a href="#certifications" class="btn-white">Demander un devis</a>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <span class="section-tag">Notre processus</span>
+  <h2 class="section-title">De l'idée à l'impression<br>8 étapes vers l'idéal</h2>
+  <div class="process-steps">
+    <div class="step"><div class="step-num">01</div><div class="step-name">Fichier</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-name">Pré-presse</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-name">CTP</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-name">Impression</div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-name">Façonnage</div></div>
+    <div class="step"><div class="step-num">06</div><div class="step-name">Finition</div></div>
+    <div class="step"><div class="step-num">07</div><div class="step-name">Conditionnement</div></div>
+    <div class="step"><div class="step-num">08</div><div class="step-name">Expédition</div></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <span class="section-tag">Pourquoi nous choisir</span>
+  <h2 class="section-title">L'excellence au service<br>de votre image</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-title">Qualité &amp; Flexibilité</div>
+      <p class="why-text">Nous utilisons les technologies d'impression les plus récentes pour garantir un rendu impeccable, petite série ou tirage industriel. Chaque commande est traitée avec la même exigence.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-title">Réactivité &amp; Fiabilité</div>
+      <p class="why-text">Nous respectons vos délais et tenons nos engagements. Notre organisation interne permet de répondre rapidement aux demandes urgentes sans compromettre la qualité finale.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-title">Proximité &amp; Engagement</div>
+      <p class="why-text">Basés à Antananarivo, nous connaissons les réalités du marché malgache. Nous construisons des relations durables fondées sur la confiance et l'écoute.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <span class="section-tag">Certifications</span>
+  <h2 class="section-title">Un engagement certifié<br>pour votre tranquillité</h2>
+  <p class="section-sub">Chez Ecoprim, nous plaçons la responsabilité environnementale et la maîtrise de la qualité au cœur de notre modèle.</p>
+
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-logo iso1">ISO 9001</div>
+      <div class="cert-title">Système de management qualité</div>
+      <div class="cert-sub">Version 2015</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-logo iso2">ISO 14001</div>
+      <div class="cert-title">Management environnemental</div>
+      <div class="cert-sub">Certification active</div>
+    </div>
+  </div>
+
+  <div class="cert-cta">
+    <h3>Travaillons ensemble</h3>
+    <p>Ecoprim, c'est l'imprimerie qui vous comprend. Confiez-nous vos projets et bénéficiez d'un accompagnement personnalisé de la conception à la livraison.</p>
+    <a href="mailto:contact@ecoprim.mg" class="btn-primary">Nous contacter</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <strong>Ecoprim SARL</strong> — Groupe Prey · Antananarivo, Madagascar · Etude · Conception · Production · Impression</p>
+</footer>
+
+</body>
+</html>

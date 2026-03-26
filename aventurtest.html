@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L’île rouge · MS‑Aventures</title>
+  <!-- Google Fonts & Font Awesome pour une touche moderne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #ffffff;
+      color: #1e2a2e;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* palette moderne : vert profond, sable, teinte chaude */
+    :root {
+      --primary: #1e5f5a;       /* vert lagon profond */
+      --primary-light: #eaf6f3;
+      --accent: #d97c3b;         /* terre cuite / coucher de soleil */
+      --gray-bg: #f8f9fa;
+      --text-dark: #1e2a2e;
+      --text-soft: #2e4047;
+      --border-light: #e0e7e9;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --shadow-hover: 0 20px 30px -10px rgba(0, 80, 70, 0.15);
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      display: inline-block;
+    }
+    h2:after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: var(--accent);
+      margin-top: 0.4rem;
+      border-radius: 4px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      font-weight: 500;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .btn:hover {
+      background-color: #124b47;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -12px rgba(0,80,70,0.4);
+    }
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.8rem 1.8rem;
+    }
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* header simple */
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      padding: 1.5rem 0 0.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo span {
+      color: var(--accent);
+      font-weight: 300;
+    }
+
+    /* hero */
+    .hero {
+      padding: 4rem 0 2.5rem;
+      background: linear-gradient(145deg, #ffffff 0%, #f5fbf9 100%);
+    }
+    .hero-content {
+      max-width: 720px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-soft);
+      margin: 1.5rem 0 2rem;
+    }
+
+    /* stats modernes */
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      background: white;
+      padding: 2rem 2rem;
+      border-radius: 64px 64px 24px 24px;
+      box-shadow: var(--shadow-sm);
+      margin: 2rem 0 3rem;
+      border: 1px solid rgba(30,95,90,0.1);
+    }
+    .stat-item {
+      flex: 1 1 180px;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .stat-icon {
+      font-size: 2.2rem;
+      color: var(--accent);
+      width: 3rem;
+    }
+    .stat-text {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .stat-text small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-top: 0.15rem;
+    }
+
+    /* cartes services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .service-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2.2rem 1.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.25s;
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary);
+    }
+    .service-card i {
+      font-size: 2.8rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* circuits : grille 3 colonnes */
+    .circuits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .circuit-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s;
+    }
+    .circuit-card:hover {
+      transform: scale(1.01);
+      border-color: var(--accent);
+    }
+    .circuit-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+    .circuit-desc {
+      color: #2e4047;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .circuit-itinerary {
+      background: var(--primary-light);
+      padding: 1rem 1.2rem;
+      border-radius: 1.5rem;
+      font-size: 0.85rem;
+      color: #1a4a44;
+      margin: 1rem 0 1.5rem;
+      border-left: 4px solid var(--accent);
+      word-break: break-word;
+    }
+    .circuit-btn {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    /* liste à puces "pourquoi nous choisir" */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.5rem;
+      background: var(--primary-light);
+      padding: 3rem 2.5rem;
+      border-radius: 3rem;
+      margin: 3rem 0;
+    }
+    .why-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+    .why-item i {
+      font-size: 2rem;
+      color: var(--accent);
+      background: white;
+      padding: 0.8rem;
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+    }
+    .why-item p {
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    /* témoignages */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 4rem;
+    }
+    .testimonial-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      position: relative;
+    }
+    .testimonial-card i.fa-quote-left {
+      color: var(--primary-light);
+      font-size: 2rem;
+      opacity: 0.5;
+      margin-bottom: 1rem;
+    }
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: #2e4047;
+    }
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .testimonial-link {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed;
+    }
+
+    /* formulaire */
+    .contact-section {
+      background: linear-gradient(135deg, #ffffff 0%, #f4fbf8 100%);
+      border-radius: 3rem;
+      padding: 3rem 2.5rem;
+      margin: 4rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      font-weight: 500;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid var(--border-light);
+      border-radius: 2rem;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: 0.2s;
+      background: white;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(30,95,90,0.1);
+    }
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+    .btn-form {
+      background-color: var(--accent);
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      border: none;
+    }
+    .btn-form:hover {
+      background-color: #c4682b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      color: #6b7d84;
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* responsive */
+    @media (max-width: 640px) {
+      .stats-grid {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 2rem;
+        padding: 2rem;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      h2:after {
+        width: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- simple logo / identité -->
+    <div class="logo">
+      L’île rouge <span>· MS‑Aventures</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>L’île rouge.<br>Votre aventure, notre expertise locale.</h1>
+      <p>Tour opérateur réceptif à Madagascar. Mahatratra Serge Eric vous emmène explorer des terres sauvages avec des guides locaux passionnés et expérimentés, une assistance à temps plein et une expertise recommandée par les voyageurs.</p>
+      <a href="#" class="btn"><i class="fas fa-map-signals" style="margin-right: 8px;"></i> Planifier mon itinéraire</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Chiffres clés (stats modernes) -->
+    <div class="stats-grid">
+      <div class="stat-item"><span class="stat-icon"><i class="fas fa-tree"></i></span><span class="stat-text">+20 ans <small>d’expérience</small></span></div>
+      <div class="stat-item"><span class="stat-icon"><i class="fas fa-handshake"></i></span><span class="stat-text">Guides 100% locaux <small>passionnés</small></span></div>
+      <div class="stat-item"><span class="stat-icon"><i class="fas fa-headset"></i></span><span class="stat-text">Assistance 24/7 <small>à votre écoute</small></span></div>
+      <div class="stat-item"><span class="stat-icon"><i class="fas fa-star"></i></span><span class="stat-text">Recommandé <small>par les voyageurs</small></span></div>
+    </div>
+
+    <!-- Section Nos services -->
+    <section style="margin: 5rem 0 3rem;">
+      <h2>Tout pour votre voyage, rien à organiser</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-compass"></i>
+          <h3>Tour opérateur réceptif</h3>
+          <p>Nous organisons des circuits à travers Madagascar, comme la célèbre RN7, avec une prise en charge complète de votre itinéraire. De la conception du parcours à l’accompagnement sur place, nous vous faisons découvrir les paysages, cultures et expériences uniques de l’île.</p>
+          <a href="#" class="btn btn-outline" style="margin-top: 1.5rem;">Demander un devis <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-car"></i>
+          <h3>Location de voiture avec chauffeur-guide</h3>
+          <p>Explorez Madagascar en toute liberté avec nos véhicules adaptés et des chauffeurs-guides expérimentés. Une solution idéale pour voyager à votre rythme, en toute sécurité, tout en bénéficiant de conseils locaux tout au long du parcours.</p>
+          <a href="#" class="btn btn-outline" style="margin-top: 1.5rem;">Demander un devis <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section circuits : titre + intro -->
+    <section style="margin: 5rem 0;">
+      <h2>Les plus belles destinations de Madagascar</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-soft);">Chaque itinéraire modulable et personnalisable selon vos envies. Votre rythme est le nôtre.</p>
+
+      <div class="circuits-grid">
+        <!-- circuit 1 -->
+        <div class="circuit-card">
+          <h3>Aventure sur la RN7</h3>
+          <div class="circuit-desc">Des Hautes Terres au Grand Sud. Parcs nationaux, paysages époustouflants et rencontres authentiques.</div>
+          <div class="circuit-itinerary">Antananarivo – Antsirabe – Ambositra – Fianarantsoa – Manakara – Ranomafana – Ambalavao – Isalo – Ifaty – Fianarantsoa – Antananarivo</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- circuit 2 -->
+        <div class="circuit-card">
+          <h3>Découverte de l’Est</h3>
+          <div class="circuit-desc">Explorez Andasibe, Sainte Marie et le Canal des Pangalanes au cœur de la biodiversité.</div>
+          <div class="circuit-itinerary">Antananarivo – Andasibe – Manambato - Ankanin'ny Nofy (Palmarium) - Toamasina (Tamatave) - Mahambo - Sainte Marie (Nosy Boraha) - Toamasina - Antananarivo</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- circuit 3 -->
+        <div class="circuit-card">
+          <h3>Circuit sur la Mythique RN7</h3>
+          <div class="circuit-desc">Parcs nationaux, plages idylliques et traditions locales pour un voyage inoubliable.</div>
+          <div class="circuit-itinerary">Antananarivo – Antsirabe – Ambositra – Ranomafana – Ambalavao – Isalo – Ifaty – Salary - Tuléar – Antananarivo</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- circuit 4 -->
+        <div class="circuit-card">
+          <h3>Circuit Explorateur</h3>
+          <div class="circuit-desc">Nature sauvage, plages idylliques, trekking : les trésors cachés d'Andasibe à Ifaty.</div>
+          <div class="circuit-itinerary">Antananarivo – Andasibe – Ambositra – Ambalavao – Andringitra – Isalo – Tuléar - Anakao – Tuléar - Fianarantsoa – Antananarivo</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- circuit 5 -->
+        <div class="circuit-card">
+          <h3>Découverte des Baobabs et Tsingy</h3>
+          <div class="circuit-desc">L’Ouest sauvage : l'Allée des Baobabs, lémuriens et balades en pirogue.</div>
+          <div class="circuit-itinerary">Antananarivo – Antsirabe – Morondava – Kirindy – Bekopaka (Grand et Petit Tsingy) – Morondava – Miandrivazo – Antsirabe – Antananarivo</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- circuit 6 -->
+        <div class="circuit-card">
+          <h3>Incontournable du Sud-Ouest</h3>
+          <div class="circuit-desc">Faune endémique, sentiers balisés et rencontres avec les communautés locales.</div>
+          <div class="circuit-itinerary">Antananarivo - Antsirabe - Miandrivazo – fleuve Tsiribihina - Bekopaka - Morondava - Manja - Morombe - Andavadaoka - Salary - Ifaty - Isalo - Vallée de tsaranoro (Andringitra) - Fianarantsoa - Manakara - Ranomafana - Ambositra – Antananarivo</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- circuit 7 -->
+        <div class="circuit-card">
+          <h3>Destination Nosy Be</h3>
+          <div class="circuit-desc">L'île aux parfums : plages paradisiaques, paysages et culture locale.</div>
+          <div class="circuit-itinerary">Antananarivo – Ambondromamy - Antsohihy - Ambanja - Ankify - Nosy Be - Antananarivo</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- circuit 8 -->
+        <div class="circuit-card">
+          <h3>Les merveilles du Nord</h3>
+          <div class="circuit-desc">Plages paradisiaques, paysages spectaculaires et immersion culturelle.</div>
+          <div class="circuit-itinerary">Tananarive - Diego Suarez – Ramena - Montagne d’Ambre - Tsingy Rouge – Ankarana – Ambanja – Ankify - Nosy Be</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- circuit 9 -->
+        <div class="circuit-card">
+          <h3>Circuit Sud-Est Profond</h3>
+          <div class="circuit-desc">Expériences inoubliables au cœur du Sud-Est de Madagascar.</div>
+          <div class="circuit-itinerary">Tananarive - Antsirabe - Ambositra - Ranomafana - Manakara - Manantenina - Sainte-Luce - Fort-Dauphin - Tananarive</div>
+          <a href="#" class="btn btn-outline circuit-btn">Créer mon voyage <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pourquoi nous choisir -->
+    <section style="margin: 5rem 0;">
+      <h2>En tant que Tour Opérateur Réceptif, ce qui distingue MS‑Aventures</h2>
+      <div class="why-grid">
+        <div class="why-item"><i class="fas fa-mountain"></i><p><strong>Expertise terrain :</strong> Nous testons chaque piste avant de vous y emmener. Plus de 20 ans de routes malgaches.</p></div>
+        <div class="why-item"><i class="fas fa-leaf"></i><p><strong>Tourisme éthique :</strong> équitable, bénéficiant aux communautés villageoises et à l’environnement.</p></div>
+        <div class="why-item"><i class="fas fa-clock"></i><p><strong>Flexibilité :</strong> Aucun départ groupé. Votre rythme est le nôtre. Voyage sur mesure.</p></div>
+        <div class="why-item"><i class="fas fa-shield-alt"></i><p><strong>Sécurité :</strong> Conduite sûre, véhicules confortables, assistance 24/7. Votre sérénité est notre priorité.</p></div>
+      </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section style="margin: 5rem 0;">
+      <h2>Avis des voyageurs</h2>
+      <p style="margin-bottom: 2rem;">Des récits authentiques de ceux qui ont vécu l'aventure avec MS‑Aventures.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left"></i>
+          <div class="testimonial-text">Nous revenons de trois semaines passées dans le Sud de Madagascar, un circuit avec un chauffeur-guide que nous avons connu grâce à ce forum, Serge Eric Mahatratra. Nous sommes absolument ravis... Aucune embrouille, programme respecté, prix prévu, compagnie très agréable. Nous le recommandons sans hésitation.</div>
+          <div class="testimonial-author">– alyscamps18 <a href="#" class="testimonial-link">lien</a></div>
+        </div>
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left"></i>
+          <div class="testimonial-text">Trois semaines dans l’Ouest avec Serge Eric ! Très bon guide, pas avare de conseils sur son pays qu'il connait bien (14 ans de métier). Il s'est plié en 4 pour nous satisfaire. 4x4 confortable pour un prix plus qu'abordable. Nous le recommandons vivement !</div>
+          <div class="testimonial-author">– pulpette55 <a href="#" class="testimonial-link">lien</a></div>
+        </div>
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left"></i>
+          <div class="testimonial-text">Circuit de 24 jours avec Serge Eric. Nous étions hésitants sur le fait de prendre un guide, mais pour une première à Mada nous ne regrettons pas. Sans lui nous n'aurions pas perçu, compris, appréhendé le pays, sa culture, sa politique… de la même façon.</div>
+          <div class="testimonial-author">– Ninon <a href="#" class="testimonial-link">lien</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / CTA -->
+    <section class="contact-section">
+      <h2 style="color: var(--primary);">Prêt pour l’expédition ?</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 2rem;">Contactez-nous pour planifier votre voyage sur mesure à Madagascar. Notre équipe vous répond sous 24h.</p>
+      <form>
+        <div class="form-row">
+          <div class="form-group"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+          <div class="form-group"><label>Prénom</label><input type="text" placeholder="Votre prénom"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" placeholder="exemple@mail.com"></div>
+          <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="+261 ..."></div>
+        </div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Parlez-nous de votre voyage idéal..."></textarea></div>
+        <button class="btn btn-form"><i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Envoyer</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© L’île rouge / MS‑Aventures — Tour opérateur réceptif à Madagascar. Tous droits réservés.</p>
+    </div>
+  </footer>
+</body>
+</html>

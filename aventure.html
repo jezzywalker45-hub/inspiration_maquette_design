@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS-Aventures — L'île rouge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F5EFE0;
+    --earth: #C4793A;
+    --deep: #1C1208;
+    --bark: #6B3D1E;
+    --leaf: #2D5233;
+    --sky: #3D7EA6;
+    --cream: #FAF6EE;
+    --muted: #8C7B6B;
+    --radius: 2px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(250,246,238,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(196,121,58,0.15);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--bark);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--earth); font-style: italic; }
+  nav ul { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+  nav a {
+    text-decoration: none;
+    color: var(--deep);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--earth); }
+  .nav-cta {
+    background: var(--earth) !important;
+    color: white !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--bark) !important; }
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 3rem 6rem 4rem;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--earth);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--deep);
+    margin-bottom: 1rem;
+  }
+  h1 em { font-style: italic; color: var(--earth); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--deep);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    width: fit-content;
+  }
+  .btn-primary:hover { background: var(--bark); transform: translateY(-1px); }
+  .stats-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(196,121,58,0.2);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--earth);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    background: var(--deep);
+    display: flex;
+    align-items: stretch;
+  }
+  .hero-art {
+    width: 100%;
+    min-height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-art svg { width: 100%; height: 100%; position: absolute; inset: 0; }
+  .hero-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 2rem;
+    background: linear-gradient(transparent, rgba(28,18,8,0.8));
+    z-index: 2;
+  }
+  .hero-caption {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+  }
+  .hero-photo-credit {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .section { padding: 6rem 4rem; }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 3rem;
+    color: var(--deep);
+    max-width: 600px;
+  }
+  h2 em { font-style: italic; color: var(--earth); }
+  .deco-line {
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(196,121,58,0.3);
+    border: 2px solid rgba(196,121,58,0.3);
+  }
+  .service-card {
+    background: var(--cream);
+    padding: 3rem;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: var(--sand); }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--earth);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    border-radius: 50%;
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--deep);
+  }
+  .service-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--earth);
+    color: var(--earth);
+    padding: 0.6rem 1.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--earth); color: white; }
+  .why-section {
+    background: var(--deep);
+    padding: 6rem 4rem;
+  }
+  .why-section .section-tag { color: var(--earth); }
+  .why-section h2 { color: white; }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid rgba(255,255,255,0.1);
+    margin-top: 3rem;
+  }
+  .pillar {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.3s;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { background: rgba(255,255,255,0.04); }
+  .pillar-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--earth);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .pillar h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+  .pillar p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.65; }
+  .circuits-section { padding: 6rem 4rem; background: var(--sand); }
+  .circuits-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .circuits-note { font-size: 0.9rem; color: var(--muted); max-width: 380px; font-style: italic; }
+  .circuits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(196,121,58,0.15);
+  }
+  .circuit-card {
+    background: var(--cream);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: background 0.2s;
+  }
+  .circuit-card:hover { background: white; }
+  .circuit-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--earth);
+  }
+  .circuit-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--deep);
+    line-height: 1.25;
+  }
+  .circuit-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .circuit-route {
+    font-size: 0.72rem;
+    color: var(--earth);
+    border-top: 1px solid rgba(196,121,58,0.2);
+    padding-top: 0.75rem;
+    margin-top: auto;
+  }
+  .circuit-footer { display: flex; justify-content: flex-end; margin-top: 0.5rem; }
+  .btn-ghost {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--earth);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--bark); }
+  .testi-section { padding: 6rem 4rem; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(196,121,58,0.12);
+    margin-top: 3rem;
+  }
+  .testi-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: background 0.2s;
+  }
+  .testi-card:hover { background: var(--sand); }
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--earth);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: -0.75rem;
+  }
+  .testi-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--deep);
+    line-height: 1.75;
+  }
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(196,121,58,0.15);
+  }
+  .testi-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--earth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: white;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .testi-name { font-size: 0.8rem; font-weight: 500; color: var(--deep); }
+  .testi-where { font-size: 0.72rem; color: var(--muted); }
+  .cta-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+  .cta-left {
+    background: var(--earth);
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .cta-left .section-tag { color: rgba(255,255,255,0.6); }
+  .cta-left h2 { color: white; font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 0; }
+  .cta-left p { color: rgba(255,255,255,0.75); font-size: 1rem; }
+  .cta-right {
+    background: var(--deep);
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  input, textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 0.75rem 1rem;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 2px;
+  }
+  input:focus, textarea:focus { border-color: var(--earth); }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+  textarea { resize: vertical; min-height: 90px; }
+  .btn-submit {
+    background: var(--earth);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    width: 100%;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+    border-radius: 2px;
+  }
+  .btn-submit:hover { background: var(--bark); }
+  footer {
+    background: var(--deep);
+    padding: 2.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: white; font-weight: 700; }
+  .footer-logo span { color: var(--earth); font-style: italic; }
+  .footer-note { font-size: 0.72rem; color: rgba(255,255,255,0.3); text-align: center; line-height: 1.6; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--earth); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.75s ease both; }
+  .d1 { animation-delay: 0.05s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.35s; }
+  .d4 { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">MS<span>-Aventures</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#circuits">Circuits</a></li>
+    <li><a href="#pourquoi">Expertise</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact" class="nav-cta">Planifier mon voyage</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-tag fade-up d1">Tour opérateur réceptif · Madagascar</span>
+    <h1 class="fade-up d2">L'île <em>rouge.</em><br>Votre aventure,<br>notre expertise.</h1>
+    <p class="hero-sub fade-up d3">Serge Eric Mahatratra vous emmène explorer des terres sauvages avec des guides locaux passionnés, une assistance à temps plein et plus de 20 ans d'expertise sur l'île.</p>
+    <a href="#contact" class="btn-primary fade-up d3">Planifier mon itinéraire &nbsp;→</a>
+    <div class="stats-row fade-up d4">
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Années d'expérience</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Guides locaux</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Assistance terrain</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-art">
+      <svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sky gradient layers -->
+        <rect width="600" height="800" fill="#1C1208"/>
+        <rect width="600" height="500" fill="#2A1A0A"/>
+        <!-- Horizon glow -->
+        <ellipse cx="300" cy="480" rx="300" ry="120" fill="rgba(196,121,58,0.18)"/>
+        <ellipse cx="300" cy="500" rx="200" ry="60" fill="rgba(196,121,58,0.12)"/>
+        <!-- Stars -->
+        <circle cx="80" cy="60" r="1.5" fill="rgba(255,255,255,0.6)"/>
+        <circle cx="150" cy="35" r="1" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="220" cy="80" r="1.5" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="380" cy="45" r="1" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="450" cy="90" r="1.5" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="520" cy="30" r="1" fill="rgba(255,255,255,0.6)"/>
+        <circle cx="560" cy="110" r="1.5" fill="rgba(255,255,255,0.35)"/>
+        <circle cx="40" cy="140" r="1" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="320" cy="20" r="1.5" fill="rgba(255,255,255,0.6)"/>
+        <circle cx="500" cy="160" r="1" fill="rgba(255,255,255,0.35)"/>
+        <!-- Moon -->
+        <circle cx="480" cy="100" r="35" fill="rgba(196,121,58,0.15)"/>
+        <circle cx="480" cy="100" r="22" fill="rgba(250,200,140,0.25)"/>
+        <circle cx="480" cy="100" r="12" fill="rgba(250,200,140,0.45)"/>
+        <!-- Ground -->
+        <rect x="0" y="500" width="600" height="300" fill="#140E04"/>
+        <!-- Distant hills -->
+        <path d="M0 520 Q100 480 200 490 Q300 500 400 475 Q500 460 600 490 L600 800 L0 800Z" fill="#1A1106"/>
+        <!-- Baobab 1 - tallest center -->
+        <rect x="265" y="220" width="70" height="300" rx="6" fill="#0D0900"/>
+        <!-- Baobab crown branches -->
+        <path d="M265 260 Q220 230 180 250" stroke="#0D0900" stroke-width="22" fill="none" stroke-linecap="round"/>
+        <path d="M280 240 Q260 190 240 160" stroke="#0D0900" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M300 230 Q310 185 330 160" stroke="#0D0900" stroke-width="16" fill="none" stroke-linecap="round"/>
+        <path d="M335 255 Q375 225 420 240" stroke="#0D0900" stroke-width="20" fill="none" stroke-linecap="round"/>
+        <path d="M300 235 Q300 200 300 170" stroke="#0D0900" stroke-width="20" fill="none" stroke-linecap="round"/>
+        <!-- Crown foliage hints -->
+        <ellipse cx="300" cy="200" rx="90" ry="30" fill="rgba(45,82,51,0.3)"/>
+        <ellipse cx="220" cy="245" rx="50" ry="18" fill="rgba(45,82,51,0.2)"/>
+        <ellipse cx="390" cy="238" rx="45" ry="16" fill="rgba(45,82,51,0.2)"/>
+        <!-- Root flares -->
+        <path d="M265 520 Q240 540 210 545" stroke="#0D0900" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M335 520 Q360 540 390 545" stroke="#0D0900" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M280 520 Q265 545 250 550" stroke="#0D0900" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M320 520 Q335 545 350 550" stroke="#0D0900" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <!-- Baobab 2 - left small -->
+        <rect x="80" y="360" width="40" height="160" rx="4" fill="#100B02"/>
+        <path d="M80 390 Q55 370 35 380" stroke="#100B02" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M120 385 Q145 368 162 378" stroke="#100B02" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M100 375 Q100 345 100 320" stroke="#100B02" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <ellipse cx="100" cy="355" rx="55" ry="18" fill="rgba(45,82,51,0.2)"/>
+        <!-- Baobab 3 - right medium -->
+        <rect x="470" y="300" width="55" height="220" rx="5" fill="#100B02"/>
+        <path d="M470 330 Q440 310 415 322" stroke="#100B02" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M525 325 Q555 305 575 318" stroke="#100B02" stroke-width="16" fill="none" stroke-linecap="round"/>
+        <path d="M497 318 Q497 280 497 255" stroke="#100B02" stroke-width="17" fill="none" stroke-linecap="round"/>
+        <ellipse cx="497" cy="290" rx="70" ry="22" fill="rgba(45,82,51,0.2)"/>
+        <!-- Reflection on ground -->
+        <ellipse cx="300" cy="528" rx="80" ry="10" fill="rgba(0,0,0,0.4)"/>
+        <!-- Horizon line warmth -->
+        <rect x="0" y="496" width="600" height="4" fill="rgba(196,121,58,0.2)"/>
+      </svg>
+      <div class="hero-overlay">
+        <div class="hero-caption">Allée des Baobabs, Morondava</div>
+        <div class="hero-photo-credit">Madagascar · Ouest sauvage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-tag"><span class="deco-line"></span>Nos services</div>
+  <h2>Tout pour votre voyage,<br><em>rien à organiser.</em></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✦</div>
+      <h3>Tour opérateur réceptif</h3>
+      <p>Nous organisons des circuits à travers Madagascar — la célèbre RN7, les parcs nationaux, les côtes sauvages — avec une prise en charge complète de votre itinéraire. De la conception du parcours à l'accompagnement sur place.</p>
+      <a href="#contact" class="btn-outline">Demander un devis →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">◈</div>
+      <h3>Location voiture avec chauffeur-guide</h3>
+      <p>Explorez Madagascar en toute liberté avec nos véhicules 4×4 adaptés et des chauffeurs-guides expérimentés. Voyagez à votre rythme, en toute sécurité, tout en bénéficiant de conseils locaux tout au long du parcours.</p>
+      <a href="#contact" class="btn-outline">Demander un devis →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section" id="pourquoi">
+  <div class="section-tag"><span class="deco-line"></span>Pourquoi MS-Aventures</div>
+  <h2>Ce qui nous distingue en tant que réceptif local.</h2>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <h4>Expertise terrain</h4>
+      <p>Nous testons chaque piste avant de vous y emmener. Plus de 20 ans de routes malgaches dans les jambes.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <h4>Tourisme éthique</h4>
+      <p>Tourisme équitable bénéficiant directement aux communautés villageoises et à la préservation de l'environnement.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <h4>Flexibilité totale</h4>
+      <p>Aucun départ groupé imposé. Votre rythme est le nôtre. Chaque voyage est conçu sur mesure.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <h4>Sécurité & sérénité</h4>
+      <p>Conduite sûre, véhicules confortables, assistance 24/7. Votre sérénité est notre priorité absolue.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CIRCUITS -->
+<section class="circuits-section" id="circuits">
+  <div class="circuits-intro">
+    <div>
+      <div class="section-tag"><span class="deco-line"></span>Nos circuits</div>
+      <h2>Les plus belles<br><em>destinations</em> de Madagascar.</h2>
+    </div>
+    <p class="circuits-note">Chaque itinéraire est modulable et personnalisable selon vos envies. Votre rythme est le nôtre.</p>
+  </div>
+  <div class="circuits-grid">
+    <div class="circuit-card">
+      <span class="circuit-tag">RN7 · Sud</span>
+      <h4>Aventure sur la RN7</h4>
+      <p class="circuit-desc">Des Hautes Terres au Grand Sud. Parcs nationaux, paysages époustouflants et rencontres authentiques.</p>
+      <div class="circuit-route">Antananarivo → Antsirabe → Fianarantsoa → Isalo → Ifaty → Antananarivo</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+    <div class="circuit-card">
+      <span class="circuit-tag">Est · Biodiversité</span>
+      <h4>Découverte de l'Est</h4>
+      <p class="circuit-desc">Andasibe, Sainte Marie et le Canal des Pangalanes au cœur de la biodiversité malgache.</p>
+      <div class="circuit-route">Antananarivo → Andasibe → Palmarium → Toamasina → Sainte Marie</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+    <div class="circuit-card">
+      <span class="circuit-tag">RN7 · Classique</span>
+      <h4>La Mythique RN7</h4>
+      <p class="circuit-desc">Parcs nationaux, plages idylliques et traditions locales pour un voyage inoubliable.</p>
+      <div class="circuit-route">Antananarivo → Ranomafana → Isalo → Ifaty → Salary → Tuléar</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+    <div class="circuit-card">
+      <span class="circuit-tag">Multi-régions</span>
+      <h4>Circuit Explorateur</h4>
+      <p class="circuit-desc">Nature sauvage, plages idylliques, trekking : les trésors cachés de l'île, d'Andasibe à Ifaty.</p>
+      <div class="circuit-route">Antananarivo → Andasibe → Andringitra → Isalo → Anakao → Fianarantsoa</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+    <div class="circuit-card">
+      <span class="circuit-tag">Ouest · Baobabs</span>
+      <h4>Baobabs & Tsingy</h4>
+      <p class="circuit-desc">L'Ouest sauvage : Allée des Baobabs, observation de lémuriens et balades en pirogue.</p>
+      <div class="circuit-route">Antananarivo → Morondava → Kirindy → Bekopaka → Miandrivazo</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+    <div class="circuit-card">
+      <span class="circuit-tag">Sud-Ouest · Épique</span>
+      <h4>Incontournable du Sud-Ouest</h4>
+      <p class="circuit-desc">Faune endémique, sentiers balisés et communautés locales avec des panoramas époustouflants.</p>
+      <div class="circuit-route">Antananarivo → Tsiribihina → Morondava → Ifaty → Isalo → Ranomafana</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+    <div class="circuit-card">
+      <span class="circuit-tag">Nosy Be · Île aux parfums</span>
+      <h4>Destination Nosy Be</h4>
+      <p class="circuit-desc">L'île aux parfums : plages paradisiaques, paysages époustouflants et culture locale riche.</p>
+      <div class="circuit-route">Antananarivo → Ambondromamy → Ambanja → Ankify → Nosy Be</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+    <div class="circuit-card">
+      <span class="circuit-tag">Nord · Merveilles</span>
+      <h4>Les Merveilles du Nord</h4>
+      <p class="circuit-desc">Plages paradisiaques, paysages naturels spectaculaires et immersion dans la culture locale.</p>
+      <div class="circuit-route">Antananarivo → Diego Suarez → Tsingy Rouge → Ankarana → Nosy Be</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+    <div class="circuit-card">
+      <span class="circuit-tag">Sud-Est · Profond</span>
+      <h4>Circuit Sud-Est Profond</h4>
+      <p class="circuit-desc">Expériences inoubliables entre paysages uniques et rencontres authentiques au cœur du Sud-Est.</p>
+      <div class="circuit-route">Antananarivo → Ranomafana → Manakara → Fort-Dauphin → Antananarivo</div>
+      <div class="circuit-footer"><a href="#contact" class="btn-ghost">Créer mon voyage →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section" id="avis">
+  <div class="section-tag"><span class="deco-line"></span>Avis des voyageurs</div>
+  <h2>Des récits <em>authentiques</em> de ceux qui ont vécu l'aventure.</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="quote-mark">"</div>
+      <p class="testi-text">Trois semaines dans le Sud avec Serge Eric. Aucune embrouille, le programme élaboré par mails a été respecté, au prix prévu. Compagnie très agréable, souriant, disponible, discret, prudent au volant — toujours de bon conseil et de toute confiance.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AL</div>
+        <div>
+          <div class="testi-name">alyscamps18</div>
+          <div class="testi-where">Circuit Sud · 3 semaines</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="quote-mark">"</div>
+      <p class="testi-text">Très bon guide, pas avare de conseils sur son pays qu'il connaît bien. Il a su se plier en 4 pour nous satisfaire — petit problème de retrait d'argent, il s'est montré très arrangeant ! 4×4 très confortable pour un prix plus qu'abordable.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PU</div>
+        <div>
+          <div class="testi-name">pulpette55</div>
+          <div class="testi-where">Circuit Ouest · Tsiribihina</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="quote-mark">"</div>
+      <p class="testi-text">Circuit de 24 jours, première fois à Mada. Avec le recul, si nous avions voyagé seuls, nous n'aurions pas perçu, compris, appréhendé le pays, ses traditions, sa culture de la même façon. Nous ne regrettons pas notre choix.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">NI</div>
+        <div>
+          <div class="testi-name">Ninon</div>
+          <div class="testi-where">24 jours · Premier voyage à Mada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="cta-left">
+    <span class="section-tag">Prêt pour l'expédition ?</span>
+    <h2>Planifions votre voyage<br><em>sur mesure.</em></h2>
+    <p>Notre équipe vous répond sous 24h. Partagez vos envies, nous construisons l'itinéraire parfait pour vous.</p>
+  </div>
+  <div class="cta-right">
+    <form class="form-grid" onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" placeholder="Dupont">
+        </div>
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" placeholder="Marie">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="marie@exemple.fr">
+      </div>
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="+33 6 00 00 00 00">
+      </div>
+      <div class="form-group">
+        <label>Votre message</label>
+        <textarea placeholder="Parlez-nous de votre projet de voyage : destinations souhaitées, durée, nombre de voyageurs…"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Envoyer ma demande →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MS<span>-Aventures</span></div>
+  <div class="footer-note">© 2025 MS-Aventures · Tour opérateur réceptif à Madagascar<br>Mahatratra Serge Eric</div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#circuits">Circuits</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
