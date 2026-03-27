@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manga Bay Lodge – Le Lodge & son Âme</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold:       #C89A2E;
+      --gold-dark:  #9A7318;
+      --gold-light: #F7F0DF;
+      --warm-white: #FAFAF6;
+      --dark:       #18180E;
+      --muted:      #78766C;
+      --border:     #E4E0D6;
+      --ocean:      #2B5F6E;
+      --ocean-soft: #EAF2F4;
+      --sand:       #F2EDE2;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--dark);
+      font-size: 15.5px;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 58px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--dark); text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.05em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-links a.active {
+      color: var(--dark); font-weight: 500;
+      border-bottom: 1.5px solid var(--dark); padding-bottom: 2px;
+    }
+    .btn-nav {
+      background: var(--gold); color: #fff; border: none;
+      padding: 9px 20px; font-family: 'Jost', sans-serif;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em;
+      border-radius: 4px; cursor: pointer; text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-nav:hover { background: var(--gold-dark); color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; height: 92vh; min-height: 580px;
+      overflow: hidden; display: flex; align-items: flex-end;
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center 60%;
+      transform: scale(1.06);
+      animation: heroZoom 10s ease-out forwards;
+    }
+    @keyframes heroZoom { to { transform: scale(1); } }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg,
+        rgba(10,14,10,0.15) 0%,
+        rgba(10,14,10,0.55) 60%,
+        rgba(10,14,10,0.78) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 72px 72px;
+      max-width: 780px;
+      animation: fadeUp 1s .3s both;
+    }
+    .hero-location {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700; line-height: 1.05;
+      color: #fff; margin-bottom: 22px;
+    }
+    .hero-lead {
+      font-size: 1rem; font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.75; max-width: 520px;
+      font-style: italic;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .scroll-hint {
+      position: absolute; bottom: 32px; right: 52px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px; color: rgba(255,255,255,0.55);
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      z-index: 2;
+    }
+    .scroll-hint-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: .5; } 50% { opacity: 1; }
+    }
+
+    /* ── LE LIEU ── */
+    .section-lieu {
+      padding: 100px 0 80px;
+      background: #fff;
+      position: relative;
+    }
+    .section-lieu::before {
+      content: ''; position: absolute; top: 0; left: 72px; right: 72px;
+      height: 1px; background: var(--border);
+    }
+    .lieu-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .lieu-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      font-weight: 700; line-height: 1.12;
+      margin-bottom: 28px;
+    }
+    .lieu-text {
+      font-size: 0.9rem; color: var(--muted);
+      line-height: 1.88; margin-bottom: 16px;
+    }
+    .lieu-engagements {
+      display: flex; gap: 28px; margin-top: 36px;
+      padding-top: 28px; border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .engagement-item {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--dark);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .engagement-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+    /* Image stack */
+    .lieu-img-main {
+      width: 100%; height: 380px; object-fit: cover;
+      border-radius: 6px; display: block;
+    }
+    .lieu-img-accent {
+      width: 58%; height: 210px; object-fit: cover;
+      border-radius: 6px; display: block;
+      margin-top: -64px; margin-left: auto;
+      border: 5px solid #fff;
+      box-shadow: 0 14px 44px rgba(0,0,0,0.14);
+      position: relative; z-index: 2;
+    }
+
+    /* ── LES RACINES ── */
+    .section-racines {
+      background: var(--sand);
+      padding: 100px 0;
+      position: relative; overflow: hidden;
+    }
+    .section-racines::after {
+      content: 'VEZO';
+      position: absolute; right: -20px; top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10rem; font-weight: 700;
+      color: rgba(200,154,46,0.07);
+      pointer-events: none; white-space: nowrap;
+    }
+    .racines-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      font-weight: 700; line-height: 1.15;
+      margin-bottom: 22px;
+    }
+    .racines-text {
+      font-size: 0.9rem; color: var(--muted);
+      line-height: 1.88; margin-bottom: 16px;
+    }
+    .racines-quote {
+      border-left: 3px solid var(--gold);
+      padding: 16px 24px;
+      margin: 32px 0;
+      background: rgba(200,154,46,0.07);
+      border-radius: 0 6px 6px 0;
+    }
+    .racines-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-style: italic;
+      line-height: 1.7; color: var(--dark);
+    }
+    .racines-img {
+      width: 100%; height: 100%; min-height: 420px;
+      object-fit: cover; border-radius: 8px; display: block;
+    }
+
+    /* sub-cards */
+    .sub-card {
+      background: #fff; border-radius: 8px;
+      padding: 28px 26px 24px; height: 100%;
+      border-top: 3px solid var(--gold);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .sub-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+    .sub-card-icon { margin-bottom: 14px; color: var(--gold); }
+    .sub-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;
+    }
+    .sub-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+
+    /* ── PHILOSOPHIE ── */
+    .section-philo {
+      background: var(--ocean);
+      padding: 100px 0; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .section-philo::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .philo-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .philo-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-weight: 700; margin-bottom: 52px; color: #fff;
+    }
+    .philo-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding-bottom: 36px; margin-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .philo-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+    .philo-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--gold); line-height: 1; min-width: 48px; opacity: .7;
+    }
+    .philo-name { font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
+    .philo-desc { font-size: 0.87rem; color: rgba(255,255,255,0.65); line-height: 1.78; }
+    .philo-img-wrap {
+      position: relative; height: 100%; min-height: 560px;
+      border-radius: 8px; overflow: hidden;
+    }
+    .philo-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0;
+    }
+    .philo-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(43,95,110,0.6), transparent);
+    }
+
+    /* ── CTA ── */
+    .section-cta {
+      background: var(--warm-white);
+      padding: 120px 0 100px;
+      text-align: center;
+    }
+    .cta-line {
+      width: 1px; height: 60px;
+      background: var(--border);
+      margin: 0 auto 48px;
+    }
+    .cta-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px;
+    }
+    .cta-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: 700; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-sub {
+      font-size: 0.92rem; color: var(--muted);
+      line-height: 1.75; margin-bottom: 44px; font-style: italic;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: var(--gold); color: #fff; border: none;
+      padding: 16px 44px; font-family: 'Jost', sans-serif;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.09em;
+      border-radius: 5px; cursor: pointer; text-decoration: none;
+      transition: background .2s, transform .25s, box-shadow .25s;
+      box-shadow: 0 4px 20px rgba(200,154,46,0.3);
+    }
+    .btn-cta:hover {
+      background: var(--gold-dark); color: #fff;
+      transform: translateY(-3px); box-shadow: 0 8px 28px rgba(200,154,46,0.35);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1A1E24;
+      color: rgba(255,255,255,0.45);
+      padding: 48px 52px 32px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--gold);
+      margin-bottom: 4px; display: block;
+    }
+    .footer-tag { font-size: 0.75rem; }
+    .footer-links { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 0.7rem; text-align: right; }
+
+    @media (max-width: 991px) {
+      .hero-content { padding: 0 28px 52px; }
+      .scroll-hint { display: none; }
+      .section-lieu::before { left: 24px; right: 24px; }
+      .lieu-img-accent { margin-top: -40px; }
+      .section-racines::after { display: none; }
+      .philo-img-wrap { min-height: 300px; margin-bottom: 48px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .lieu-engagements { flex-direction: column; gap: 14px; }
+      footer { padding: 40px 20px 28px; }
+      .footer-copy { text-align: left; margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">Manga Bay Lodge</a>
+  <ul class="nav-links">
+    <li><a href="#">Our Lodges</a></li>
+    <li><a href="#">Experiences</a></li>
+    <li><a href="#" class="active">Sustainability</a></li>
+    <li><a href="#">Gallery</a></li>
+  </ul>
+  <a href="#" class="btn-nav">Book Your Stay</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <img
+    class="hero-img"
+    src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1800&q=85"
+    alt="Lagon de Manga Bay Lodge, Madagascar"
+  />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-location">Tuléar – Madagascar</p>
+    <h1 class="hero-h1">Le lodge<br>&amp; son âme</h1>
+    <p class="hero-lead">Un paradis né d'une rencontre entre un lieu d'exception et un peuple de la mer millénaire.</p>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-hint-line"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<!-- ── LE LIEU ── -->
+<section class="section-lieu" id="lieu">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+
+      <!-- Left -->
+      <div class="col-lg-6">
+        <p class="lieu-label">Le lieu</p>
+        <h2 class="lieu-h2">Un lodge bâti au bord du monde</h2>
+        <p class="lieu-text">
+          Manga Bay Lodge s'est construit autour d'une volonté simple et profonde : offrir bien plus qu'un hébergement.
+          Sur la côte sud-ouest de Madagascar, entre forêt sèche endémique et récifs coralliens, le lodge s'intègre
+          dans le paysage du lagon et des hommes qui le gardent depuis des siècles.
+        </p>
+        <p class="lieu-text">
+          Ici, chaque bungalow ouvre sur une étendue turquoise que seules les pirogues à balancier des pêcheurs Vezo
+          sillonnent à l'aurore. Ce cadre rare, à la fois sauvage et intimement humain, est notre promesse à chaque
+          voyageur qui nous rejoint.
+        </p>
+        <p class="lieu-text">
+          Tourisme authentique. Gastronomie locale. Partage culturel. Trois engagements au cœur de l'identité de
+          Manga Bay Lodge.
+        </p>
+        <div class="lieu-engagements">
+          <div class="engagement-item"><span class="engagement-dot"></span>Tourisme authentique</div>
+          <div class="engagement-item"><span class="engagement-dot"></span>Gastronomie locale</div>
+          <div class="engagement-item"><span class="engagement-dot"></span>Partage culturel</div>
+        </div>
+      </div>
+
+      <!-- Right: stacked images -->
+      <div class="col-lg-6">
+        <img
+          class="lieu-img-main"
+          src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80"
+          alt="Lodge Manga Bay vue lagon"
+        />
+        <img
+          class="lieu-img-accent"
+          src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80"
+          alt="Pêcheurs Vezo en pirogue"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── LES RACINES ── -->
+<section class="section-racines" id="racines">
+  <div class="container">
+
+    <div class="row g-5 align-items-stretch mb-5">
+      <!-- Image -->
+      <div class="col-lg-5">
+        <img
+          class="racines-img"
+          src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=900&q=80"
+          alt="Pirogue Vezo sur le lagon"
+        />
+      </div>
+      <!-- Text -->
+      <div class="col-lg-7 d-flex flex-column justify-content-center">
+        <p class="lieu-label">Les racines</p>
+        <h2 class="racines-h2">Un peuple qui ne pêche pas,<br>mais cherche sa nourriture</h2>
+        <p class="racines-text">
+          Les Vezo, « nomades de la mer », sont l'une des 18 ethnies de Madagascar, établis depuis des millénaires
+          sur plus de 300 kilomètres de la côte sud-ouest. Leur langue n'a pas de mot pour « pêcher » : ils appellent
+          cela simplement « chercher de la nourriture », <em>« mizaha hanina »</em> — révélant leur rapport profondément
+          organique à l'océan.
+        </p>
+        <p class="racines-text">
+          Manga Bay Lodge a choisi de s'inscrire dans ce territoire avec humilité, en nouant un partenariat authentique
+          avec les pêcheurs Vezo locaux. Leurs prises du matin arrivent directement à notre cuisine. Leur pirogue peut
+          devenir votre fenêtre sur le lagon.
+        </p>
+        <div class="racines-quote">
+          <p>« Pour les Vezo, la mer est une mère nourricière. On ne pêche que ce dont on a besoin. Pêcher plus serait offenser les forces de l'océan. »</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 sub-cards -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+        <div class="sub-card">
+          <div class="sub-card-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path d="M3 17c2-4 5-6 9-6s7 2 9 6"/>
+              <path d="M12 11V4M9 7l3-3 3 3"/>
+            </svg>
+          </div>
+          <h3>La pirogue à balancier</h3>
+          <p>Symbole de la civilisation Vezo, la pirogue est taillée dans un tronc de farafatse, un bois léger comme du balsa mesurant entre 2 et 8 mètres. Sa voile carrée, ses couleurs vives et son équilibre parfait sont le fruit d'un savoir-faire inchangé depuis des générations. Pour un Vezo, elle vaut plus que sa maison.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="sub-card">
+          <div class="sub-card-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+          <h3>Hommes &amp; femmes de mer</h3>
+          <p>Pendant que les hommes partent en pirogue avec ligne, filet ou harpon, les femmes et les enfants attendent la marée basse pour parcourir le platier à pied, récolter poulpes, oursins et coquillages. La mer appartient à toute la communauté. Chacun connaît ses techniques, transmises dès l'enfance sans jamais les écrire.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="sub-card">
+          <div class="sub-card-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path d="M12 22c6 0 10-4 10-10S18 2 12 2 2 6 2 12s4 10 10 10z"/>
+              <path d="M12 8v4l2 2"/>
+            </svg>
+          </div>
+          <h3>Spiritualité &amp; codes de la mer</h3>
+          <p>La tradition Vezo enseigne que leur peuple descend de l'union d'un pêcheur et d'une sirène. Des esprits habitent les eaux — ceux des noyés y errent. Il ne faut jamais partir en mer après une dispute avec son père. Ces <em>fady</em> (tabous) sont des règles de vie, pas de simples superstitions.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PHILOSOPHIE ── -->
+<section class="section-philo" id="philosophie">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+
+      <!-- Image -->
+      <div class="col-lg-5 order-lg-2">
+        <div class="philo-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=900&q=80"
+            alt="Philosophie durable Manga Bay Lodge"
+          />
+          <div class="philo-img-overlay"></div>
+        </div>
+      </div>
+
+      <!-- Items -->
+      <div class="col-lg-7 order-lg-1">
+        <p class="philo-label">Notre philosophie</p>
+        <h2 class="philo-h2">Quatre engagements.<br>Un seul horizon.</h2>
+
+        <div class="philo-item">
+          <span class="philo-num">01</span>
+          <div>
+            <p class="philo-name">Pêche locale &amp; circuit court</p>
+            <p class="philo-desc">Les fruits de mer qui arrivent dans votre assiette ont été pêchés ce matin par les pêcheurs Vezo du village voisin. Pas d'intermédiaire, pas de congélation, juste la mer au plus direct.</p>
+          </div>
+        </div>
+        <div class="philo-item">
+          <span class="philo-num">02</span>
+          <div>
+            <p class="philo-name">Respect de l'environnement</p>
+            <p class="philo-desc">Le lagon est notre patrimoine commun. Manga Bay Lodge s'engage à ne jamais prélever au-delà de ce que l'écosystème peut régénérer, en accord avec la sagesse ancestrale Vezo.</p>
+          </div>
+        </div>
+        <div class="philo-item">
+          <span class="philo-num">03</span>
+          <div>
+            <p class="philo-name">Partage culturel authentique</p>
+            <p class="philo-desc">Nos guides locaux sont Vezo. Nos excursions en pirogue sont menées par des pêcheurs. Chaque échange est une rencontre réelle, pas une mise en scène touristique.</p>
+          </div>
+        </div>
+        <div class="philo-item">
+          <span class="philo-num">04</span>
+          <div>
+            <p class="philo-name">Tourisme durable &amp; communauté</p>
+            <p class="philo-desc">Nos recrutements privilégient les habitants de la région. En choisissant Manga Bay, vous soutenez directement l'économie locale et la préservation d'une culture millénaire.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="section-cta">
+  <div class="container">
+    <div class="cta-line"></div>
+    <p class="cta-label">Prêts à vivre une évasion qui change ?</p>
+    <h2 class="cta-h2">Le lagon vous attend,<br>la pirogue est prête.</h2>
+    <p class="cta-sub">La table est mise. Alors qu'attendez-vous ?</p>
+    <a href="#" class="btn-cta">Réserver un séjour</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-3 mb-3 mb-md-0">
+        <span class="footer-logo">Manga Bay Lodge</span>
+        <p class="footer-tag">Madagascar Sanctuary.</p>
+      </div>
+      <div class="col-md-6 d-flex justify-content-md-center mb-3 mb-md-0">
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Sustainability Report</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <p class="footer-copy">© 2024 Manga Bay Lodge.<br>All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
