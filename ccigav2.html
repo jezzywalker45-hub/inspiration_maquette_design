@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCIGA — Chambre de Commerce Suisse–Madagascar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir: #0a0e0b;
+    --noir-doux: #111714;
+    --vert: #1a7a3a;
+    --vert-clair: #22a04e;
+    --or: #c9a84c;
+    --or-clair: #e8c96e;
+    --blanc: #f7f4ef;
+    --gris: #8a9190;
+    --bordure: rgba(201,168,76,0.18);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--noir); color: var(--blanc); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(10,14,11,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--bordure); }
+  .nav-logo { display: flex; align-items: center; gap: 0.8rem; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.18em; color: var(--or); text-decoration: none; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { color: var(--blanc); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 400; opacity: 0.7; transition: all 0.3s; }
+  .nav-links a:hover { opacity: 1; color: var(--or); }
+  .nav-cta { background: transparent; border: 1px solid var(--or); color: var(--or); padding: 0.5rem 1.4rem; font-size: 0.73rem; letter-spacing: 0.13em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  .nav-cta:hover { background: var(--or); color: var(--noir); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem 4rem 4rem; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 55% 65% at 72% 52%, rgba(26,122,58,0.13) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 18% 82%, rgba(201,168,76,0.07) 0%, transparent 60%), linear-gradient(180deg, #0a0e0b 0%, #0d1410 100%); }
+  .hero-grid { position: absolute; inset: 0; z-index: 0; opacity: 0.055; background-image: linear-gradient(var(--or) 1px, transparent 1px), linear-gradient(90deg, var(--or) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; z-index: 1; max-width: 640px; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--or); margin-bottom: 2rem; }
+  .hero-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--or); }
+  h1.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 300; line-height: 1.1; color: var(--blanc); margin-bottom: 1.6rem; }
+  h1.hero-title em { font-style: italic; color: var(--or-clair); }
+  .hero-desc { font-size: 0.95rem; line-height: 1.8; color: rgba(247,244,239,0.62); max-width: 490px; margin-bottom: 2.8rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--or); color: var(--noir); padding: 0.85rem 2.2rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--or-clair); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--blanc); padding: 0.85rem 2.2rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid rgba(247,244,239,0.28); cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 300; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--or); color: var(--or); }
+  .hero-visual { position: absolute; right: 4rem; top: 50%; transform: translateY(-50%); z-index: 1; }
+  .hero-visual svg { width: 320px; height: 320px; }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; }
+  .section-tag { font-size: 0.67rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--or); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+  .section-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--or); }
+  h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 300; line-height: 1.2; color: var(--blanc); margin-bottom: 1rem; }
+  h2.section-title em { font-style: italic; color: var(--or-clair); }
+  .section-desc { font-size: 0.93rem; line-height: 1.8; color: rgba(247,244,239,0.58); max-width: 540px; margin-bottom: 3.5rem; }
+  .gold-divider { width: 48px; height: 1px; background: var(--or); margin-bottom: 2.5rem; }
+
+  /* ABOUT */
+  .about-section { background: var(--noir-doux); border-top: 1px solid var(--bordure); border-bottom: 1px solid var(--bordure); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-text p { font-size: 0.95rem; line-height: 1.85; color: rgba(247,244,239,0.62); margin-bottom: 1.2rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-card { border: 1px solid var(--bordure); padding: 1.8rem 1.5rem; position: relative; }
+  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--or); }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; color: var(--or); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(247,244,239,0.45); text-transform: uppercase; }
+
+  /* SERVICES */
+  .services-section { background: var(--noir); }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px; background: var(--bordure); border: 1px solid var(--bordure); }
+  .service-card { background: var(--noir-doux); padding: 2.6rem 2.2rem; transition: background 0.3s; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--vert), var(--or)); transform: scaleX(0); transition: transform 0.4s; transform-origin: left; }
+  .service-card:hover { background: #131a15; }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--or); opacity: 0.4; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+  .service-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--blanc); margin-bottom: 1rem; line-height: 1.3; }
+  .service-text { font-size: 0.855rem; line-height: 1.8; color: rgba(247,244,239,0.52); }
+  .service-list { list-style: none; margin-top: 1rem; }
+  .service-list li { font-size: 0.78rem; color: rgba(247,244,239,0.48); padding: 0.32rem 0; padding-left: 1.2rem; position: relative; }
+  .service-list li::before { content: '→'; position: absolute; left: 0; color: var(--vert-clair); font-size: 0.68rem; }
+
+  /* MEMBERSHIP */
+  .membership-section { background: var(--noir-doux); border-top: 1px solid var(--bordure); }
+  .membership-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 5rem; }
+  .member-card { border: 1px solid var(--bordure); padding: 2rem 1.6rem; transition: all 0.3s; }
+  .member-card:hover { border-color: var(--or); transform: translateY(-4px); }
+  .member-type { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vert-clair); margin-bottom: 0.7rem; }
+  .member-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--blanc); margin-bottom: 0.4rem; }
+  .member-price { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--or); font-weight: 300; margin-bottom: 0.3rem; }
+  .member-price sup { font-size: 0.9rem; }
+  .member-desc { font-size: 0.78rem; color: rgba(247,244,239,0.48); line-height: 1.7; margin-bottom: 1.4rem; }
+  .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .partner-card { border: 1px solid var(--bordure); padding: 2rem 1.8rem; }
+  .partner-level { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; }
+  .partner-level-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .silver .partner-level-dot { background: #a8b0b4; } .gold .partner-level-dot { background: var(--or); } .platinum .partner-level-dot { background: #e0e0ec; }
+  .silver .partner-level { color: #a8b0b4; } .gold .partner-level { color: var(--or); } .platinum .partner-level { color: #e0e0ec; }
+  .partner-price { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 300; margin-bottom: 0.2rem; }
+  .silver .partner-price { color: #a8b0b4; } .gold .partner-price { color: var(--or); } .platinum .partner-price { color: #e0e0ec; }
+  .partner-from { font-size: 0.68rem; color: rgba(247,244,239,0.38); margin-bottom: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .partner-benefits { list-style: none; }
+  .partner-benefits li { font-size: 0.78rem; color: rgba(247,244,239,0.52); padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: flex-start; gap: 0.55rem; }
+  .partner-benefits li::before { content: '✓'; color: var(--vert-clair); font-size: 0.68rem; margin-top: 2px; }
+
+  /* SECTORS */
+  .sectors-section { background: var(--noir); }
+  .sectors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .sector-card { border: 1px solid var(--bordure); padding: 2.4rem 1.9rem; transition: all 0.35s; position: relative; overflow: hidden; }
+  .sector-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,122,58,0.08), transparent); opacity: 0; transition: opacity 0.35s; }
+  .sector-card:hover { border-color: rgba(201,168,76,0.4); }
+  .sector-card:hover::before { opacity: 1; }
+  .sector-emoji { font-size: 1.7rem; margin-bottom: 1.1rem; display: block; }
+  .sector-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--blanc); margin-bottom: 0.7rem; }
+  .sector-desc { font-size: 0.8rem; line-height: 1.75; color: rgba(247,244,239,0.48); }
+
+  /* COUNTRIES */
+  .countries-section { background: var(--noir-doux); border-top: 1px solid var(--bordure); border-bottom: 1px solid var(--bordure); }
+  .countries-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .country-card { padding: 2.8rem; border: 1px solid var(--bordure); }
+  .country-flag { font-size: 2.4rem; margin-bottom: 1rem; display: block; }
+  .country-name { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--blanc); margin-bottom: 0.6rem; }
+  .country-desc { font-size: 0.845rem; color: rgba(247,244,239,0.52); line-height: 1.75; margin-bottom: 1.4rem; }
+  .country-list { list-style: none; }
+  .country-list li { font-size: 0.78rem; color: rgba(247,244,239,0.48); padding: 0.38rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 0.7rem; }
+  .country-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--or); flex-shrink: 0; }
+
+  /* PROCESS */
+  .process-section { background: var(--noir-doux); border-top: 1px solid var(--bordure); }
+  .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 2rem; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--bordure), var(--or), var(--bordure), transparent); }
+  .process-step { padding: 0 1.2rem; text-align: center; }
+  .step-num { width: 4rem; height: 4rem; border: 1px solid var(--or); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--or); background: var(--noir-doux); position: relative; z-index: 1; }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--blanc); margin-bottom: 0.5rem; }
+  .step-desc { font-size: 0.73rem; color: rgba(247,244,239,0.43); line-height: 1.65; }
+
+  /* NEWS */
+  .news-section { background: var(--noir); }
+  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .news-card { border: 1px solid var(--bordure); padding: 2.1rem; transition: all 0.3s; cursor: pointer; }
+  .news-card:hover { border-color: rgba(201,168,76,0.45); background: var(--noir-doux); }
+  .news-category { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vert-clair); margin-bottom: 0.9rem; }
+  .news-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--blanc); line-height: 1.4; margin-bottom: 0.9rem; }
+  .news-excerpt { font-size: 0.78rem; color: rgba(247,244,239,0.48); line-height: 1.7; }
+  .news-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem; font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--or); text-decoration: none; transition: gap 0.3s; }
+  .news-card:hover .news-link { gap: 0.8rem; }
+
+  /* CONTACT */
+  .contact-section { background: var(--noir); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+  .contact-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--blanc); margin-bottom: 2rem; font-weight: 300; }
+  .contact-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
+  .contact-icon { width: 36px; height: 36px; border: 1px solid var(--bordure); display: flex; align-items: center; justify-content: center; color: var(--or); flex-shrink: 0; font-size: 0.85rem; }
+  .contact-detail { font-size: 0.83rem; color: rgba(247,244,239,0.58); line-height: 1.65; }
+  .contact-detail strong { color: var(--blanc); display: block; margin-bottom: 0.2rem; font-weight: 400; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-field.full { grid-column: 1/-1; }
+  .form-field label { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(247,244,239,0.38); }
+  .form-field input, .form-field select, .form-field textarea { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); color: var(--blanc); padding: 0.82rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; outline: none; transition: border-color 0.3s; resize: none; -webkit-appearance: none; }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--or); }
+  .form-field select option { background: var(--noir-doux); }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, var(--noir-doux), #0d1a10); border-top: 1px solid var(--bordure); text-align: center; padding: 7rem 4rem; }
+  .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3.8vw, 3rem); font-weight: 300; color: var(--blanc); margin-bottom: 1.2rem; }
+  .cta-section p { font-size: 0.95rem; color: rgba(247,244,239,0.52); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.8; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer { background: #060909; padding: 4rem 4rem 2rem; border-top: 1px solid var(--bordure); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--or); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.78rem; color: rgba(247,244,239,0.38); line-height: 1.75; max-width: 250px; }
+  .footer-col h4 { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--or); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { font-size: 0.78rem; color: rgba(247,244,239,0.38); padding: 0.3rem 0; transition: color 0.2s; cursor: pointer; }
+  .footer-col li:hover { color: var(--blanc); }
+  .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--bordure); display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 0.7rem; color: rgba(247,244,239,0.22); letter-spacing: 0.08em; }
+
+  /* SCROLL PROGRESS */
+  #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; z-index: 200; background: linear-gradient(90deg, var(--vert), var(--or)); width: 0%; transition: width 0.1s; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-content > * { animation: fadeUp 0.8s ease both; }
+  .hero-tag { animation-delay: 0.1s; } .hero-title { animation-delay: 0.25s; } .hero-desc { animation-delay: 0.4s; } .hero-btns { animation-delay: 0.55s; }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; } .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-visual { display: none; }
+    .about-grid, .contact-grid, .countries-grid { grid-template-columns: 1fr; }
+    .services-grid, .sectors-grid, .news-grid { grid-template-columns: 1fr; }
+    .membership-grid { grid-template-columns: 1fr 1fr; }
+    .partner-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; } .process-steps::before { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-grid { grid-template-columns: 1fr; } .form-field.full { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" fill="#0a0e0b"/>
+      <polygon points="18,4 32,30 4,30" fill="none" stroke="#1a7a3a" stroke-width="1.5"/>
+      <polygon points="18,9 29,28 7,28" fill="#1a7a3a" opacity="0.3"/>
+      <text x="18" y="24" text-anchor="middle" font-family="Georgia,serif" font-size="6.5" fill="#c9a84c" letter-spacing="0.3">CCIGA</text>
+    </svg>
+    CCIGA
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#membership">Adhésion</a></li>
+    <li><a href="#sectors">Investir</a></li>
+    <li><a href="#news">Actualités</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#membership" class="nav-cta">Rejoindre</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Chambre de Commerce, d'Industrie et des Services</div>
+    <h1 class="hero-title">La passerelle économique entre <em>la Suisse</em> et Madagascar</h1>
+    <p class="hero-desc">La CCIGA connecte les entreprises, investisseurs et institutions des deux pays pour bâtir des partenariats durables, ouvrir de nouveaux marchés et saisir les meilleures opportunités bilatérales.</p>
+    <div class="hero-btns">
+      <a href="#membership" class="btn-primary">Rejoindre le réseau</a>
+      <a href="#sectors" class="btn-outline">Explorer les opportunités</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="160,18 308,298 12,298" fill="none" stroke="rgba(201,168,76,0.13)" stroke-width="1"/>
+      <polygon points="160,46 284,282 36,282" fill="none" stroke="rgba(26,122,58,0.18)" stroke-width="1"/>
+      <polygon points="160,76 260,266 60,266" fill="rgba(26,122,58,0.055)" stroke="rgba(26,122,58,0.28)" stroke-width="1"/>
+      <polygon points="160,106 236,250 84,250" fill="rgba(201,168,76,0.035)" stroke="rgba(201,168,76,0.18)" stroke-width="0.5"/>
+      <line x1="160" y1="18" x2="160" y2="298" stroke="rgba(201,168,76,0.07)" stroke-width="1"/>
+      <circle cx="160" cy="158" r="3" fill="#c9a84c" opacity="0.45"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-tag">Qui sommes-nous ?</div>
+      <h2 class="section-title">Une organisation stratégique au service du commerce <em>bilatéral</em></h2>
+      <div class="gold-divider"></div>
+      <p>La CCIGA (Chambre de Commerce, d'Industrie et des Services Genève–Antananarivo) est une association de droit privé indépendante et apolitique, fondée le 4 octobre 2024 et organisée conformément aux articles 60 et suivants du Code civil suisse.</p>
+      <p>Son siège est établi à Genève, au sein de l'Union des Chambres de Commerce Africaines de Suisse (UCCAS). Nous représentons, promouvons et défendons les intérêts du commerce, de l'industrie et des services entre la Suisse et Madagascar.</p>
+      <br>
+      <a href="#contact" class="btn-outline">En savoir plus</a>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card"><div class="stat-num">+20%</div><div class="stat-label">Exports malgaches vers la Suisse</div></div>
+      <div class="stat-card"><div class="stat-num">+30%</div><div class="stat-label">Investissements suisses à Madagascar</div></div>
+      <div class="stat-card"><div class="stat-num">100</div><div class="stat-label">Membres actifs visés dès la 1ère année</div></div>
+      <div class="stat-card"><div class="stat-num">2024</div><div class="stat-label">Fondée le 4 octobre</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-tag">Nos services</div>
+  <h2 class="section-title">Tout ce dont votre entreprise a besoin <em>pour réussir</em></h2>
+  <p class="section-desc">Des services pensés pour accompagner entrepreneurs, investisseurs et institutions dans leurs démarches entre la Suisse et Madagascar.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Information, Conseil &amp; Assistance</div>
+      <div class="service-text">Soutien stratégique et juridique aux entreprises membres. Nos experts vous guident à chaque étape de votre développement commercial bilatéral.</div>
+      <ul class="service-list">
+        <li>Conseils juridiques — droit commercial suisse et malgache</li>
+        <li>Assistance sur les régulations douanières et conformité</li>
+        <li>Accompagnement dans les démarches d'implantation</li>
+        <li>Rapports réguliers sur les opportunités économiques</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Mise en relation commerciale</div>
+      <div class="service-text">Accès privilégié à des opportunités uniques grâce à notre réseau d'entreprises, d'institutions gouvernementales et de partenaires stratégiques.</div>
+      <ul class="service-list">
+        <li>Mise en relation directe avec des partenaires bilatéraux</li>
+        <li>Accès à l'annuaire des membres et plateforme de networking</li>
+        <li>Accompagnement dans les négociations préliminaires</li>
+        <li>Promotion de vos offres auprès des membres CCIGA</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Médiation &amp; Arbitrage</div>
+      <div class="service-text">Résolution des conflits commerciaux de manière plus rapide, moins coûteuse et plus confidentielle que les procédures judiciaires classiques.</div>
+      <ul class="service-list">
+        <li>Médiation amiable entre partenaires en conflit</li>
+        <li>Arbitrage formel pour les litiges contraignants</li>
+        <li>Accompagnement dans les litiges sur contrats internationaux</li>
+        <li>Mise en relation avec experts juridiques spécialisés</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-title">Organisation d'événements</div>
+      <div class="service-text">Séminaires, conférences, forums économiques et événements culturels pour promouvoir l'artisanat et créer des opportunités de réseautage de qualité.</div>
+      <ul class="service-list">
+        <li>Forum Économique et Culturel Suisse–Madagascar (annuel)</li>
+        <li>Séminaires spécialisés sur les opportunités sectorielles</li>
+        <li>Événements de réseautage membres et partenaires</li>
+        <li>Expositions d'art et d'artisanat malgache et suisse</li>
+      </ul>
+    </div>
+  </div>
+  <br><br>
+  <div style="text-align:center;"><a href="#contact" class="btn-primary">Demander un accompagnement</a></div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="membership-section" id="membership">
+  <div class="section-tag">Nous rejoindre</div>
+  <h2 class="section-title">Intégrez un réseau d'affaires unique entre <em>la Suisse et Madagascar</em></h2>
+  <p class="section-desc">Accédez à un réseau exclusif d'entreprises, d'investisseurs et d'institutions à travers deux continents.</p>
+  <div class="gold-divider"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;color:var(--or);margin-bottom:1.5rem;letter-spacing:0.06em;">Devenir membre</h3>
+  <div class="membership-grid">
+    <div class="member-card">
+      <div class="member-type">Particulier</div>
+      <div class="member-name">Individuel</div>
+      <div class="member-price"><sup>CHF </sup>150</div>
+      <div class="member-desc">Pour les particuliers souhaitant intégrer le réseau CCIGA et participer aux événements de la Chambre.</div>
+      <a href="#contact" class="btn-outline" style="font-size:0.7rem;padding:0.55rem 1.1rem;">Adhérer</a>
+    </div>
+    <div class="member-card">
+      <div class="member-type">Jeune entreprise</div>
+      <div class="member-name">Startup</div>
+      <div class="member-price"><sup>CHF </sup>300</div>
+      <div class="member-desc">Pour les entrepreneurs et startups (1 à 3 salariés) en phase de lancement ou de croissance internationale.</div>
+      <a href="#contact" class="btn-outline" style="font-size:0.7rem;padding:0.55rem 1.1rem;">Adhérer</a>
+    </div>
+    <div class="member-card">
+      <div class="member-type">Association</div>
+      <div class="member-name">Non-Profit</div>
+      <div class="member-price"><sup>CHF </sup>1'000</div>
+      <div class="member-desc">Pour les associations et organisations à but non lucratif engagées dans des initiatives économiques ou culturelles.</div>
+      <a href="#contact" class="btn-outline" style="font-size:0.7rem;padding:0.55rem 1.1rem;">Adhérer</a>
+    </div>
+    <div class="member-card" style="border-color:rgba(201,168,76,0.38);">
+      <div class="member-type" style="color:var(--or);">Entreprise</div>
+      <div class="member-name">Corporate</div>
+      <div class="member-price"><sup>CHF </sup>1'200+</div>
+      <div class="member-desc">Pour les PME et grandes entreprises basées en Suisse ou à Madagascar cherchant à renforcer leur présence bilatérale.</div>
+      <a href="#contact" class="btn-primary" style="font-size:0.7rem;padding:0.55rem 1.1rem;border:none;">Adhérer</a>
+    </div>
+  </div>
+  <div class="gold-divider"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;color:var(--or);margin-bottom:1.5rem;letter-spacing:0.06em;">Devenir partenaire</h3>
+  <div class="partner-grid">
+    <div class="partner-card silver">
+      <div class="partner-level"><span class="partner-level-dot"></span>Argent</div>
+      <div class="partner-price">2'000</div>
+      <div class="partner-from">CHF — À partir de</div>
+      <ul class="partner-benefits">
+        <li>Présence et visibilité dans le réseau CCIGA</li>
+        <li>Logo sur les supports de communication</li>
+        <li>1 post dédié sur les réseaux sociaux</li>
+        <li>Tarifs promotionnels sur stand</li>
+        <li>1 participation gratuite aux événements partenaires</li>
+      </ul>
+    </div>
+    <div class="partner-card gold" style="border-color:rgba(201,168,76,0.32);">
+      <div class="partner-level"><span class="partner-level-dot"></span>Or</div>
+      <div class="partner-price">3'000</div>
+      <div class="partner-from">CHF — À partir de</div>
+      <ul class="partner-benefits">
+        <li>Visibilité avancée sur tous les supports CCIGA</li>
+        <li>Stand à tous les événements de la Chambre</li>
+        <li>2 posts dédiés sur les réseaux sociaux</li>
+        <li>1 prise de parole en réseautage</li>
+        <li>2 participations gratuites aux événements partenaires</li>
+      </ul>
+    </div>
+    <div class="partner-card platinum">
+      <div class="partner-level"><span class="partner-level-dot"></span>Platine</div>
+      <div class="partner-price">5'000</div>
+      <div class="partner-from">CHF — À partir de</div>
+      <ul class="partner-benefits">
+        <li>Visibilité maximale — positionnement stratégique</li>
+        <li>Stand à tous les événements CCIGA</li>
+        <li>3 posts dédiés sur les réseaux sociaux</li>
+        <li>2 prises de parole en réseautage</li>
+        <li>3 participations gratuites aux événements partenaires</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors-section" id="sectors">
+  <div class="section-tag">Opportunités d'investissement</div>
+  <h2 class="section-title">Où investir entre la Suisse <em>et Madagascar ?</em></h2>
+  <p class="section-desc">La CCIGA a identifié les secteurs à fort potentiel de développement et d'investissement dans les deux pays.</p>
+  <div class="sectors-grid">
+    <div class="sector-card"><span class="sector-emoji">🌿</span><div class="sector-name">Agriculture &amp; Agrobusiness</div><div class="sector-desc">Vanille, cacao, café, épices et produits tropicaux. Fort potentiel d'exportation vers les marchés suisses et européens. Coopératives et chaînes de valeur équitables.</div></div>
+    <div class="sector-card"><span class="sector-emoji">🏝️</span><div class="sector-name">Tourisme &amp; Hôtellerie</div><div class="sector-desc">Madagascar, destination écotouristique d'exception avec une biodiversité unique. Opportunités dans l'hébergement haut de gamme et l'écotourisme durable.</div></div>
+    <div class="sector-card"><span class="sector-emoji">⚡</span><div class="sector-name">Énergie renouvelable</div><div class="sector-desc">Potentiel solaire, éolien et hydraulique considérable. Projets d'infrastructure ouverts aux investisseurs étrangers dans un marché en plein développement.</div></div>
+    <div class="sector-card"><span class="sector-emoji">💻</span><div class="sector-name">Technologies &amp; Digital</div><div class="sector-desc">Écosystème tech en plein essor à Antananarivo. Externalisation, développement logiciel, fintech et services BPO à coût compétitif.</div></div>
+    <div class="sector-card"><span class="sector-emoji">🧵</span><div class="sector-name">Industrie légère &amp; Textile</div><div class="sector-desc">Zone franche industrielle active avec avantages douaniers pour l'exportation. Secteur textile en croissance, accès préférentiel aux marchés européens.</div></div>
+    <div class="sector-card"><span class="sector-emoji">🎨</span><div class="sector-name">Artisanat &amp; Industries créatives</div><div class="sector-desc">Savoir-faire uniques : broderie, raphia, pierres précieuses, bois, art contemporain. Commercialisation sur les marchés suisses et européens haut de gamme.</div></div>
+  </div>
+</section>
+
+<!-- COUNTRIES -->
+<section class="countries-section">
+  <div class="section-tag">Deux marchés complémentaires</div>
+  <h2 class="section-title" style="margin-bottom:2.5rem;">Un environnement économique <em>bilatéral</em></h2>
+  <div class="countries-grid">
+    <div class="country-card">
+      <span class="country-flag">🇨🇭</span>
+      <div class="country-name">La Suisse</div>
+      <div class="country-desc">Centre financier et commercial de premier plan, avec une économie stable, un environnement réglementaire favorable et un accès privilégié aux marchés mondiaux.</div>
+      <ul class="country-list">
+        <li>Industrie financière de premier rang mondial</li>
+        <li>Haute technologie et industrie pharmaceutique</li>
+        <li>Horlogerie et industries de précision</li>
+        <li>Stabilité politique et réglementaire</li>
+        <li>Accès privilégié aux marchés européens</li>
+        <li>Environnement favorable à l'innovation</li>
+      </ul>
+    </div>
+    <div class="country-card">
+      <span class="country-flag">🇲🇬</span>
+      <div class="country-name">Madagascar</div>
+      <div class="country-desc">4ème plus grande île du monde. Économie en développement avec un fort potentiel dans l'agriculture, les ressources naturelles, le tourisme et l'industrie légère.</div>
+      <ul class="country-list">
+        <li>Agriculture tropicale à haute valeur ajoutée</li>
+        <li>Ressources minières et naturelles abondantes</li>
+        <li>Tourisme écologique en plein essor</li>
+        <li>Industrie légère et zone franche exportatrice</li>
+        <li>Accords commerciaux avec l'UE (EPA) et les USA (AGOA)</li>
+        <li>Main-d'œuvre qualifiée et coût compétitif</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="section-tag">Rejoindre la CCIGA</div>
+  <h2 class="section-title" style="margin-bottom:4rem;">Un processus simple en <em>5 étapes</em></h2>
+  <div class="process-steps">
+    <div class="process-step"><div class="step-num">1</div><div class="step-title">Prise de contact</div><div class="step-desc">Contactez-nous par email, téléphone ou via le formulaire pour exposer votre besoin.</div></div>
+    <div class="process-step"><div class="step-num">2</div><div class="step-title">Adhésion</div><div class="step-desc">Choisissez la catégorie d'adhésion adaptée et complétez votre formulaire d'inscription.</div></div>
+    <div class="process-step"><div class="step-num">3</div><div class="step-title">Diagnostic</div><div class="step-desc">Un conseiller CCIGA analyse votre situation et identifie les services les plus adaptés.</div></div>
+    <div class="process-step"><div class="step-num">4</div><div class="step-title">Mise en œuvre</div><div class="step-desc">Accédez aux services, au réseau, aux événements et à l'accompagnement personnalisé.</div></div>
+    <div class="process-step"><div class="step-num">5</div><div class="step-title">Suivi</div><div class="step-desc">Bénéficiez d'un suivi continu et élargissez progressivement votre présence bilatérale.</div></div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="news-section" id="news">
+  <div class="section-tag">Actualités</div>
+  <h2 class="section-title" style="margin-bottom:3rem;">Les dernières <em>nouvelles</em></h2>
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-category">Événement</div>
+      <div class="news-title">Forum Économique et Culturel Suisse–Madagascar : 1ère édition annoncée</div>
+      <div class="news-excerpt">Événement phare visant à rassembler les acteurs économiques et culturels des deux pays afin de renforcer les relations commerciales et promouvoir l'innovation bilatérale.</div>
+      <a href="#" class="news-link">Lire la suite →</a>
+    </div>
+    <div class="news-card">
+      <div class="news-category">Publication</div>
+      <div class="news-title">Rapport annuel sur les relations économiques Suisse–Madagascar</div>
+      <div class="news-excerpt">Premier rapport annuel de la CCIGA détaillant l'état des relations économiques bilatérales et les opportunités d'investissement identifiées dans les secteurs porteurs.</div>
+      <a href="#" class="news-link">Lire la suite →</a>
+    </div>
+    <div class="news-card">
+      <div class="news-category">Programme</div>
+      <div class="news-title">Promotion et exportation de l'artisanat malgache vers les marchés internationaux</div>
+      <div class="news-excerpt">Lancement d'expositions et d'un programme d'accompagnement pour exporter les produits artisanaux malgaches, avec formations dédiées aux artisans locaux.</div>
+      <a href="#" class="news-link">Lire la suite →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-tag">Contact</div>
+  <h2 class="section-title" style="margin-bottom:3rem;">Prenez contact <em>avec la CCIGA</em></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="gold-divider"></div>
+      <h3>Une question ? Un projet ? Notre équipe vous répond dans les 48 heures.</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail">
+          <strong>Siège social</strong>
+          CCIGA c/o UCCAS Nations Business Center<br>Rue Pré de la Bichette 1 — 1202 Genève, Suisse
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div class="contact-detail"><strong>Email</strong>contact@cciga.ch</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">☎</div>
+        <div class="contact-detail">
+          <strong>Téléphone</strong>
+          +41 79 601 14 91 — Suisse<br>+261 32 56 478 25 — Madagascar
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="form-grid">
+        <div class="form-field"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+        <div class="form-field"><label>Prénom</label><input type="text" placeholder="Votre prénom"></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="votre@email.com"></div>
+        <div class="form-field"><label>Téléphone</label><input type="tel" placeholder="+41 ..."></div>
+        <div class="form-field"><label>Organisation</label><input type="text" placeholder="Entreprise / organisation"></div>
+        <div class="form-field"><label>Pays</label>
+          <select><option value="">Sélectionner...</option><option>Suisse</option><option>Madagascar</option><option>France</option><option>Autre</option></select>
+        </div>
+        <div class="form-field full"><label>Objet de votre demande</label>
+          <select><option value="">Sélectionner...</option><option>Adhésion membre</option><option>Partenariat</option><option>Opportunité d'investissement</option><option>Information générale</option><option>Autre</option></select>
+        </div>
+        <div class="form-field full"><label>Votre message</label><textarea rows="4" placeholder="Décrivez votre demande..."></textarea></div>
+        <div class="form-field full"><button class="btn-primary" style="width:100%;border:none;cursor:pointer;font-size:0.8rem;">Envoyer ma demande</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="section-tag" style="justify-content:center;">Prêt à nous rejoindre ?</div>
+  <h2>Rejoignez la Chambre de Commerce<br><em style="font-style:italic;color:var(--or-clair);">Suisse–Madagascar</em> dès aujourd'hui</h2>
+  <p>Que vous soyez une entreprise, une association, un investisseur ou un entrepreneur individuel, la CCIGA est votre partenaire de confiance pour développer vos activités entre la Suisse et Madagascar.</p>
+  <div class="cta-btns">
+    <a href="#membership" class="btn-primary">Adhérer maintenant</a>
+    <a href="#contact" class="btn-outline">Prendre contact</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">CCIGA — Genève · Antananarivo</div>
+      <p>Chambre de Commerce, d'Industrie et des Services Genève–Antananarivo. Association de droit privé suisse fondée le 4 octobre 2024.</p>
+    </div>
+    <div class="footer-col"><h4>Navigation</h4><ul><li>À propos</li><li>Services</li><li>Adhésion</li><li>Investir</li><li>Actualités</li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li>Conseil &amp; Assistance</li><li>Mise en relation</li><li>Médiation &amp; Arbitrage</li><li>Événements</li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li>contact@cciga.ch</li><li>+41 79 601 14 91</li><li>Genève, Suisse</li><li>Antananarivo, Madagascar</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024–2025 CCIGA — Chambre de Commerce, d'Industrie et des Services Genève–Antananarivo. Tous droits réservés.</p>
+    <p>Genève &amp; Antananarivo</p>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('scroll-progress').style.width = pct + '%';
+  });
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => {
+      const active = a.getAttribute('href') === '#' + current;
+      a.style.opacity = active ? '1' : '0.7';
+      a.style.color = active ? 'var(--or)' : '';
+    });
+  });
+</script>
+</body>
+</html>
