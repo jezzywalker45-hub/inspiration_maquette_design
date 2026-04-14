@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Shakti Outsourcing | BPO & Data Solutions</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* modern variables */
+    :root {
+      --primary: #7c3aed;
+      --primary-dark: #5b21b6;
+      --secondary: #f59e0b;
+      --accent: #10b981;
+      --dark: #0f172a;
+      --gray-bg: #f8fafc;
+      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header / nav */
+    .navbar {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-svg {
+      width: 52px;
+      height: 52px;
+    }
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #7c3aed, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e293b;
+      transition: var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* buttons */
+    .btn-primary {
+      background: linear-gradient(95deg, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(124,58,237,0.2);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(124,58,237,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* sections */
+    section {
+      padding: 80px 0;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(120deg, #1e293b, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .section-sub {
+      color: #475569;
+      max-width: 700px;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+    .grid-3, .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.8rem;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 40px -20px rgba(0,0,0,0.12);
+    }
+    .card-icon {
+      font-size: 2.8rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+    .stat-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      text-align: center;
+      background: linear-gradient(115deg, #f1f5f9, #ffffff);
+      border-radius: 48px;
+      padding: 3rem 2rem;
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .hero {
+      background: linear-gradient(102deg, #fef9f0 0%, #f0f4ff 100%);
+      border-radius: 0 0 48px 48px;
+    }
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+    }
+    .hero-text {
+      flex: 1;
+    }
+    .hero-badge {
+      background: #e9e4ff;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 3rem 0;
+    }
+
+    /* job listing */
+    .job-card {
+      border-left: 5px solid var(--primary);
+      background: white;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        padding: 1rem 0;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 24px;
+      border: 1px solid #e2e8f0;
+      font-family: inherit;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .tag {
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #7c3aed, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<div class="navbar">
+  <div class="container nav-container">
+    <div class="logo-area">
+      <!-- Logo SVG image moderne -->
+      <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="46" fill="url(#gradLogo)" stroke="#fff" stroke-width="2"/>
+        <defs>
+          <linearGradient id="gradLogo" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7C3AED"/>
+            <stop offset="100%" stop-color="#F97316"/>
+          </linearGradient>
+        </defs>
+        <path d="M34 62 L50 38 L66 62 L58 62 L50 48 L42 62 L34 62Z" fill="white" opacity="0.95"/>
+        <circle cx="50" cy="68" r="4" fill="white"/>
+        <path d="M44 44 L56 44" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text">SHAKTI<span style="font-weight:500"> | INNOV-ART</span></span>
+    </div>
+    <div class="mobile-menu" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#accueil" class="active">Accueil</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pourquoi">Pourquoi nous</a></li>
+      <li><a href="#carriere">Carrière</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- HOMEPAGE (contenu du fichier WORD: SHAKTI OUTSOURCING) -->
+<section id="accueil" class="hero">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <span class="hero-badge"><i class="fas fa-chart-line"></i> Business Process Outsourcing</span>
+      <h1 style="font-size: 3.2rem; font-weight: 800; line-height: 1.2;">Votre partenaire dans l'externalisation de vos services</h1>
+      <p style="font-size: 1.2rem; margin: 1.5rem 0; color: #334155;">Nous offrons des solutions complètes et personnalisées pour optimiser vos processus métier, améliorer votre efficacité opérationnelle et transformer votre Customer Care en source de profit.</p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#contact" class="btn-primary">Demander un devis <i class="fas fa-arrow-right"></i></a>
+        <a href="#services" class="btn-outline">Explorer nos services</a>
+      </div>
+      <div class="stat-grid" style="margin-top: 3rem; background: white; padding: 1.8rem; border-radius: 48px;">
+        <div><div class="stat-number">+300k</div><div>Appels effectués</div></div>
+        <div><div class="stat-number">14</div><div>Projets en cours</div></div>
+        <div><div class="stat-number">90+</div><div>Collaborateurs experts</div></div>
+        <div><div class="stat-number">24/7</div><div>Support omnicanal</div></div>
+      </div>
+    </div>
+    <div style="flex:1; text-align: center;">
+      <i class="fas fa-headset" style="font-size: 12rem; color: #7c3aed20;"></i>
+      <i class="fas fa-chart-simple" style="font-size: 6rem; color: var(--secondary); margin-left: -3rem;"></i>
+    </div>
+  </div>
+</section>
+
+<!-- Solutions clés (activités call center / e-relation etc) -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <h2 class="section-title">Solutions en gestion externalisée</h2>
+    <p class="section-sub">Avec SHAKTI OUTSOURCING, bénéficiez d’une expertise sectorielle approfondie et de technologies de pointe.</p>
+    <div class="grid-3">
+      <div class="card"><i class="fas fa-phone-alt card-icon"></i><h3>Activités de Call Center</h3><p>Appels entrants (SAV, télésecrétariat) & campagnes sortantes (sondage, prospection).</p></div>
+      <div class="card"><i class="fas fa-comments card-icon"></i><h3>E-Relation Client</h3><p>Chat, email, Social Media, Community Management & e-réputation.</p></div>
+      <div class="card"><i class="fas fa-flag-checkered card-icon"></i><h3>Modération - Annotation</h3><p>Texte, images, vidéos, UGC, modération de contenus IA.</p></div>
+      <div class="card"><i class="fas fa-database card-icon"></i><h3>BPO / Traitement de données</h3><p>Qualification de fichier, indexation, rédaction, édition de contenu.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION À PROPOS (mix Shakti & Innov-Art) -->
+<section id="about" style="background: var(--gray-bg);">
+  <div class="container">
+    <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+      <div style="flex:1">
+        <h2 class="section-title">Histoire : SHAKTI OUTSOURCING & INNOV-ART</h2>
+        <p style="margin-bottom: 1rem;"><strong>SHAKTI OUTSOURCING</strong> a été créée par une jeune entrepreneure malgache en 2020 avec près de 9 ans d’expérience dans l’externalisation. Regroupant plus de 90 talents, notre centre de contact s’appuie sur des valeurs fortes. <strong>INNOV-ART</strong> fondée en 2017, réunit aujourd’hui près de 300 collaborateurs, unissant expertise BPO, GRC et data labeling éthique.</p>
+        <p>Ensemble, nous offrons une externalisation significative, éthique et impactante, avec un management de proximité et des salaires justes.</p>
+        <div style="margin-top: 2rem;"><i class="fas fa-medal"></i> <strong>Offre compétitive</strong> : modèles tarifaires sans frais cachés, tout compris. <br>
+        <i class="fas fa-handshake"></i> <strong>Partenaire durable</strong> : amélioration continue, transparence, respect mutuel.</div>
+      </div>
+      <div style="flex:1">
+        <div class="card" style="background: white;">
+          <h3><i class="fas fa-shield-alt"></i> Nos particularités</h3>
+          <ul style="margin-top: 1rem; list-style: none;">
+            <li>✔️ Activités 100% éthiques (pas d’arnaques, respect du droit)</li>
+            <li>✔️ Flexibilité & réactivité (pics d’audience, saisonnalité)</li>
+            <li>✔️ Management de proximité, équipes francophones/anglophones</li>
+            <li>✔️ Conformité RGPD, sécurité des données, chiffrement</li>
+          </ul>
+          <div style="margin-top: 1.5rem;"><span class="tag">Modèle intégratif</span> <span class="tag">Éthique</span> <span class="tag">Qualité haute</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES PAGE (inspiré du PDF + Shakti, offres complètes) -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Nos services d'externalisation sur mesure</h2>
+    <p class="section-sub">De la relation client omnicanale à l'annotation de données pour l'IA, nous répondons à tous vos enjeux métier.</p>
+    <div class="grid-3">
+      <div class="card"><i class="fas fa-headset card-icon"></i><h3>Call Center & GRC</h3><p>Inbound/Outbound, support technique, télésecrétariat, fidélisation client 24/7 multilingue (FR, EN, ES, IT, DE).</p></div>
+      <div class="card"><i class="fas fa-tags card-icon"></i><h3>Labelisation de données</h3><p>Annotation d'images, vidéos, audios pour Machine Learning / IA. Format JSON, XML, Pascal VOC, datasets haute qualité.</p></div>
+      <div class="card"><i class="fas fa-file-alt card-icon"></i><h3>Document Processing</h3><p>Traitement comptable, extraction de données, catégorisation de factures, conformité RGPD.</p></div>
+      <div class="card"><i class="fas fa-language card-icon"></i><h3>Natural Language Processing</h3><p>NER, classification sémantique, annotation texte pour modèles NLP francophones/anglophones.</p></div>
+      <div class="card"><i class="fas fa-cubes card-icon"></i><h3>Modération de contenu</h3><p>Modération d'UGC, réseaux sociaux, avis, optimisation d'IA par renforcement.</p></div>
+      <div class="card"><i class="fas fa-cube card-icon"></i><h3>Modélisation 3D</h3><p>Modèles 3D ultra-réalistes, immersion produit, réduction des retours, boost conversion.</p></div>
+      <div class="card"><i class="fas fa-chart-line card-icon"></i><h3>Collecte de données</h3><p>Recherches manuelles & contrôles automatisés pour enrichir vos datasets IA.</p></div>
+      <div class="card"><i class="fas fa-envelope-open-text card-icon"></i><h3>E-Relation & Community Mgmt</h3><p>Chat, email, social media, e-réputation, gestion de workflow, Community Management.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Pourquoi nous / externaliser (avantages + confiance) -->
+<section id="pourquoi" style="background: linear-gradient(120deg, #fef9e6, #ffffff);">
+  <div class="container">
+    <div style="text-align: center;"><h2 class="section-title">Pourquoi nous faire confiance ?</h2><p class="section-sub">Externalisation éthique, ROI garanti, flexibilité totale.</p></div>
+    <div class="grid-3">
+      <div class="card"><i class="fas fa-chart-simple card-icon"></i><h3>Réduction des coûts & ROI</h3><p>Tarifs compétitifs, modulables, sans frais cachés. Votre Customer Care devient source de profit.</p></div>
+      <div class="card"><i class="fas fa-lock card-icon"></i><h3>Données sécurisées</h3><p>Conformité RGPD, chiffrement, accès restreint, contrôle rigoureux.</p></div>
+      <div class="card"><i class="fas fa-chalkboard-user card-icon"></i><h3>Management de proximité</h3><p>Manager francophone/anglophone dédié, coordination, reporting qualité.</p></div>
+      <div class="card"><i class="fas fa-gem card-icon"></i><h3>Qualité & excellence</h3><p>Revue qualité systématique, assurance qualité (manuel + automatisé), test gratuit en 48h.</p></div>
+      <div class="card"><i class="fas fa-globe card-icon"></i><h3>Offre multilingue & 24/7</h3><p>Français, anglais, espagnol, italien, allemand – service continu, pics d’activité maîtrisés.</p></div>
+      <div class="card"><i class="fas fa-heart card-icon"></i><h3>Activités 100% éthiques</h3><p>Aucune opération trompeuse, respect du travail et des lois, partenariat durable.</p></div>
+    </div>
+    <div style="margin-top: 3rem; background: #eef2ff; border-radius: 48px; padding: 2rem; text-align: center;">
+      <i class="fas fa-clock" style="font-size: 2rem; color: var(--primary);"></i>
+      <h3>Processus clé en main : de l'expression du besoin à la livraison</h3>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1rem;">
+        <span>1️⃣ Votre besoin</span> → <span>2️⃣ Accord & contrat</span> → <span>3️⃣ Équipe dédiée</span> → <span>4️⃣ Revue qualité</span> → <span>5️⃣ Livraison sécurisée</span>
+      </div>
+      <p class="tag" style="margin-top: 1rem;">🔹 Test gratuit sous 48h 🔹 Pas d’abonnement, pas de frais cachés 🔹</p>
+    </div>
+  </div>
+</section>
+
+<!-- CARRIERE (offres d'emploi Shakti) -->
+<section id="carriere">
+  <div class="container">
+    <h2 class="section-title">Rejoignez une équipe à impact</h2>
+    <p class="section-sub">SHAKTI OUTSOURCING valorise les talents malgaches. Conditions optimales, évolution, valeurs humanistes.</p>
+    <div class="grid-3">
+      <div class="card job-card"><i class="fas fa-user-tie"></i><h3>Agent Relation Client</h3><p><strong>Missions :</strong> Assurer communication pro, résoudre les demandes, support technique de base.<br><strong>Profil :</strong> Bac+, 1 an exp, français + anglais avancé, aisance téléphonique.</p></div>
+      <div class="card job-card"><i class="fas fa-phone-volume"></i><h3>Téléopérateurs</h3><p><strong>Missions :</strong> Appels entrants/sortants, enquêtes, ventes, rappels.<br><strong>Profil :</strong> BACC minimum, français sans accent, dynamique, outils informatiques.</p></div>
+      <div class="card job-card"><i class="fas fa-calculator"></i><h3>Télésecrétaire comptable & administratif</h3><p><strong>Missions :</strong> Émission factures, suivi paiements, relances impayés, pointage bancaire.<br><strong>Profil :</strong> Formation secrétariat/comptabilité, rigueur, français écrit/oral.</p></div>
+    </div>
+    <div style="margin-top: 2rem; text-align: center; background: #f1f5f9; border-radius: 48px; padding: 1.5rem;">
+      <p><i class="fas fa-graduation-cap"></i> Nous privilégions les talents locaux et l'amélioration continue – envoyez votre CV à <strong>recrutement@shakti-outsourcing.mg</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT + DEMANDE DE DEVIS (formulaire inspiré du PDF) -->
+<section id="contact" style="background: var(--gray-bg);">
+  <div class="container">
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+      <div style="flex:1">
+        <h2 class="section-title">Demandez un devis personnalisé</h2>
+        <p>Remplissez le formulaire, nous vous répondons sous 48h avec une proposition adaptée.</p>
+        <form id="quoteForm" style="margin-top: 1.5rem;">
+          <div class="form-group"><input type="text" placeholder="Société *" id="company" required></div>
+          <div class="form-group"><input type="text" placeholder="Nom *" id="nom" required></div>
+          <div class="form-group"><input type="text" placeholder="Prénom *" id="prenom" required></div>
+          <div class="form-group"><input type="email" placeholder="Adresse e-mail *" id="email" required></div>
+          <div class="form-group"><input type="tel" placeholder="Téléphone *" id="phone" required></div>
+          <div class="form-group"><textarea rows="2" placeholder="Description de vos besoins *" id="besoins" required></textarea></div>
+          <div class="form-group"><label>Types de prestation souhaitée :</label><div class="checkbox-group"><label><input type="checkbox" value="Labelisation données"> Labelisation données</label><label><input type="checkbox" value="Collecte données"> Collecte données</label><label><input type="checkbox" value="Modération"> Modération</label><label><input type="checkbox" value="Document Processing"> Document Processing</label><label><input type="checkbox" value="NLP"> NLP</label><label><input type="checkbox" value="GRC"> GRC / Call Center</label><label><input type="checkbox" value="3D"> Modélisation 3D</label></div></div>
+          <div class="form-group"><select id="duree"><option>Durée projet</option><option>1 à 3 mois</option><option>4 à 6 mois</option><option>7 à 12 mois</option><option>1 à 5 ans</option><option>Indéterminée</option></select></div>
+          <div class="form-group"><input type="text" placeholder="Budget estimatif (valeur horaire ou global)" id="budget"></div>
+          <button type="submit" class="btn-primary">Envoyer la demande <i class="fas fa-paper-plane"></i></button>
+        </form>
+        <p id="formFeedback" style="margin-top: 1rem; color: green;"></p>
+      </div>
+      <div style="flex:1; background: white; border-radius: 32px; padding: 2rem;">
+        <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary);"></i>
+        <h3>SHAKTI OUTSOURCING – Madagascar</h3>
+        <p>📍 Antananarivo, centre d'affaires numérique<br>📧 contact@shakti-outsourcing.mg<br>📞 +261 34 123 4567</p>
+        <hr style="margin: 1rem 0;">
+        <h4>Pourquoi externaliser avec nous ?</h4>
+        <ul>
+          <li>✅ Expertise pure-player & NTIC</li>
+          <li>✅ Tarif exceptionnel tout compris</li>
+          <li>✅ Service 24/7, multilingue</li>
+          <li>✅ Engagement éthique & transparence</li>
+        </ul>
+        <div style="margin-top: 1.5rem;"><span class="tag"><i class="fab fa-linkedin"></i> LinkedIn Shakti Outsourcing</span> <span class="tag"><i class="fab fa-twitter"></i> @ShaktiBPO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div><strong>SHAKTI OUTSOURCING</strong> — partenaire stratégique en externalisation éthique, BPO, data labeling & relation client.</div>
+      <div>© 2025 Shakti Outsourcing & Innov-Art Group. Tous droits réservés.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  // Active link highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // form submit demo
+  const form = document.getElementById('quoteForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const company = document.getElementById('company').value;
+    const nom = document.getElementById('nom').value;
+    if(!company || !nom) {
+      document.getElementById('formFeedback').innerHTML = "⚠️ Merci de remplir tous les champs obligatoires.";
+      return;
+    }
+    document.getElementById('formFeedback').innerHTML = "✅ Merci ! Votre demande a été envoyée. Un expert Shakti vous contactera sous 48h.";
+    form.reset();
+  });
+</script>
+</body>
+</html>

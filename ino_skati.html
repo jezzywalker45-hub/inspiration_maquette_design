@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INNOV-ART — BPO · IA · Relation client</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --orange: #E86A10;
+    --orange-light: #F97316;
+    --black: #0F0F0F;
+    --white: #ffffff;
+    --bg: #ffffff;
+    --bg2: #F8F7F4;
+    --text: #111111;
+    --text2: #6B6B6B;
+    --border: rgba(0,0,0,0.09);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 68px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 18px; letter-spacing: -0.01em;
+    text-decoration: none; color: var(--text);
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text2);
+    font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    background: var(--orange); color: #fff;
+    border: none; padding: 10px 22px;
+    border-radius: 100px; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.88; }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid; grid-template-columns: 1fr 420px;
+    gap: 60px; align-items: center;
+    padding: 80px 40px 88px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 12px; color: var(--text2);
+    margin-bottom: 24px;
+  }
+  .hero-badge-dot {
+    width: 7px; height: 7px;
+    background: var(--orange); border-radius: 50%;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(38px, 4.5vw, 52px);
+    font-weight: 800; line-height: 1.06;
+    letter-spacing: -0.025em; margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--orange); font-style: normal; }
+  .hero-sub {
+    font-size: 16px; line-height: 1.75;
+    color: var(--text2); margin-bottom: 36px; max-width: 490px;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--orange); color: #fff;
+    border: none; padding: 13px 28px;
+    border-radius: 100px; font-size: 14px; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    text-decoration: none; display: inline-block;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    border: 0.5px solid var(--border);
+    padding: 13px 28px; border-radius: 100px;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    text-decoration: none; display: inline-block;
+    transition: background 0.15s;
+  }
+  .btn-ghost:hover { background: var(--bg2); }
+
+  /* stats panel */
+  .stats-panel {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 20px; padding: 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .stat {
+    padding: 18px 16px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .stat:nth-child(odd)  { border-right: 0.5px solid var(--border); }
+  .stat:nth-last-child(-n+2) { border-bottom: none; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px; font-weight: 800;
+    color: var(--orange); margin-bottom: 4px;
+  }
+  .stat-label { font-size: 12px; color: var(--text2); line-height: 1.4; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 0.5px; background: var(--border); margin: 0 40px; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 80px 40px; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--orange);
+    font-weight: 600; margin-bottom: 12px;
+  }
+  .section-h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 3.5vw, 38px);
+    font-weight: 800; letter-spacing: -0.02em;
+    margin-bottom: 12px; line-height: 1.1;
+  }
+  .section-sub {
+    font-size: 15px; line-height: 1.75;
+    color: var(--text2); max-width: 540px;
+    margin-bottom: 48px;
+  }
+
+  /* ── ACTIVITIES ── */
+  .activities-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-bottom: 36px;
+  }
+  .act-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 16px; padding: 28px 24px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .act-card:hover {
+    border-color: var(--orange);
+    background: var(--white);
+  }
+  .act-icon {
+    width: 38px; height: 38px;
+    background: var(--orange); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .act-icon svg {
+    width: 18px; height: 18px;
+    fill: none; stroke: #fff;
+    stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .act-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px; font-weight: 700; margin-bottom: 8px;
+  }
+  .act-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* ── WHY ── */
+  .why-section { background: var(--bg2); }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: start;
+  }
+  .why-items { display: grid; gap: 14px; }
+  .why-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 14px; padding: 20px 22px;
+  }
+  .why-num {
+    width: 32px; height: 32px;
+    background: var(--orange); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 13px; color: #fff; flex-shrink: 0;
+  }
+  .why-item h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px; font-weight: 700; margin-bottom: 5px;
+  }
+  .why-item p { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  /* ── CTA BLOCK ── */
+  .cta-section { padding: 0 40px 80px; }
+  .cta-box {
+    background: var(--black); border-radius: 20px;
+    padding: 52px 48px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 48px; flex-wrap: wrap;
+  }
+  .cta-kicker {
+    font-size: 11px; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--orange);
+    font-weight: 600; margin-bottom: 10px;
+  }
+  .cta-box h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 30px; font-weight: 800; color: #fff;
+    margin-bottom: 12px; line-height: 1.15;
+  }
+  .cta-box p {
+    font-size: 14px; line-height: 1.75;
+    color: rgba(255,255,255,0.45); max-width: 400px;
+  }
+  .cta-btns { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+  .cta-btn-primary {
+    background: var(--orange); color: #fff;
+    border: none; padding: 14px 30px;
+    border-radius: 100px; font-size: 14px; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    white-space: nowrap; transition: opacity 0.15s;
+  }
+  .cta-btn-primary:hover { opacity: 0.88; }
+  .cta-btn-outline {
+    background: transparent; color: #fff;
+    border: 0.5px solid rgba(255,255,255,0.25);
+    padding: 14px 30px; border-radius: 100px;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    white-space: nowrap; transition: border-color 0.2s;
+  }
+  .cta-btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 28px 40px;
+    border-top: 0.5px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 16px;
+    color: var(--text); text-decoration: none;
+  }
+  .footer-logo span { color: var(--orange); }
+  footer p { font-size: 12px; color: var(--text2); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+    .stats-panel { max-width: 100%; }
+    .activities-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr; gap: 36px; }
+    .cta-box { flex-direction: column; padding: 40px 28px; }
+    section { padding: 60px 24px; }
+    .divider { margin: 0 24px; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .cta-section { padding: 0 24px 60px; }
+    footer { padding: 24px; }
+  }
+  @media (max-width: 600px) {
+    .activities-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">INNOV<span>-ART</span></a>
+  <ul class="nav-links">
+    <li><a href="#">Accueil</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
+    <li><a href="#">À propos</a></li>
+    <li><a href="#">Carrières</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Demander un devis</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      BPO · IA · Relation client
+    </div>
+    <h1>Externalisation<br><em>éthique</em> et<br>innovante</h1>
+    <p class="hero-sub">
+      INNOV-ART met à votre disposition son expertise en BPO, gestion de la relation client et traitement de données IA, avec une approche humaine et responsable.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Découvrir nos services</a>
+      <a href="#contact" class="btn-ghost">Nous contacter</a>
+    </div>
+  </div>
+
+  <div class="stats-panel">
+    <div class="stat">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Collaborateurs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10 000+</div>
+      <div class="stat-label">Annotations images / j</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">120+</div>
+      <div class="stat-label">Modélisations 3D / mois</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">292k+</div>
+      <div class="stat-label">Vidéos traitées / j</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">300k+</div>
+      <div class="stat-label">Appels effectués</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">99%</div>
+      <div class="stat-label">Fiabilité</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACTIVITIES -->
+<section id="services">
+  <div class="section-label">Nos activités</div>
+  <h2 class="section-h2">Des solutions d'externalisation sur mesure</h2>
+  <p class="section-sub">
+    Nous mettons à votre disposition notre expertise en BPO et en Gestion de la Relation Client avec une approche omnicanale.
+  </p>
+
+  <div class="activities-grid">
+
+    <div class="act-card">
+      <div class="act-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+      </div>
+      <h3>Labellisation de données</h3>
+      <p>Annotation d'images, vidéos et textes pour vos modèles IA via Label Studio, CVAT ou vos propres outils.</p>
+    </div>
+
+    <div class="act-card">
+      <div class="act-icon">
+        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v5c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 10v5c0 1.66 4 3 9 3s9-1.34 9-3v-5"/></svg>
+      </div>
+      <h3>Collecte de données</h3>
+      <p>Recherches manuelles et contrôles automatisés pour des datasets structurés et thématisés de haute qualité.</p>
+    </div>
+
+    <div class="act-card">
+      <div class="act-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Modération de données</h3>
+      <p>Supervision de vos activités numériques et optimisation des capacités IA, y compris l'apprentissage par renforcement.</p>
+    </div>
+
+    <div class="act-card">
+      <div class="act-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.5 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.41 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <h3>Gestion relation client</h3>
+      <p>Externalisation omnicanale de votre service client, de manière pérenne ou ponctuelle selon vos besoins.</p>
+    </div>
+
+    <div class="act-card">
+      <div class="act-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <h3>Natural Language Processing</h3>
+      <p>Annotation de textes pour NER, classification et labellisation sémantique par une équipe bilingue FR / EN.</p>
+    </div>
+
+    <div class="act-card">
+      <div class="act-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Modélisation 3D</h3>
+      <p>Modèles ultra-réalistes pour une immersion totale, réduire les retours clients et booster votre taux de conversion.</p>
+    </div>
+
+  </div>
+
+  <a href="#" class="btn-ghost" style="font-size:14px;">Voir tous nos services →</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY -->
+<section class="why-section" id="pourquoi">
+  <div class="why-grid">
+    <div>
+      <div class="section-label">Pourquoi externaliser ?</div>
+      <h2 class="section-h2">Les avantages de collaborer avec INNOV-ART</h2>
+      <p class="section-sub" style="margin-bottom:0;">
+        Des bénéfices concrets pour votre organisation, portés par une équipe formée, éthique et à l'écoute.
+      </p>
+    </div>
+    <div class="why-items">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div>
+          <h4>Réduction des coûts</h4>
+          <p>Optimisez vos ressources et réduisez les charges opérationnelles sans sacrifier la qualité.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div>
+          <h4>Expertise de haut niveau</h4>
+          <p>Une équipe formée et spécialisée dans chaque domaine, disponible immédiatement.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div>
+          <h4>Flexibilité et agilité</h4>
+          <p>Services adaptés à vos besoins et aux variations d'activité, sans engagement rigide.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <div>
+          <h4>Qualité garantie</h4>
+          <p>Processus rigoureux de contrôle et d'assurance qualité à chaque étape de traitement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <div class="cta-box">
+    <div>
+      <div class="cta-kicker">Prêt à commencer ?</div>
+      <h2>Réalisez vos projets<br>avec INNOV-ART</h2>
+      <p>
+        En seulement 48 heures, nous vous proposons un test gratuit pour évaluer vos besoins et élaborer un contrat parfaitement adapté à vos enjeux.
+      </p>
+    </div>
+    <div class="cta-btns">
+      <button class="cta-btn-primary">Contactez-nous</button>
+      <button class="cta-btn-outline">Demander un devis</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">INNOV<span>-ART</span></a>
+  <p>© 2024 INNOV-ART — BPO · IA · Relation client — Madagascar</p>
+</footer>
+
+</body>
+</html>
