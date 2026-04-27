@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INNOVART — Page d'accueil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ff8a00;
+      --orange-dark: #e56f00;
+      --bg: #fff8f1;
+      --surface: rgba(255,255,255,.82);
+      --surface-strong: #ffffff;
+      --text: #171717;
+      --muted: #6b7280;
+      --line: rgba(255,138,0,.16);
+      --shadow: 0 20px 60px rgba(15, 23, 42, .10);
+      --shadow-soft: 0 12px 30px rgba(15, 23, 42, .08);
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,138,0,.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,138,0,.08), transparent 25%),
+        linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    /* Top bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,.76);
+      border-bottom: 1px solid rgba(255,255,255,.45);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--orange), #ffb347);
+      box-shadow: 0 10px 20px rgba(255,138,0,.25);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      letter-spacing: .5px;
+      flex: 0 0 auto;
+      font-size: 1rem;
+    }
+    .brand-text { min-width: 0; }
+    .brand-title {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .brand-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .navlinks a {
+      color: #374151;
+      font-weight: 600;
+      font-size: .95rem;
+      opacity: .9;
+      transition: .2s ease;
+    }
+    .navlinks a:hover { color: var(--orange-dark); }
+    .navcta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--orange), #ffb347);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 14px 28px rgba(255,138,0,.20);
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 46px 0 22px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+    .hero-main, .hero-side, .section-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero-main {
+      position: relative;
+      padding: 42px;
+      background:
+        linear-gradient(135deg, rgba(255,138,0,.98) 0%, rgba(255,168,48,.96) 100%),
+        radial-gradient(circle at top right, rgba(255,255,255,.25), transparent 35%);
+      color: white;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      font-size: .92rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1 {
+      margin: 18px 0 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: .98;
+      letter-spacing: -.03em;
+      max-width: 12ch;
+    }
+    .hero p {
+      font-size: 1.06rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,.96);
+      max-width: 60ch;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: #ffffff;
+      color: #111827;
+      box-shadow: 0 14px 30px rgba(0,0,0,.16);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border-color: rgba(255,255,255,.35);
+    }
+
+    .hero-badges {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .badge-card {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 22px;
+      padding: 16px;
+      backdrop-filter: blur(8px);
+    }
+    .badge-card strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+    .badge-card span {
+      display: block;
+      color: rgba(255,255,255,.90);
+      font-size: .95rem;
+      line-height: 1.45;
+    }
+
+    .hero-side {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 18px;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.80));
+    }
+    .side-panel {
+      border-radius: 24px;
+      background: linear-gradient(180deg, #fff, #fffaf5);
+      padding: 24px;
+      border: 1px solid rgba(255,138,0,.10);
+      box-shadow: var(--shadow-soft);
+    }
+    .side-panel h3 {
+      margin: 0 0 12px;
+      font-size: 1.12rem;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .stat {
+      padding: 18px 16px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #fff, #fff7ef);
+      border: 1px solid rgba(255,138,0,.10);
+    }
+    .stat .num {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--orange-dark);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat .label {
+      font-size: .92rem;
+      color: #374151;
+      line-height: 1.45;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .mini-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 15px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.95);
+      border: 1px solid rgba(255,138,0,.08);
+    }
+    .mini-item .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(255,138,0,.14), rgba(255,179,71,.20));
+      color: var(--orange-dark);
+      font-size: 1rem;
+      font-weight: 800;
+    }
+    .mini-item strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: .98rem;
+    }
+    .mini-item p {
+      margin: 0;
+      font-size: .92rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    /* Section basics */
+    section { padding: 24px 0; }
+    .section-card {
+      padding: 34px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(255,138,0,.10);
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+    .section-kicker {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,138,0,.12);
+      color: var(--orange-dark);
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      max-width: 15ch;
+    }
+    .section-desc {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 62ch;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+    .service {
+      padding: 22px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #fff, #fff8f1);
+      border: 1px solid rgba(255,138,0,.10);
+      box-shadow: 0 10px 24px rgba(15,23,42,.05);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .service .index {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--orange), #ffbd59);
+      color: white;
+      font-weight: 800;
+      box-shadow: 0 14px 28px rgba(255,138,0,.18);
+    }
+    .service h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.35;
+    }
+    .service p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: .96rem;
+    }
+
+    /* Why us */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+    }
+    .why-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid rgba(255,138,0,.10);
+      box-shadow: 0 10px 24px rgba(15,23,42,.05);
+    }
+    .why-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.06rem;
+    }
+    .why-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: .96rem;
+    }
+    .why-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: #374151;
+      line-height: 1.75;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 28px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+    .cta h3 {
+      margin: 0 0 8px;
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+    .cta p {
+      margin: 0;
+      color: rgba(255,255,255,.76);
+      line-height: 1.65;
+      max-width: 62ch;
+    }
+    .cta .btn-primary { background: white; }
+
+    footer {
+      padding: 34px 0 54px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .services-grid, .why-grid { grid-template-columns: 1fr; }
+      .hero-main { min-height: auto; }
+      .section-head, .cta { flex-direction: column; align-items: flex-start; }
+      .nav { flex-wrap: wrap; }
+      .navlinks { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-main, .section-card { padding: 22px; }
+      .hero h1 { max-width: 100%; }
+      .hero-badges, .stat-grid { grid-template-columns: 1fr; }
+      .brand-subtitle { display: none; }
+      .cta { padding: 22px; }
+      .btn { width: 100%; }
+      .hero-actions { display: grid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">IA</div>
+        <div class="brand-text">
+          <p class="brand-title">INNOVART</p>
+          <p class="brand-subtitle">Business Process Outsourcing (BPO)</p>
+        </div>
+      </div>
+
+      <nav class="navlinks" aria-label="Navigation principale">
+        <a href="#services">Nos services</a>
+        <a href="#choisir">Pourquoi nous choisir</a>
+        <a href="#chiffres">Chiffres clés</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="navcta" href="#contact">Demander un devis</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-main">
+          <div>
+            <div class="eyebrow">Slide : INNOVART : Business Process Outsourcing (BPO)</div>
+            <h1>Votre partenaire dans l’externalisation de vos services - Optimisez vos opérations. Accélérez votre croissance.</h1>
+            <p>Nous accompagnons les entreprises dans l’externalisation de leurs processus métier grâce à des solutions performantes, flexibles et sécurisées.</p>
+            <p>Avec plus de 8 ans d’expérience dans l’intelligence artificielle et la gestion des données, nous aidons nos clients à améliorer leur efficacité opérationnelle tout en réduisant leurs coûts :</p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact">👉 Demander un devis</a>
+              <a class="btn btn-secondary" href="#contact">👉 Planifier un rendez-vous</a>
+            </div>
+          </div>
+
+          <div class="hero-badges">
+            <div class="badge-card">
+              <strong>Experts stratégiques et organisationnels</strong>
+              <span>Une approche orientée performance, qualité et résultat.</span>
+            </div>
+            <div class="badge-card">
+              <strong>Source de profit</strong>
+              <span>Pour l’assurance d’un retour sur investissement pour nos clients.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="side-panel" id="chiffres">
+            <h3>Chiffres clés</h3>
+            <p class="section-desc" style="margin-bottom:0;">Nos indicateurs illustrent la solidité de notre expérience et notre capacité à accompagner des opérations à grande échelle.</p>
+            <div class="stat-grid">
+              <div class="stat">
+                <div class="num">+8</div>
+                <div class="label">ans d’expérience en IA & gestion des données</div>
+              </div>
+              <div class="stat">
+                <div class="num">150</div>
+                <div class="label">collaborateurs</div>
+              </div>
+              <div class="stat">
+                <div class="num">15</div>
+                <div class="label">projets en cours</div>
+              </div>
+              <div class="stat">
+                <div class="num">300k+</div>
+                <div class="label">appels effectués</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-panel">
+            <h3>Bloc engagements</h3>
+            <div class="mini-list">
+              <div class="mini-item"><div class="icon">🤝</div><div><strong>Bien-être et engagement des collaborateurs</strong><p>Des équipes valorisées et protégées.</p></div></div>
+              <div class="mini-item"><div class="icon">🛡️</div><div><strong>Respect des normes HSE</strong><p>Un environnement de travail sécurisé.</p></div></div>
+              <div class="mini-item"><div class="icon">📈</div><div><strong>Performance durable</strong><p>Qualité constante et amélioration continue.</p></div></div>
+              <div class="mini-item"><div class="icon">🌍</div><div><strong>Partenaire responsable</strong><p>Un engagement clair et durable.</p></div></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container section-card">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">🧩 Nos services</span>
+            <h2 class="section-title">Des solutions sur mesure pour vos besoins opérationnels</h2>
+          </div>
+          <p class="section-desc">Nous proposons une gamme complète de services d’externalisation adaptés à vos enjeux métier.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service">
+            <div class="index">1</div>
+            <h3>Data & Intelligence Artificielle</h3>
+            <p>Nous contribuons à la performance de vos modèles IA grâce à des données fiables, structurées et de haute qualité. Annotation d’images, vidéos et textes à grande échelle, modération de contenu sensible et complexe, enrichissement et structuration de données, gestion de datasets pour entraînement IA.</p>
+          </article>
+
+          <article class="service">
+            <div class="index">2</div>
+            <h3>Externalisation de processus métier (BPO)</h3>
+            <p>Nous prenons en charge vos opérations à faible ou forte intensité pour vous permettre de vous concentrer sur votre cœur de métier. Gestion de back-office, traitement et saisie de données, gestion de contenus et workflows opérationnels.</p>
+          </article>
+
+          <article class="service">
+            <div class="index">3</div>
+            <h3>Contrôle qualité & excellence opérationnelle offerts</h3>
+            <p>La qualité est intégrée à chaque étape de production. Mise en place de protocoles qualité sur mesure, audits réguliers et amélioration continue, co-construction des processus, optimisation continue des opérations, supervision et pilotage de la performance (KPI, SLA).</p>
+          </article>
+
+          <article class="service">
+            <div class="index">4</div>
+            <h3>Support client (Customer Support / SAV)</h3>
+            <p>Gestion du Service Après-Vente (SAV), traitement des demandes clients, résolution de problèmes (produit, livraison, service), gestion des réclamations, suivi des tickets.</p>
+          </article>
+
+          <article class="service">
+            <div class="index">5</div>
+            <h3>Support téléphonique (Voice)</h3>
+            <p>Appels entrants (inbound), appels sortants (outbound), assistance technique par téléphone, prise de rendez-vous, enquêtes de satisfaction.</p>
+          </article>
+
+          <article class="service">
+            <div class="index">6</div>
+            <h3>Support digital (Non-voice)</h3>
+            <p>Chat en ligne (live chat), support par email, support via réseaux sociaux.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="choisir">
+      <div class="container section-card">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">🚀 Pourquoi nous choisir</span>
+            <h2 class="section-title">Un partenaire fiable et performant</h2>
+          </div>
+          <p class="section-desc">Nous nous engageons à générer un impact mesurable sur vos opérations, votre qualité et votre rentabilité.</p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <h3>✅ Expertise éprouvée en IA & gestion des données</h3>
+            <p>Avec plus de 8 ans d’expérience, nous maîtrisons les enjeux complexes liés aux données et à l’intelligence artificielle.</p>
+          </div>
+          <div class="why-card">
+            <h3>✅ Excellence opérationnelle & culture du résultat</h3>
+            <p>Nos équipes sont formées à des standards élevés de performance, avec une approche orientée KPI et amélioration continue.</p>
+          </div>
+          <div class="why-card">
+            <h3>✅ Qualité et management inclus</h3>
+            <p>Nous intégrons le management, la supervision et le contrôle qualité dans notre offre.</p>
+          </div>
+          <div class="why-card">
+            <h3>✅ Flexibilité & scalabilité 24/7</h3>
+            <p>Nous nous adaptons à vos volumes et à vos contraintes opérationnelles, avec disponibilité 24h/24 et 7j/7.</p>
+          </div>
+          <div class="why-card">
+            <h3>✅ Engagement humain & stabilité des équipes</h3>
+            <p>Nous investissons dans le bien-être, la formation et la fidélisation de nos collaborateurs.</p>
+          </div>
+          <div class="why-card">
+            <h3>✅ Sécurité & conformité au cœur de nos opérations</h3>
+            <p>RGPD, gestion des accès, IA responsable, HSE et transparence structurent notre manière de travailler.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h3>Nous ne nous contentons pas d’exécuter vos opérations : nous les optimisons pour en faire un levier de performance durable.</h3>
+            <p>Offre multilingue, service haut de gamme, fiabilité technique, capacité d’absorption et réactivité : votre projet mérite une approche solide, claire et durable.</p>
+          </div>
+          <div class="hero-actions" style="margin-top:0;">
+            <a class="btn btn-primary" href="#">👉 Demander un devis</a>
+            <a class="btn btn-secondary" href="#">👉 Planifier un rendez-vous</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      INNOVART — Page d’accueil conçue avec une mise en page moderne, élégante et centrée sur vos contenus.
+    </div>
+  </footer>
+</body>
+</html>
