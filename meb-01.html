@@ -619,15 +619,15 @@ footer{
   </div>
   <div class="hero-stats">
     <div class="stat">
-      <div class="stat-num">50+</div>
+      <div class="stat-num" data-target="50" data-suffix="+">0+</div>
       <div class="stat-label">Projets livrés</div>
     </div>
     <div class="stat">
-      <div class="stat-num">8+</div>
+      <div class="stat-num" data-target="8" data-suffix="+">0+</div>
       <div class="stat-label">Années d'expérience</div>
     </div>
     <div class="stat">
-      <div class="stat-num">4K</div>
+      <div class="stat-num" data-target="4" data-suffix="K">0K</div>
       <div class="stat-label">Qualité cinéma</div>
     </div>
   </div>
@@ -709,15 +709,15 @@ footer{
       <p style="font-size:15px;color:var(--gray-light);line-height:1.75;font-weight:300;margin-bottom:32px;">Des années de pratique, des dizaines de projets et une équipe passionnée au service de vos ambitions visuelles.</p>
       <div class="portfolio-stats">
         <div>
-          <div class="p-stat-n">50+</div>
+          <div class="p-stat-n" data-target="50" data-suffix="+">0+</div>
           <div class="p-stat-l">Projets</div>
         </div>
         <div>
-          <div class="p-stat-n">8+</div>
+          <div class="p-stat-n" data-target="8" data-suffix="+">0+</div>
           <div class="p-stat-l">Années</div>
         </div>
         <div>
-          <div class="p-stat-n">4K</div>
+          <div class="p-stat-n" data-target="4" data-suffix="K">0K</div>
           <div class="p-stat-l">Qualité</div>
         </div>
       </div>
@@ -906,5 +906,78 @@ footer{
   </div>
 </footer>
 
+<!-- Animation des chiffres clés -->
+<script>
+(function() {
+  // Sélectionner tous les éléments de chiffres clés (hero et portfolio)
+  const counters = document.querySelectorAll('.stat-num, .p-stat-n');
+  
+  // Vérifier si des éléments existent
+  if (counters.length === 0) return;
+  
+  // Stocker les valeurs cibles et suffixes
+  const counterData = [];
+  counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-target'), 10);
+    const suffix = counter.getAttribute('data-suffix') || '';
+    // Initialiser le texte à "0" + suffixe
+    if (!counter.hasAttribute('data-animated')) {
+      counter.innerText = '0' + suffix;
+      counter.setAttribute('data-current', '0');
+    }
+    counterData.push({
+      el: counter,
+      target: target,
+      suffix: suffix,
+      animated: false,
+      current: 0
+    });
+  });
+  
+  // Fonction d'animation incrémentale
+  function animateCounter(item, duration = 1500) {
+    const start = 0;
+    const end = item.target;
+    const stepTime = Math.min(20, duration / end); // lissage
+    let current = start;
+    const increment = end / (duration / stepTime);
+    
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= end) {
+        clearInterval(interval);
+        current = end;
+        item.el.innerText = end + item.suffix;
+        item.current = end;
+        item.animated = true;
+        return;
+      }
+      const displayValue = Math.floor(current);
+      item.el.innerText = displayValue + item.suffix;
+      item.current = displayValue;
+    }, stepTime);
+  }
+  
+  // Intersection Observer pour déclencher l'animation quand l'élément devient visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const data = counterData.find(d => d.el === el);
+        if (data && !data.animated) {
+          animateCounter(data);
+          // Optionnel : ne plus observer une fois animé
+          observer.unobserve(el);
+        }
+      }
+    });
+  }, { threshold: 0.3 }); // Déclenche quand 30% de l'élément est visible
+  
+  // Observer chaque compteur
+  counterData.forEach(data => {
+    observer.observe(data.el);
+  });
+})();
+</script>
 </body>
 </html>
