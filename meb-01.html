@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEB Studio — Production Audiovisuelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --black:#0c0c0c;
+  --white:#f5f4f0;
+  --gray-dark:#1a1a1a;
+  --gray-mid:#333333;
+  --gray-light:#888888;
+  --gray-pale:#d4d4d0;
+  --border:#2a2a2a;
+  --border-light:rgba(245,244,240,0.12);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(12,12,12,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-mark{
+  width:38px;height:38px;
+  border:1px solid var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;
+  letter-spacing:1px;
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  font-size:18px;letter-spacing:4px;
+  font-weight:700;text-transform:uppercase;
+}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{
+  color:var(--gray-light);
+  text-decoration:none;font-size:12px;
+  font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;transition:color .2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  background:var(--white)!important;
+  color:var(--black)!important;
+  padding:10px 22px;font-weight:500!important;
+  font-size:11px!important;letter-spacing:2px;
+}
+
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:flex-end;
+  padding:0 60px 80px;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero-lines{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  pointer-events:none;
+}
+.hero-lines span{border-right:1px solid rgba(255,255,255,0.04)}
+.hero-num{
+  position:absolute;top:140px;right:60px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(160px,22vw,320px);
+  font-weight:900;line-height:0.85;
+  color:rgba(255,255,255,0.03);
+  letter-spacing:-10px;
+  user-select:none;pointer-events:none;
+}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:500;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray-light);
+  margin-bottom:32px;
+}
+.hero-eyebrow::before{
+  content:'';width:32px;height:1px;
+  background:var(--white);
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(52px,8vw,110px);
+  font-weight:900;line-height:0.9;
+  letter-spacing:-2px;margin-bottom:32px;
+}
+.hero-title .line2{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:1px var(--white);
+}
+.hero-sub{
+  font-size:16px;color:var(--gray-light);
+  max-width:480px;line-height:1.75;
+  font-weight:300;margin-bottom:48px;
+}
+.hero-sub strong{color:var(--white);font-weight:400}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--white);color:var(--black);
+  padding:15px 36px;font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;border:none;cursor:pointer;
+  text-decoration:none;display:inline-block;
+  transition:opacity .2s,transform .2s;
+}
+.btn-primary:hover{opacity:.88;transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;color:var(--white);
+  padding:15px 36px;font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.3);
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:border-color .2s,background .2s;
+}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.06)}
+.hero-stats{
+  position:absolute;bottom:80px;right:60px;
+  display:flex;gap:48px;
+}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:44px;font-weight:700;line-height:1;
+  color:var(--white);
+}
+.stat-label{
+  font-size:10px;color:var(--gray-light);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-top:4px;
+}
+
+/* SECTION SHARED */
+section{padding:100px 60px}
+.sec-label{
+  font-size:11px;font-weight:500;
+  letter-spacing:4px;text-transform:uppercase;
+  color:var(--gray-light);margin-bottom:16px;
+}
+.sec-line{width:40px;height:1px;background:var(--white);margin-bottom:20px}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,5vw,68px);
+  font-weight:700;letter-spacing:-1px;
+  line-height:1.05;margin-bottom:20px;
+}
+.sec-desc{
+  font-size:16px;color:var(--gray-light);
+  max-width:520px;line-height:1.75;font-weight:300;
+}
+
+/* SERVICES */
+#services{border-top:1px solid var(--border)}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1px;margin-top:64px;
+  border:1px solid var(--border);
+  background:var(--border);
+}
+.service-card{
+  background:var(--black);
+  padding:48px 36px;
+  position:relative;overflow:hidden;
+  transition:background .25s;
+}
+.service-card:hover{background:var(--gray-dark)}
+.service-card::after{
+  content:'';position:absolute;
+  top:0;left:0;width:100%;height:1px;
+  background:var(--white);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;
+}
+.service-card:hover::after{transform:scaleX(1)}
+.svc-num{
+  font-family:'Playfair Display',serif;
+  font-size:56px;font-weight:700;
+  color:rgba(255,255,255,0.06);
+  line-height:1;margin-bottom:24px;
+}
+.svc-title{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;
+  color:var(--white);margin-bottom:12px;
+}
+.svc-desc{
+  font-size:14px;color:var(--gray-light);
+  line-height:1.7;font-weight:300;margin-bottom:20px;
+}
+.svc-tags{display:flex;flex-direction:column;gap:6px}
+.svc-tag{
+  font-size:11px;color:rgba(255,255,255,0.4);
+  display:flex;align-items:center;gap:8px;
+}
+.svc-tag::before{
+  content:'';width:3px;height:3px;
+  background:var(--gray-light);border-radius:50%;flex-shrink:0;
+}
+
+/* REALISATIONS */
+#realisations{border-top:1px solid var(--border);background:var(--gray-dark)}
+.portfolio-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:start;margin-bottom:60px;
+}
+.portfolio-stats{
+  display:flex;gap:40px;padding-top:12px;
+}
+.p-stat-n{
+  font-family:'Playfair Display',serif;
+  font-size:36px;font-weight:700;
+  color:var(--white);line-height:1;
+}
+.p-stat-l{
+  font-size:10px;color:var(--gray-light);
+  letter-spacing:2px;text-transform:uppercase;margin-top:4px;
+}
+.portfolio-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  grid-template-rows:auto auto;gap:1px;
+  background:var(--border);border:1px solid var(--border);
+}
+.port-item{
+  background:var(--black);
+  aspect-ratio:4/3;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+.port-item.large{
+  grid-column:span 2;
+  aspect-ratio:unset;
+  min-height:320px;
+}
+
+/* --- IMAGES & ANIMATIONS AJOUTEES --- */
+.port-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
+  will-change: transform;
+  z-index: 1;
+}
+
+.port-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 100%);
+  backdrop-filter: blur(0px);
+  transition: backdrop-filter 0.3s ease, background 0.3s ease;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.port-item:hover .port-overlay {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+}
+
+.port-item:hover .port-image {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.02);
+}
+
+.port-text {
+  transform: translateY(0);
+  transition: transform 0.4s ease-out;
+}
+
+.port-item:hover .port-text {
+  transform: translateY(-5px);
+}
+
+.port-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 8px;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.5);
+}
+
+.port-sub {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+  background: rgba(255,255,255,0.15);
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 30px;
+  backdrop-filter: blur(2px);
+}
+
+.port-item.large .port-title {
+  font-size: 38px;
+}
+
+.port-item.large .port-sub {
+  font-size: 12px;
+}
+
+/* Ajout d'une légère animation d'apparition au scroll (optionnel subtil) */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.port-item {
+  animation: fadeUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.port-item:nth-child(1) { animation-delay: 0.05s; }
+.port-item:nth-child(2) { animation-delay: 0.1s; }
+.port-item:nth-child(3) { animation-delay: 0.15s; }
+.port-item:nth-child(4) { animation-delay: 0.2s; }
+/* fin ajouts images & animations */
+
+.portfolio-cta{
+  margin-top:40px;display:flex;
+  align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;
+}
+.port-desc{font-size:15px;color:var(--gray-light);font-weight:300}
+
+/* REFERENCES */
+#references{border-top:1px solid var(--border)}
+.ref-intro{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;margin-bottom:60px;
+}
+.ref-list{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+}
+.ref-item{
+  background:var(--black);
+  padding:32px 24px;
+  display:flex;align-items:center;justify-content:center;
+  min-height:80px;transition:background .2s;
+}
+.ref-item:hover{background:var(--gray-dark)}
+.ref-name{
+  font-size:12px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);
+  text-align:center;
+  transition:color .2s;
+}
+.ref-item:hover .ref-name{color:rgba(255,255,255,0.7)}
+
+/* METHODOLOGIE */
+#methodologie{border-top:1px solid var(--border);background:var(--gray-dark)}
+.method-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;margin-top:64px;
+  background:var(--border);border:1px solid var(--border);
+}
+.step{
+  background:var(--black);
+  padding:48px 28px;
+  position:relative;transition:background .2s;
+}
+.step:hover{background:#111}
+.step-num{
+  font-family:'Playfair Display',serif;
+  font-size:72px;font-weight:700;
+  color:rgba(255,255,255,0.05);
+  line-height:1;position:absolute;top:16px;right:20px;
+  pointer-events:none;
+}
+.step-count{
+  font-size:11px;letter-spacing:3px;
+  color:var(--gray-light);margin-bottom:20px;
+}
+.step-title{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;
+  color:var(--white);margin-bottom:10px;
+}
+.step-desc{font-size:13px;color:var(--gray-light);line-height:1.7}
+
+/* CTA BAND */
+#cta{
+  border-top:1px solid var(--border);
+  background:var(--white);color:var(--black);
+  padding:100px 60px;
+}
+.cta-inner{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  gap:40px;flex-wrap:wrap;
+}
+.cta-label{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gray-mid);margin-bottom:12px;
+}
+.cta-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,5vw,68px);
+  font-weight:900;letter-spacing:-2px;
+  line-height:1;margin-bottom:16px;color:var(--black);
+}
+.cta-sub{font-size:15px;color:var(--gray-mid);font-weight:300}
+.btn-dark{
+  background:var(--black);color:var(--white);
+  padding:18px 44px;font-size:12px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;text-decoration:none;
+  display:inline-block;transition:opacity .2s;
+  white-space:nowrap;
+}
+.btn-dark:hover{opacity:.8}
+
+/* FOOTER */
+footer{
+  background:var(--black);
+  border-top:1px solid var(--border);
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:1px;background:var(--border);
+  border-bottom:1px solid var(--border);
+}
+.footer-col{
+  background:var(--black);
+  padding:56px 40px;
+}
+.footer-col-brand{padding:56px 40px}
+.footer-mark{
+  width:44px;height:44px;
+  border:1px solid rgba(255,255,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;
+  margin-bottom:20px;
+}
+.footer-name{
+  font-family:'Playfair Display',serif;
+  font-size:22px;letter-spacing:4px;
+  text-transform:uppercase;font-weight:700;
+  line-height:1.1;margin-bottom:12px;
+}
+.footer-tagline{
+  font-size:13px;color:var(--gray-light);
+  line-height:1.7;font-weight:300;
+  max-width:260px;margin-bottom:32px;
+}
+.footer-social{display:flex;gap:10px;flex-wrap:wrap}
+.footer-social a{
+  display:inline-block;
+  width:36px;height:36px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gray-light);
+  text-decoration:none;font-size:13px;
+  transition:border-color .2s,color .2s;
+}
+.footer-social a:hover{border-color:var(--white);color:var(--white)}
+.footer-col-title{
+  font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray-light);
+  margin-bottom:28px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.footer-nav-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-nav-list a{
+  font-size:14px;color:rgba(255,255,255,0.55);
+  text-decoration:none;font-weight:300;
+  transition:color .2s;letter-spacing:.3px;
+}
+.footer-nav-list a:hover{color:var(--white)}
+.footer-contact-item{
+  display:flex;flex-direction:column;gap:3px;
+  margin-bottom:18px;
+}
+.footer-contact-label{
+  font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--gray-light);
+}
+.footer-contact-value{
+  font-size:13px;color:rgba(255,255,255,0.65);
+  font-weight:300;line-height:1.6;
+}
+.footer-contact-value a{
+  color:rgba(255,255,255,0.65);
+  text-decoration:none;transition:color .2s;
+}
+.footer-contact-value a:hover{color:var(--white)}
+.footer-bottom{
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;
+  gap:16px;padding:24px 40px;
+}
+.footer-copy{
+  font-size:11px;color:var(--gray-light);
+  letter-spacing:1px;
+}
+.footer-legal{
+  display:flex;gap:24px;
+}
+.footer-legal a{
+  font-size:11px;color:rgba(255,255,255,0.3);
+  text-decoration:none;letter-spacing:1px;
+  transition:color .2s;
+}
+.footer-legal a:hover{color:var(--gray-light)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-links{display:none}
+  section{padding:72px 24px}
+  #hero{padding:0 24px 72px}
+  .hero-stats{position:static;margin-top:48px;gap:32px;flex-wrap:wrap}
+  .hero-num{display:none}
+  .portfolio-header{grid-template-columns:1fr;gap:32px}
+  .portfolio-grid{grid-template-columns:1fr}
+  .port-item.large{grid-column:span 1;min-height:220px}
+  .ref-intro{grid-template-columns:1fr}
+  .ref-list{grid-template-columns:repeat(2,1fr)}
+  .method-steps{grid-template-columns:1fr 1fr}
+  .cta-inner{flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+  .footer-col,.footer-col-brand{padding:40px 24px}
+  .footer-bottom{flex-direction:column;padding:20px 24px;gap:12px}
+  .footer-legal{gap:16px}
+  .port-title{font-size:22px}
+  .port-item.large .port-title{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-brand">MEB Studio</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#references">Références</a></li>
+    <li><a href="#methodologie">Processus</a></li>
+    <li><a href="#cta" class="nav-cta">Devis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-lines">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-num">MEB</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Studio audiovisuel — Antananarivo</div>
+    <h1 class="hero-title">
+      L'IMAGE QUI<br>
+      <span class="line2">RACONTE</span><br>
+      VOTRE HISTOIRE
+    </h1>
+    <p class="hero-sub">
+      Production audiovisuelle complète&nbsp;: <strong>tournage</strong>, <strong>montage</strong>,
+      <strong>live streaming</strong> et location de matériel professionnel.
+    </p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Démarrer un projet</a>
+      <a href="#realisations" class="btn-outline">Voir nos réalisations</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Projets livrés</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Années d'expérience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4K</div>
+      <div class="stat-label">Qualité cinéma</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-label">Ce que nous faisons</div>
+  <div class="sec-line"></div>
+  <h2 class="sec-title">Du concept<br>à l'écran</h2>
+  <p class="sec-desc">Chez MEB Studio, nous couvrons l'ensemble de la chaîne de production audiovisuelle, du tournage à la diffusion, avec un seul objectif&nbsp;: sublimer votre message.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-num">01</div>
+      <div class="svc-title">Tournage vidéo</div>
+      <div class="svc-desc">Cinéma, corporate, événementiel. Caméras 4K, optiques pro, équipe expérimentée.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Repérages & pré-production</span>
+        <span class="svc-tag">Caméras 4K & optiques cinéma</span>
+        <span class="svc-tag">Équipe technique complète</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">02</div>
+      <div class="svc-title">Montage vidéo pro</div>
+      <div class="svc-desc">Étalonnage colorimétrique, motion design et sound design. Post-production complète.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Montage & narration</span>
+        <span class="svc-tag">Color grading cinéma</span>
+        <span class="svc-tag">Motion design & sous-titres</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">03</div>
+      <div class="svc-title">Live streaming</div>
+      <div class="svc-desc">Diffusion en direct HD multi-caméra pour concerts, conférences et événements.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Régie multi-caméra</span>
+        <span class="svc-tag">Diffusion YouTube / Facebook</span>
+        <span class="svc-tag">Habillage graphique live</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">04</div>
+      <div class="svc-title">Location matériel</div>
+      <div class="svc-desc">Caméras, optiques, lumière, son et accessoires pour vos productions indépendantes.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Caméras & objectifs</span>
+        <span class="svc-tag">Éclairage LED & softbox</span>
+        <span class="svc-tag">Micros, perches & enregistreurs</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">05</div>
+      <div class="svc-title">Contenu digital</div>
+      <div class="svc-desc">Vidéos, visuels et contenus optimisés pour les réseaux sociaux et le digital.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Reels & TikTok verticaux</span>
+        <span class="svc-tag">Publicités YouTube / Meta</span>
+        <span class="svc-tag">Vidéos produit & témoignages</span>
+      </div>
+    </div>
+    <div class="service-card" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;">
+      <p style="color:var(--gray-light);font-size:14px;line-height:1.7;margin-bottom:28px;font-weight:300;">Besoin d'un service sur mesure&nbsp;? Discutons de votre projet et construisons l'offre idéale.</p>
+      <a href="#cta" class="btn-primary" style="font-size:11px;padding:13px 26px;">Demander un devis</a>
+    </div>
+  </div>
+</section>
+
+<!-- REALISATIONS — IMAGES AJOUTÉES AVEC ANIMATIONS -->
+<section id="realisations">
+  <div class="portfolio-header">
+    <div>
+      <div class="sec-label">Notre travail</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Une expertise<br>qui se mesure</h2>
+    </div>
+    <div>
+      <p style="font-size:15px;color:var(--gray-light);line-height:1.75;font-weight:300;margin-bottom:32px;">Des années de pratique, des dizaines de projets et une équipe passionnée au service de vos ambitions visuelles.</p>
+      <div class="portfolio-stats">
+        <div>
+          <div class="p-stat-n">50+</div>
+          <div class="p-stat-l">Projets</div>
+        </div>
+        <div>
+          <div class="p-stat-n">8+</div>
+          <div class="p-stat-l">Années</div>
+        </div>
+        <div>
+          <div class="p-stat-n">4K</div>
+          <div class="p-stat-l">Qualité</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-grid">
+    <!-- Item grand format (corporate / événementiel) -->
+    <div class="port-item large">
+      <img class="port-image" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1000&h=700&fit=crop" alt="Production événementielle MEB Studio" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-text">
+          <div class="port-title">Corporate & Événementiel</div>
+          <div class="port-sub">Conférences / Séminaires / Gala</div>
+        </div>
+      </div>
+    </div>
+    <!-- Clip vidéo -->
+    <div class="port-item">
+      <img class="port-image" src="https://images.unsplash.com/photo-1593697821252-0c9137d9fc45?w=800&h=600&fit=crop" alt="Tournage clip musical MEB" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-text">
+          <div class="port-title">Clips & Création</div>
+          <div class="port-sub">Musique / Artistes / Storytelling</div>
+        </div>
+      </div>
+    </div>
+    <!-- Live streaming -->
+    <div class="port-item">
+      <img class="port-image" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop" alt="Live streaming multi-caméra" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-text">
+          <div class="port-title">Live Streaming</div>
+          <div class="port-sub">HD / Multi-cam / Interactivité</div>
+        </div>
+      </div>
+    </div>
+    <!-- Contenu digital & réseaux sociaux -->
+    <div class="port-item">
+      <img class="port-image" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=600&fit=crop" alt="Création contenu digital" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-text">
+          <div class="port-title">Digital & Social</div>
+          <div class="port-sub">Reels / Stories / Publicités</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-cta">
+    <p class="port-desc">De grandes marques malgaches aux institutions culturelles.</p>
+    <a href="#cta" class="btn-outline">Toutes nos réalisations</a>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references">
+  <div class="ref-intro">
+    <div>
+      <div class="sec-label">Ils nous font confiance</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Ils nous ont confié<br>leurs projets</h2>
+    </div>
+    <div>
+      <p style="font-size:15px;color:var(--gray-light);line-height:1.75;font-weight:300;">De grandes marques malgaches aux institutions culturelles, nous sommes fiers d'avoir collaboré avec des acteurs de référence à Madagascar.</p>
+    </div>
+  </div>
+  <div class="ref-list">
+    <div class="ref-item"><div class="ref-name">Marque &amp; Co</div></div>
+    <div class="ref-item"><div class="ref-name">Institution A</div></div>
+    <div class="ref-item"><div class="ref-name">Partenaire B</div></div>
+    <div class="ref-item"><div class="ref-name">Organisation C</div></div>
+    <div class="ref-item"><div class="ref-name">Entreprise D</div></div>
+    <div class="ref-item"><div class="ref-name">Référence E</div></div>
+    <div class="ref-item"><div class="ref-name">Client F</div></div>
+    <div class="ref-item"><div class="ref-name">Partenaire G</div></div>
+  </div>
+</section>
+
+<!-- METHODOLOGIE -->
+<section id="methodologie">
+  <div class="sec-label">Comment nous travaillons</div>
+  <div class="sec-line"></div>
+  <h2 class="sec-title">Un processus clair,<br>des résultats précis</h2>
+  <p class="sec-desc">Chaque projet suit un workflow rigoureux pensé pour garantir qualité, respect des délais et sérénité à chaque étape.</p>
+  <div class="method-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-count">Étape 01</div>
+      <div class="step-title">Brief & Écoute</div>
+      <div class="step-desc">Nous analysons votre besoin, vos objectifs et votre audience pour poser les bases du projet.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-count">Étape 02</div>
+      <div class="step-title">Préproduction</div>
+      <div class="step-desc">Storyboard, repérages, planning et choix techniques. Tout est préparé avant le jour J.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-count">Étape 03</div>
+      <div class="step-title">Tournage</div>
+      <div class="step-desc">Captation professionnelle avec équipe et matériel adaptés au projet, en toute sérénité.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-count">Étape 04</div>
+      <div class="step-title">Livraison</div>
+      <div class="step-desc">Post-production, validations et livrables multi-formats. Votre vision, rendue à la perfection.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-label">Un projet en tête ?</div>
+      <div class="cta-title">Donnons-lui vie.</div>
+      <div class="cta-sub">Devis personnalisé sous 24h. Réponse rapide et conseils gratuits.</div>
+    </div>
+    <a href="tel:0322262214" class="btn-dark">Contactez-nous</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col footer-col-brand">
+      <div class="footer-mark">M</div>
+      <div class="footer-name">MEB<br>Studio</div>
+      <p class="footer-tagline">Production audiovisuelle complète&nbsp;: tournage, montage, live streaming et location de matériel professionnel à Antananarivo.</p>
+      <div class="footer-social">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="YouTube">▶</a>
+        <a href="#" title="Instagram">ig</a>
+        <a href="#" title="TikTok">tk</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-nav-list">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Réalisations</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-nav-list">
+        <li><a href="#">Tournage vidéo</a></li>
+        <li><a href="#">Montage pro</a></li>
+        <li><a href="#">Live streaming</a></li>
+        <li><a href="#">Location matériel</a></li>
+        <li><a href="#">Contenu digital</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Adresse</span>
+        <span class="footer-contact-value">Lot IPP 36 Ambanilalana,<br>Andranonahoatra,<br>Antananarivo</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Téléphones</span>
+        <span class="footer-contact-value">
+          <a href="tel:0322262214">032 22 622 14</a><br>
+          <a href="tel:0334162214">033 41 622 14</a><br>
+          <a href="tel:0347262214">034 72 622 14</a>
+        </span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Email</span>
+        <span class="footer-contact-value">
+          <a href="mailto:contact@mebstudio.com">contact@mebstudio.com</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 MEB Studio — Fondé par Erico Brayan Marinera. L'image qui raconte votre histoire.</span>
+    <div class="footer-legal">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
