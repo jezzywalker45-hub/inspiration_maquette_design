@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --black:#0c0c0c;
+  --white:#f5f4f0;
+  --gray-dark:#1a1a1a;
+  --gray-mid:#333333;
+  --gray-light:#888888;
+  --gray-pale:#d4d4d0;
+  --border:#2a2a2a;
+  --border-light:rgba(245,244,240,0.12);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(12,12,12,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-mark{
+  width:38px;height:38px;
+  border:1px solid var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;letter-spacing:1px;color:var(--white);
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  font-size:18px;letter-spacing:4px;font-weight:700;
+  text-transform:uppercase;color:var(--white);
+}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{
+  color:var(--gray-light);text-decoration:none;font-size:12px;
+  font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color .2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--white)}
+.nav-cta{
+  background:var(--white)!important;color:var(--black)!important;
+  padding:10px 22px;font-weight:500!important;font-size:11px!important;letter-spacing:2px;
+}
+
+/* ── SHARED ── */
+section{padding:100px 60px}
+.sec-label{
+  font-size:11px;font-weight:500;letter-spacing:4px;
+  text-transform:uppercase;color:var(--gray-light);margin-bottom:16px;
+}
+.sec-line{width:40px;height:1px;background:var(--white);margin-bottom:20px}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,5vw,68px);font-weight:700;
+  letter-spacing:-1px;line-height:1.05;margin-bottom:20px;
+}
+.sec-desc{font-size:16px;color:var(--gray-light);max-width:520px;line-height:1.75;font-weight:300}
+.btn-primary{
+  background:var(--white);color:var(--black);
+  padding:15px 36px;font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;border:none;cursor:pointer;
+  text-decoration:none;display:inline-block;transition:opacity .2s,transform .2s;
+}
+.btn-primary:hover{opacity:.88;transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;color:var(--white);
+  padding:15px 36px;font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;border:1px solid rgba(255,255,255,0.3);
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:border-color .2s,background .2s;
+}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.06)}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:flex-end;
+  padding:0 60px 80px;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero-lines{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:repeat(6,1fr);pointer-events:none;
+}
+.hero-lines span{border-right:1px solid rgba(255,255,255,0.04)}
+.hero-num{
+  position:absolute;top:140px;right:60px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(160px,22vw,320px);font-weight:900;line-height:0.85;
+  color:rgba(255,255,255,0.03);letter-spacing:-10px;
+  user-select:none;pointer-events:none;
+}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:500;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray-light);margin-bottom:32px;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--white)}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px,7vw,98px);font-weight:900;
+  line-height:0.92;letter-spacing:-2px;margin-bottom:32px;
+}
+.hero-title .line2{display:block;color:transparent;-webkit-text-stroke:1px var(--white)}
+.hero-sub{
+  font-size:16px;color:var(--gray-light);
+  max-width:520px;line-height:1.75;font-weight:300;margin-bottom:48px;
+}
+/* ancre rapide vers services */
+.hero-anchors{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ── SERVICES DÉTAILLÉS ── */
+#services-detail{border-top:1px solid var(--border)}
+.services-intro{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;margin-bottom:80px;
+}
+
+/* grille accordéon horizontal */
+.services-accordion{
+  display:flex;
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  height:520px;
+}
+.svc-panel{
+  position:relative;
+  overflow:hidden;
+  flex:1;
+  background:var(--black);
+  cursor:pointer;
+  transition:flex .55s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.svc-panel:hover{flex:3.5}
+
+/* fond subtil au hover */
+.svc-panel::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(255,255,255,0.03) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.svc-panel:hover::after{opacity:1}
+
+/* barre top qui glisse */
+.svc-panel::before{
+  content:'';position:absolute;
+  top:0;left:0;width:100%;height:2px;
+  background:var(--white);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s ease;
+  z-index:3;
+}
+.svc-panel:hover::before{transform:scaleX(1)}
+
+/* numéro fantôme grand format */
+.svc-ghost-num{
+  position:absolute;
+  top:24px;right:20px;
+  font-family:'Playfair Display',serif;
+  font-size:120px;font-weight:900;line-height:1;
+  color:rgba(255,255,255,0.04);
+  letter-spacing:-4px;
+  pointer-events:none;
+  user-select:none;
+  transition:color .4s;
+}
+.svc-panel:hover .svc-ghost-num{color:rgba(255,255,255,0.07)}
+
+/* contenu en bas */
+.svc-content{
+  position:relative;z-index:2;
+  padding:32px 28px;
+  border-top:1px solid var(--border);
+  transition:border-color .3s;
+}
+.svc-panel:hover .svc-content{border-color:rgba(255,255,255,0.15)}
+
+.svc-counter{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gray-light);margin-bottom:12px;
+  display:block;
+}
+.svc-card-title{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;color:var(--white);
+  line-height:1.15;margin-bottom:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  transition:font-size .3s;
+}
+.svc-panel:hover .svc-card-title{
+  font-size:22px;
+  white-space:normal;
+}
+
+/* description + tags cachés, révélés au hover */
+.svc-expand{
+  max-height:0;overflow:hidden;
+  opacity:0;
+  transition:max-height .5s cubic-bezier(.4,0,.2,1), opacity .4s ease .05s;
+}
+.svc-panel:hover .svc-expand{
+  max-height:240px;
+  opacity:1;
+}
+.svc-card-desc{
+  font-size:13px;color:var(--gray-light);
+  line-height:1.75;font-weight:300;
+  margin-top:14px;margin-bottom:18px;
+}
+.svc-card-tags{display:flex;flex-direction:column;gap:8px}
+.svc-card-tag{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;color:rgba(255,255,255,0.45);
+  font-weight:300;letter-spacing:.5px;
+}
+.svc-card-tag::before{
+  content:'';width:16px;height:1px;
+  background:rgba(255,255,255,0.25);flex-shrink:0;
+}
+
+/* ── MATÉRIELS ── */
+#materiels{border-top:1px solid var(--border);background:var(--gray-dark)}
+.mat-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;margin-bottom:64px;
+}
+.mat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.mat-card{
+  background:var(--black);padding:44px 32px;
+  position:relative;overflow:hidden;transition:background .25s;
+}
+.mat-card:hover{background:#111}
+.mat-card::after{
+  content:'';position:absolute;top:0;left:0;width:100%;height:1px;
+  background:var(--white);
+  transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+}
+.mat-card:hover::after{transform:scaleX(1)}
+.mat-icon{
+  font-family:'Playfair Display',serif;
+  font-size:52px;font-weight:700;
+  color:rgba(255,255,255,0.05);line-height:1;margin-bottom:24px;
+}
+.mat-title{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;
+  color:var(--white);margin-bottom:10px;
+}
+.mat-placeholder{
+  font-size:12px;color:rgba(255,255,255,0.2);
+  letter-spacing:2px;text-transform:uppercase;
+}
+
+/* ── FORMULES ── */
+#formules{border-top:1px solid var(--border)}
+.formules-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;margin-bottom:64px;
+}
+.formules-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.formule-card{
+  background:var(--black);padding:48px 36px;
+  position:relative;overflow:hidden;transition:background .25s;
+  display:flex;flex-direction:column;
+}
+.formule-card:hover{background:var(--gray-dark)}
+.formule-card::after{
+  content:'';position:absolute;top:0;left:0;width:100%;height:1px;
+  background:var(--white);
+  transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+}
+.formule-card:hover::after{transform:scaleX(1)}
+.formule-badge{
+  display:inline-block;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gray-light);
+  border:1px solid var(--border);
+  padding:5px 12px;margin-bottom:28px;
+  align-self:flex-start;
+}
+.formule-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;
+  color:var(--white);margin-bottom:12px;
+}
+.formule-placeholder{
+  font-size:13px;color:rgba(255,255,255,0.2);
+  letter-spacing:1px;line-height:1.7;flex:1;
+  display:flex;align-items:center;
+}
+
+/* ── CTA ── */
+#cta{
+  border-top:1px solid var(--border);
+  background:var(--white);color:var(--black);
+  padding:100px 60px;
+}
+.cta-inner{
+  display:flex;align-items:center;
+  justify-content:space-between;gap:40px;flex-wrap:wrap;
+}
+.cta-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-mid);margin-bottom:12px}
+.cta-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,5vw,68px);font-weight:900;
+  letter-spacing:-2px;line-height:1;margin-bottom:16px;color:var(--black);
+}
+.cta-sub{font-size:15px;color:var(--gray-mid);font-weight:300}
+.btn-dark{
+  background:var(--black);color:var(--white);
+  padding:18px 44px;font-size:12px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;text-decoration:none;
+  display:inline-block;transition:opacity .2s;white-space:nowrap;
+}
+.btn-dark:hover{opacity:.8}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid var(--border)}
+.footer-top{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:1px;background:var(--border);border-bottom:1px solid var(--border);
+}
+.footer-col{background:var(--black);padding:56px 40px}
+.footer-col-brand{padding:56px 40px}
+.footer-mark{
+  width:44px;height:44px;border:1px solid rgba(255,255,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:20px;
+}
+.footer-name{
+  font-family:'Playfair Display',serif;font-size:22px;letter-spacing:4px;
+  text-transform:uppercase;font-weight:700;line-height:1.1;margin-bottom:12px;
+}
+.footer-tagline{font-size:13px;color:var(--gray-light);line-height:1.7;font-weight:300;max-width:260px;margin-bottom:32px}
+.footer-social{display:flex;gap:10px;flex-wrap:wrap}
+.footer-social a{
+  width:36px;height:36px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gray-light);text-decoration:none;font-size:13px;
+  transition:border-color .2s,color .2s;
+}
+.footer-social a:hover{border-color:var(--white);color:var(--white)}
+.footer-col-title{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-light);
+  margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.footer-nav-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-nav-list a{font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;font-weight:300;transition:color .2s}
+.footer-nav-list a:hover{color:var(--white)}
+.footer-contact-item{display:flex;flex-direction:column;gap:3px;margin-bottom:18px}
+.footer-contact-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-light)}
+.footer-contact-value{font-size:13px;color:rgba(255,255,255,0.65);font-weight:300;line-height:1.6}
+.footer-contact-value a{color:rgba(255,255,255,0.65);text-decoration:none;transition:color .2s}
+.footer-contact-value a:hover{color:var(--white)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;padding:24px 40px;
+}
+.footer-copy{font-size:11px;color:var(--gray-light);letter-spacing:1px}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;letter-spacing:1px;transition:color .2s}
+.footer-legal a:hover{color:var(--gray-light)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-links{display:none}
+  section{padding:72px 24px}
+  #hero{padding:0 24px 72px}
+  .hero-num{display:none}
+  .services-intro,.mat-header,.formules-header{grid-template-columns:1fr;gap:32px}
+  .services-accordion{flex-direction:column;height:auto}
+  .svc-panel{flex:none;min-height:80px}
+  .svc-panel:hover{flex:none}
+  .svc-expand{max-height:none!important;opacity:1!important}
+  .svc-ghost-num{display:none}
+  .mat-grid{grid-template-columns:repeat(2,1fr)}
+  .formules-grid{grid-template-columns:1fr}
+  .cta-inner{flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+  .footer-col,.footer-col-brand{padding:40px 24px}
+  .footer-bottom{flex-direction:column;padding:20px 24px;gap:12px}
+  .footer-legal{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-brand">MEB Studio</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="#" class="active">Services</a></li>
+    <li><a href="#">Réalisations</a></li>
+    <li><a href="#cta" class="nav-cta">Devis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-lines">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-num">MEB</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Services — MEB Studio</div>
+    <h1 class="hero-title">
+      UNE OFFRE COMPLÈTE,<br>
+      <span class="line2">DE L'IDÉE À LA DIFFUSION</span>
+    </h1>
+    <p class="hero-sub">
+      Que vous soyez une entreprise, un artiste ou une institution, MEB STUDIO dispose des compétences et du matériel pour donner vie à chaque projet.
+    </p>
+    <div class="hero-anchors">
+      <a href="#services-detail" class="btn-primary">Découvrir nos services</a>
+      <a href="#cta" class="btn-outline">Demander un devis</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES DÉTAILLÉS -->
+<section id="services-detail">
+  <div class="services-intro">
+    <div>
+      <div class="sec-label">Ce que nous faisons</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Cinq expertises<br>au service de votre image</h2>
+    </div>
+    <div>
+      <p class="sec-desc">De la captation 4K à la diffusion en direct, chaque service est pensé pour garantir un rendu professionnel, soigné et impactant.</p>
+    </div>
+  </div>
+
+  <div class="services-accordion">
+
+    <!-- 01 -->
+    <div class="svc-panel">
+      <div class="svc-ghost-num">01</div>
+      <div class="svc-content">
+        <span class="svc-counter">01 —</span>
+        <div class="svc-card-title">Tournage vidéo</div>
+        <div class="svc-expand">
+          <p class="svc-card-desc">Captation cinéma, corporate, clips, événements. Caméras 4K, optiques pro, équipe expérimentée.</p>
+          <div class="svc-card-tags">
+            <span class="svc-card-tag">Repérages &amp; pré-production</span>
+            <span class="svc-card-tag">Caméras 4K &amp; optiques cinéma</span>
+            <span class="svc-card-tag">Équipe technique complète</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="svc-panel">
+      <div class="svc-ghost-num">02</div>
+      <div class="svc-content">
+        <span class="svc-counter">02 —</span>
+        <div class="svc-card-title">Montage vidéo professionnel</div>
+        <div class="svc-expand">
+          <p class="svc-card-desc">Post-production complète&nbsp;: montage narratif, étalonnage colorimétrique, motion design et sound design.</p>
+          <div class="svc-card-tags">
+            <span class="svc-card-tag">Montage &amp; narration</span>
+            <span class="svc-card-tag">Color grading cinéma</span>
+            <span class="svc-card-tag">Motion design &amp; sous-titres</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="svc-panel">
+      <div class="svc-ghost-num">03</div>
+      <div class="svc-content">
+        <span class="svc-counter">03 —</span>
+        <div class="svc-card-title">Live streaming multi-caméra</div>
+        <div class="svc-expand">
+          <p class="svc-card-desc">Diffusion en direct HD pour concerts, conférences, événements religieux et sportifs.</p>
+          <div class="svc-card-tags">
+            <span class="svc-card-tag">Régie multi-caméra</span>
+            <span class="svc-card-tag">Diffusion YouTube / Facebook</span>
+            <span class="svc-card-tag">Habillage graphique live</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="svc-panel">
+      <div class="svc-ghost-num">04</div>
+      <div class="svc-content">
+        <span class="svc-counter">04 —</span>
+        <div class="svc-card-title">Location matériel audiovisuel</div>
+        <div class="svc-expand">
+          <p class="svc-card-desc">Caméras, optiques, lumière, son et accessoires pour vos productions indépendantes.</p>
+          <div class="svc-card-tags">
+            <span class="svc-card-tag">Caméras &amp; objectifs</span>
+            <span class="svc-card-tag">Éclairage LED &amp; softbox</span>
+            <span class="svc-card-tag">Micros, perches &amp; enregistreurs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="svc-panel">
+      <div class="svc-ghost-num">05</div>
+      <div class="svc-content">
+        <span class="svc-counter">05 —</span>
+        <div class="svc-card-title">Production de contenu digital</div>
+        <div class="svc-expand">
+          <p class="svc-card-desc">Contenu vertical pour réseaux sociaux, capsules brand, publicités courtes et formats optimisés.</p>
+          <div class="svc-card-tags">
+            <span class="svc-card-tag">Reels &amp; TikTok</span>
+            <span class="svc-card-tag">Pubs YouTube / Meta</span>
+            <span class="svc-card-tag">Vidéos produit &amp; témoignages</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MATÉRIELS -->
+<section id="materiels">
+  <div class="mat-header">
+    <div>
+      <div class="sec-label">Matériels</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Du matériel professionnel,<br>prêt à tourner</h2>
+    </div>
+    <div>
+      <p class="sec-desc">Un parc machine professionnel entretenu et disponible pour chacune de vos productions, qu'elles soient confiées à notre équipe ou louées en autonomie.</p>
+    </div>
+  </div>
+  <div class="mat-grid">
+    <div class="mat-card">
+      <div class="mat-icon">C</div>
+      <div class="mat-title">Caméras</div>
+      <div class="mat-placeholder">À compléter</div>
+    </div>
+    <div class="mat-card">
+      <div class="mat-icon">O</div>
+      <div class="mat-title">Optiques</div>
+      <div class="mat-placeholder">À compléter</div>
+    </div>
+    <div class="mat-card">
+      <div class="mat-icon">É</div>
+      <div class="mat-title">Éclairage</div>
+      <div class="mat-placeholder">À compléter</div>
+    </div>
+    <div class="mat-card">
+      <div class="mat-icon">S</div>
+      <div class="mat-title">Son</div>
+      <div class="mat-placeholder">À compléter</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULES -->
+<section id="formules">
+  <div class="formules-header">
+    <div>
+      <div class="sec-label">Nos formules</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Des offres pensées<br>pour vos besoins</h2>
+    </div>
+    <div>
+      <p class="sec-desc">Chaque projet est unique. Nos formules s'adaptent à votre budget, votre calendrier et vos ambitions visuelles.</p>
+    </div>
+  </div>
+  <div class="formules-grid">
+    <div class="formule-card">
+      <div class="formule-badge">Formule 01</div>
+      <div class="formule-title">À compléter</div>
+      <div class="formule-placeholder">À compléter</div>
+    </div>
+    <div class="formule-card">
+      <div class="formule-badge">Formule 02</div>
+      <div class="formule-title">À compléter</div>
+      <div class="formule-placeholder">À compléter</div>
+    </div>
+    <div class="formule-card">
+      <div class="formule-badge">Formule 03</div>
+      <div class="formule-title">À compléter</div>
+      <div class="formule-placeholder">À compléter</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-label">Besoin d'un service sur mesure ?</div>
+      <div class="cta-title">Discutons de votre projet.</div>
+      <div class="cta-sub">Construisons ensemble l'offre idéale pour votre production.</div>
+    </div>
+    <a href="tel:0322262214" class="btn-dark">Demander un devis</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col footer-col-brand">
+      <div class="footer-mark">M</div>
+      <div class="footer-name">MEB<br>Studio</div>
+      <p class="footer-tagline">Production audiovisuelle complète&nbsp;: tournage, montage, live streaming et location de matériel professionnel à Antananarivo.</p>
+      <div class="footer-social">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="YouTube">▶</a>
+        <a href="#" title="Instagram">ig</a>
+        <a href="#" title="TikTok">tk</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-nav-list">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Réalisations</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-nav-list">
+        <li><a href="#">Tournage vidéo</a></li>
+        <li><a href="#">Montage pro</a></li>
+        <li><a href="#">Live streaming</a></li>
+        <li><a href="#">Location matériel</a></li>
+        <li><a href="#">Contenu digital</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Adresse</span>
+        <span class="footer-contact-value">Lot IPP 36 Ambanilalana,<br>Andranonahoatra,<br>Antananarivo</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Téléphones</span>
+        <span class="footer-contact-value">
+          <a href="tel:0322262214">032 22 622 14</a><br>
+          <a href="tel:0334162214">033 41 622 14</a><br>
+          <a href="tel:0347262214">034 72 622 14</a>
+        </span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Email</span>
+        <span class="footer-contact-value">
+          <a href="mailto:contact@mebstudio.com">contact@mebstudio.com</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 MEB Studio — Fondé par Erico Brayan Marinera. L'image qui raconte votre histoire.</span>
+    <div class="footer-legal">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
