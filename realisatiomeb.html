@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réalisations — MEB Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --black:#0c0c0c;
+  --white:#f5f4f0;
+  --gray-dark:#1a1a1a;
+  --gray-mid:#333333;
+  --gray-light:#888888;
+  --gray-pale:#d4d4d0;
+  --border:#2a2a2a;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);color:var(--white);
+  font-family:'DM Sans',sans-serif;font-weight:400;
+  line-height:1.6;overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(12,12,12,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-mark{
+  width:38px;height:38px;border:1px solid var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;letter-spacing:1px;color:var(--white);
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  font-size:18px;letter-spacing:4px;font-weight:700;
+  text-transform:uppercase;color:var(--white);
+}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{
+  color:var(--gray-light);text-decoration:none;font-size:12px;
+  font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color .2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--white)}
+.nav-cta{
+  background:var(--white)!important;color:var(--black)!important;
+  padding:10px 22px;font-weight:500!important;font-size:11px!important;letter-spacing:2px;
+}
+
+/* ── SHARED ── */
+section{padding:100px 60px}
+.sec-label{
+  font-size:11px;font-weight:500;letter-spacing:4px;
+  text-transform:uppercase;color:var(--gray-light);margin-bottom:16px;
+}
+.sec-line{width:40px;height:1px;background:var(--white);margin-bottom:20px}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,5vw,68px);font-weight:700;
+  letter-spacing:-1px;line-height:1.05;margin-bottom:20px;
+}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:flex-end;
+  padding:0 60px 80px;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero-lines{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:repeat(6,1fr);pointer-events:none;
+}
+.hero-lines span{border-right:1px solid rgba(255,255,255,0.04)}
+.hero-num{
+  position:absolute;top:140px;right:60px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(160px,22vw,320px);font-weight:900;line-height:0.85;
+  color:rgba(255,255,255,0.03);letter-spacing:-10px;
+  user-select:none;pointer-events:none;
+}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:500;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray-light);margin-bottom:32px;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--white)}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px,7vw,98px);font-weight:900;
+  line-height:0.92;letter-spacing:-2px;margin-bottom:32px;
+}
+.hero-title .line2{display:block;color:transparent;-webkit-text-stroke:1px var(--white)}
+.hero-sub{
+  font-size:16px;color:var(--gray-light);
+  max-width:560px;line-height:1.75;font-weight:300;
+}
+
+/* ── FILTRES ── */
+#portfolio{border-top:1px solid var(--border)}
+.portfolio-top{
+  display:grid;grid-template-columns:1fr auto;
+  gap:40px;align-items:end;margin-bottom:56px;
+}
+.filter-bar{
+  display:flex;gap:2px;
+  border:1px solid var(--border);
+  padding:4px;
+  align-self:end;
+}
+.filter-btn{
+  background:transparent;color:var(--gray-light);
+  border:none;cursor:pointer;
+  padding:9px 20px;
+  font-family:'DM Sans',sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;
+  transition:background .2s,color .2s;
+}
+.filter-btn:hover{color:var(--white)}
+.filter-btn.active{background:var(--white);color:var(--black)}
+
+/* ── GRILLE MASONRY SIMULÉE ── */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:80px;
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+}
+
+/* Item générique */
+.port-item{
+  background:var(--gray-dark);
+  position:relative;overflow:hidden;
+  cursor:pointer;
+}
+.port-item::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(12,12,12,0);
+  transition:background .35s;
+  z-index:1;
+}
+.port-item:hover::before{background:rgba(12,12,12,0.55)}
+
+/* barre top au hover */
+.port-item::after{
+  content:'';position:absolute;
+  top:0;left:0;width:100%;height:2px;
+  background:var(--white);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+  z-index:3;
+}
+.port-item:hover::after{transform:scaleX(1)}
+
+/* Overlay info */
+.port-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 22px;
+  background:linear-gradient(to top,rgba(12,12,12,0.92) 0%,transparent 100%);
+  transform:translateY(8px);opacity:0;
+  transition:opacity .35s,transform .35s;
+  z-index:2;
+}
+.port-item:hover .port-overlay{opacity:1;transform:translateY(0)}
+.port-cat{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);margin-bottom:4px;
+}
+.port-name{
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:700;color:var(--white);
+}
+
+/* Placeholder visuel interne */
+.port-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.port-placeholder-label{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,3vw,36px);font-weight:900;
+  color:rgba(255,255,255,0.05);
+  letter-spacing:2px;text-transform:uppercase;
+  pointer-events:none;user-select:none;
+}
+
+/* Variations de fond subtiles */
+.port-item:nth-child(odd){background:#171717}
+.port-item:nth-child(3n){background:#141414}
+
+/* ── TAILLES DES ITEMS ── */
+/* Grande vedette gauche */
+.port-item.feat-large{
+  grid-column:1 / 8;
+  grid-row:1 / 6;
+}
+/* Médium haut droite */
+.port-item.feat-mid-a{
+  grid-column:8 / 13;
+  grid-row:1 / 4;
+}
+/* Petit haut droite */
+.port-item.feat-small-a{
+  grid-column:8 / 10;
+  grid-row:4 / 6;
+}
+.port-item.feat-small-b{
+  grid-column:10 / 13;
+  grid-row:4 / 6;
+}
+/* Deuxième rangée */
+.port-item.row2-a{
+  grid-column:1 / 5;
+  grid-row:6 / 10;
+}
+.port-item.row2-b{
+  grid-column:5 / 9;
+  grid-row:6 / 10;
+}
+.port-item.row2-c{
+  grid-column:9 / 13;
+  grid-row:6 / 10;
+}
+/* Troisième rangée */
+.port-item.row3-a{
+  grid-column:1 / 4;
+  grid-row:10 / 13;
+}
+.port-item.row3-b{
+  grid-column:4 / 9;
+  grid-row:10 / 13;
+}
+.port-item.row3-c{
+  grid-column:9 / 11;
+  grid-row:10 / 13;
+}
+.port-item.row3-d{
+  grid-column:11 / 13;
+  grid-row:10 / 13;
+}
+
+/* ── LÉGENDE CATÉGORIES ── */
+.portfolio-legend{
+  display:flex;gap:32px;flex-wrap:wrap;
+  margin-top:32px;padding-top:28px;
+  border-top:1px solid var(--border);
+}
+.legend-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;color:var(--gray-light);letter-spacing:1px;
+}
+.legend-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,0.3);flex-shrink:0;
+}
+
+/* ── CTA ── */
+#cta{
+  border-top:1px solid var(--border);
+  background:var(--white);color:var(--black);
+  padding:100px 60px;
+}
+.cta-inner{
+  display:flex;align-items:center;
+  justify-content:space-between;gap:40px;flex-wrap:wrap;
+}
+.cta-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-mid);margin-bottom:12px}
+.cta-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,5vw,64px);font-weight:900;
+  letter-spacing:-2px;line-height:1.05;margin-bottom:16px;color:var(--black);
+}
+.cta-sub{font-size:15px;color:var(--gray-mid);font-weight:300;max-width:480px;line-height:1.7}
+.btn-dark{
+  background:var(--black);color:var(--white);
+  padding:18px 44px;font-size:12px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;text-decoration:none;
+  display:inline-block;transition:opacity .2s;white-space:nowrap;
+}
+.btn-dark:hover{opacity:.8}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid var(--border)}
+.footer-top{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:1px;background:var(--border);border-bottom:1px solid var(--border);
+}
+.footer-col{background:var(--black);padding:56px 40px}
+.footer-col-brand{padding:56px 40px}
+.footer-mark{
+  width:44px;height:44px;border:1px solid rgba(255,255,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:20px;
+}
+.footer-name{
+  font-family:'Playfair Display',serif;font-size:22px;letter-spacing:4px;
+  text-transform:uppercase;font-weight:700;line-height:1.1;margin-bottom:12px;
+}
+.footer-tagline{font-size:13px;color:var(--gray-light);line-height:1.7;font-weight:300;max-width:260px;margin-bottom:32px}
+.footer-social{display:flex;gap:10px;flex-wrap:wrap}
+.footer-social a{
+  width:36px;height:36px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gray-light);text-decoration:none;font-size:13px;
+  transition:border-color .2s,color .2s;
+}
+.footer-social a:hover{border-color:var(--white);color:var(--white)}
+.footer-col-title{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-light);
+  margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.footer-nav-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-nav-list a{font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;font-weight:300;transition:color .2s}
+.footer-nav-list a:hover{color:var(--white)}
+.footer-contact-item{display:flex;flex-direction:column;gap:3px;margin-bottom:18px}
+.footer-contact-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-light)}
+.footer-contact-value{font-size:13px;color:rgba(255,255,255,0.65);font-weight:300;line-height:1.6}
+.footer-contact-value a{color:rgba(255,255,255,0.65);text-decoration:none;transition:color .2s}
+.footer-contact-value a:hover{color:var(--white)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;padding:24px 40px;
+}
+.footer-copy{font-size:11px;color:var(--gray-light);letter-spacing:1px}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;letter-spacing:1px;transition:color .2s}
+.footer-legal a:hover{color:var(--gray-light)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-links{display:none}
+  section{padding:72px 24px}
+  #hero{padding:0 24px 72px}
+  .hero-num{display:none}
+  .portfolio-top{grid-template-columns:1fr;gap:24px}
+  .filter-bar{flex-wrap:wrap}
+  .portfolio-grid{
+    grid-template-columns:repeat(2,1fr);
+    grid-auto-rows:160px;
+  }
+  .port-item.feat-large,.port-item.feat-mid-a,
+  .port-item.feat-small-a,.port-item.feat-small-b,
+  .port-item.row2-a,.port-item.row2-b,.port-item.row2-c,
+  .port-item.row3-a,.port-item.row3-b,.port-item.row3-c,.port-item.row3-d{
+    grid-column:span 1;grid-row:span 1;
+  }
+  .port-item.feat-large,.port-item.row2-b{grid-column:span 2;grid-row:span 2}
+  .port-overlay{opacity:1;transform:translateY(0)}
+  .cta-inner{flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+  .footer-col,.footer-col-brand{padding:40px 24px}
+  .footer-bottom{flex-direction:column;padding:20px 24px;gap:12px}
+  .footer-legal{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-brand">MEB Studio</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="#" class="active">Réalisations</a></li>
+    <li><a href="#cta" class="nav-cta">Devis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-lines">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-num">MEB</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Portfolio — MEB Studio</div>
+    <h1 class="hero-title">
+      QUELQUES-UNS DE NOS<br>
+      <span class="line2">MOMENTS CAPTURÉS</span>
+    </h1>
+    <p class="hero-sub">
+      Une sélection de nos productions récentes&nbsp;: corporate, événementiel, musique et photographie.
+    </p>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-top">
+    <div>
+      <div class="sec-label">Notre travail</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Une expertise<br>qui se mesure</h2>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active">Tout</button>
+      <button class="filter-btn">Corporate</button>
+      <button class="filter-btn">Événementiel</button>
+      <button class="filter-btn">Musique</button>
+      <button class="filter-btn">Photo</button>
+    </div>
+  </div>
+
+  <!-- GRILLE -->
+  <div class="portfolio-grid">
+
+    <!-- Grande vedette -->
+    <div class="port-item feat-large">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Corporate</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Corporate &amp; Institutionnel</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+
+    <!-- Mid haut droite -->
+    <div class="port-item feat-mid-a">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Événement</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Événementiel</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+
+    <!-- 2 petits bas droite -->
+    <div class="port-item feat-small-a">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Live</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Live streaming</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+    <div class="port-item feat-small-b">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Photo</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Photographie</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+
+    <!-- Rangée 2 -->
+    <div class="port-item row2-a">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Clip</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Musique</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+    <div class="port-item row2-b">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Corporate</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Corporate</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+    <div class="port-item row2-c">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Événement</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Événementiel</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+
+    <!-- Rangée 3 -->
+    <div class="port-item row3-a">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Photo</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Photographie</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+    <div class="port-item row3-b">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Musique</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Musique</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+    <div class="port-item row3-c">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Live</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Live streaming</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+    <div class="port-item row3-d">
+      <div class="port-placeholder">
+        <span class="port-placeholder-label">Corp.</span>
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Corporate</div>
+        <div class="port-name">À compléter</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Légende -->
+  <div class="portfolio-legend">
+    <div class="legend-item"><div class="legend-dot"></div>Corporate &amp; Institutionnel</div>
+    <div class="legend-item"><div class="legend-dot"></div>Événementiel</div>
+    <div class="legend-item"><div class="legend-dot"></div>Musique &amp; Clips</div>
+    <div class="legend-item"><div class="legend-dot"></div>Photographie</div>
+    <div class="legend-item"><div class="legend-dot"></div>Live streaming</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-label">Ces images vous ont plu ?</div>
+      <div class="cta-title">Capturez à votre tour<br>vos moments forts.</div>
+      <p class="cta-sub">Contactez MEB Studio et capturez à votre tour vos moments forts.</p>
+    </div>
+    <a href="tel:0322262214" class="btn-dark">Nous contacter</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col footer-col-brand">
+      <div class="footer-mark">M</div>
+      <div class="footer-name">MEB<br>Studio</div>
+      <p class="footer-tagline">Production audiovisuelle complète&nbsp;: tournage, montage, live streaming et location de matériel professionnel à Antananarivo.</p>
+      <div class="footer-social">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="YouTube">▶</a>
+        <a href="#" title="Instagram">ig</a>
+        <a href="#" title="TikTok">tk</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-nav-list">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Réalisations</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-nav-list">
+        <li><a href="#">Tournage vidéo</a></li>
+        <li><a href="#">Montage pro</a></li>
+        <li><a href="#">Live streaming</a></li>
+        <li><a href="#">Location matériel</a></li>
+        <li><a href="#">Contenu digital</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Adresse</span>
+        <span class="footer-contact-value">Lot IPP 36 Ambanilalana,<br>Andranonahoatra,<br>Antananarivo</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Téléphones</span>
+        <span class="footer-contact-value">
+          <a href="tel:0322262214">032 22 622 14</a><br>
+          <a href="tel:0334162214">033 41 622 14</a><br>
+          <a href="tel:0347262214">034 72 622 14</a>
+        </span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Email</span>
+        <span class="footer-contact-value">
+          <a href="mailto:contact@mebstudio.com">contact@mebstudio.com</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 MEB Studio — Fondé par Erico Brayan Marinera. L'image qui raconte votre histoire.</span>
+    <div class="footer-legal">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Filtres */
+const btns = document.querySelectorAll('.filter-btn');
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
