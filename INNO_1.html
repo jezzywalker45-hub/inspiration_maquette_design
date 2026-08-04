@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INNOV-ART – Externalisation éthique et innovante</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#F97316;--orange-deep:#EA6C0A;--orange-light:#FFF7ED;
+  --dark:#1C1C1E;--dark-2:#2D2D2F;--mid:#6B7280;
+  --light:#F9FAFB;--white:#FFFFFF;--border:#E5E7EB;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.07);
+  --shadow-md:0 6px 24px rgba(0,0,0,0.10);
+  --shadow-lg:0 16px 48px rgba(0,0,0,0.14);
+  --r:10px;--r-lg:18px;--r-xl:28px;
+  --ff-t:'Rubik',sans-serif;--ff-b:'Montserrat',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-b);color:var(--dark);background:var(--white);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--white);border-bottom:1px solid var(--border);padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow-sm)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-box{width:38px;height:38px;background:var(--orange);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--ff-t);font-weight:900;font-size:.9rem;color:#fff;flex-shrink:0}
+.logo-txt{font-family:var(--ff-t);font-weight:800;font-size:1.2rem;color:var(--dark);letter-spacing:-.3px}
+.logo-txt span{color:var(--orange)}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--ff-b);font-size:.875rem;font-weight:500;color:var(--mid);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--dark)}
+.btn-nav{background:var(--orange)!important;color:#fff!important;padding:.5rem 1.4rem;border-radius:8px;font-weight:600!important;box-shadow:0 2px 10px rgba(249,115,22,.35);transition:background .2s,transform .15s!important}
+.btn-nav:hover{background:var(--orange-deep)!important;transform:translateY(-1px)}
+
+/* HERO */
+.hero{padding:100px 5% 0;background:var(--orange);min-height:88vh;display:grid;grid-template-columns:1fr 1fr;align-items:flex-end;gap:3rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:420px;height:420px;background:rgba(255,255,255,.08);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:80px;left:30%;width:200px;height:200px;background:rgba(255,255,255,.05);border-radius:50%}
+.hero-left{position:relative;z-index:2;padding-bottom:4rem}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.35);color:#fff;font-family:var(--ff-b);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.35rem 1rem;border-radius:100px;margin-bottom:1.75rem}
+.hero-tag::before{content:'';width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:var(--ff-t);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;position:relative;display:inline-block}
+.hero h1 em::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:4px;background:rgba(255,255,255,.5);border-radius:2px}
+.hero-sub{font-family:var(--ff-b);font-size:1rem;color:rgba(255,255,255,.88);max-width:520px;margin-bottom:2.5rem;line-height:1.8}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-white{font-family:var(--ff-b);font-weight:700;font-size:.95rem;background:#fff;color:var(--orange);padding:.85rem 2rem;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.btn-white:hover{background:#FFF7ED;transform:translateY(-2px)}
+.btn-ghost{font-family:var(--ff-b);font-weight:600;font-size:.95rem;background:transparent;color:#fff;padding:.85rem 2rem;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.5);transition:all .2s}
+.btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+
+/* hero right */
+.hero-right{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:center;min-height:420px}
+.hero-img-wrap{width:100%;max-width:440px;background:rgba(255,255,255,.12);border-radius:var(--r-xl) var(--r-xl) 0 0;height:420px;display:flex;align-items:center;justify-content:center;position:relative;overflow:visible;border:1px solid rgba(255,255,255,.2)}
+.hero-img-bg{width:180px;height:180px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:4.5rem}
+.hero-float{position:absolute;background:#fff;border-radius:var(--r);padding:.85rem 1.1rem;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;white-space:nowrap}
+.hero-float.tl{top:48px;left:-36px}
+.hero-float.br{bottom:80px;right:-28px}
+.fi{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.fi.o{background:var(--orange-light);color:var(--orange)}
+.fi.g{background:#ECFDF5;color:#059669}
+.fn{font-family:var(--ff-t);font-size:1.1rem;font-weight:800;color:var(--dark);line-height:1}
+.fl{font-family:var(--ff-b);font-size:.72rem;color:var(--mid);font-weight:500}
+
+/* STATS */
+.stats-band{background:var(--white);border-bottom:1px solid var(--border);padding:2.2rem 5%;box-shadow:var(--shadow-sm)}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);max-width:1100px;margin:0 auto}
+.stat-col{display:flex;align-items:center;gap:14px;padding:0 2.5rem;border-right:1px solid var(--border)}
+.stat-col:first-child{padding-left:0}
+.stat-col:last-child{border-right:none}
+.si{width:48px;height:48px;border-radius:12px;background:var(--orange-light);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.sn{font-family:var(--ff-t);font-size:1.6rem;font-weight:800;color:var(--dark);line-height:1;margin-bottom:.15rem}
+.sl{font-family:var(--ff-b);font-size:.78rem;color:var(--mid);font-weight:500}
+
+/* SECTIONS */
+section{padding:6rem 5%}
+.lbl{display:inline-block;background:var(--orange-light);color:var(--orange);font-family:var(--ff-b);font-size:.78rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;padding:.35rem 1rem;border-radius:100px;margin-bottom:1rem}
+h2.stl{font-family:var(--ff-t);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:var(--dark);line-height:1.15;letter-spacing:-.025em;margin-bottom:1rem}
+p.sint{font-family:var(--ff-b);font-size:1rem;color:var(--mid);max-width:580px;line-height:1.8;margin-bottom:3rem}
+.mw{max-width:1200px;margin-left:auto;margin-right:auto}
+
+/* SERVICES */
+.services{background:var(--white)}
+.svc-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem}
+.see-all{font-family:var(--ff-b);font-size:.875rem;font-weight:600;color:var(--orange);text-decoration:none;display:inline-flex;align-items:center;gap:5px;border-bottom:1.5px solid var(--orange);padding-bottom:2px;transition:opacity .2s}
+.see-all:hover{opacity:.75}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.svc-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.75rem;transition:all .25s;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:rgba(249,115,22,.2)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-num{font-family:var(--ff-t);font-size:.72rem;font-weight:700;color:var(--orange);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;opacity:.7}
+.svc-ico{width:46px;height:46px;border-radius:12px;background:var(--orange-light);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.1rem}
+.svc-card h3{font-family:var(--ff-t);font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.6rem;letter-spacing:-.01em}
+.svc-card p{font-family:var(--ff-b);font-size:.84rem;color:var(--mid);line-height:1.7;margin-bottom:.9rem}
+.svc-ul{list-style:none;display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.svc-ul li{font-family:var(--ff-b);font-size:.8rem;color:#444;display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+.svc-ul li::before{content:'›';color:var(--orange);font-weight:700;flex-shrink:0}
+.svc-val{background:var(--orange-light);border-radius:8px;padding:.55rem .85rem;font-family:var(--ff-b);font-size:.78rem;font-weight:600;color:var(--orange-deep);line-height:1.5}
+
+/* WHY */
+.why-sec{background:var(--light);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:6rem 5%}
+.adv-wrap{border-radius:var(--r-xl);background:linear-gradient(135deg,#fff,var(--orange-light));min-height:420px;display:flex;flex-direction:column;gap:1rem;padding:2rem;border:1px solid rgba(249,115,22,.15);box-shadow:var(--shadow-md)}
+.adv-ttl{font-family:var(--ff-b);font-size:.72rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem}
+.adv-row{background:#fff;border-radius:12px;padding:1.1rem 1.25rem;display:flex;align-items:flex-start;gap:14px;border:1px solid var(--border);box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s}
+.adv-row:hover{transform:translateX(5px);box-shadow:var(--shadow-md)}
+.adv-n{width:34px;height:34px;border-radius:9px;background:var(--orange);color:#fff;font-family:var(--ff-t);font-size:.9rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.adv-row h4{font-family:var(--ff-t);font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.2rem}
+.adv-row p{font-family:var(--ff-b);font-size:.8rem;color:var(--mid);line-height:1.5}
+.why-ul{list-style:none;display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+.why-item{display:flex;align-items:flex-start;gap:14px;padding:1.1rem 1.25rem;background:#fff;border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-sm)}
+.wck{width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.why-item h4{font-family:var(--ff-t);font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.15rem}
+.why-item p{font-family:var(--ff-b);font-size:.8rem;color:var(--mid);line-height:1.5}
+
+/* ENGAGEMENTS */
+.eng-sec{background:var(--white);padding:5rem 5%}
+.eng-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;max-width:1200px;margin:0 auto}
+.eng-card{background:var(--light);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.75rem 1.5rem;text-align:center;transition:all .25s;box-shadow:var(--shadow-sm)}
+.eng-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);background:#fff;border-color:rgba(249,115,22,.2)}
+.eico{font-size:2rem;margin-bottom:.9rem;display:block}
+.eng-card h3{font-family:var(--ff-t);font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}
+.eng-card p{font-family:var(--ff-b);font-size:.8rem;color:var(--mid);line-height:1.6}
+
+/* IA */
+.ia-sec{background:linear-gradient(135deg,#1C1C1E,#2D2D2F);padding:6rem 5%}
+.ia-sec .lbl{background:rgba(249,115,22,.15);color:var(--orange)}
+.ia-sec h2.stl{color:#fff}
+.ia-sec p.sint{color:rgba(255,255,255,.65);max-width:100%}
+.ia-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1200px;margin:0 auto}
+.ia-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:var(--r-lg);padding:1.75rem;transition:background .25s,border-color .25s}
+.ia-card:hover{background:rgba(255,255,255,.09);border-color:rgba(249,115,22,.3)}
+.ia-ico{font-size:1.6rem;margin-bottom:.9rem;display:block}
+.ia-card h3{font-family:var(--ff-t);font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.ia-card p{font-family:var(--ff-b);font-size:.82rem;color:rgba(255,255,255,.60);line-height:1.7}
+.ia-hl{font-family:var(--ff-b);font-size:.8rem;font-weight:600;color:var(--orange);font-style:italic;margin-top:.65rem;display:block}
+
+/* SECURITY */
+.sec-sec{background:var(--light);padding:6rem 5%}
+.sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1200px;margin:0 auto}
+.sec-cd{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:1.75rem;box-shadow:var(--shadow-sm);transition:all .25s}
+.sec-cd:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(249,115,22,.2)}
+.sec-cd-ico{font-size:1.4rem;margin-bottom:.8rem;display:block}
+.sec-cd h3{font-family:var(--ff-t);font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}
+.sec-cd p{font-family:var(--ff-b);font-size:.82rem;color:var(--mid);line-height:1.65}
+
+/* STRENGTHS */
+.str-sec{background:var(--orange);padding:5rem 5%}
+.str-sec .lbl{background:rgba(255,255,255,.2);color:#fff}
+.str-sec h2.stl{color:#fff}
+.str-sec p.sint{color:rgba(255,255,255,.80);max-width:100%}
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1200px;margin:0 auto}
+.str-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.20);border-radius:var(--r-lg);padding:1.6rem;display:flex;align-items:flex-start;gap:12px;transition:background .2s}
+.str-card:hover{background:rgba(255,255,255,.20)}
+.stck{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0;margin-top:2px}
+.str-card h4{font-family:var(--ff-t);font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.25rem}
+.str-card p{font-family:var(--ff-b);font-size:.8rem;color:rgba(255,255,255,.70);line-height:1.5}
+
+/* CTA BANNER */
+.cta-ban{background:linear-gradient(135deg,var(--orange),var(--orange-deep));padding:5rem 5%;text-align:center;position:relative;overflow:hidden}
+.cta-ban::before{content:'';position:absolute;top:-80px;left:-80px;width:300px;height:300px;background:rgba(255,255,255,.07);border-radius:50%}
+.cta-ban::after{content:'';position:absolute;bottom:-60px;right:-60px;width:240px;height:240px;background:rgba(255,255,255,.05);border-radius:50%}
+.cta-ban h2{font-family:var(--ff-t);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:#fff;letter-spacing:-.02em;margin-bottom:1rem;position:relative;z-index:2}
+.cta-ban p{font-family:var(--ff-b);font-size:1rem;color:rgba(255,255,255,.85);max-width:560px;margin:0 auto 2.5rem;line-height:1.8;position:relative;z-index:2}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+.bcw{font-family:var(--ff-b);font-weight:700;font-size:.95rem;background:#fff;color:var(--orange);padding:.9rem 2.2rem;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.bcw:hover{background:#FFF7ED;transform:translateY(-2px)}
+.bcg{font-family:var(--ff-b);font-weight:600;font-size:.95rem;background:transparent;color:#fff;padding:.9rem 2.2rem;border-radius:10px;text-decoration:none;border:2px solid rgba(255,255,255,.5);display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.bcg:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--dark);color:rgba(255,255,255,.55);padding:4rem 5% 2rem}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.fb p{font-family:var(--ff-b);font-size:.85rem;color:rgba(255,255,255,.50);line-height:1.7;max-width:280px}
+.fc h4{font-family:var(--ff-t);font-size:.8rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:1.1rem}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.fc ul a{font-family:var(--ff-b);font-size:.85rem;color:rgba(255,255,255,.50);text-decoration:none;transition:color .2s}
+.fc ul a:hover{color:rgba(255,255,255,.90)}
+.fb-bot{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.fb-bot p{font-family:var(--ff-b);font-size:.8rem;color:rgba(255,255,255,.35)}
+.ftag{font-family:var(--ff-t);font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.08em;text-transform:uppercase}
+
+/* SCROLL ANIM */
+.fi-el{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.fi-el.vis{opacity:1;transform:none}
+
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding:110px 5% 0}
+  .hero-right{display:none}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-col:nth-child(2){border-right:none}
+  .stat-col:nth-child(3){border-right:1px solid var(--border)}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .why-sec{grid-template-columns:1fr;padding:4rem 5%}
+  .ia-grid,.sec-grid,.str-grid{grid-template-columns:repeat(2,1fr)}
+  .eng-grid{grid-template-columns:repeat(2,1fr)}
+  .ft{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .svc-grid,.ia-grid,.sec-grid,.str-grid,.eng-grid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-col:nth-child(2){border-right:none}
+  .stat-col:nth-child(3){border-right:1px solid var(--border);padding-left:0}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-box">IA</div>
+    <div class="logo-txt">INNOV<span>-ART</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Accueil</a></li>
+    <li><a href="#services">Nos services</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
+    <li><a href="#processus">Processus</a></li>
+  </ul>
+  <a href="#contact" class="nav-links btn-nav" style="font-family:var(--ff-b);font-size:.875rem;text-decoration:none;color:#fff;padding:.5rem 1.4rem;border-radius:8px;background:var(--orange);font-weight:600;box-shadow:0 2px 10px rgba(249,115,22,.35)">Adhérer maintenant</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Business Process Outsourcing</div>
+    <h1>Externalisation<br><em>éthique</em> et<br>innovante</h1>
+    <p class="hero-sub">INNOV-ART met à votre disposition son expertise en BPO, gestion de la relation client et traitement de données IA, avec une approche humaine et responsable.</p>
+    <div class="hero-cta">
+      <a href="#services" class="btn-white">Découvrir nos services →</a>
+      <a href="#contact" class="btn-ghost">▶ Planifier un rendez-vous</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <div class="hero-img-bg">🤝</div>
+      <div class="hero-float tl">
+        <div class="fi o">📞</div>
+        <div><div class="fn">300K+</div><div class="fl">Appels effectués</div></div>
+      </div>
+      <div class="hero-float br">
+        <div class="fi g">✅</div>
+        <div><div class="fn">15</div><div class="fl">Projets en cours</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-col"><div class="si">📞</div><div><div class="sn">300K</div><div class="sl">Appels effectués</div></div></div>
+    <div class="stat-col"><div class="si">👥</div><div><div class="sn">150+</div><div class="sl">Collaborateurs</div></div></div>
+    <div class="stat-col"><div class="si">📁</div><div><div class="sn">15</div><div class="sl">Projets en cours</div></div></div>
+    <div class="stat-col"><div class="si">⭐</div><div><div class="sn">+8 ans</div><div class="sl">Expertise IA &amp; data</div></div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="mw">
+    <div class="svc-hdr">
+      <div>
+        <div class="lbl">Nos services</div>
+        <h2 class="stl">Des solutions<br>d'externalisation sur mesure</h2>
+      </div>
+      <div style="text-align:right">
+        <p style="font-family:var(--ff-b);font-size:.9rem;color:var(--mid);max-width:340px;line-height:1.7;margin-bottom:1rem">Nous mettons à votre disposition notre expertise en BPO et en Gestion de la Relation Client avec une approche omnicanale.</p>
+        <a href="#" class="see-all">Voir tous nos services →</a>
+      </div>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">01</div><div class="svc-ico">🤖</div>
+        <h3>Data &amp; Intelligence Artificielle</h3>
+        <p>Nous contribuons à la performance de vos modèles IA grâce à des données fiables, structurées et de haute qualité.</p>
+        <ul class="svc-ul">
+          <li>Annotation d'images, vidéos et textes à grande échelle</li>
+          <li>Modération de contenu sensible et complexe</li>
+          <li>Enrichissement et structuration de données</li>
+          <li>Gestion de datasets pour entraînement IA</li>
+        </ul>
+        <div class="svc-val">Amélioration directe de la précision de vos modèles et réduction des biais.</div>
+      </div>
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">02</div><div class="svc-ico">⚙️</div>
+        <h3>Externalisation de processus métier (BPO)</h3>
+        <p>Nous prenons en charge vos opérations pour vous permettre de vous concentrer sur votre cœur de métier.</p>
+        <ul class="svc-ul">
+          <li>Gestion de back-office</li>
+          <li>Traitement et saisie de données</li>
+          <li>Gestion de contenus et workflows opérationnels</li>
+        </ul>
+        <div class="svc-val">Réduction des coûts opérationnels et gain de productivité immédiat.</div>
+      </div>
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">03</div><div class="svc-ico">✅</div>
+        <h3>Contrôle qualité &amp; excellence opérationnelle</h3>
+        <p>La qualité est intégrée à chaque étape de production.</p>
+        <ul class="svc-ul">
+          <li>Protocoles qualité sur mesure</li>
+          <li>Audits réguliers et amélioration continue</li>
+          <li>Co-construction des processus</li>
+          <li>Supervision et pilotage KPI / SLA</li>
+        </ul>
+        <div class="svc-val">Fiabilité, constance et réduction des erreurs à grande échelle.</div>
+      </div>
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">04</div><div class="svc-ico">💬</div>
+        <h3>Support client (Customer Support / SAV)</h3>
+        <ul class="svc-ul">
+          <li>Gestion du Service Après-Vente (SAV)</li>
+          <li>Traitement des demandes clients</li>
+          <li>Résolution de problèmes (produit, livraison, service)</li>
+          <li>Gestion des réclamations &amp; suivi des tickets</li>
+        </ul>
+      </div>
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">05</div><div class="svc-ico">📞</div>
+        <h3>Support téléphonique (Voice)</h3>
+        <ul class="svc-ul">
+          <li>Appels entrants (inbound)</li>
+          <li>Appels sortants (outbound)</li>
+          <li>Assistance technique par téléphone</li>
+          <li>Prise de rendez-vous &amp; enquêtes de satisfaction</li>
+        </ul>
+      </div>
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">06</div><div class="svc-ico">🌐</div>
+        <h3>Support digital (Non-voice)</h3>
+        <ul class="svc-ul">
+          <li>Chat en ligne (live chat)</li>
+          <li>Support par email</li>
+          <li>Support via réseaux sociaux</li>
+        </ul>
+      </div>
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">07</div><div class="svc-ico">🗂️</div>
+        <h3>Back-office &amp; gestion administrative</h3>
+        <ul class="svc-ul">
+          <li>Saisie et mise à jour de données</li>
+          <li>Traitement de dossiers &amp; gestion de commandes</li>
+          <li>Vérification d'informations</li>
+          <li>Support aux équipes internes</li>
+        </ul>
+        <div class="svc-val">Objectif : fluidifier les opérations internes.</div>
+      </div>
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">08</div><div class="svc-ico">🛠️</div>
+        <h3>Support technique (Helpdesk)</h3>
+        <ul class="svc-ul">
+          <li>Assistance technique niveau 1 / 2</li>
+          <li>Diagnostic et résolution de pannes</li>
+          <li>Support IT ou produit</li>
+          <li>Escalade vers équipes expertes</li>
+        </ul>
+        <div class="svc-val">Réduire les interruptions et améliorer l'expérience utilisateur.</div>
+      </div>
+
+      <div class="svc-card fi-el">
+        <div class="svc-num">09</div><div class="svc-ico">📊</div>
+        <h3>Enquêtes &amp; études de marché</h3>
+        <ul class="svc-ul">
+          <li>Sondages de satisfaction (CSAT, NPS)</li>
+          <li>Études de marché &amp; collecte de feedback</li>
+          <li>Campagnes d'appels sortants</li>
+        </ul>
+        <div class="svc-val">Objectif : améliorer vos produits et services.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI -->
+<section class="why-sec" id="pourquoi">
+  <div class="adv-wrap">
+    <div class="adv-ttl">Pourquoi externaliser ?</div>
+    <div class="adv-row"><div class="adv-n">01</div><div><h4>Réduction des coûts</h4><p>Optimisez vos ressources et réduisez les charges opérationnelles.</p></div></div>
+    <div class="adv-row"><div class="adv-n">02</div><div><h4>Expertise de haut niveau</h4><p>Une équipe formée et spécialisée à votre disposition, sans phase d'apprentissage coûteuse.</p></div></div>
+    <div class="adv-row"><div class="adv-n">03</div><div><h4>Flexibilité et agilité</h4><p>Services adaptés à vos besoins et variations d'activité — disponibilité 24/7.</p></div></div>
+    <div class="adv-row"><div class="adv-n">04</div><div><h4>Qualité garantie</h4><p>Processus rigoureux de contrôle et d'assurance qualité. KPI, SLA, audits réguliers.</p></div></div>
+    <div class="adv-row"><div class="adv-n">05</div><div><h4>Management &amp; supervision inclus</h4><p>Supervision et contrôle qualité intégrés à notre offre. Réduction des coûts de pilotage interne.</p></div></div>
+  </div>
+  <div>
+    <div class="lbl">Pourquoi nous choisir</div>
+    <h2 class="stl">Les avantages de collaborer avec INNOV-ART</h2>
+    <p class="sint">Nous nous engageons à générer un impact mesurable sur vos opérations, votre qualité et votre rentabilité. Nous ne nous contentons pas d'exécuter vos opérations : nous les optimisons pour en faire un levier de performance durable.</p>
+    <ul class="why-ul">
+      <li class="why-item"><div class="wck">✓</div><div><h4>Expertise éprouvée en IA &amp; données</h4><p>Avec plus de 8 ans d'expérience, nous maîtrisons les enjeux complexes liés aux données et à l'intelligence artificielle.</p></div></li>
+      <li class="why-item"><div class="wck">✓</div><div><h4>Excellence opérationnelle &amp; culture du résultat</h4><p>Nos équipes sont formées à des standards élevés de performance, approche orientée KPI et amélioration continue.</p></div></li>
+      <li class="why-item"><div class="wck">✓</div><div><h4>Engagement humain &amp; stabilité des équipes</h4><p>Nous investissons dans le bien-être, la formation et la fidélisation de nos collaborateurs. Moins de turnover = plus de qualité.</p></div></li>
+      <li class="why-item"><div class="wck">✓</div><div><h4>Transparence &amp; modèle économique clair</h4><p>Tarification claire, offres long terme, visibilité sur la performance et les coûts. Aucune surprise, uniquement de la valeur.</p></div></li>
+    </ul>
+    <a href="#contact" style="font-family:var(--ff-b);font-weight:700;font-size:.95rem;background:var(--orange);color:#fff;padding:.85rem 2rem;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(249,115,22,.35);transition:all .2s">Prêt à commencer ? →</a>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="eng-sec" id="engagements">
+  <div class="mw" style="text-align:center;margin-bottom:3rem">
+    <div class="lbl" style="display:inline-block">Nos engagements</div>
+    <h2 class="stl">Une entreprise responsable à chaque niveau</h2>
+  </div>
+  <div class="eng-grid">
+    <div class="eng-card fi-el"><span class="eico">🤝</span><h3>Bien-être des collaborateurs</h3><p>Salle de pause équipée, bibliothèque, formations régulières. Des équipes valorisées et protégées, clé d'une performance exceptionnelle.</p></div>
+    <div class="eng-card fi-el"><span class="eico">🛡️</span><h3>Normes HSE</h3><p>Respect des normes Hygiène, Sécurité, Environnement. Un environnement de travail sain, sécurisé et conforme aux exigences légales.</p></div>
+    <div class="eng-card fi-el"><span class="eico">📈</span><h3>Performance durable</h3><p>Qualité constante grâce à des processus rigoureux, des audits réguliers et une amélioration continue de nos méthodes opérationnelles.</p></div>
+    <div class="eng-card fi-el"><span class="eico">🌍</span><h3>Partenaire responsable</h3><p>Nous ne collaborons que sur des projets moraux et responsables. Aucune opération contraire à l'éthique ou à la législation.</p></div>
+  </div>
+</section>
+
+<!-- IA RESPONSABLE -->
+<section class="ia-sec" id="ia">
+  <div class="mw" style="margin-bottom:3rem">
+    <div class="lbl">IA Responsable</div>
+    <h2 class="stl">Une approche éthique et rigoureuse<br>au service de vos modèles</h2>
+    <p class="sint">Nous considérons que la qualité d'un système d'intelligence artificielle repose autant sur la performance technique que sur l'éthique des données qui l'alimentent. Nous intégrons des principes forts d'IA responsable dans l'ensemble de nos processus.</p>
+  </div>
+  <div class="ia-grid mw">
+    <div class="ia-card fi-el"><span class="ia-ico">🧠</span><h3>Transparence et traçabilité</h3><p>Documentation claire des consignes, historique des modifications, suivi des performances des annotateurs, audit possible.</p><span class="ia-hl">Garantir la compréhension et la reproductibilité des résultats.</span></div>
+    <div class="ia-card fi-el"><span class="ia-ico">🔐</span><h3>Encadrement des contenus sensibles</h3><p>Protocoles spécifiques de traitement, escalade vers des superviseurs formés, limitation de l'exposition, rotation des tâches.</p><span class="ia-hl">Protéger à la fois les utilisateurs finaux et les collaborateurs.</span></div>
+    <div class="ia-card fi-el"><span class="ia-ico">🔒</span><h3>Confidentialité des données</h3><p>Accès restreint aux données sensibles, environnements sécurisés, anonymisation lorsque nécessaire, formation continue.</p><span class="ia-hl">Protéger les données utilisées pour entraîner ou améliorer les modèles.</span></div>
+    <div class="ia-card fi-el"><span class="ia-ico">👤</span><h3>Responsabilité humaine</h3><p>Validation humaine sur les cas complexes, arbitrage en cas d'ambiguïté, refus d'automatisation totale sur les décisions sensibles.</p><span class="ia-hl">Éviter les dérives liées à une automatisation non contrôlée.</span></div>
+    <div class="ia-card fi-el"><span class="ia-ico">❤️</span><h3>Bien-être des équipes exposées</h3><p>Sensibilisation aux risques psychologiques, rotations sur les tâches sensibles, accompagnement managérial renforcé.</p><span class="ia-hl">Performance durable sans compromettre la santé des équipes.</span></div>
+    <div class="ia-card fi-el"><span class="ia-ico">📈</span><h3>Amélioration continue &amp; conformité</h3><p>Mise à jour des guidelines, intégration des standards internationaux, retour d'expérience terrain, collaboration avec les clients.</p><span class="ia-hl">Rester aligné avec les exigences technologiques, légales et sociétales.</span></div>
+  </div>
+  <div class="mw" style="margin-top:2.5rem;text-align:center">
+    <p style="font-family:var(--ff-t);font-size:1.1rem;font-weight:700;color:var(--orange)">🎯 Nous ne produisons pas uniquement des données de qualité — nous produisons des données responsables.</p>
+  </div>
+</section>
+
+<!-- SECURITE -->
+<section class="sec-sec" id="securite">
+  <div class="mw">
+    <div style="margin-bottom:3rem"><div class="lbl">Sécurité &amp; conformité</div><h2 class="stl">Priorité à la confidentialité<br>et l'intégrité de vos données</h2><p class="sint">Chez Innovart, la sécurité des données est une priorité absolue. Nous mettons en place des protocoles rigoureux pour garantir la confidentialité et l'intégrité des informations traitées.</p></div>
+    <div class="sec-grid">
+      <div class="sec-cd fi-el"><span class="sec-cd-ico">🔐</span><h3>Chiffrement avancé</h3><p>Toutes les communications sont chiffrées (TLS 1.2/1.3). Les données stockées sont sécurisées par chiffrement AES-256, en transit et au repos.</p></div>
+      <div class="sec-cd fi-el"><span class="sec-cd-ico">🛡️</span><h3>Conformité RGPD</h3><p>Nous appliquons le RGPD ainsi que CCPA (États-Unis), LPRPDE (Canada). Collecte et traitement des données strictement encadrés selon la région du client.</p></div>
+      <div class="sec-cd fi-el"><span class="sec-cd-ico">🔑</span><h3>Accès par rôle</h3><p>Attribution d'accès par rôle (principe du moindre privilège). Authentification multi-facteurs (MFA). Activation/désactivation immédiate lors d'onboarding/offboarding.</p></div>
+      <div class="sec-cd fi-el"><span class="sec-cd-ico">📜</span><h3>Accords NDA stricts</h3><p>Tous nos collaborateurs signent des NDA avant d'accéder aux données clients. Traçabilité complète des actions, contrairement aux plateformes de crowdsourcing anonymes.</p></div>
+      <div class="sec-cd fi-el"><span class="sec-cd-ico">🏛️</span><h3>Normes internationales</h3><p>Conformité ISO 27001, SOC 2, HDS, HIPAA. Nos infrastructures sont régulièrement mises à jour pour intégrer les dernières améliorations en cybersécurité.</p></div>
+      <div class="sec-cd fi-el"><span class="sec-cd-ico">🚫</span><h3>Zéro partage de données</h3><p>Innovart ne vend ni ne partage les données des clients avec des tiers. Toutes les données restent sous le contrôle exclusif du client selon les accords signés.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- POINTS FORTS -->
+<section class="str-sec" id="apropos">
+  <div class="mw">
+    <div style="margin-bottom:2.5rem">
+      <div class="lbl">Points forts</div>
+      <h2 class="stl">Nous ne nous contentons pas d'exécuter<br>vos opérations : nous les optimisons.</h2>
+      <p class="sint">Un réel partenariat éthique, transparent et durable. Une prestation adaptée à vos valeurs, attentes et contraintes.</p>
+    </div>
+    <div class="str-grid">
+      <div class="str-card"><div class="stck">✓</div><div><h4>+8 ans d'expertise en IA &amp; data</h4><p>Des processus solides et des équipes expérimentées dans l'intelligence artificielle et la gestion de données.</p></div></div>
+      <div class="str-card"><div class="stck">✓</div><div><h4>Excellence opérationnelle</h4><p>Méthodologies éprouvées et amélioration continue. Supervision constante pour garantir les résultats.</p></div></div>
+      <div class="str-card"><div class="stck">✓</div><div><h4>Management &amp; contrôle qualité inclus</h4><p>Supervision intégrée dans notre offre. Réduction de vos coûts de pilotage interne tout en garantissant la qualité.</p></div></div>
+      <div class="str-card"><div class="stck">✓</div><div><h4>Disponibilité 24/7</h4><p>Flexibilité totale, montée en charge rapide, ajustement des équipes en temps réel pour absorber les pics d'activité.</p></div></div>
+      <div class="str-card"><div class="stck">✓</div><div><h4>Entreprise bilingue FR / EN</h4><p>Communication fluide en français et en anglais. Services multilingues disponibles : espagnol, italien, allemand…</p></div></div>
+      <div class="str-card"><div class="stck">✓</div><div><h4>Tarif exceptionnel &amp; transparent</h4><p>Modèles tarifaires compétitifs et modulables. Offres long terme avantageuses. Aucune surprise, uniquement de la valeur.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-ban" id="contact">
+  <h2>Prêt à commencer ? Réalisez vos<br>projets avec INNOV-ART</h2>
+  <p>En seulement 48 heures, nous vous proposons un test gratuit pour évaluer vos besoins et élaborer un contrat parfaitement adapté à vos enjeux.</p>
+  <div class="cta-btns">
+    <a href="#" class="bcw">Contactez-nous</a>
+    <a href="#" class="bcg">Demander un devis</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="fb">
+      <a href="#" class="logo" style="display:inline-flex;margin-bottom:1.25rem">
+        <div class="logo-box">IA</div>
+        <div class="logo-txt" style="color:#fff">INNOV<span>-ART</span></div>
+      </a>
+      <p>Nous traitons la donnée comme une forme d'art, alliant précision technologique et éthique humaine pour propulser l'innovation mondiale.</p>
+    </div>
+    <div class="fc"><h4>Solutions</h4><ul><li><a href="#">BPO Global</a></li><li><a href="#">IA &amp; Big Data</a></li><li><a href="#">Relation Client</a></li><li><a href="#">Modélisation 3D</a></li></ul></div>
+    <div class="fc"><h4>Compagnie</h4><ul><li><a href="#">Notre vision</a></li><li><a href="#">Carrières</a></li><li><a href="#">Contact</a></li><li><a href="#">Blog</a></li></ul></div>
+    <div class="fc"><h4>Légal</h4><ul><li><a href="#">Confidentialité</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">Cookies</a></li></ul></div>
+  </div>
+  <div class="fb-bot">
+    <p>© 2026 INNOV-ART. Tous droits réservés. L'art du process, la précision de l'IA.</p>
+    <span class="ftag">MADE WITH EXCELLENCE</span>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('vis');obs.unobserve(en.target)}})},{threshold:.12});
+document.querySelectorAll('.fi-el').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

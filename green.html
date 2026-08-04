@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Pigeon Tours — Madagascar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #10211a;
+    --bg-alt: #16281f;
+    --surface: #1f3427;
+    --surface-2: #24392b;
+    --text: #f3eee0;
+    --text-muted: #a9b8a5;
+    --gold: #c99a52;
+    --gold-soft: #e0bd7d;
+    --green: #82c091;
+    --line: rgba(243,238,224,0.14);
+    --line-strong: rgba(243,238,224,0.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-soft);display:inline-block;}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:linear-gradient(to bottom, rgba(16,33,26,0.92), rgba(16,33,26,0));
+    padding:22px 0;
+    transition:background .3s ease, padding .3s ease, backdrop-filter .3s ease;
+  }
+  header.scrolled{
+    background:rgba(16,33,26,0.88);
+    backdrop-filter:blur(10px);
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    font-weight:500;
+    display:flex;align-items:center;gap:10px;
+  }
+  .logo svg{width:26px;height:26px;flex-shrink:0;}
+  .logo .sub{
+    display:block;font-family:'IBM Plex Mono',monospace;
+    font-size:9px;letter-spacing:.14em;color:var(--text-muted);
+    text-transform:uppercase;margin-top:1px;
+  }
+  .nav-links{display:flex;gap:36px;align-items:center;}
+  .nav-links a{
+    font-size:13px;letter-spacing:.03em;color:var(--text-muted);
+    transition:color .2s;position:relative;
+  }
+  .nav-links a:hover{color:var(--text);}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    padding:11px 22px;border-radius:2px;
+    border:1px solid var(--gold);
+    color:var(--gold-soft);
+    transition:all .25s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--gold);color:var(--bg);}
+  .btn.solid{background:var(--gold);color:var(--bg);}
+  .btn.solid:hover{background:var(--gold-soft);border-color:var(--gold-soft);}
+  .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+  .menu-toggle span{width:22px;height:1.5px;background:var(--text);display:block;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;align-items:center;
+    padding-top:120px;padding-bottom:80px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 75% 20%, rgba(130,192,145,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 10% 90%, rgba(201,154,82,0.08), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;align-items:center;
+    position:relative;z-index:2;width:100%;
+  }
+  .hero h1{
+    font-size:clamp(40px, 5.2vw, 68px);
+    line-height:1.04;
+    margin:22px 0 26px;
+    letter-spacing:-0.02em;
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:400;color:var(--green);
+  }
+  .hero p.lead{
+    font-size:18px;color:var(--text-muted);max-width:480px;margin-bottom:36px;
+  }
+  .hero-ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .hero-ctas .ghost{
+    font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:8px;
+  }
+  .hero-ctas .ghost svg{width:14px;height:14px;}
+
+  .hero-map{position:relative;height:560px;}
+  .hero-map svg{width:100%;height:100%;}
+  .contour{fill:none;stroke:var(--line-strong);stroke-width:1;}
+  .contour.gold{stroke:var(--gold);stroke-opacity:.55;}
+  .pin{
+    position:absolute;
+    font-family:'IBM Plex Mono',monospace;font-size:10px;
+    color:var(--text-muted);letter-spacing:.05em;
+    display:flex;align-items:center;gap:6px;
+  }
+  .pin::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+  .stat-strip{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:34px 0;
+  }
+  .stat-strip .wrap{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  }
+  .stat{border-left:1px solid var(--line);padding-left:20px;}
+  .stat:first-child{border-left:none;padding-left:0;}
+  .stat .num{font-family:'Fraunces',serif;font-size:34px;font-weight:500;color:var(--gold-soft);}
+  .stat .label{font-size:12.5px;color:var(--text-muted);margin-top:6px;max-width:190px;}
+
+  /* ===== SECTION GENERIC ===== */
+  section{padding:120px 0;position:relative;}
+  .section-head{max-width:640px;margin-bottom:64px;}
+  .section-head h2{font-size:clamp(30px,3.4vw,44px);margin-top:16px;line-height:1.12;}
+  .section-head p{color:var(--text-muted);margin-top:18px;font-size:16px;max-width:520px;}
+
+  /* ===== INTRO / PARADISE ===== */
+  .intro{background:var(--bg-alt);}
+  .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}
+  .intro-text p{color:var(--text-muted);margin-bottom:20px;font-size:16.5px;}
+  .intro-text p:first-child{
+    font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:var(--text);
+    line-height:1.45;margin-bottom:28px;
+  }
+  .spec-tags{display:flex;flex-direction:column;gap:14px;}
+  .spec-tag{
+    border:1px solid var(--line);
+    padding:18px 20px;
+    display:flex;justify-content:space-between;align-items:center;
+    transition:border-color .25s;
+  }
+  .spec-tag:hover{border-color:var(--gold);}
+  .spec-tag .name{font-size:14.5px;}
+  .spec-tag .name .latin{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold-soft);font-style:italic;margin-top:3px;}
+  .spec-tag .fig{font-family:'Fraunces',serif;font-size:20px;color:var(--green);}
+
+  /* ===== FIELD NOTES / BIODIVERSITY ===== */
+  .notes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .note-card{background:var(--bg);padding:34px 26px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s;}
+  .note-card:hover{background:var(--surface);}
+  .note-card .icon{width:46px;height:46px;margin-bottom:26px;}
+  .note-card .icon svg{width:100%;height:100%;stroke:var(--gold-soft);fill:none;stroke-width:1.2;}
+  .note-card h3{font-size:19px;margin-bottom:8px;font-weight:500;}
+  .note-card .latin{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--text-muted);font-style:italic;letter-spacing:.03em;display:block;margin-bottom:16px;}
+  .note-card p{font-size:14px;color:var(--text-muted);}
+  .note-card .tag-no{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--line-strong);margin-top:26px;}
+
+  /* ===== WHY US ===== */
+  .why{background:var(--bg-alt);}
+  .why-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:70px;align-items:center;}
+  .quote{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(24px,2.6vw,32px);line-height:1.42;color:var(--text);
+  }
+  .quote-attr{margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold-soft);letter-spacing:.05em;}
+  .why-list{display:flex;flex-direction:column;}
+  .why-item{
+    display:grid;grid-template-columns:64px 1fr;gap:20px;
+    padding:26px 0;border-top:1px solid var(--line);
+  }
+  .why-list .why-item:last-child{border-bottom:1px solid var(--line);}
+  .why-item .no{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:13px;padding-top:2px;}
+  .why-item h4{font-size:17px;font-weight:500;margin-bottom:6px;}
+  .why-item p{font-size:14.5px;color:var(--text-muted);}
+
+  /* ===== JOURNEYS TEASER ===== */
+  .journeys .section-head{display:flex;justify-content:space-between;align-items:flex-end;max-width:100%;}
+  .journeys-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .journey-card{
+    border:1px solid var(--line);position:relative;overflow:hidden;
+    padding:30px 26px 26px;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .journey-card:hover{transform:translateY(-4px);border-color:var(--gold);}
+  .journey-card .terrain{position:absolute;top:0;left:0;right:0;height:100%;opacity:0.5;z-index:0;}
+  .journey-card .terrain svg{width:100%;height:100%;}
+  .journey-card .content{position:relative;z-index:1;}
+  .journey-card .route{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold-soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+  .journey-card h3{font-size:22px;margin-bottom:10px;}
+  .journey-card p{font-size:13.5px;color:var(--text-muted);margin-bottom:16px;}
+  .journey-card .meta{display:flex;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);}
+
+  /* ===== CTA ===== */
+  .cta{
+    background:var(--surface);
+    text-align:center;padding:130px 0;
+    position:relative;overflow:hidden;
+  }
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 60% 70% at 50% 100%, rgba(130,192,145,0.12), transparent 70%);
+  }
+  .cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+  .cta h2{font-size:clamp(32px,4vw,50px);line-height:1.1;margin:18px 0 26px;}
+  .cta p{color:var(--text-muted);margin-bottom:38px;font-size:16.5px;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:70px 0 34px;border-top:1px solid var(--line);}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
+  footer .logo{margin-bottom:16px;}
+  footer p.desc{color:var(--text-muted);font-size:14px;max-width:280px;}
+  .footer-col h5{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:18px;}
+  .footer-col a{display:block;color:var(--text-muted);font-size:14px;margin-bottom:12px;transition:color .2s;}
+  .footer-col a:hover{color:var(--text);}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:28px;border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);
+    flex-wrap:wrap;gap:16px;
+  }
+
+  /* reveal */
+  [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease;}
+  [data-reveal].in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-map{height:340px;order:-1;}
+    .stat-strip .wrap{grid-template-columns:repeat(2,1fr);row-gap:28px;}
+    .stat:nth-child(3){border-left:none;padding-left:0;}
+    .intro-grid, .why-grid{grid-template-columns:1fr;gap:40px;}
+    .notes-grid{grid-template-columns:repeat(2,1fr);}
+    .journeys-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;row-gap:36px;}
+  }
+  @media (max-width:680px){
+    .nav-links{position:fixed;top:0;right:0;height:100vh;width:78%;max-width:320px;
+      background:var(--bg-alt);flex-direction:column;justify-content:center;align-items:flex-start;
+      padding:0 40px;gap:28px;transform:translateX(100%);transition:transform .35s ease;
+      border-left:1px solid var(--line);}
+    .nav-links.open{transform:translateX(0);}
+    .menu-toggle{display:flex;z-index:110;}
+    .nav-links a{font-size:16px;}
+    section{padding:80px 0;}
+    .notes-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .stat-strip .wrap{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="logo">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 18c0-7 5-12 12-12 4 0 6 2 6 2s-1 5-6 7c2 3 2 6 0 8-3-1-5-3-6-6-3 1-6 1-6 1z" stroke="#c99a52" stroke-width="1.3" stroke-linejoin="round"/>
+          <circle cx="12" cy="13" r="1" fill="#c99a52"/>
+        </svg>
+        <span>Green Pigeon Tours<span class="sub">Madagascar</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#paradis">L'île</a>
+        <a href="#biodiversite">Biodiversité</a>
+        <a href="#voyages">Voyages</a>
+        <a href="#equipe">Équipe</a>
+        <a href="#contact" class="btn">Nous écrire</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div data-reveal>
+        <div class="eyebrow">Madagascar · Tourisme de nature</div>
+        <h1>L'île qui ne <em>ressemble</em><br>à aucune autre.</h1>
+        <p class="lead">Isolée depuis des millions d'années, Madagascar a inventé sa propre nature — lémuriens, caméléons, baobabs, oiseaux — presque tout ici n'existe nulle part ailleurs sur terre.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn solid">Construire mon voyage</a>
+          <a href="#biodiversite" class="ghost">
+            Explorer la biodiversité
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-map" data-reveal>
+        <svg viewBox="0 0 300 560" xmlns="http://www.w3.org/2000/svg">
+          <!-- stylised Madagascar contour outline, concentric field-map lines -->
+          <path class="contour gold" d="M150 20 C 190 40, 210 90, 200 140 C 230 170, 235 220, 210 260 C 240 300, 230 350, 195 380 C 210 420, 195 470, 160 500 C 140 530, 110 535, 95 505 C 70 480, 80 440, 65 400 C 40 370, 45 320, 70 290 C 50 250, 60 200, 90 175 C 75 140, 90 95, 120 65 C 130 40, 140 25, 150 20 Z" stroke-width="1.4"/>
+          <path class="contour" d="M150 40 C 182 58, 196 96, 188 136 C 212 164, 216 208, 196 242 C 220 276, 212 320, 182 346 C 194 380, 182 422, 152 448 C 136 472, 112 476, 100 452 C 80 432, 88 398, 76 366 C 55 340, 60 298, 82 272 C 65 238, 74 196, 100 174 C 88 144, 100 106, 126 82 C 134 62, 142 48, 150 40 Z"/>
+          <path class="contour" d="M150 62 C 172 76, 182 104, 176 132 C 194 154, 197 188, 182 214 C 200 240, 194 274, 170 294 C 179 320, 170 352, 146 372 C 133 390, 115 392, 106 374 C 91 358, 97 332, 88 308 C 72 288, 76 256, 92 236 C 79 210, 86 178, 106 160 C 97 138, 105 108, 126 90 C 133 76, 141 66, 150 62 Z"/>
+          <path class="contour" d="M150 86 C 165 96, 172 116, 167 136 C 180 152, 182 176, 171 195 C 184 214, 180 240, 162 254 C 168 274, 161 298, 143 313 C 133 326, 119 327, 112 314 C 101 302, 105 283, 98 265 C 86 250, 89 226, 101 211 C 91 192, 96 168, 111 154 C 105 138, 111 116, 127 102 C 133 92, 141 88, 150 86 Z"/>
+          <g class="mono" fill="none">
+            <line x1="30" y1="480" x2="270" y2="480" stroke="var(--line)" stroke-width="1"/>
+          </g>
+        </svg>
+        <div class="pin" style="top:16%;left:52%;">Diego Suarez</div>
+        <div class="pin" style="top:38%;left:8%;">Ankarafantsika</div>
+        <div class="pin" style="top:55%;left:60%;">Andasibe</div>
+        <div class="pin" style="top:76%;left:22%;">Ranomafana</div>
+        <div class="pin" style="top:90%;left:44%;">Ifaty · Tuléar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stat-strip" data-reveal>
+    <div class="wrap">
+      <div class="stat">
+        <div class="num">113+</div>
+        <div class="label">espèces de lémuriens recensées, de la minuscule microcèbe à l'indri</div>
+      </div>
+      <div class="stat">
+        <div class="num">½</div>
+        <div class="label">des espèces de caméléons du monde vivent uniquement à Madagascar</div>
+      </div>
+      <div class="stat">
+        <div class="num">3×</div>
+        <div class="label">plus d'espèces de palmiers que sur tout le continent africain</div>
+      </div>
+      <div class="stat">
+        <div class="num">90%</div>
+        <div class="label">de la faune et de la flore malgaches ne se trouvent nulle part ailleurs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO / PARADIS -->
+  <section class="intro" id="paradis">
+    <div class="wrap intro-grid">
+      <div class="intro-text" data-reveal>
+        <p>Séparée du continent africain il y a plus de 80 millions d'années, Madagascar a évolué seule — et a fini par tout réinventer.</p>
+        <p>On y trouve la plus grande concentration de baobabs au monde, plus d'espèces d'orchidées que sur tout le continent africain réuni, et des reptiles qui n'ont d'équivalent nulle part : le plus grand comme le plus petit caméléon de la planète partagent la même forêt.</p>
+        <p>Green Pigeon Tours existe pour une seule raison : faire découvrir cette île autrement — au rythme de ses guides, de ses pistes, et de sa nature qui ne triche jamais.</p>
+      </div>
+      <div class="spec-tags" data-reveal>
+        <div class="spec-tag">
+          <div class="name">Lémuriens<span class="latin">Lemuroidea</span></div>
+          <div class="fig">113+</div>
+        </div>
+        <div class="spec-tag">
+          <div class="name">Caméléons<span class="latin">Chamaeleonidae</span></div>
+          <div class="fig">½ monde</div>
+        </div>
+        <div class="spec-tag">
+          <div class="name">Orchidées<span class="latin">Orchidaceae</span></div>
+          <div class="fig">1000+</div>
+        </div>
+        <div class="spec-tag">
+          <div class="name">Baobabs<span class="latin">Adansonia</span></div>
+          <div class="fig">6/8 esp.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIODIVERSITE / FIELD NOTES -->
+  <section id="biodiversite">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Carnet de terrain</div>
+        <h2>Quatre mondes, une seule île</h2>
+        <p>Chaque région de Madagascar a évolué comme un laboratoire à part. Nos itinéraires suivent cette logique — forêt humide, forêt sèche, épineuse, et côtes — plutôt qu'une simple liste de sites.</p>
+      </div>
+    </div>
+    <div class="notes-grid" data-reveal>
+      <div class="note-card">
+        <div>
+          <div class="icon"><svg viewBox="0 0 48 48"><path d="M14 34c0-10 6-20 10-20s10 10 10 20"/><circle cx="24" cy="14" r="4"/><path d="M14 34c-4 2-6 6-4 8M34 34c4 2 6 6 4 8"/></svg></div>
+          <h3>Lémuriens</h3>
+          <span class="latin">Lemuroidea · 113 espèces</span>
+          <p>De la microcèbe qui tient dans une main à l'indri et son chant qui porte à des kilomètres — un primate flagship, propre à l'île.</p>
+        </div>
+        <div class="tag-no">01 / FAUNE</div>
+      </div>
+      <div class="note-card">
+        <div>
+          <div class="icon"><svg viewBox="0 0 48 48"><path d="M10 28c8-4 12-4 20 0 4 2 8 0 8-4-6-2-10 0-14-4-2-6-8-8-14-4"/><circle cx="14" cy="22" r="1.5"/></svg></div>
+          <h3>Reptiles & amphibiens</h3>
+          <span class="latin">Squamata · endémisme extrême</span>
+          <p>Près de la moitié des caméléons du monde, des geckos aux couleurs improbables, et des grenouilles qu'on ne trouve que là.</p>
+        </div>
+        <div class="tag-no">02 / FAUNE</div>
+      </div>
+      <div class="note-card">
+        <div>
+          <div class="icon"><svg viewBox="0 0 48 48"><path d="M24 40V16M24 16c-6 0-10-4-10-10 6 0 10 4 10 10zM24 16c6 0 10-4 10-10-6 0-10 4-10 10z"/><path d="M14 40h20"/></svg></div>
+          <h3>Baobabs & flore</h3>
+          <span class="latin">Adansonia · flore vasculaire</span>
+          <p>La plus grande concentration de baobabs au monde, des palmiers trois fois plus nombreux qu'en Afrique continentale, et des orchidées à chaque détour.</p>
+        </div>
+        <div class="tag-no">03 / FLORE</div>
+      </div>
+      <div class="note-card">
+        <div>
+          <div class="icon"><svg viewBox="0 0 48 48"><path d="M8 26c6-8 12-10 18-6 4-8 12-10 16-4-4 2-6 4-6 8-6 2-10 0-12-4-6 2-10 4-16 6z"/></svg></div>
+          <h3>Oiseaux</h3>
+          <span class="latin">Aves · fort taux d'endémisme</span>
+          <p>Vangas, couas, courols — et bien sûr le pigeon vert qui donne son nom à nos voyages — une avifaune que les ornithologues traversent le monde pour observer.</p>
+        </div>
+        <div class="tag-no">04 / FAUNE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why" id="equipe">
+    <div class="wrap why-grid">
+      <div data-reveal>
+        <div class="eyebrow">L'équipe</div>
+        <p class="quote">« Nos guides et chauffeurs connaissent chaque piste, chaque saison, chaque espèce — et ils sont tous nés avec le sourire. »</p>
+        <div class="quote-attr">— L'équipe Green Pigeon Tours</div>
+      </div>
+      <div class="why-list" data-reveal>
+        <div class="why-item">
+          <div class="no">01</div>
+          <div>
+            <h4>Une connaissance de terrain, pas de brochure</h4>
+            <p>Nos guides vivent avec cette biodiversité au quotidien — ils savent où et quand chaque espèce se montre.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="no">02</div>
+          <div>
+            <h4>Des itinéraires sur mesure</h4>
+            <p>Chaque voyage est construit autour de vos envies : observation animalière, randonnée, culture, côtes.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="no">03</div>
+          <div>
+            <h4>Un accompagnement du premier au dernier kilomètre</h4>
+            <p>Guides et chauffeurs expérimentés vous accompagnent sur l'ensemble du parcours, en toute confiance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOYAGES -->
+  <section class="journeys" id="voyages">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Itinéraires</div>
+        <h2>Trois façons de commencer</h2>
+      </div>
+      <div class="journeys-grid" data-reveal>
+        <div class="journey-card">
+          <div class="content">
+            <div class="route">Nord · 9 jours</div>
+            <h3>Forêts humides & côtes</h3>
+            <p>Andasibe, Montagne d'Ambre, les Trois Baies et Ankarana — lémuriens, chaméléons et formations rocheuses.</p>
+            <div class="meta"><span>Faune</span><span>·</span><span>Randonnée</span></div>
+          </div>
+        </div>
+        <div class="journey-card">
+          <div class="content">
+            <div class="route">Sud · 12 jours</div>
+            <h3>Forêt épineuse & baobabs</h3>
+            <p>Ifaty, Tuléar et sa forêt spinifère — un écosystème unique où chaque plante s'est adaptée à la sécheresse.</p>
+            <div class="meta"><span>Flore</span><span>·</span><span>Ornithologie</span></div>
+          </div>
+        </div>
+        <div class="journey-card">
+          <div class="content">
+            <div class="route">Est · 9 jours</div>
+            <h3>Îles & forêt primaire</h3>
+            <p>Nosy Mangabe et le parc national de Masoala — plongée dans une des dernières grandes forêts primaires de l'île.</p>
+            <div class="meta"><span>Nature</span><span>·</span><span>Culture</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <div class="cta-inner" data-reveal>
+        <div class="eyebrow" style="justify-content:center;">Prêt à partir ?</div>
+        <h2>Racontez-nous le voyage que vous imaginez.</h2>
+        <p>Un échange suffit pour construire un itinéraire sur mesure — nous nous occupons du reste.</p>
+        <a href="mailto:contact@greenpigeontours.com" class="btn solid">Écrire à l'équipe</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="logo">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 18c0-7 5-12 12-12 4 0 6 2 6 2s-1 5-6 7c2 3 2 6 0 8-3-1-5-3-6-6-3 1-6 1-6 1z" stroke="#c99a52" stroke-width="1.3" stroke-linejoin="round"/>
+          </svg>
+          <span>Green Pigeon Tours</span>
+        </a>
+        <p class="desc">Voyages sur mesure au cœur de la biodiversité malgache, conçus et menés par une équipe locale.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explorer</h5>
+        <a href="#paradis">L'île</a>
+        <a href="#biodiversite">Biodiversité</a>
+        <a href="#voyages">Voyages</a>
+      </div>
+      <div class="footer-col">
+        <h5>Agence</h5>
+        <a href="#equipe">Notre équipe</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Suivre</h5>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Green Pigeon Tours — Antananarivo, Madagascar</span>
+      <span>Design concept · Carnet de terrain</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  const reveals = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

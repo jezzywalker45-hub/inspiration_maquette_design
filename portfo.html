@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Portfolio de Jeremia - Développeur & Créatif Digital"/>
+  <title>Jeremia | Portfolio Moderne</title>
+  
+  <!-- Polices Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ===== VARIABLES CSS ===== */
+    :root {
+      /* Couleurs - Mode clair */
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --secondary: #8b5cf6;
+      --accent: #06b6d4;
+      
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-nav: rgba(255, 255, 255, 0.85);
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-inverse: #f8fafc;
+      
+      --border: #e2e8f0;
+      --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 20px 60px -15px rgba(99, 102, 241, 0.25);
+      
+      --radius: 16px;
+      --radius-lg: 24px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-body: #0f172a;
+      --bg-card: #1e293b;
+      --bg-nav: rgba(15, 23, 42, 0.85);
+      
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      
+      --border: #334155;
+      --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 20px 60px -15px rgba(99, 102, 241, 0.4);
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: var(--transition);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== NAVIGATION ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--bg-nav);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      padding: 0.5rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      width: 48px;
+      height: 26px;
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      padding: 2px;
+    }
+
+    .theme-toggle::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      left: 3px;
+      transition: var(--transition);
+    }
+
+    [data-theme="dark"] .theme-toggle::after {
+      left: calc(100% - 23px);
+      background: var(--accent);
+    }
+
+    .theme-toggle i {
+      position: absolute;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      transition: opacity 0.2s;
+    }
+
+    .theme-toggle .sun { left: 6px; }
+    .theme-toggle .moon { right: 6px; }
+    
+    [data-theme="dark"] .theme-toggle .sun { opacity: 0; }
+    [data-theme="light"] .theme-toggle .moon { opacity: 0; }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+      z-index: -1;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(5deg); }
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text h1 span {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      max-width: 400px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-hover);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== STATS ===== */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .stat-number {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* ===== SERVICES / BENTO GRID ===== */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .bento-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary);
+    }
+
+    .bento-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .bento-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .bento-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      group: project;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .project-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      border-radius: 0;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,23,42,0.9), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(99, 102, 241, 0.2);
+      color: var(--primary);
+      border-radius: 50px;
+      font-weight: 500;
+    }
+
+    .project-info {
+      padding: 1.5rem;
+    }
+
+    .project-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-info p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .project-links a:hover {
+      color: var(--primary-hover);
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      border: 3px solid var(--primary);
+      object-fit: cover;
+    }
+
+    .testimonial-text {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .testimonial-author h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .testimonial-author p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-rating {
+      color: #fbbf24;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      border-color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .contact-item i {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .contact-form {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-body);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--bg-body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .copyright {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ===== ANIMATIONS SCROLL ===== */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-section.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text p,
+      .hero-buttons {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .hero-image img {
+        max-width: 320px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-150%);
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* ===== UTILITIES ===== */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      z-index: 1001;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <!-- Header / Navigation -->
+  <header id="header">
+    <nav>
+      <a href="#" class="logo">Jeremia.</a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#testimonials">Témoignages</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Basculer le mode sombre">
+          <i class="fas fa-sun sun"></i>
+          <i class="fas fa-moon moon"></i>
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text fade-section">
+            <h1>Je crée des <span>expériences digitales</span> qui marquent les esprits</h1>
+            <p>Développeur full-stack & designer passionné, je transforme vos idées en produits web modernes, performants et mémorables.</p>
+            <div class="hero-buttons">
+              <a href="#projects" class="btn btn-primary">
+                <i class="fas fa-arrow-right"></i> Voir mes projets
+              </a>
+              <a href="#contact" class="btn btn-outline">
+                <i class="fas fa-paper-plane"></i> Me contacter
+              </a>
+            </div>
+            
+            <!-- Stats -->
+            <div class="stats">
+              <div class="stat-card">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Projets livrés</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" data-target="30">0</div>
+                <div class="stat-label">Clients satisfaits</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" data-target="5">0</div>
+                <div class="stat-label">Années d'expérience</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">% Satisfaction</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hero-image fade-section">
+            <!-- Remplacez par votre photo -->
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" 
+                 alt="Jeremia - Développeur" 
+                 loading="eager">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section (Bento Grid) -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-title fade-section">
+          <h2>Mes Services</h2>
+          <p>Des solutions sur-mesure pour propulser votre présence digitale</p>
+        </div>
+        
+        <div class="bento-grid">
+          <div class="bento-card fade-section">
+            <div class="bento-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3>Développement Web</h3>
+            <p>Sites vitrines, applications web et e-commerce avec des technologies modernes (React, Vue, Node.js).</p>
+          </div>
+          
+          <div class="bento-card fade-section">
+            <div class="bento-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <h3>UI/UX Design</h3>
+            <p>Interfaces intuitives et esthétiques, centrées sur l'expérience utilisateur et l'accessibilité.</p>
+          </div>
+          
+          <div class="bento-card fade-section">
+            <div class="bento-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Responsive Design</h3>
+            <p>Expérience optimale sur tous les appareils : mobile, tablette et desktop.</p>
+          </div>
+          
+          <div class="bento-card fade-section">
+            <div class="bento-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Performance & SEO</h3>
+            <p>Optimisation technique pour des temps de chargement rapides et un meilleur référencement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section" style="background: var(--bg-body);">
+      <div class="container">
+        <div class="section-title fade-section">
+          <h2>Mes Réalisations</h2>
+          <p>Quelques projets récents dont je suis fier</p>
+        </div>
+        
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card fade-section">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" 
+                   alt="Projet E-commerce" 
+                   loading="lazy">
+              <div class="project-overlay">
+                <div class="project-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Node.js</span>
+                  <span class="tag">Stripe</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Plateforme E-commerce</h3>
+              <p>Boutique en ligne complète avec paiement sécurisé et gestion de stock en temps réel.</p>
+              <div class="project-links">
+                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Démo</a>
+                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Project 2 -->
+          <article class="project-card fade-section">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1551654834-1f7d6c7c7c66?w=600&h=400&fit=crop" 
+                   alt="Application Mobile" 
+                   loading="lazy">
+              <div class="project-overlay">
+                <div class="project-tags">
+                  <span class="tag">React Native</span>
+                  <span class="tag">Firebase</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>App de Fitness</h3>
+              <p>Application mobile de suivi sportif avec programmes personnalisés et communauté.</p>
+              <div class="project-links">
+                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Démo</a>
+                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Project 3 -->
+          <article class="project-card fade-section">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop" 
+                   alt="Dashboard Analytics" 
+                   loading="lazy">
+              <div class="project-overlay">
+                <div class="project-tags">
+                  <span class="tag">Vue.js</span>
+                  <span class="tag">D3.js</span>
+                  <span class="tag">API</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Dashboard Analytics</h3>
+              <p>Tableau de bord interactif pour visualiser et analyser des données complexes.</p>
+              <div class="project-links">
+                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Démo</a>
+                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+      <div class="container">
+        <div class="section-title fade-section">
+          <h2>Témoignages</h2>
+          <p>Ce que disent mes clients de notre collaboration</p>
+        </div>
+        
+        <div class="testimonials-wrapper fade-section">
+          <div class="testimonial-card">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" 
+                 alt="Client" 
+                 class="testimonial-avatar"
+                 loading="lazy">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"Jeremia a dépassé toutes nos attentes. Le site est magnifique, rapide et notre taux de conversion a augmenté de 40% !"</p>
+            <div class="testimonial-author">
+              <h4>Sophie Martin</h4>
+              <p>CEO, StartupTech</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="background: var(--bg-body);">
+      <div class="container">
+        <div class="section-title fade-section">
+          <h2>Travaillons Ensemble</h2>
+          <p>Un projet en tête ? Discutons de comment je peux vous aider</p>
+        </div>
+        
+        <div class="contact-wrapper">
+          <div class="contact-info fade-section">
+            <h3>Informations de contact</h3>
+            
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong>Email</strong>
+                <p>hello@jeremia.dev</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <strong>Localisation</strong>
+                <p>Paris, France 🇫🇷</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <strong>Disponibilité</strong>
+                <p>Disponible pour nouveaux projets</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fas fa-file-alt"></i>
+              <div>
+                <strong>CV</strong>
+                <a href="#" style="color: var(--primary); font-weight: 500;">Télécharger mon CV →</a>
+              </div>
+            </div>
+          </div>
+          
+          <form class="contact-form fade-section" id="contactForm">
+            <div class="form-group">
+              <label for="name">Nom complet</label>
+              <input type="text" id="name" name="name" class="form-control" required placeholder="Votre nom">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-control" required placeholder="votre@email.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" name="subject" class="form-control" required placeholder="De quoi souhaitez-vous parler ?">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="form-control" required placeholder="Décrivez votre projet..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fas fa-paper-plane"></i> Envoyer le message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">Jeremia.</div>
+        
+        <div class="social-links">
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+        </div>
+      </div>
+      
+      <p class="copyright">
+        &copy; <span id="year"></span> Jeremia. Tous droits réservés. • 
+        <a href="#" style="color: var(--primary);">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // ===== DARK/LIGHT MODE TOGGLE =====
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    // Check saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      html.setAttribute('data-theme', 'dark');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    // ===== MOBILE MENU TOGGLE =====
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+    
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileToggle.querySelector('i').classList.add('fa-bars');
+        mobileToggle.querySelector('i').classList.remove('fa-times');
+      });
+    });
+
+    // ===== HEADER SCROLL EFFECT =====
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // ===== SCROLL ANIMATIONS (Intersection Observer) =====
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target); // Animate only once
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.fade-section').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ===== STATS COUNTER ANIMATION =====
+    const animateCounters = () => {
+      const counters = document.querySelectorAll('.stat-number');
+      
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // ~60fps
+        let current = 0;
+        
+        const updateCounter = () => {
+          current += increment;
+          if (current < target) {
+            counter.textContent = Math.floor(current) + '+';
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target + '+';
+          }
+        };
+        
+        // Start animation when element is visible
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            updateCounter();
+            observer.disconnect();
+          }
+        }, { threshold: 0.5 });
+        
+        observer.observe(counter);
+      });
+    };
+    
+    animateCounters();
+
+    // ===== CONTACT FORM SUBMISSION =====
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      
+      // Loading state
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+      
+      // Simulate form submission (replace with actual API call)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Success state
+      btn.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
+      btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      
+      // Reset form
+      contactForm.reset();
+      
+      // Reset button after 3 seconds
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+      }, 3000);
+      
+      // Optional: Show success message to user
+      alert('Merci ! Votre message a bien été envoyé. Je vous répondrai sous 24h.');
+    });
+
+    // ===== DYNAMIC YEAR IN FOOTER =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // ===== LAZY LOADING ENHANCEMENT =====
+    if ('loading' in HTMLImageElement.prototype) {
+      // Native lazy loading supported
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach(img => {
+        img.src = img.dataset.src || img.src;
+      });
+    } else {
+      // Fallback for older browsers
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js';
+      script.onload = () => {
+        const observer = lozad('img[loading="lazy"]');
+        observer.observe();
+      };
+      document.body.appendChild(script);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soalia Safari Sud Mada – Explorez le Sud de Madagascar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2545;
+    --navy-mid: #183B6F;
+    --navy-light: #1E4D8C;
+    --gold: #D4822A;
+    --gold-light: #E8A84C;
+    --gold-pale: #F5D9A8;
+    --teal: #1A7F72;
+    --teal-light: #2AA898;
+    --sand: #F5EDD8;
+    --sand-dark: #E8D5AA;
+    --white: #FFFFFF;
+    --text-dark: #0B2545;
+    --text-mid: #2C4A6E;
+    --text-muted: #6B85A0;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(11, 37, 69, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 130, 42, 0.25);
+  }
+  .nav-logo img { height: 44px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.4rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #0F3A5A 100%);
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 5% 5rem;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><defs><radialGradient id="g" cx="65%" cy="60%" r="45%"><stop offset="0%" stop-color="%23D4822A" stop-opacity="0.18"/><stop offset="100%" stop-color="%23D4822A" stop-opacity="0"/></radialGradient></defs><rect fill="url(%23g)" width="800" height="600"/></svg>') center/cover no-repeat;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin-bottom: 1.4rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 28px; height: 1px;
+    background: var(--gold-light);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.4rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 2.4rem;
+    max-width: 440px;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.4);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: transparent; cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); background: rgba(212,130,42,0.1); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+  }
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.3rem;
+  }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    height: 520px;
+  }
+  .hero-card {
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    background: var(--navy-light);
+  }
+  .hero-card:first-child {
+    grid-row: span 2;
+    background: linear-gradient(180deg, rgba(26,127,114,0.5) 0%, rgba(11,37,69,0.8) 100%), 
+                linear-gradient(135deg, #1A7F72 0%, #0B5E55 100%);
+  }
+  .hero-card:nth-child(2) {
+    background: linear-gradient(180deg, rgba(212,130,42,0.3) 0%, rgba(11,37,69,0.8) 100%),
+                linear-gradient(135deg, #D4822A 0%, #8B4A0A 100%);
+  }
+  .hero-card:nth-child(3) {
+    background: linear-gradient(180deg, rgba(24,59,111,0.3) 0%, rgba(11,37,69,0.9) 100%),
+                linear-gradient(135deg, #183B6F 0%, #0B2545 100%);
+  }
+  .hero-card-label {
+    position: absolute;
+    bottom: 1rem; left: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+  .hero-card-icon {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.15;
+    font-size: 5rem;
+  }
+  .hero-card:first-child .hero-card-icon { font-size: 7rem; }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 5%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+  .section-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* SERVICES */
+  .services-bg {
+    background: var(--sand);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5px;
+    background: var(--sand-dark);
+    border: 1.5px solid var(--sand-dark);
+  }
+  .service-card {
+    background: var(--white);
+    padding: 2.2rem 2rem;
+    transition: background 0.25s;
+  }
+  .service-card:hover { background: var(--navy); }
+  .service-card:hover .service-title { color: var(--gold-light); }
+  .service-card:hover .service-desc { color: rgba(255,255,255,0.6); }
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.25s;
+  }
+  .service-card:hover .service-num { color: rgba(212,130,42,0.3); }
+  .service-title {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 0.7rem;
+    transition: color 0.25s;
+  }
+  .service-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    transition: color 0.25s;
+  }
+  .services-cta { margin-top: 2.5rem; }
+
+  /* TYPES DE VOYAGE */
+  .travel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .travel-card {
+    border: 1px solid var(--sand-dark);
+    padding: 2rem 2rem 2rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .travel-card:hover {
+    border-color: var(--gold);
+    box-shadow: 4px 4px 0 var(--gold-pale);
+  }
+  .travel-icon-box {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .travel-title {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+  .travel-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* DESTINATIONS */
+  .destinations-bg { background: var(--navy); }
+  .destinations-bg h2 { color: var(--white); }
+  .destinations-bg .section-sub { color: rgba(255,255,255,0.5); }
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.08);
+  }
+  .dest-card {
+    background: var(--navy);
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s;
+    min-height: 220px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .dest-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .dest-card:hover::before { transform: scaleY(1); }
+  .dest-card:hover .dest-num { color: rgba(255,255,255,0.2); }
+  .dest-card:hover .dest-name { color: var(--white); }
+  .dest-card:hover .dest-tagline { color: rgba(255,255,255,0.75); }
+  .dest-num {
+    position: absolute;
+    top: 1.2rem; right: 1.5rem;
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    transition: color 0.3s;
+    z-index: 1;
+  }
+  .dest-name {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--white);
+    position: relative; z-index: 1;
+    transition: color 0.3s;
+    margin-bottom: 0.3rem;
+  }
+  .dest-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    position: relative; z-index: 1;
+    transition: color 0.3s;
+  }
+  .dest-cta {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  /* PROCESSUS */
+  .process-bg { background: var(--sand); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 10%; right: 10%;
+    height: 1px;
+    background: var(--sand-dark);
+    z-index: 0;
+  }
+  .process-step {
+    text-align: center;
+    padding: 0 1rem;
+    position: relative; z-index: 1;
+  }
+  .step-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.4rem;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .step-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .step-desc {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* POURQUOI NOUS */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .why-list { list-style: none; }
+  .why-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--sand-dark);
+  }
+  .why-item:first-child { border-top: 1px solid var(--sand-dark); }
+  .why-check {
+    width: 22px; height: 22px; flex-shrink: 0;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+    font-size: 0.7rem;
+    color: var(--white);
+    font-weight: 700;
+  }
+  .why-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-mid);
+  }
+  .why-quote-block {
+    background: var(--navy);
+    padding: 3rem;
+    position: relative;
+  }
+  .why-quote-block::before {
+    content: '\201C';
+    font-family: var(--font-display);
+    font-size: 8rem;
+    color: rgba(212,130,42,0.2);
+    position: absolute;
+    top: -0.5rem; left: 1.5rem;
+    line-height: 1;
+  }
+  .why-quote {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+    position: relative; z-index: 1;
+    margin-bottom: 2rem;
+  }
+  .why-founders {
+    display: flex; align-items: center; gap: 1rem;
+    position: relative; z-index: 1;
+  }
+  .founder-avatars {
+    display: flex;
+  }
+  .founder-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--navy-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+  .founder-avatar:first-child { margin-right: -8px; background: var(--teal); }
+  .founder-name {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    font-style: normal;
+  }
+  .founder-name strong { color: var(--gold-light); display: block; font-weight: 500; }
+
+  /* CTA FINAL */
+  .cta-section {
+    background: linear-gradient(135deg, var(--gold) 0%, #A85E15 100%);
+    padding: 6rem 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200"><text x="0" y="180" font-size="200" opacity="0.06" fill="white" font-family="serif">S</text></svg>') left center/contain no-repeat;
+  }
+  .cta-section h2 {
+    color: var(--white);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+  .cta-section p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .btn-white {
+    background: var(--white);
+    color: var(--gold);
+    padding: 1rem 2.5rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-white:hover { background: var(--sand); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 2.5rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .footer-logo img { height: 36px; }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+  .footer-wa {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-wa:hover { color: var(--gold-light); }
+  .wa-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #25D366;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.22s; }
+  .delay-3 { animation-delay: 0.34s; }
+  .delay-4 { animation-delay: 0.46s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .dest-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .process-steps::before { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .travel-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 4%; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .dest-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="/mnt/user-data/uploads/Image1.png" alt="Soalia" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span style="display:none; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #fff; letter-spacing: 0.05em;">SOALIA</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#processus">Comment ça marche</a></li>
+    <li><a href="#pourquoi">Notre différence</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Demander un devis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow fade-up">Soalia Safari Sud Mada</div>
+      <h1 class="fade-up delay-1">Explorez le Sud de Madagascar<br><em>autrement</em></h1>
+      <p class="hero-sub fade-up delay-2">Une expérience unique, authentique et sur mesure dans l'un des plus beaux trésors de Madagascar.</p>
+      <div class="hero-btns fade-up delay-3">
+        <a href="#contact" class="btn-primary">Demander un devis</a>
+        <a href="#destinations" class="btn-outline">Planifier un circuit</a>
+      </div>
+      <div class="hero-stats fade-up delay-4">
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Satisfaction garantie</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Destinations phares</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">7/7</div>
+          <div class="stat-label">Disponibilité</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual fade-up delay-2">
+      <div class="hero-card">
+        <div class="hero-card-icon">🌊</div>
+        <div class="hero-card-label">Anakao · Village authentique</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🌅</div>
+        <div class="hero-card-label">Ifaty · Lagon</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🌿</div>
+        <div class="hero-card-label">Salary · Nature sauvage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section-inner">
+    <div class="section-eyebrow">Nos services</div>
+    <h2>Une expérience unique<br><em>dans le Sud</em></h2>
+    <p class="section-sub">Des services pensés pour vous offrir le meilleur du Sud de Madagascar.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">Voyages sur mesure</div>
+        <p class="service-desc">Création de séjours personnalisés selon vos envies, votre rythme et votre budget.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">Organisation complète</div>
+        <p class="service-desc">Transport, hébergement, activités : on gère tout pour que vous profitiez à 100%.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">Accompagnement personnalisé</div>
+        <p class="service-desc">Conseils et suivi avant, pendant et après votre séjour. Nous sommes là pour vous.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-title">Expériences exclusives</div>
+        <p class="service-desc">Accès à des lieux et activités soigneusement sélectionnés pour leur authenticité.</p>
+      </div>
+    </div>
+    <div class="services-cta">
+      <a href="#processus" class="btn-primary">En savoir plus</a>
+    </div>
+  </div>
+</section>
+
+<!-- TYPES DE VOYAGE -->
+<section>
+  <div class="section-inner">
+    <div class="section-eyebrow">Votre avis compte</div>
+    <h2>Quel voyage<br><em>vous ressemble ?</em></h2>
+    <p class="section-sub">On s'adapte à vos envies pour construire une virée qui vous ressemble vraiment.</p>
+    <div class="travel-grid">
+      <div class="travel-card">
+        <div class="travel-icon-box">🌴</div>
+        <div>
+          <div class="travel-title">Détente &amp; ambiance</div>
+          <p class="travel-desc">Séjours relaxants dans des lieux soigneusement sélectionnés pour leur sérénité et leur beauté naturelle.</p>
+        </div>
+      </div>
+      <div class="travel-card">
+        <div class="travel-icon-box">🏕️</div>
+        <div>
+          <div class="travel-title">Nature &amp; aventure</div>
+          <p class="travel-desc">Immersion au cœur des paysages et richesses naturelles de Madagascar, loin des sentiers battus.</p>
+        </div>
+      </div>
+      <div class="travel-card">
+        <div class="travel-icon-box">💍</div>
+        <div>
+          <div class="travel-title">Lune de miel</div>
+          <p class="travel-desc">Escapades romantiques sur mesure pour les couples souhaitant vivre un moment inoubliable.</p>
+        </div>
+      </div>
+      <div class="travel-card">
+        <div class="travel-icon-box">💼</div>
+        <div>
+          <div class="travel-title">Voyages d'affaires</div>
+          <p class="travel-desc">Solutions adaptées aux besoins professionnels, alliant efficacité, confort et découverte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations-bg" id="destinations">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color: var(--gold-light);">Nos destinations</div>
+    <h2>Explorez le Sud<br><em style="color: var(--gold-light);">de Madagascar</em></h2>
+    <p class="section-sub">Quatre joyaux du Sud, chacun avec son caractère, ses couleurs et son âme.</p>
+    <div class="dest-grid">
+      <div class="dest-card">
+        <div class="dest-num">01</div>
+        <div class="dest-name">Toliara</div>
+        <div class="dest-tagline">Ville côtière · Point de départ</div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-num">02</div>
+        <div class="dest-name">Ifaty</div>
+        <div class="dest-tagline">Plages · Lagon · Sérénité</div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-num">03</div>
+        <div class="dest-name">Anakao</div>
+        <div class="dest-tagline">Village · Mer · Authenticité</div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-num">04</div>
+        <div class="dest-name">Salary</div>
+        <div class="dest-tagline">Sauvage · Préservé · Rare</div>
+      </div>
+    </div>
+    <div class="dest-cta">
+      <a href="#contact" class="btn-outline" style="border-color: rgba(212,130,42,0.5); color: var(--gold-light);">Découvrir toutes nos destinations</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section class="process-bg" id="processus">
+  <div class="section-inner">
+    <div class="section-eyebrow">Comment ça marche</div>
+    <h2>De l'idée au départ<br><em>avec Soalia</em></h2>
+    <p class="section-sub">En 5 étapes simples, votre voyage prend forme. Nous nous occupons de tout.</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-circle">1</div>
+        <div class="step-title">Prise de contact</div>
+        <p class="step-desc">Parlez-nous de vos envies, vos rêves, vos contraintes</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">2</div>
+        <div class="step-title">Analyse</div>
+        <p class="step-desc">On comprend votre projet en profondeur</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">3</div>
+        <div class="step-title">Proposition</div>
+        <p class="step-desc">Un itinéraire sur mesure, pensé pour vous</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">4</div>
+        <div class="step-title">Organisation</div>
+        <p class="step-desc">On s'occupe de chaque détail logistique</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">5</div>
+        <div class="step-title">Accompagnement</div>
+        <p class="step-desc">À vos côtés sur place, à chaque instant</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI NOUS -->
+<section id="pourquoi">
+  <div class="section-inner">
+    <div class="section-eyebrow">Notre différence</div>
+    <h2>Ce qui nous distingue,<br><em>c'est notre passion</em></h2>
+    <div class="why-grid">
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <span class="why-text">Connaissance approfondie du Sud de Madagascar et de ses richesses locales</span>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <span class="why-text">Accompagnement de A à Z — avant, pendant et après votre séjour</span>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <span class="why-text">Tarifs transparents, sans surprise ni frais cachés</span>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <span class="why-text">Itinéraires 100% personnalisés selon vos envies et votre budget</span>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <span class="why-text">Partenaires locaux de confiance, sélectionnés pour leur sérieux</span>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <span class="why-text">Disponibilité 7j/7 via WhatsApp — nous sommes toujours joignables</span>
+        </li>
+      </ul>
+      <div class="why-quote-block">
+        <p class="why-quote">L'idée est simple : que vous puissiez vous changer les idées, souffler un peu, et revenir plus léger dans votre quotidien.</p>
+        <div class="why-founders">
+          <div class="founder-avatars">
+            <div class="founder-avatar">A</div>
+            <div class="founder-avatar" style="margin-left: -8px;">F</div>
+          </div>
+          <div class="founder-name">
+            <strong>Anja &amp; Fety</strong>
+            Fondateurs de Soalia
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contact">
+  <div style="position: relative; z-index: 1;">
+    <div class="section-eyebrow" style="color: rgba(255,255,255,0.7); justify-content: center; margin-bottom: 1.2rem;">
+      <span style="width:24px; height:1px; background:rgba(255,255,255,0.5); display:block;"></span>
+      Prêt à vivre l'aventure ?
+    </div>
+    <h2 style="color: var(--white); margin-bottom: 1rem;">Votre voyage de rêve<br>commence ici</h2>
+    <p>Contactez-nous dès maintenant et commencez à planifier votre voyage sur mesure dans le Sud de Madagascar.</p>
+    <a href="#" class="btn-white">Planifier mon voyage</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="/mnt/user-data/uploads/Image1.png" alt="Soalia" height="36" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span style="display:none; font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.7); font-size:1.4rem;">SOALIA</span>
+  </div>
+  <span class="footer-copy">© 2025 Soalia Safari Sud Mada · Tous droits réservés</span>
+  <a href="https://wa.me/" class="footer-wa">
+    <span class="wa-dot"></span>
+    Disponible sur WhatsApp 7j/7
+  </a>
+</footer>
+
+</body>
+</html>

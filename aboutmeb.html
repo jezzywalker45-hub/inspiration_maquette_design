@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — MEB Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --black:#0c0c0c;
+  --white:#f5f4f0;
+  --gray-dark:#1a1a1a;
+  --gray-mid:#333333;
+  --gray-light:#888888;
+  --gray-pale:#d4d4d0;
+  --border:#2a2a2a;
+  --border-light:rgba(245,244,240,0.12);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(12,12,12,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-mark{
+  width:38px;height:38px;
+  border:1px solid var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;
+  letter-spacing:1px;color:var(--white);
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  font-size:18px;letter-spacing:4px;
+  font-weight:700;text-transform:uppercase;color:var(--white);
+}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{
+  color:var(--gray-light);
+  text-decoration:none;font-size:12px;
+  font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;transition:color .2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--white)}
+.nav-cta{
+  background:var(--white)!important;
+  color:var(--black)!important;
+  padding:10px 22px;font-weight:500!important;
+  font-size:11px!important;letter-spacing:2px;
+}
+
+/* HERO À PROPOS */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:flex-end;
+  padding:0 60px 80px;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero-lines{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  pointer-events:none;
+}
+.hero-lines span{border-right:1px solid rgba(255,255,255,0.04)}
+.hero-num{
+  position:absolute;top:140px;right:60px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(160px,22vw,320px);
+  font-weight:900;line-height:0.85;
+  color:rgba(255,255,255,0.03);
+  letter-spacing:-10px;
+  user-select:none;pointer-events:none;
+}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:500;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray-light);
+  margin-bottom:32px;
+}
+.hero-eyebrow::before{
+  content:'';width:32px;height:1px;
+  background:var(--white);
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px,7vw,98px);
+  font-weight:900;line-height:0.92;
+  letter-spacing:-2px;margin-bottom:32px;
+}
+.hero-title .line2{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:1px var(--white);
+}
+.hero-sub{
+  font-size:16px;color:var(--gray-light);
+  max-width:520px;line-height:1.75;
+  font-weight:300;
+}
+
+/* SECTION SHARED */
+section{padding:100px 60px}
+.sec-label{
+  font-size:11px;font-weight:500;
+  letter-spacing:4px;text-transform:uppercase;
+  color:var(--gray-light);margin-bottom:16px;
+}
+.sec-line{width:40px;height:1px;background:var(--white);margin-bottom:20px}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,5vw,68px);
+  font-weight:700;letter-spacing:-1px;
+  line-height:1.05;margin-bottom:20px;
+}
+.sec-desc{
+  font-size:16px;color:var(--gray-light);
+  max-width:520px;line-height:1.75;font-weight:300;
+}
+
+/* SECTION STUDIO — 2 colonnes */
+#studio{border-top:1px solid var(--border)}
+.studio-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+.studio-body{
+  font-size:15px;color:var(--gray-light);
+  line-height:1.85;font-weight:300;
+}
+.studio-body p+p{margin-top:20px}
+.studio-body strong{color:var(--white);font-weight:400}
+.studio-aside{padding-top:8px}
+.studio-aside-box{
+  border:1px solid var(--border);
+  padding:40px 36px;
+  position:relative;overflow:hidden;
+}
+.studio-aside-box::before{
+  content:'';
+  position:absolute;top:0;left:0;
+  width:100%;height:1px;
+  background:var(--white);
+}
+.studio-aside-label{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gray-light);margin-bottom:24px;
+}
+.studio-aside-stat{margin-bottom:28px}
+.studio-aside-stat:last-child{margin-bottom:0}
+.aside-num{
+  font-family:'Playfair Display',serif;
+  font-size:52px;font-weight:700;
+  color:var(--white);line-height:1;
+}
+.aside-desc{
+  font-size:12px;color:var(--gray-light);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-top:4px;
+}
+
+/* ÉQUIPE */
+#equipe{border-top:1px solid var(--border);background:var(--gray-dark)}
+.team-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;margin-bottom:64px;
+}
+.team-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.team-card{
+  background:var(--black);
+  padding:0;
+  position:relative;overflow:hidden;
+  transition:background .25s;
+}
+.team-card:hover{background:#111}
+.team-card::after{
+  content:'';position:absolute;
+  top:0;left:0;width:100%;height:1px;
+  background:var(--white);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;
+}
+.team-card:hover::after{transform:scaleX(1)}
+.team-photo-placeholder{
+  aspect-ratio:3/4;
+  background:var(--gray-dark);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.team-photo-placeholder::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.02) 0%,transparent 60%);
+}
+.team-initials{
+  font-family:'Playfair Display',serif;
+  font-size:72px;font-weight:700;
+  color:rgba(255,255,255,0.06);
+  letter-spacing:-2px;
+}
+.team-info{padding:28px 28px 32px}
+.team-name{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;
+  color:var(--white);margin-bottom:6px;
+}
+.team-role{
+  font-size:11px;color:var(--gray-light);
+  letter-spacing:2px;text-transform:uppercase;
+}
+.team-card-soon{
+  background:var(--black);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  min-height:380px;
+  padding:40px;text-align:center;
+  border-left:1px solid var(--border);
+}
+.soon-label{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;
+  color:rgba(255,255,255,0.08);
+  letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.soon-sub{
+  font-size:11px;color:rgba(255,255,255,0.2);
+  letter-spacing:2px;text-transform:uppercase;
+}
+
+/* VALEURS */
+#valeurs{border-top:1px solid var(--border)}
+.valeurs-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;margin-bottom:64px;
+}
+.valeurs-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.valeur-card{
+  background:var(--black);padding:48px 36px;
+  position:relative;overflow:hidden;
+  transition:background .25s;
+}
+.valeur-card:hover{background:var(--gray-dark)}
+.valeur-card::after{
+  content:'';position:absolute;
+  top:0;left:0;width:100%;height:1px;
+  background:var(--white);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;
+}
+.valeur-card:hover::after{transform:scaleX(1)}
+.valeur-icon{
+  font-family:'Playfair Display',serif;
+  font-size:56px;font-weight:700;
+  color:rgba(255,255,255,0.05);
+  line-height:1;margin-bottom:24px;
+}
+.valeur-title{
+  font-family:'Playfair Display',serif;
+  font-size:24px;font-weight:700;
+  color:var(--white);margin-bottom:14px;
+}
+.valeur-desc{
+  font-size:14px;color:var(--gray-light);
+  line-height:1.75;font-weight:300;
+}
+
+/* MISSION */
+#mission{border-top:1px solid var(--border);background:var(--gray-dark)}
+.mission-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+.mission-body{
+  font-size:15px;color:var(--gray-light);
+  line-height:1.85;font-weight:300;
+}
+.mission-body p+p{margin-top:20px}
+.mission-body strong{color:var(--white);font-weight:400}
+
+/* CE QUI NOUS DÉFINIT */
+#differents{border-top:1px solid var(--border)}
+.diff-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;margin-bottom:64px;
+}
+.diff-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.diff-card{
+  background:var(--black);padding:48px 28px;
+  position:relative;overflow:hidden;
+  transition:background .2s;
+}
+.diff-card:hover{background:#111}
+.diff-num{
+  font-family:'Playfair Display',serif;
+  font-size:72px;font-weight:700;
+  color:rgba(255,255,255,0.05);
+  line-height:1;position:absolute;top:16px;right:20px;
+  pointer-events:none;
+}
+.diff-count{
+  font-size:11px;letter-spacing:3px;
+  color:var(--gray-light);margin-bottom:20px;
+}
+.diff-title{
+  font-family:'Playfair Display',serif;
+  font-size:19px;font-weight:700;
+  color:var(--white);margin-bottom:10px;
+}
+.diff-desc{font-size:13px;color:var(--gray-light);line-height:1.7}
+
+/* CTA BAND */
+#cta{
+  border-top:1px solid var(--border);
+  background:var(--white);color:var(--black);
+  padding:100px 60px;
+}
+.cta-inner{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  gap:40px;flex-wrap:wrap;
+}
+.cta-label{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gray-mid);margin-bottom:12px;
+}
+.cta-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,5vw,68px);
+  font-weight:900;letter-spacing:-2px;
+  line-height:1;margin-bottom:16px;color:var(--black);
+}
+.cta-sub{font-size:15px;color:var(--gray-mid);font-weight:300}
+.btn-dark{
+  background:var(--black);color:var(--white);
+  padding:18px 44px;font-size:12px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;text-decoration:none;
+  display:inline-block;transition:opacity .2s;
+  white-space:nowrap;
+}
+.btn-dark:hover{opacity:.8}
+
+/* FOOTER */
+footer{
+  background:var(--black);
+  border-top:1px solid var(--border);
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:1px;background:var(--border);
+  border-bottom:1px solid var(--border);
+}
+.footer-col{background:var(--black);padding:56px 40px}
+.footer-col-brand{padding:56px 40px}
+.footer-mark{
+  width:44px;height:44px;
+  border:1px solid rgba(255,255,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;
+  margin-bottom:20px;
+}
+.footer-name{
+  font-family:'Playfair Display',serif;
+  font-size:22px;letter-spacing:4px;
+  text-transform:uppercase;font-weight:700;
+  line-height:1.1;margin-bottom:12px;
+}
+.footer-tagline{
+  font-size:13px;color:var(--gray-light);
+  line-height:1.7;font-weight:300;
+  max-width:260px;margin-bottom:32px;
+}
+.footer-social{display:flex;gap:10px;flex-wrap:wrap}
+.footer-social a{
+  width:36px;height:36px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gray-light);
+  text-decoration:none;font-size:13px;
+  transition:border-color .2s,color .2s;
+}
+.footer-social a:hover{border-color:var(--white);color:var(--white)}
+.footer-col-title{
+  font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray-light);
+  margin-bottom:28px;padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.footer-nav-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-nav-list a{
+  font-size:14px;color:rgba(255,255,255,0.55);
+  text-decoration:none;font-weight:300;
+  transition:color .2s;letter-spacing:.3px;
+}
+.footer-nav-list a:hover{color:var(--white)}
+.footer-contact-item{display:flex;flex-direction:column;gap:3px;margin-bottom:18px}
+.footer-contact-label{
+  font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--gray-light);
+}
+.footer-contact-value{
+  font-size:13px;color:rgba(255,255,255,0.65);
+  font-weight:300;line-height:1.6;
+}
+.footer-contact-value a{
+  color:rgba(255,255,255,0.65);
+  text-decoration:none;transition:color .2s;
+}
+.footer-contact-value a:hover{color:var(--white)}
+.footer-bottom{
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;
+  gap:16px;padding:24px 40px;
+}
+.footer-copy{font-size:11px;color:var(--gray-light);letter-spacing:1px}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{
+  font-size:11px;color:rgba(255,255,255,0.3);
+  text-decoration:none;letter-spacing:1px;
+  transition:color .2s;
+}
+.footer-legal a:hover{color:var(--gray-light)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-links{display:none}
+  section{padding:72px 24px}
+  #hero{padding:0 24px 72px}
+  .hero-num{display:none}
+  .studio-inner,.mission-inner{grid-template-columns:1fr;gap:40px}
+  .team-header,.valeurs-header,.diff-header{grid-template-columns:1fr;gap:32px}
+  .team-grid{grid-template-columns:1fr}
+  .team-card-soon{min-height:200px}
+  .valeurs-grid{grid-template-columns:1fr}
+  .diff-grid{grid-template-columns:1fr 1fr}
+  .cta-inner{flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+  .footer-col,.footer-col-brand{padding:40px 24px}
+  .footer-bottom{flex-direction:column;padding:20px 24px;gap:12px}
+  .footer-legal{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-brand">MEB Studio</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="#" class="active">À propos</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Réalisations</a></li>
+    <li><a href="#cta" class="nav-cta">Devis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-lines">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-num">MEB</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">À propos — MEB Studio</div>
+    <h1 class="hero-title">
+      UN STUDIO PRO<br>
+      <span class="line2">À ANTANANARIVO</span>
+    </h1>
+    <p class="hero-sub">
+      Une équipe passionnée, un matériel de pointe et un regard exigeant sur chaque image.
+    </p>
+  </div>
+</section>
+
+<!-- STUDIO : L'IMAGE AU SERVICE DE VOS AMBITIONS -->
+<section id="studio">
+  <div class="studio-inner">
+    <div>
+      <div class="sec-label">MEB Studio</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">L'image au service<br>de vos ambitions</h2>
+      <div class="studio-body">
+        <p>Fondé par <strong>Erico Brayan Marinera</strong>, MEB STUDIO est un studio de production audiovisuelle basé à Antananarivo.</p>
+        <p>Nous accompagnons entreprises, artistes et institutions dans la création de contenus professionnels avec un rendu moderne, soigné et impactant. De la première idée à la livraison finale, nous mettons à disposition expertise technique et sensibilité créative.</p>
+        <p>Notre studio combine équipement professionnel, équipe passionnée et workflow maîtrisé pour livrer des images dignes des plus grands standards.</p>
+      </div>
+    </div>
+    <div class="studio-aside">
+      <div class="studio-aside-box">
+        <div class="studio-aside-label">En chiffres</div>
+        <div class="studio-aside-stat">
+          <div class="aside-num">50+</div>
+          <div class="aside-desc">Projets livrés</div>
+        </div>
+        <div class="studio-aside-stat">
+          <div class="aside-num">8+</div>
+          <div class="aside-desc">Années d'expérience</div>
+        </div>
+        <div class="studio-aside-stat">
+          <div class="aside-num">4K</div>
+          <div class="aside-desc">Qualité cinéma</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section id="equipe">
+  <div class="team-header">
+    <div>
+      <div class="sec-label">Notre équipe</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Des spécialistes<br>passionnés</h2>
+    </div>
+    <div>
+      <p style="font-size:15px;color:var(--gray-light);line-height:1.75;font-weight:300;">Une équipe à taille humaine où la créativité guide chaque décision, portée par une exigence commune pour l'image.</p>
+    </div>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo-placeholder">
+        <div class="team-initials">EBM</div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Erico Brayan Marinera</div>
+        <div class="team-role">Fondateur &amp; Directeur de production</div>
+      </div>
+    </div>
+    <div class="team-card-soon">
+      <div class="soon-label">À venir</div>
+      <div class="soon-sub">Suite à compléter</div>
+    </div>
+    <div class="team-card-soon">
+      <div class="soon-label">À venir</div>
+      <div class="soon-sub">Suite à compléter</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALEURS -->
+<section id="valeurs">
+  <div class="valeurs-header">
+    <div>
+      <div class="sec-label">Nos valeurs</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Les principes qui guident<br>chaque image</h2>
+    </div>
+    <div>
+      <p style="font-size:15px;color:var(--gray-light);line-height:1.75;font-weight:300;">Chez MEB Studio, la qualité n'est pas une option, c'est une culture. Chaque projet que nous prenons en main est porté par des convictions fortes qui nous animent au quotidien.</p>
+    </div>
+  </div>
+  <div class="valeurs-grid">
+    <div class="valeur-card">
+      <div class="valeur-icon">V</div>
+      <div class="valeur-title">Vision</div>
+      <div class="valeur-desc">Chaque image raconte. Nous cherchons l'angle, le cadre et la lumière qui font la différence.</div>
+    </div>
+    <div class="valeur-card">
+      <div class="valeur-icon">E</div>
+      <div class="valeur-title">Excellence</div>
+      <div class="valeur-desc">Matériel pro, workflow rigoureux et livraison impeccable, à chaque projet.</div>
+    </div>
+    <div class="valeur-card">
+      <div class="valeur-icon">P</div>
+      <div class="valeur-title">Passion</div>
+      <div class="valeur-desc">Un studio à taille humaine où la créativité guide chaque décision.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="mission-inner">
+    <div>
+      <div class="sec-label">Notre mission</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">Donner vie à vos idées,<br>image par image</h2>
+    </div>
+    <div class="mission-body">
+      <p>Chez MEB STUDIO, nous croyons que chaque projet mérite une attention méticuleuse. Que vous soyez une <strong>entreprise en pleine croissance</strong>, un <strong>artiste</strong> cherchant à immortaliser sa création ou une <strong>institution</strong> souhaitant communiquer avec impact, nous sommes là pour transformer votre vision en réalité visuelle.</p>
+      <p>Notre approche allie <strong>créativité narrative</strong> et rigueur technique. Nous ne nous contentons pas de filmer, nous construisons des histoires visuelles qui résonnent avec votre audience et renforcent votre message.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CE QUI NOUS DÉFINIT -->
+<section id="differents">
+  <div class="diff-header">
+    <div>
+      <div class="sec-label">Ce qui nous définit</div>
+      <div class="sec-line"></div>
+      <h2 class="sec-title">L'expertise malgache,<br>la qualité internationale</h2>
+    </div>
+    <div>
+      <p style="font-size:15px;color:var(--gray-light);line-height:1.75;font-weight:300;">Quatre engagements concrets qui font de MEB Studio un partenaire de confiance pour vos productions.</p>
+    </div>
+  </div>
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="diff-num">01</div>
+      <div class="diff-count">01 —</div>
+      <div class="diff-title">Réactivité</div>
+      <div class="diff-desc">Devis sous 24h et tournage possible en quelques jours selon disponibilités.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">02</div>
+      <div class="diff-count">02 —</div>
+      <div class="diff-title">Flexibilité</div>
+      <div class="diff-desc">Du one-man-show à l'équipe complète, nous adaptons nos ressources à votre budget.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">03</div>
+      <div class="diff-count">03 —</div>
+      <div class="diff-title">Accompagnement</div>
+      <div class="diff-desc">Conseil créatif inclus&nbsp;: scénarisation, storyboard et direction artistique.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">04</div>
+      <div class="diff-count">04 —</div>
+      <div class="diff-title">Clé en main</div>
+      <div class="diff-desc">Montage, étalonnage, sound design et export multi-formats en un seul contrat.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-label">Commençons votre projet</div>
+      <div class="cta-title">Donnons-lui vie.</div>
+      <div class="cta-sub">Discutons de votre projet. Nous vous accompagnons de l'idée initiale à la livraison finale avec professionnalisme et passion.</div>
+    </div>
+    <a href="tel:0322262214" class="btn-dark">Nous contacter</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col footer-col-brand">
+      <div class="footer-mark">M</div>
+      <div class="footer-name">MEB<br>Studio</div>
+      <p class="footer-tagline">Production audiovisuelle complète&nbsp;: tournage, montage, live streaming et location de matériel professionnel à Antananarivo.</p>
+      <div class="footer-social">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="YouTube">▶</a>
+        <a href="#" title="Instagram">ig</a>
+        <a href="#" title="TikTok">tk</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-nav-list">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Réalisations</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-nav-list">
+        <li><a href="#">Tournage vidéo</a></li>
+        <li><a href="#">Montage pro</a></li>
+        <li><a href="#">Live streaming</a></li>
+        <li><a href="#">Location matériel</a></li>
+        <li><a href="#">Contenu digital</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Adresse</span>
+        <span class="footer-contact-value">Lot IPP 36 Ambanilalana,<br>Andranonahoatra,<br>Antananarivo</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Téléphones</span>
+        <span class="footer-contact-value">
+          <a href="tel:0322262214">032 22 622 14</a><br>
+          <a href="tel:0334162214">033 41 622 14</a><br>
+          <a href="tel:0347262214">034 72 622 14</a>
+        </span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Email</span>
+        <span class="footer-contact-value">
+          <a href="mailto:contact@mebstudio.com">contact@mebstudio.com</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 MEB Studio — Fondé par Erico Brayan Marinera. L'image qui raconte votre histoire.</span>
+    <div class="footer-legal">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
